@@ -2,7 +2,7 @@
 
 ## OBD Code Scraper
 
-This Python script is designed to scrape and extract data about On-Board Diagnostic (OBD) trouble codes from the website `https://www.obd-codes.com/`. The script fetches information related to the codes' symptoms and causes, and then stores this data in a CSV file.
+This Python script is designed to scrape and extract data about On-Board Diagnostic (OBD) trouble codes from the website `https://www.obd-codes.com/`. The script fetches information related to the codes' symptoms and causes, and then stores this data in a CSV file. Original OBD Data taken from `https://github.com/mytrile/obd-trouble-codes/tree/master`
 
 ### Prerequisites
 
