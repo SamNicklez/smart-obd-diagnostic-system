@@ -15,8 +15,7 @@ if connection.is_connected():
     if not rpm.is_null():
         print(f"Engine RPM: {rpm.value}")
 
-    # Add more queries as needed
-    # Example: Vehicle speed
+    # Vehicle Speed
     speed = connection.query(obd.commands.SPEED)
     if not speed.is_null():
         print(f"Speed: {speed.value}")
