@@ -2,7 +2,15 @@ import obd
 import time
 import os
 import signal
+<<<<<<< HEAD
 
+=======
+
+
+# Need to find the address of the OBD II bluetooth and bind it to a serial port.
+# Binding command: sudo rfcomm bind rfcomm0 00:1D:A5:05:A4:E3
+
+>>>>>>> bec4c81058e53f95518c5295e205f3245da7604f
 # Global flag to control the loop
 keep_running = True
 
