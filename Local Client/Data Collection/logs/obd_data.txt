@@ -1,0 +1,1542 @@
+Engine RPM: 701.0
+Speed: 0.0 km/h
+Coolant Temperature: 73 °C
+Throttle Position: 12.941176470588236%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.3 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 712.0
+Speed: 0.0 km/h
+Coolant Temperature: 73 °C
+Throttle Position: 12.941176470588236%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 695.0
+Speed: 0.0 km/h
+Coolant Temperature: 73 °C
+Throttle Position: 12.941176470588236%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.3 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 704.0
+Speed: 0.0 km/h
+Coolant Temperature: 73 °C
+Throttle Position: 12.941176470588236%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.3 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 702.0
+Speed: 0.0 km/h
+Coolant Temperature: 73 °C
+Throttle Position: 12.941176470588236%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 704.0
+Speed: 0.0 km/h
+Coolant Temperature: 73 °C
+Throttle Position: 12.941176470588236%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 704.0
+Speed: 0.0 km/h
+Coolant Temperature: 73 °C
+Throttle Position: 12.941176470588236%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.3 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 709.0
+Speed: 0.0 km/h
+Coolant Temperature: 73 °C
+Throttle Position: 12.941176470588236%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 702.0
+Speed: 0.0 km/h
+Coolant Temperature: 73 °C
+Throttle Position: 12.941176470588236%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.5 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 703.0
+Speed: 0.0 km/h
+Coolant Temperature: 73 °C
+Throttle Position: 12.941176470588236%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 812.0
+Speed: 0.0 km/h
+Coolant Temperature: 73 °C
+Throttle Position: 13.333333333333334%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.6 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 764.0
+Speed: 0.0 km/h
+Coolant Temperature: 73 °C
+Throttle Position: 13.333333333333334%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.3 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 905.0
+Speed: 0.0 km/h
+Coolant Temperature: 73 °C
+Throttle Position: 14.901960784313726%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.5 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 773.0
+Speed: 0.0 km/h
+Coolant Temperature: 73 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.2 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 752.0
+Speed: 2.0 km/h
+Coolant Temperature: 73 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.2 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 764.0
+Speed: 2.0 km/h
+Coolant Temperature: 73 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.5 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 763.0
+Speed: 2.0 km/h
+Coolant Temperature: 73 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.5 V
+Intake Air Temperature: 13 °C
+
+Engine RPM: 763.0
+Speed: 3.0 km/h
+Coolant Temperature: 73 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 13 °C
+
+Engine RPM: 746.0
+Speed: 3.0 km/h
+Coolant Temperature: 73 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.3 V
+Intake Air Temperature: 13 °C
+
+Engine RPM: 739.0
+Speed: 4.0 km/h
+Coolant Temperature: 73 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 13 °C
+
+Engine RPM: 733.0
+Speed: 4.0 km/h
+Coolant Temperature: 73 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 13 °C
+
+Engine RPM: 735.0
+Speed: 4.0 km/h
+Coolant Temperature: 74 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 13 °C
+
+Engine RPM: 742.0
+Speed: 3.0 km/h
+Coolant Temperature: 74 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 13 °C
+
+Engine RPM: 743.0
+Speed: 3.0 km/h
+Coolant Temperature: 74 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.5 V
+Intake Air Temperature: 13 °C
+
+Engine RPM: 767.0
+Speed: 3.0 km/h
+Coolant Temperature: 74 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.5 V
+Intake Air Temperature: 13 °C
+
+Engine RPM: 715.0
+Speed: 3.0 km/h
+Coolant Temperature: 74 °C
+Throttle Position: 14.117647058823529%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.3 V
+Intake Air Temperature: 13 °C
+
+Engine RPM: 1541.0
+Speed: 4.0 km/h
+Coolant Temperature: 74 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.2 V
+Intake Air Temperature: 13 °C
+
+Engine RPM: 1075.0
+Speed: 4.0 km/h
+Coolant Temperature: 74 °C
+Throttle Position: 18.03921568627451%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.6 V
+Intake Air Temperature: 13 °C
+
+Engine RPM: 949.0
+Speed: 5.0 km/h
+Coolant Temperature: 74 °C
+Throttle Position: 14.117647058823529%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.2 V
+Intake Air Temperature: 13 °C
+
+Engine RPM: 792.0
+Speed: 3.0 km/h
+Coolant Temperature: 74 °C
+Throttle Position: 14.117647058823529%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.6 V
+Intake Air Temperature: 13 °C
+
+Engine RPM: 1538.0
+Speed: 0.0 km/h
+Coolant Temperature: 74 °C
+Throttle Position: 20.0%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.6 V
+Intake Air Temperature: 13 °C
+
+Engine RPM: 1636.0
+Speed: 9.0 km/h
+Coolant Temperature: 74 °C
+Throttle Position: 21.96078431372549%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.5 V
+Intake Air Temperature: 13 °C
+
+Engine RPM: 1904.0
+Speed: 15.0 km/h
+Coolant Temperature: 74 °C
+Throttle Position: 23.137254901960784%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.5 V
+Intake Air Temperature: 14 °C
+
+Engine RPM: 1929.0
+Speed: 20.0 km/h
+Coolant Temperature: 74 °C
+Throttle Position: 22.745098039215687%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.6 V
+Intake Air Temperature: 14 °C
+
+Engine RPM: 1950.0
+Speed: 24.0 km/h
+Coolant Temperature: 74 °C
+Throttle Position: 21.568627450980394%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.5 V
+Intake Air Temperature: 14 °C
+
+Engine RPM: 1889.0
+Speed: 27.0 km/h
+Coolant Temperature: 75 °C
+Throttle Position: 19.607843137254903%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.5 V
+Intake Air Temperature: 14 °C
+
+Engine RPM: 1386.0
+Speed: 28.0 km/h
+Coolant Temperature: 75 °C
+Throttle Position: 16.862745098039216%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.3 V
+Intake Air Temperature: 13 °C
+
+Engine RPM: 1342.0
+Speed: 29.0 km/h
+Coolant Temperature: 75 °C
+Throttle Position: 18.03921568627451%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.6 V
+Intake Air Temperature: 13 °C
+
+Engine RPM: 1456.0
+Speed: 31.0 km/h
+Coolant Temperature: 75 °C
+Throttle Position: 19.607843137254903%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.7 V
+Intake Air Temperature: 13 °C
+
+Engine RPM: 1454.0
+Speed: 32.0 km/h
+Coolant Temperature: 75 °C
+Throttle Position: 20.0%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.6 V
+Intake Air Temperature: 13 °C
+
+Engine RPM: 1309.0
+Speed: 33.0 km/h
+Coolant Temperature: 76 °C
+Throttle Position: 18.431372549019606%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 13 °C
+
+Engine RPM: 1360.0
+Speed: 34.0 km/h
+Coolant Temperature: 76 °C
+Throttle Position: 13.333333333333334%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.6 V
+Intake Air Temperature: 13 °C
+
+Engine RPM: 1268.0
+Speed: 32.0 km/h
+Coolant Temperature: 76 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 13 °C
+
+Engine RPM: 1326.0
+Speed: 31.0 km/h
+Coolant Temperature: 76 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.6 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 1291.0
+Speed: 29.0 km/h
+Coolant Temperature: 77 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.3 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 1247.0
+Speed: 27.0 km/h
+Coolant Temperature: 77 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.5 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 1229.0
+Speed: 23.0 km/h
+Coolant Temperature: 77 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.6 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 1145.0
+Speed: 20.0 km/h
+Coolant Temperature: 77 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.6 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 1107.0
+Speed: 15.0 km/h
+Coolant Temperature: 77 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.5 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 1014.0
+Speed: 10.0 km/h
+Coolant Temperature: 77 °C
+Throttle Position: 13.333333333333334%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 961.0
+Speed: 6.0 km/h
+Coolant Temperature: 77 °C
+Throttle Position: 17.647058823529413%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.6 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 2003.0
+Speed: 13.0 km/h
+Coolant Temperature: 78 °C
+Throttle Position: 24.705882352941178%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 2017.0
+Speed: 20.0 km/h
+Coolant Temperature: 78 °C
+Throttle Position: 24.705882352941178%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.3 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 2280.0
+Speed: 26.0 km/h
+Coolant Temperature: 78 °C
+Throttle Position: 29.41176470588235%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.3 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 2234.0
+Speed: 33.0 km/h
+Coolant Temperature: 78 °C
+Throttle Position: 33.333333333333336%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.6 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 1887.0
+Speed: 39.0 km/h
+Coolant Temperature: 78 °C
+Throttle Position: 20.0%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 11 °C
+
+Engine RPM: 1321.0
+Speed: 38.0 km/h
+Coolant Temperature: 78 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 11 °C
+
+Engine RPM: 1300.0
+Speed: 34.0 km/h
+Coolant Temperature: 78 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.5 V
+Intake Air Temperature: 11 °C
+
+Engine RPM: 1275.0
+Speed: 29.0 km/h
+Coolant Temperature: 78 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 11 °C
+
+Engine RPM: 1149.0
+Speed: 23.0 km/h
+Coolant Temperature: 78 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 11 °C
+
+Engine RPM: 1099.0
+Speed: 19.0 km/h
+Coolant Temperature: 78 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 11 °C
+
+Engine RPM: 1946.0
+Speed: 20.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 21.96078431372549%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 11 °C
+
+Engine RPM: 2089.0
+Speed: 24.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 24.313725490196077%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 11 °C
+
+Engine RPM: 2307.0
+Speed: 29.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 26.666666666666668%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.7 V
+Intake Air Temperature: 11 °C
+
+Engine RPM: 2127.0
+Speed: 34.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 26.274509803921568%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.6 V
+Intake Air Temperature: 11 °C
+
+Engine RPM: 1807.0
+Speed: 38.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 23.529411764705884%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 1600.0
+Speed: 41.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 19.607843137254903%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 1464.0
+Speed: 42.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 13.333333333333334%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.3 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 1298.0
+Speed: 40.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 1766.0
+Speed: 38.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 18.823529411764707%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.7 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 1233.0
+Speed: 37.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 1289.0
+Speed: 36.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.5 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 1271.0
+Speed: 34.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.6 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 1275.0
+Speed: 32.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.3 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 1239.0
+Speed: 29.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.5 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 1144.0
+Speed: 23.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.6 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 1102.0
+Speed: 16.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.6 V
+Intake Air Temperature: 11 °C
+
+Engine RPM: 932.0
+Speed: 7.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 14.509803921568627%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 1582.0
+Speed: 7.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 23.137254901960784%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.7 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 1907.0
+Speed: 15.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 23.137254901960784%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.6 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 2018.0
+Speed: 20.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 23.529411764705884%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.5 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 2221.0
+Speed: 26.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 27.058823529411764%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 1966.0
+Speed: 31.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 24.313725490196077%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.7 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 1377.0
+Speed: 34.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 13.333333333333334%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 1255.0
+Speed: 32.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.5 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 1455.0
+Speed: 28.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 23.92156862745098%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.7 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 1165.0
+Speed: 28.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 1167.0
+Speed: 25.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.6 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 1145.0
+Speed: 20.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.5 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 1111.0
+Speed: 17.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.7 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 1515.0
+Speed: 16.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 13.333333333333334%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.7 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 1003.0
+Speed: 14.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 13.333333333333334%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 1464.0
+Speed: 11.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 16.470588235294116%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.5 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 919.0
+Speed: 10.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 13.333333333333334%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.3 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 857.0
+Speed: 8.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 13.333333333333334%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.2 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 822.0
+Speed: 6.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.2 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 1072.0
+Speed: 5.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 15.294117647058824%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.5 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 1398.0
+Speed: 6.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 19.607843137254903%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.6 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 935.0
+Speed: 8.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 13.333333333333334%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.2 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 878.0
+Speed: 6.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 15.686274509803921%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.6 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 820.0
+Speed: 6.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 14.117647058823529%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.2 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 789.0
+Speed: 4.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.3 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 772.0
+Speed: 3.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 13.72549019607843%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 757.0
+Speed: 2.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 13.333333333333334%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 754.0
+Speed: 0.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 12.941176470588236%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.3 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 745.0
+Speed: 0.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 12.941176470588236%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 716.0
+Speed: 0.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.3 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 715.0
+Speed: 0.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.2 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 714.0
+Speed: 0.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 712.0
+Speed: 0.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 716.0
+Speed: 0.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 715.0
+Speed: 0.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 719.0
+Speed: 0.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 718.0
+Speed: 0.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 713.0
+Speed: 0.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 720.0
+Speed: 0.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.5 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 719.0
+Speed: 0.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 713.0
+Speed: 0.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.5 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 720.0
+Speed: 0.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.6 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 714.0
+Speed: 0.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.5 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 710.0
+Speed: 0.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 713.0
+Speed: 0.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 718.0
+Speed: 0.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.5 V
+Intake Air Temperature: 10 °C
+
+Engine RPM: 718.0
+Speed: 0.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 11 °C
+
+Engine RPM: 719.0
+Speed: 0.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.5 V
+Intake Air Temperature: 11 °C
+
+Engine RPM: 714.0
+Speed: 0.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 11 °C
+
+Engine RPM: 724.0
+Speed: 0.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.5 V
+Intake Air Temperature: 11 °C
+
+Engine RPM: 722.0
+Speed: 0.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.5 V
+Intake Air Temperature: 11 °C
+
+Engine RPM: 719.0
+Speed: 0.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.5 V
+Intake Air Temperature: 11 °C
+
+Engine RPM: 720.0
+Speed: 0.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 11 °C
+
+Engine RPM: 717.0
+Speed: 0.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 11 °C
+
+Engine RPM: 721.0
+Speed: 0.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 11 °C
+
+Engine RPM: 721.0
+Speed: 0.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 11 °C
+
+Engine RPM: 716.0
+Speed: 0.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 11 °C
+
+Engine RPM: 716.0
+Speed: 0.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 11 °C
+
+Engine RPM: 719.0
+Speed: 0.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 11 °C
+
+Engine RPM: 720.0
+Speed: 0.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 11 °C
+
+Engine RPM: 723.0
+Speed: 0.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 11 °C
+
+Engine RPM: 723.0
+Speed: 0.0 km/h
+Coolant Temperature: 80 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 11 °C
+
+Engine RPM: 723.0
+Speed: 0.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.5 V
+Intake Air Temperature: 11 °C
+
+Engine RPM: 720.0
+Speed: 0.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 11 °C
+
+Engine RPM: 717.0
+Speed: 0.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 11 °C
+
+Engine RPM: 724.0
+Speed: 0.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.5 V
+Intake Air Temperature: 11 °C
+
+Engine RPM: 723.0
+Speed: 0.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 11 °C
+
+Engine RPM: 716.0
+Speed: 0.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 11 °C
+
+Engine RPM: 715.0
+Speed: 0.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.3 V
+Intake Air Temperature: 11 °C
+
+Engine RPM: 719.0
+Speed: 0.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 11 °C
+
+Engine RPM: 724.0
+Speed: 0.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 714.0
+Speed: 0.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 53.72549019607843%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 712.0
+Speed: 0.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 719.0
+Speed: 0.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 713.0
+Speed: 0.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 719.0
+Speed: 0.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.5 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 719.0
+Speed: 0.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 715.0
+Speed: 0.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 719.0
+Speed: 0.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 54.90196078431372%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 719.0
+Speed: 0.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 714.0
+Speed: 0.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 719.0
+Speed: 0.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.5 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 714.0
+Speed: 0.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 688.0
+Speed: 0.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 692.0
+Speed: 0.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 689.0
+Speed: 0.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 694.0
+Speed: 0.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 693.0
+Speed: 0.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 12 °C
+
+Engine RPM: 696.0
+Speed: 0.0 km/h
+Coolant Temperature: 79 °C
+Throttle Position: 12.549019607843137%
+Fuel Level: 55.68627450980392%
+Battery Voltage: 14.4 V
+Intake Air Temperature: 12 °C
+
+Battery Voltage: 13.1 V
+
+Battery Voltage: 12.9 V
+
+Battery Voltage: 12.8 V
+
+Battery Voltage: 12.7 V
+
+Battery Voltage: 12.6 V
+
+Battery Voltage: 12.6 V
+
+Battery Voltage: 12.6 V
+
+Battery Voltage: 12.6 V
+
+Battery Voltage: 12.6 V
+
+Battery Voltage: 12.6 V
+
+Battery Voltage: 12.6 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.6 V
+
+Battery Voltage: 12.6 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.5 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
+Battery Voltage: 12.4 V
+
