@@ -87,14 +87,14 @@ def log_command(command):
             if hasattr(response.value, 'magnitude'):  # Ensure value has magnitude for conversion
                 value = convert_speed_to_mph(response.value.magnitude)
                 unit = "mph"
-        # elif command.name in ['COOLANT_TEMP', 'AMBIENT_AIR_TEMP', 'INTAKE_TEMP']:
-        #     if hasattr(response.value, 'magnitude'):  # Ensure value has magnitude for conversion
-        #         value = convert_celsius_to_fahrenheit(response.value.magnitude)
-        #         unit = "°F"
-        elif unit == "degree_Celsius":
+        elif unit == "degree_Celsius [PASSED]":
             if hasattr(response.value, 'magnitude'):  # Ensure value has magnitude for conversion
                 value = convert_celsius_to_fahrenheit(response.value.magnitude)
-                unit = "°F"   
+                unit = "°F [PASSED]"
+        elif unit == "degree_Celsius [FAILED]":
+            if hasattr(response.value, 'magnitude'):  # Ensure value has magnitude for conversion
+                value = convert_celsius_to_fahrenheit(response.value.magnitude)
+                unit = "°F [FAILED]"
         elif unit == "percent":
             if hasattr(response.value, 'magnitude'):  # Ensure value has magnitude for conversion
                 unit = "%" 
