@@ -1,0 +1,1127 @@
+OBD Data Logging:
+2024-02-06 20:40:35 - LONG_FUEL_TRIM_1: 0.0 %
+2024-02-06 20:40:35 - O2_B1S1: 0.76 volt
+2024-02-06 20:40:35 - PIDS_9A: 0101010101000000000000000000000000000000 
+2024-02-06 20:40:35 - GET_DTC:  
+DTC_INTAKE_TEMP: Not Supported or No Data
+2024-02-06 20:40:36 - MONITOR_EVAP_090: Unknown : 9200.0 millisecond [PASSED] 
+DTC_RPM: Not Supported or No Data
+2024-02-06 20:40:36 - MONITOR_O2_HEATER_B1S2: Unknown : 25.0 degree_Celsius [PASSED]
+Unknown : 0.0 millisecond [PASSED] 
+DTC_EVAP_VAPOR_PRESSURE: Not Supported or No Data
+2024-02-06 20:40:37 - MONITOR_O2_B1S1: Unknown : 0.0 percent [PASSED]
+Unknown : 0.0 count [PASSED] 
+2024-02-06 20:40:37 - VIN: bytearray(b'C4NJDCB6CD508767') 
+2024-02-06 20:40:37 - MIDS_F: 01111000000000000000000000000000 
+2024-02-06 20:40:37 - OBD_COMPLIANCE: OBD-II as defined by the CARB 
+2024-02-06 20:40:37 - CALIBRATION_ID: bytearray(b'68070203AG') 
+2024-02-06 20:40:38 - RUN_TIME: 41.0 second
+DTC_RELATIVE_THROTTLE_POS: Not Supported or No Data
+DTC_FUEL_STATUS: Not Supported or No Data
+2024-02-06 20:40:38 - THROTTLE_POS_B: 14.901960784313726 %
+2024-02-06 20:40:39 - CONTROL_MODULE_VOLTAGE: 14.453000000000001 volt
+DTC_RUN_TIME: Not Supported or No Data
+2024-02-06 20:40:39 - PIDS_A: 10111110001111101011100000010011 
+2024-02-06 20:40:39 - FUEL_STATUS: ('Closed loop, using oxygen sensor feedback to determine fuel mix', '') 
+DTC_THROTTLE_ACTUATOR: Not Supported or No Data
+2024-02-06 20:40:40 - MONITOR_MISFIRE_CYLINDER_2: Average misfire counts for last ten driving cycles : 0.0 count [PASSED]
+Misfire counts for last/current driving cycles : 0.0 count [PASSED] 
+2024-02-06 20:40:40 - MIDS_C: 11000000000000000000000000000001 
+DTC_AMBIANT_AIR_TEMP: Not Supported or No Data
+2024-02-06 20:40:40 - THROTTLE_POS: 14.901960784313726 %
+2024-02-06 20:40:41 - MONITOR_EVAP_020: Unknown : 0.0 minute [PASSED]
+Unknown : 0.0 minute [PASSED]
+Unknown : 364.0 minute [PASSED] 
+2024-02-06 20:40:41 - ENGINE_LOAD: 38.03921568627451 %
+DTC_O2_SENSORS: Not Supported or No Data
+DTC_LONG_FUEL_TRIM_1: Not Supported or No Data
+2024-02-06 20:40:42 - MIDS_D: 00000000000000000000000000000001 
+DTC_FUEL_LEVEL: Not Supported or No Data
+2024-02-06 20:40:42 - ACCELERATOR_POS_E: 9.019607843137255 %
+2024-02-06 20:40:42 - CVN: 487b931c 
+DTC_COMMANDED_EQUIV_RATIO: Not Supported or No Data
+2024-02-06 20:40:43 - ELM_VOLTAGE: 14.3 volt
+DTC_SPEED: Not Supported or No Data
+DTC_TIMING_ADVANCE: Not Supported or No Data
+2024-02-06 20:40:44 - MIDS_E: 00000000000000000000000000000001 
+2024-02-06 20:40:44 - O2_SENSORS: ((), (False, False, False, False), (False, False, True, True)) 
+2024-02-06 20:40:44 - ELM_VERSION: ELM327 v1.5 
+2024-02-06 20:40:44 - GET_CURRENT_DTC:  
+DTC_DISTANCE_W_MIL: Not Supported or No Data
+DTC_CONTROL_MODULE_VOLTAGE: Not Supported or No Data
+DTC_ABSOLUTE_LOAD: Not Supported or No Data
+2024-02-06 20:40:45 - ACCELERATOR_POS_D: 18.03921568627451 %
+DTC_STATUS_DRIVE_CYCLE: Not Supported or No Data
+2024-02-06 20:40:46 - ABSOLUTE_LOAD: 35.294117647058826 %
+DTC_STATUS: Not Supported or No Data
+2024-02-06 20:40:46 - MONITOR_MISFIRE_CYLINDER_3: Average misfire counts for last ten driving cycles : 0.0 count [PASSED]
+Misfire counts for last/current driving cycles : 0.0 count [PASSED] 
+2024-02-06 20:40:46 - STATUS: <obd.OBDResponse.Status object at 0xf5a72058> 
+2024-02-06 20:40:47 - EVAPORATIVE_PURGE: 0.0 %
+CLEAR_DTC: Not Supported or No Data
+2024-02-06 20:40:47 - MONITOR_MISFIRE_CYLINDER_1: Average misfire counts for last ten driving cycles : 0.0 count [PASSED]
+Misfire counts for last/current driving cycles : 0.0 count [PASSED] 
+2024-02-06 20:40:47 - COOLANT_TEMP: 120.2 °F
+DTC_THROTTLE_POS_B: Not Supported or No Data
+2024-02-06 20:40:48 - MONITOR_CATALYST_B1: Unknown : 0.0 percent [PASSED] 
+2024-02-06 20:40:48 - WARMUPS_SINCE_DTC_CLEAR: 3.0 count
+2024-02-06 20:40:48 - RELATIVE_THROTTLE_POS: 5.882352941176471 %
+DTC_THROTTLE_POS: Not Supported or No Data
+2024-02-06 20:40:49 - MIDS_A: 11000000000000000000000000000001 
+2024-02-06 20:40:49 - MONITOR_MISFIRE_CYLINDER_4: Average misfire counts for last ten driving cycles : 0.0 count [PASSED]
+Misfire counts for last/current driving cycles : 0.0 count [PASSED] 
+DTC_PIDS_C: Not Supported or No Data
+2024-02-06 20:40:49 - SPEED: 3.106855 mph
+2024-02-06 20:40:49 - AMBIANT_AIR_TEMP: 50.0 °F
+2024-02-06 20:40:50 - THROTTLE_ACTUATOR: 5.882352941176471 %
+2024-02-06 20:40:50 - MONITOR_VVT_B1: Unknown : 0.2 degree [PASSED]
+Unknown : 0.7000000000000001 degree [PASSED]
+Unknown : 0.0 degree [PASSED]
+Unknown : 0.0 degree [PASSED] 
+2024-02-06 20:40:50 - INTAKE_PRESSURE: 51 kilopascal
+2024-02-06 20:40:50 - O2_B1S2: 0.725 volt
+DTC_WARMUPS_SINCE_DTC_CLEAR: Not Supported or No Data
+2024-02-06 20:40:51 - DISTANCE_SINCE_DTC_CLEAR: 7.0 kilometer
+2024-02-06 20:40:51 - MONITOR_EVAP_150: Unknown : 0.0 minute [PASSED] 
+2024-02-06 20:40:51 - DISTANCE_W_MIL: 0.0 kilometer
+2024-02-06 20:40:51 - FUEL_LEVEL: 55.68627450980392 %
+DTC_PIDS_B: Not Supported or No Data
+DTC_OBD_COMPLIANCE: Not Supported or No Data
+2024-02-06 20:40:52 - BAROMETRIC_PRESSURE: 98 kilopascal
+DTC_BAROMETRIC_PRESSURE: Not Supported or No Data
+2024-02-06 20:40:52 - MONITOR_O2_HEATER_B1S1: Unknown : 50.0 degree_Celsius [PASSED]
+Unknown : 0.0 millisecond [PASSED] 
+DTC_ACCELERATOR_POS_E: Not Supported or No Data
+DTC_O2_B1S2: Not Supported or No Data
+2024-02-06 20:40:53 - COMMANDED_EQUIV_RATIO: 0.999424 ratio
+DTC_ENGINE_LOAD: Not Supported or No Data
+2024-02-06 20:40:54 - TIMING_ADVANCE: -3.0 degree
+DTC_COOLANT_TEMP: Not Supported or No Data
+2024-02-06 20:40:54 - INTAKE_TEMP: 75.2 °F
+2024-02-06 20:40:55 - PIDS_C: 11111110110100000000000000000000 
+2024-02-06 20:40:55 - MONITOR_PURGE_FLOW: Unknown : 0.0 millisecond [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED] 
+2024-02-06 20:40:55 - SHORT_FUEL_TRIM_1: -0.78125 %
+2024-02-06 20:40:55 - MIDS_B: 10000000000000000000100011011001 
+DTC_SHORT_FUEL_TRIM_1: Not Supported or No Data
+2024-02-06 20:40:56 - EVAP_VAPOR_PRESSURE: -182.0 pascal
+DTC_INTAKE_PRESSURE: Not Supported or No Data
+DTC_O2_B1S1: Not Supported or No Data
+2024-02-06 20:40:56 - CATALYST_TEMP_B1S1: 984.2 °F
+DTC_DISTANCE_SINCE_DTC_CLEAR: Not Supported or No Data
+2024-02-06 20:40:57 - RPM: 943.0 revolutions_per_minute
+DTC_CATALYST_TEMP_B1S1: Not Supported or No Data
+DTC_ACCELERATOR_POS_D: Not Supported or No Data
+2024-02-06 20:40:58 - STATUS_DRIVE_CYCLE: <obd.OBDResponse.Status object at 0xf5a724d8> 
+2024-02-06 20:40:58 - PIDS_B: 10000000000001111110000000010001 
+2024-02-06 20:40:58 - MONITOR_O2_B1S2: Minimum sensor voltage for test cycle : 0.509 volt [PASSED]
+Maximum sensor voltage for test cycle : 0.666 volt [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 millivolt [PASSED] 
+DTC_EVAPORATIVE_PURGE: Not Supported or No Data
+
+OBD Data Logging:
+2024-02-06 20:41:00 - LONG_FUEL_TRIM_1: 0.0 %
+2024-02-06 20:41:00 - O2_B1S1: 0.625 volt
+2024-02-06 20:41:00 - PIDS_9A: 0101010101000000000000000000000000000000 
+2024-02-06 20:41:00 - GET_DTC:  
+DTC_INTAKE_TEMP: Not Supported or No Data
+2024-02-06 20:41:01 - MONITOR_EVAP_090: Unknown : 9200.0 millisecond [PASSED] 
+DTC_RPM: Not Supported or No Data
+2024-02-06 20:41:01 - MONITOR_O2_HEATER_B1S2: Unknown : 25.0 degree_Celsius [PASSED]
+Unknown : 0.0 millisecond [PASSED] 
+DTC_EVAP_VAPOR_PRESSURE: Not Supported or No Data
+2024-02-06 20:41:02 - MONITOR_O2_B1S1: Unknown : 0.0 percent [PASSED]
+Unknown : 0.0 count [PASSED] 
+2024-02-06 20:41:02 - VIN: bytearray(b'C4NJDCB6CD508767') 
+2024-02-06 20:41:02 - MIDS_F: 01111000000000000000000000000000 
+2024-02-06 20:41:02 - OBD_COMPLIANCE: OBD-II as defined by the CARB 
+2024-02-06 20:41:02 - CALIBRATION_ID: bytearray(b'68070203AG') 
+2024-02-06 20:41:02 - RUN_TIME: 66.0 second
+DTC_RELATIVE_THROTTLE_POS: Not Supported or No Data
+DTC_FUEL_STATUS: Not Supported or No Data
+2024-02-06 20:41:03 - THROTTLE_POS_B: 20.784313725490197 %
+2024-02-06 20:41:03 - CONTROL_MODULE_VOLTAGE: 14.746 volt
+DTC_RUN_TIME: Not Supported or No Data
+2024-02-06 20:41:04 - PIDS_A: 10111110001111101011100000010011 
+2024-02-06 20:41:04 - FUEL_STATUS: ('Closed loop, using oxygen sensor feedback to determine fuel mix', '') 
+DTC_THROTTLE_ACTUATOR: Not Supported or No Data
+2024-02-06 20:41:05 - MONITOR_MISFIRE_CYLINDER_2: Average misfire counts for last ten driving cycles : 0.0 count [PASSED]
+Misfire counts for last/current driving cycles : 0.0 count [PASSED] 
+2024-02-06 20:41:05 - MIDS_C: 11000000000000000000000000000001 
+DTC_AMBIANT_AIR_TEMP: Not Supported or No Data
+2024-02-06 20:41:05 - THROTTLE_POS: 16.470588235294116 %
+2024-02-06 20:41:05 - MONITOR_EVAP_020: Unknown : 0.0 minute [PASSED]
+Unknown : 0.0 minute [PASSED]
+Unknown : 364.0 minute [PASSED] 
+2024-02-06 20:41:06 - ENGINE_LOAD: 47.84313725490196 %
+DTC_O2_SENSORS: Not Supported or No Data
+DTC_LONG_FUEL_TRIM_1: Not Supported or No Data
+2024-02-06 20:41:06 - MIDS_D: 00000000000000000000000000000001 
+DTC_FUEL_LEVEL: Not Supported or No Data
+2024-02-06 20:41:07 - ACCELERATOR_POS_E: 9.411764705882353 %
+2024-02-06 20:41:07 - CVN: 487b931c 
+DTC_COMMANDED_EQUIV_RATIO: Not Supported or No Data
+2024-02-06 20:41:08 - ELM_VOLTAGE: 14.6 volt
+DTC_SPEED: Not Supported or No Data
+DTC_TIMING_ADVANCE: Not Supported or No Data
+2024-02-06 20:41:08 - MIDS_E: 00000000000000000000000000000001 
+2024-02-06 20:41:09 - O2_SENSORS: ((), (False, False, False, False), (False, False, True, True)) 
+2024-02-06 20:41:09 - ELM_VERSION: ELM327 v1.5 
+2024-02-06 20:41:09 - GET_CURRENT_DTC:  
+DTC_DISTANCE_W_MIL: Not Supported or No Data
+DTC_CONTROL_MODULE_VOLTAGE: Not Supported or No Data
+DTC_ABSOLUTE_LOAD: Not Supported or No Data
+2024-02-06 20:41:10 - ACCELERATOR_POS_D: 32.549019607843135 %
+DTC_STATUS_DRIVE_CYCLE: Not Supported or No Data
+2024-02-06 20:41:11 - ABSOLUTE_LOAD: 56.07843137254902 %
+DTC_STATUS: Not Supported or No Data
+2024-02-06 20:41:11 - MONITOR_MISFIRE_CYLINDER_3: Average misfire counts for last ten driving cycles : 0.0 count [PASSED]
+Misfire counts for last/current driving cycles : 0.0 count [PASSED] 
+2024-02-06 20:41:11 - STATUS: <obd.OBDResponse.Status object at 0xf5a72490> 
+2024-02-06 20:41:11 - EVAPORATIVE_PURGE: 0.0 %
+CLEAR_DTC: Not Supported or No Data
+2024-02-06 20:41:12 - MONITOR_MISFIRE_CYLINDER_1: Average misfire counts for last ten driving cycles : 0.0 count [PASSED]
+Misfire counts for last/current driving cycles : 0.0 count [PASSED] 
+2024-02-06 20:41:12 - COOLANT_TEMP: 129.2 °F
+DTC_THROTTLE_POS_B: Not Supported or No Data
+2024-02-06 20:41:12 - MONITOR_CATALYST_B1: Unknown : 0.0 percent [PASSED] 
+2024-02-06 20:41:13 - WARMUPS_SINCE_DTC_CLEAR: 3.0 count
+2024-02-06 20:41:13 - RELATIVE_THROTTLE_POS: 22.745098039215687 %
+DTC_THROTTLE_POS: Not Supported or No Data
+2024-02-06 20:41:13 - MIDS_A: 11000000000000000000000000000001 
+2024-02-06 20:41:13 - MONITOR_MISFIRE_CYLINDER_4: Average misfire counts for last ten driving cycles : 0.0 count [PASSED]
+Misfire counts for last/current driving cycles : 0.0 count [PASSED] 
+DTC_PIDS_C: Not Supported or No Data
+2024-02-06 20:41:14 - SPEED: 22.990727 mph
+2024-02-06 20:41:14 - AMBIANT_AIR_TEMP: 50.0 °F
+2024-02-06 20:41:14 - THROTTLE_ACTUATOR: 16.470588235294116 %
+2024-02-06 20:41:14 - MONITOR_VVT_B1: Unknown : 0.2 degree [PASSED]
+Unknown : 0.7000000000000001 degree [PASSED]
+Unknown : 0.0 degree [PASSED]
+Unknown : 0.0 degree [PASSED] 
+2024-02-06 20:41:14 - INTAKE_PRESSURE: 70 kilopascal
+2024-02-06 20:41:15 - O2_B1S2: 0.47 volt
+DTC_WARMUPS_SINCE_DTC_CLEAR: Not Supported or No Data
+2024-02-06 20:41:15 - DISTANCE_SINCE_DTC_CLEAR: 7.0 kilometer
+2024-02-06 20:41:15 - MONITOR_EVAP_150: Unknown : 0.0 minute [PASSED] 
+2024-02-06 20:41:15 - DISTANCE_W_MIL: 0.0 kilometer
+2024-02-06 20:41:16 - FUEL_LEVEL: 55.68627450980392 %
+DTC_PIDS_B: Not Supported or No Data
+DTC_OBD_COMPLIANCE: Not Supported or No Data
+2024-02-06 20:41:16 - BAROMETRIC_PRESSURE: 98 kilopascal
+DTC_BAROMETRIC_PRESSURE: Not Supported or No Data
+2024-02-06 20:41:17 - MONITOR_O2_HEATER_B1S1: Unknown : 50.0 degree_Celsius [PASSED]
+Unknown : 0.0 millisecond [PASSED] 
+DTC_ACCELERATOR_POS_E: Not Supported or No Data
+DTC_O2_B1S2: Not Supported or No Data
+2024-02-06 20:41:18 - COMMANDED_EQUIV_RATIO: 0.999424 ratio
+DTC_ENGINE_LOAD: Not Supported or No Data
+2024-02-06 20:41:18 - TIMING_ADVANCE: 6.0 degree
+DTC_COOLANT_TEMP: Not Supported or No Data
+2024-02-06 20:41:19 - INTAKE_TEMP: 68.0 °F
+2024-02-06 20:41:19 - PIDS_C: 11111110110100000000000000000000 
+2024-02-06 20:41:19 - MONITOR_PURGE_FLOW: Unknown : 0.0 millisecond [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED] 
+2024-02-06 20:41:19 - SHORT_FUEL_TRIM_1: -0.78125 %
+2024-02-06 20:41:20 - MIDS_B: 10000000000000000000100011011001 
+DTC_SHORT_FUEL_TRIM_1: Not Supported or No Data
+2024-02-06 20:41:20 - EVAP_VAPOR_PRESSURE: -411.0 pascal
+DTC_INTAKE_PRESSURE: Not Supported or No Data
+DTC_O2_B1S1: Not Supported or No Data
+2024-02-06 20:41:21 - CATALYST_TEMP_B1S1: 1439.6 °F
+DTC_DISTANCE_SINCE_DTC_CLEAR: Not Supported or No Data
+2024-02-06 20:41:21 - RPM: 1321.0 revolutions_per_minute
+DTC_CATALYST_TEMP_B1S1: Not Supported or No Data
+DTC_ACCELERATOR_POS_D: Not Supported or No Data
+2024-02-06 20:41:22 - STATUS_DRIVE_CYCLE: <obd.OBDResponse.Status object at 0xf5a727d8> 
+2024-02-06 20:41:22 - PIDS_B: 10000000000001111110000000010001 
+2024-02-06 20:41:22 - MONITOR_O2_B1S2: Minimum sensor voltage for test cycle : 0.509 volt [PASSED]
+Maximum sensor voltage for test cycle : 0.666 volt [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 millivolt [PASSED] 
+DTC_EVAPORATIVE_PURGE: Not Supported or No Data
+
+OBD Data Logging:
+2024-02-06 20:41:24 - LONG_FUEL_TRIM_1: 0.0 %
+2024-02-06 20:41:24 - O2_B1S1: 0.0 volt
+2024-02-06 20:41:24 - PIDS_9A: 0101010101000000000000000000000000000000 
+2024-02-06 20:41:24 - GET_DTC:  
+DTC_INTAKE_TEMP: Not Supported or No Data
+2024-02-06 20:41:25 - MONITOR_EVAP_090: Unknown : 9200.0 millisecond [PASSED] 
+DTC_RPM: Not Supported or No Data
+2024-02-06 20:41:25 - MONITOR_O2_HEATER_B1S2: Unknown : 25.0 degree_Celsius [PASSED]
+Unknown : 0.0 millisecond [PASSED] 
+DTC_EVAP_VAPOR_PRESSURE: Not Supported or No Data
+2024-02-06 20:41:26 - MONITOR_O2_B1S1: Unknown : 0.0 percent [PASSED]
+Unknown : 0.0 count [PASSED] 
+2024-02-06 20:41:26 - VIN: bytearray(b'C4NJDCB6CD508767') 
+2024-02-06 20:41:26 - MIDS_F: 01111000000000000000000000000000 
+2024-02-06 20:41:26 - OBD_COMPLIANCE: OBD-II as defined by the CARB 
+2024-02-06 20:41:27 - CALIBRATION_ID: bytearray(b'68070203AG') 
+2024-02-06 20:41:27 - RUN_TIME: 90.0 second
+DTC_RELATIVE_THROTTLE_POS: Not Supported or No Data
+DTC_FUEL_STATUS: Not Supported or No Data
+2024-02-06 20:41:28 - THROTTLE_POS_B: 14.901960784313726 %
+2024-02-06 20:41:28 - CONTROL_MODULE_VOLTAGE: 14.499 volt
+DTC_RUN_TIME: Not Supported or No Data
+2024-02-06 20:41:28 - PIDS_A: 10111110001111101011100000010011 
+2024-02-06 20:41:28 - FUEL_STATUS: ('Closed loop, using oxygen sensor feedback to determine fuel mix', '') 
+DTC_THROTTLE_ACTUATOR: Not Supported or No Data
+2024-02-06 20:41:29 - MONITOR_MISFIRE_CYLINDER_2: Average misfire counts for last ten driving cycles : 0.0 count [PASSED]
+Misfire counts for last/current driving cycles : 0.0 count [PASSED] 
+2024-02-06 20:41:29 - MIDS_C: 11000000000000000000000000000001 
+DTC_AMBIANT_AIR_TEMP: Not Supported or No Data
+2024-02-06 20:41:30 - THROTTLE_POS: 14.901960784313726 %
+2024-02-06 20:41:30 - MONITOR_EVAP_020: Unknown : 0.0 minute [PASSED]
+Unknown : 0.0 minute [PASSED]
+Unknown : 364.0 minute [PASSED] 
+2024-02-06 20:41:30 - ENGINE_LOAD: 30.58823529411765 %
+DTC_O2_SENSORS: Not Supported or No Data
+DTC_LONG_FUEL_TRIM_1: Not Supported or No Data
+2024-02-06 20:41:31 - MIDS_D: 00000000000000000000000000000001 
+DTC_FUEL_LEVEL: Not Supported or No Data
+2024-02-06 20:41:31 - ACCELERATOR_POS_E: 16.470588235294116 %
+2024-02-06 20:41:31 - CVN: 487b931c 
+DTC_COMMANDED_EQUIV_RATIO: Not Supported or No Data
+2024-02-06 20:41:32 - ELM_VOLTAGE: 14.6 volt
+DTC_SPEED: Not Supported or No Data
+DTC_TIMING_ADVANCE: Not Supported or No Data
+2024-02-06 20:41:33 - MIDS_E: 00000000000000000000000000000001 
+2024-02-06 20:41:33 - O2_SENSORS: ((), (False, False, False, False), (False, False, True, True)) 
+2024-02-06 20:41:33 - ELM_VERSION: ELM327 v1.5 
+2024-02-06 20:41:33 - GET_CURRENT_DTC:  
+DTC_DISTANCE_W_MIL: Not Supported or No Data
+DTC_CONTROL_MODULE_VOLTAGE: Not Supported or No Data
+DTC_ABSOLUTE_LOAD: Not Supported or No Data
+2024-02-06 20:41:34 - ACCELERATOR_POS_D: 41.1764705882353 %
+DTC_STATUS_DRIVE_CYCLE: Not Supported or No Data
+2024-02-06 20:41:35 - ABSOLUTE_LOAD: 78.43137254901961 %
+DTC_STATUS: Not Supported or No Data
+2024-02-06 20:41:35 - MONITOR_MISFIRE_CYLINDER_3: Average misfire counts for last ten driving cycles : 0.0 count [PASSED]
+Misfire counts for last/current driving cycles : 0.0 count [PASSED] 
+2024-02-06 20:41:35 - STATUS: <obd.OBDResponse.Status object at 0xf5a726b8> 
+2024-02-06 20:41:35 - EVAPORATIVE_PURGE: 0.0 %
+CLEAR_DTC: Not Supported or No Data
+2024-02-06 20:41:36 - MONITOR_MISFIRE_CYLINDER_1: Average misfire counts for last ten driving cycles : 0.0 count [PASSED]
+Misfire counts for last/current driving cycles : 0.0 count [PASSED] 
+2024-02-06 20:41:36 - COOLANT_TEMP: 140.0 °F
+DTC_THROTTLE_POS_B: Not Supported or No Data
+2024-02-06 20:41:36 - MONITOR_CATALYST_B1: Unknown : 0.0 percent [PASSED] 
+2024-02-06 20:41:37 - WARMUPS_SINCE_DTC_CLEAR: 3.0 count
+2024-02-06 20:41:37 - RELATIVE_THROTTLE_POS: 54.509803921568626 %
+DTC_THROTTLE_POS: Not Supported or No Data
+2024-02-06 20:41:37 - MIDS_A: 11000000000000000000000000000001 
+2024-02-06 20:41:37 - MONITOR_MISFIRE_CYLINDER_4: Average misfire counts for last ten driving cycles : 0.0 count [PASSED]
+Misfire counts for last/current driving cycles : 0.0 count [PASSED] 
+DTC_PIDS_C: Not Supported or No Data
+2024-02-06 20:41:38 - SPEED: 31.068550000000002 mph
+2024-02-06 20:41:38 - AMBIANT_AIR_TEMP: 42.8 °F
+2024-02-06 20:41:38 - THROTTLE_ACTUATOR: 73.33333333333333 %
+2024-02-06 20:41:38 - MONITOR_VVT_B1: Unknown : 0.2 degree [PASSED]
+Unknown : 0.7000000000000001 degree [PASSED]
+Unknown : 0.0 degree [PASSED]
+Unknown : 0.0 degree [PASSED] 
+2024-02-06 20:41:39 - INTAKE_PRESSURE: 97 kilopascal
+2024-02-06 20:41:39 - O2_B1S2: 0.41 volt
+DTC_WARMUPS_SINCE_DTC_CLEAR: Not Supported or No Data
+2024-02-06 20:41:39 - DISTANCE_SINCE_DTC_CLEAR: 7.0 kilometer
+2024-02-06 20:41:39 - MONITOR_EVAP_150: Unknown : 0.0 minute [PASSED] 
+2024-02-06 20:41:39 - DISTANCE_W_MIL: 0.0 kilometer
+2024-02-06 20:41:40 - FUEL_LEVEL: 54.90196078431372 %
+DTC_PIDS_B: Not Supported or No Data
+DTC_OBD_COMPLIANCE: Not Supported or No Data
+2024-02-06 20:41:40 - BAROMETRIC_PRESSURE: 99 kilopascal
+DTC_BAROMETRIC_PRESSURE: Not Supported or No Data
+2024-02-06 20:41:41 - MONITOR_O2_HEATER_B1S1: Unknown : 50.0 degree_Celsius [PASSED]
+Unknown : 0.0 millisecond [PASSED] 
+DTC_ACCELERATOR_POS_E: Not Supported or No Data
+DTC_O2_B1S2: Not Supported or No Data
+2024-02-06 20:41:42 - COMMANDED_EQUIV_RATIO: 0.999424 ratio
+DTC_ENGINE_LOAD: Not Supported or No Data
+2024-02-06 20:41:42 - TIMING_ADVANCE: 28.5 degree
+DTC_COOLANT_TEMP: Not Supported or No Data
+2024-02-06 20:41:43 - INTAKE_TEMP: 62.6 °F
+2024-02-06 20:41:43 - PIDS_C: 11111110110100000000000000000000 
+2024-02-06 20:41:43 - MONITOR_PURGE_FLOW: Unknown : 0.0 millisecond [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED] 
+2024-02-06 20:41:43 - SHORT_FUEL_TRIM_1: 0.0 %
+2024-02-06 20:41:43 - MIDS_B: 10000000000000000000100011011001 
+DTC_SHORT_FUEL_TRIM_1: Not Supported or No Data
+2024-02-06 20:41:44 - EVAP_VAPOR_PRESSURE: -374.0 pascal
+DTC_INTAKE_PRESSURE: Not Supported or No Data
+DTC_O2_B1S1: Not Supported or No Data
+2024-02-06 20:41:45 - CATALYST_TEMP_B1S1: 1574.6 °F
+DTC_DISTANCE_SINCE_DTC_CLEAR: Not Supported or No Data
+2024-02-06 20:41:45 - RPM: 1949.0 revolutions_per_minute
+DTC_CATALYST_TEMP_B1S1: Not Supported or No Data
+DTC_ACCELERATOR_POS_D: Not Supported or No Data
+2024-02-06 20:41:46 - STATUS_DRIVE_CYCLE: <obd.OBDResponse.Status object at 0xf5a72628> 
+2024-02-06 20:41:46 - PIDS_B: 10000000000001111110000000010001 
+2024-02-06 20:41:46 - MONITOR_O2_B1S2: Minimum sensor voltage for test cycle : 0.509 volt [PASSED]
+Maximum sensor voltage for test cycle : 0.666 volt [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 millivolt [PASSED] 
+DTC_EVAPORATIVE_PURGE: Not Supported or No Data
+
+OBD Data Logging:
+2024-02-06 20:41:48 - LONG_FUEL_TRIM_1: 0.0 %
+2024-02-06 20:41:48 - O2_B1S1: 0.76 volt
+2024-02-06 20:41:48 - PIDS_9A: 0101010101000000000000000000000000000000 
+2024-02-06 20:41:48 - GET_DTC:  
+DTC_INTAKE_TEMP: Not Supported or No Data
+2024-02-06 20:41:49 - MONITOR_EVAP_090: Unknown : 9200.0 millisecond [PASSED] 
+DTC_RPM: Not Supported or No Data
+2024-02-06 20:41:49 - MONITOR_O2_HEATER_B1S2: Unknown : 25.0 degree_Celsius [PASSED]
+Unknown : 0.0 millisecond [PASSED] 
+DTC_EVAP_VAPOR_PRESSURE: Not Supported or No Data
+2024-02-06 20:41:50 - MONITOR_O2_B1S1: Unknown : 0.0 percent [PASSED]
+Unknown : 0.0 count [PASSED] 
+2024-02-06 20:41:50 - VIN: bytearray(b'C4NJDCB6CD508767') 
+2024-02-06 20:41:50 - MIDS_F: 01111000000000000000000000000000 
+2024-02-06 20:41:50 - OBD_COMPLIANCE: OBD-II as defined by the CARB 
+2024-02-06 20:41:50 - CALIBRATION_ID: bytearray(b'68070203AG') 
+2024-02-06 20:41:51 - RUN_TIME: 114.0 second
+DTC_RELATIVE_THROTTLE_POS: Not Supported or No Data
+DTC_FUEL_STATUS: Not Supported or No Data
+2024-02-06 20:41:51 - THROTTLE_POS_B: 14.509803921568627 %
+2024-02-06 20:41:52 - CONTROL_MODULE_VOLTAGE: 14.530000000000001 volt
+DTC_RUN_TIME: Not Supported or No Data
+2024-02-06 20:41:52 - PIDS_A: 10111110001111101011100000010011 
+2024-02-06 20:41:52 - FUEL_STATUS: ('Open loop due to engine load OR fuel cut due to deceleration', '') 
+DTC_THROTTLE_ACTUATOR: Not Supported or No Data
+2024-02-06 20:41:53 - MONITOR_MISFIRE_CYLINDER_2: Average misfire counts for last ten driving cycles : 0.0 count [PASSED]
+Misfire counts for last/current driving cycles : 0.0 count [PASSED] 
+2024-02-06 20:41:53 - MIDS_C: 11000000000000000000000000000001 
+DTC_AMBIANT_AIR_TEMP: Not Supported or No Data
+2024-02-06 20:41:53 - THROTTLE_POS: 14.509803921568627 %
+2024-02-06 20:41:54 - MONITOR_EVAP_020: Unknown : 0.0 minute [PASSED]
+Unknown : 0.0 minute [PASSED]
+Unknown : 364.0 minute [PASSED] 
+2024-02-06 20:41:54 - ENGINE_LOAD: 22.745098039215687 %
+DTC_O2_SENSORS: Not Supported or No Data
+DTC_LONG_FUEL_TRIM_1: Not Supported or No Data
+2024-02-06 20:41:55 - MIDS_D: 00000000000000000000000000000001 
+DTC_FUEL_LEVEL: Not Supported or No Data
+2024-02-06 20:41:55 - ACCELERATOR_POS_E: 9.019607843137255 %
+2024-02-06 20:41:55 - CVN: 487b931c 
+DTC_COMMANDED_EQUIV_RATIO: Not Supported or No Data
+2024-02-06 20:41:56 - ELM_VOLTAGE: 14.6 volt
+DTC_SPEED: Not Supported or No Data
+DTC_TIMING_ADVANCE: Not Supported or No Data
+2024-02-06 20:41:57 - MIDS_E: 00000000000000000000000000000001 
+2024-02-06 20:41:57 - O2_SENSORS: ((), (False, False, False, False), (False, False, True, True)) 
+2024-02-06 20:41:57 - ELM_VERSION: ELM327 v1.5 
+2024-02-06 20:41:57 - GET_CURRENT_DTC:  
+DTC_DISTANCE_W_MIL: Not Supported or No Data
+DTC_CONTROL_MODULE_VOLTAGE: Not Supported or No Data
+DTC_ABSOLUTE_LOAD: Not Supported or No Data
+2024-02-06 20:41:58 - ACCELERATOR_POS_D: 26.274509803921568 %
+DTC_STATUS_DRIVE_CYCLE: Not Supported or No Data
+2024-02-06 20:41:59 - ABSOLUTE_LOAD: 42.745098039215684 %
+DTC_STATUS: Not Supported or No Data
+2024-02-06 20:41:59 - MONITOR_MISFIRE_CYLINDER_3: Average misfire counts for last ten driving cycles : 0.0 count [PASSED]
+Misfire counts for last/current driving cycles : 0.0 count [PASSED] 
+2024-02-06 20:41:59 - STATUS: <obd.OBDResponse.Status object at 0xf5a72448> 
+2024-02-06 20:41:59 - EVAPORATIVE_PURGE: 0.0 %
+CLEAR_DTC: Not Supported or No Data
+2024-02-06 20:42:00 - MONITOR_MISFIRE_CYLINDER_1: Average misfire counts for last ten driving cycles : 0.0 count [PASSED]
+Misfire counts for last/current driving cycles : 0.0 count [PASSED] 
+2024-02-06 20:42:00 - COOLANT_TEMP: 150.8 °F
+DTC_THROTTLE_POS_B: Not Supported or No Data
+2024-02-06 20:42:00 - MONITOR_CATALYST_B1: Unknown : 0.0 percent [PASSED] 
+2024-02-06 20:42:01 - WARMUPS_SINCE_DTC_CLEAR: 3.0 count
+2024-02-06 20:42:01 - RELATIVE_THROTTLE_POS: 9.411764705882353 %
+DTC_THROTTLE_POS: Not Supported or No Data
+2024-02-06 20:42:01 - MIDS_A: 11000000000000000000000000000001 
+2024-02-06 20:42:01 - MONITOR_MISFIRE_CYLINDER_4: Average misfire counts for last ten driving cycles : 0.0 count [PASSED]
+Misfire counts for last/current driving cycles : 0.0 count [PASSED] 
+DTC_PIDS_C: Not Supported or No Data
+2024-02-06 20:42:02 - SPEED: 18.019759 mph
+2024-02-06 20:42:02 - AMBIANT_AIR_TEMP: 41.0 °F
+2024-02-06 20:42:02 - THROTTLE_ACTUATOR: 4.313725490196078 %
+2024-02-06 20:42:02 - MONITOR_VVT_B1: Unknown : 0.2 degree [PASSED]
+Unknown : 0.7000000000000001 degree [PASSED]
+Unknown : 0.0 degree [PASSED]
+Unknown : 0.0 degree [PASSED] 
+2024-02-06 20:42:02 - INTAKE_PRESSURE: 32 kilopascal
+2024-02-06 20:42:03 - O2_B1S2: 0.705 volt
+DTC_WARMUPS_SINCE_DTC_CLEAR: Not Supported or No Data
+2024-02-06 20:42:03 - DISTANCE_SINCE_DTC_CLEAR: 7.0 kilometer
+2024-02-06 20:42:03 - MONITOR_EVAP_150: Unknown : 0.0 minute [PASSED] 
+2024-02-06 20:42:03 - DISTANCE_W_MIL: 0.0 kilometer
+2024-02-06 20:42:04 - FUEL_LEVEL: 54.90196078431372 %
+DTC_PIDS_B: Not Supported or No Data
+DTC_OBD_COMPLIANCE: Not Supported or No Data
+2024-02-06 20:42:04 - BAROMETRIC_PRESSURE: 99 kilopascal
+DTC_BAROMETRIC_PRESSURE: Not Supported or No Data
+2024-02-06 20:42:05 - MONITOR_O2_HEATER_B1S1: Unknown : 50.0 degree_Celsius [PASSED]
+Unknown : 0.0 millisecond [PASSED] 
+DTC_ACCELERATOR_POS_E: Not Supported or No Data
+DTC_O2_B1S2: Not Supported or No Data
+2024-02-06 20:42:06 - COMMANDED_EQUIV_RATIO: 0.999424 ratio
+DTC_ENGINE_LOAD: Not Supported or No Data
+2024-02-06 20:42:06 - TIMING_ADVANCE: 25.0 degree
+DTC_COOLANT_TEMP: Not Supported or No Data
+2024-02-06 20:42:07 - INTAKE_TEMP: 64.4 °F
+2024-02-06 20:42:07 - PIDS_C: 11111110110100000000000000000000 
+2024-02-06 20:42:07 - MONITOR_PURGE_FLOW: Unknown : 0.0 millisecond [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED] 
+2024-02-06 20:42:07 - SHORT_FUEL_TRIM_1: 0.0 %
+2024-02-06 20:42:07 - MIDS_B: 10000000000000000000100011011001 
+DTC_SHORT_FUEL_TRIM_1: Not Supported or No Data
+2024-02-06 20:42:08 - EVAP_VAPOR_PRESSURE: -584.0 pascal
+DTC_INTAKE_PRESSURE: Not Supported or No Data
+DTC_O2_B1S1: Not Supported or No Data
+2024-02-06 20:42:09 - CATALYST_TEMP_B1S1: 1378.4 °F
+DTC_DISTANCE_SINCE_DTC_CLEAR: Not Supported or No Data
+2024-02-06 20:42:09 - RPM: 1162.0 revolutions_per_minute
+DTC_CATALYST_TEMP_B1S1: Not Supported or No Data
+DTC_ACCELERATOR_POS_D: Not Supported or No Data
+2024-02-06 20:42:10 - STATUS_DRIVE_CYCLE: <obd.OBDResponse.Status object at 0xf5a72148> 
+2024-02-06 20:42:10 - PIDS_B: 10000000000001111110000000010001 
+2024-02-06 20:42:10 - MONITOR_O2_B1S2: Minimum sensor voltage for test cycle : 0.509 volt [PASSED]
+Maximum sensor voltage for test cycle : 0.666 volt [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 millivolt [PASSED] 
+DTC_EVAPORATIVE_PURGE: Not Supported or No Data
+
+OBD Data Logging:
+2024-02-06 20:42:12 - LONG_FUEL_TRIM_1: 0.0 %
+2024-02-06 20:42:12 - O2_B1S1: 0.745 volt
+2024-02-06 20:42:12 - PIDS_9A: 0101010101000000000000000000000000000000 
+2024-02-06 20:42:12 - GET_DTC:  
+DTC_INTAKE_TEMP: Not Supported or No Data
+2024-02-06 20:42:13 - MONITOR_EVAP_090: Unknown : 9200.0 millisecond [PASSED] 
+DTC_RPM: Not Supported or No Data
+2024-02-06 20:42:13 - MONITOR_O2_HEATER_B1S2: Unknown : 25.0 degree_Celsius [PASSED]
+Unknown : 0.0 millisecond [PASSED] 
+DTC_EVAP_VAPOR_PRESSURE: Not Supported or No Data
+2024-02-06 20:42:14 - MONITOR_O2_B1S1: Unknown : 0.0 percent [PASSED]
+Unknown : 0.0 count [PASSED] 
+2024-02-06 20:42:14 - VIN: bytearray(b'C4NJDCB6CD508767') 
+2024-02-06 20:42:14 - MIDS_F: 01111000000000000000000000000000 
+2024-02-06 20:42:14 - OBD_COMPLIANCE: OBD-II as defined by the CARB 
+2024-02-06 20:42:14 - CALIBRATION_ID: bytearray(b'68070203AG') 
+2024-02-06 20:42:15 - RUN_TIME: 138.0 second
+DTC_RELATIVE_THROTTLE_POS: Not Supported or No Data
+DTC_FUEL_STATUS: Not Supported or No Data
+2024-02-06 20:42:15 - THROTTLE_POS_B: 23.529411764705884 %
+2024-02-06 20:42:16 - CONTROL_MODULE_VOLTAGE: 14.484 volt
+DTC_RUN_TIME: Not Supported or No Data
+2024-02-06 20:42:16 - PIDS_A: 10111110001111101011100000010011 
+2024-02-06 20:42:16 - FUEL_STATUS: ('Closed loop, using oxygen sensor feedback to determine fuel mix', '') 
+DTC_THROTTLE_ACTUATOR: Not Supported or No Data
+2024-02-06 20:42:17 - MONITOR_MISFIRE_CYLINDER_2: Average misfire counts for last ten driving cycles : 0.0 count [PASSED]
+Misfire counts for last/current driving cycles : 0.0 count [PASSED] 
+2024-02-06 20:42:17 - MIDS_C: 11000000000000000000000000000001 
+DTC_AMBIANT_AIR_TEMP: Not Supported or No Data
+2024-02-06 20:42:17 - THROTTLE_POS: 19.215686274509803 %
+2024-02-06 20:42:17 - MONITOR_EVAP_020: Unknown : 0.0 minute [PASSED]
+Unknown : 0.0 minute [PASSED]
+Unknown : 364.0 minute [PASSED] 
+2024-02-06 20:42:18 - ENGINE_LOAD: 47.450980392156865 %
+DTC_O2_SENSORS: Not Supported or No Data
+DTC_LONG_FUEL_TRIM_1: Not Supported or No Data
+2024-02-06 20:42:18 - MIDS_D: 00000000000000000000000000000001 
+DTC_FUEL_LEVEL: Not Supported or No Data
+2024-02-06 20:42:19 - ACCELERATOR_POS_E: 15.294117647058824 %
+2024-02-06 20:42:19 - CVN: 487b931c 
+DTC_COMMANDED_EQUIV_RATIO: Not Supported or No Data
+2024-02-06 20:42:20 - ELM_VOLTAGE: 14.7 volt
+DTC_SPEED: Not Supported or No Data
+DTC_TIMING_ADVANCE: Not Supported or No Data
+2024-02-06 20:42:20 - MIDS_E: 00000000000000000000000000000001 
+2024-02-06 20:42:21 - O2_SENSORS: ((), (False, False, False, False), (False, False, True, True)) 
+2024-02-06 20:42:21 - ELM_VERSION: ELM327 v1.5 
+2024-02-06 20:42:21 - GET_CURRENT_DTC:  
+DTC_DISTANCE_W_MIL: Not Supported or No Data
+DTC_CONTROL_MODULE_VOLTAGE: Not Supported or No Data
+DTC_ABSOLUTE_LOAD: Not Supported or No Data
+2024-02-06 20:42:22 - ACCELERATOR_POS_D: 18.431372549019606 %
+DTC_STATUS_DRIVE_CYCLE: Not Supported or No Data
+2024-02-06 20:42:22 - ABSOLUTE_LOAD: 19.215686274509803 %
+DTC_STATUS: Not Supported or No Data
+2024-02-06 20:42:23 - MONITOR_MISFIRE_CYLINDER_3: Average misfire counts for last ten driving cycles : 0.0 count [PASSED]
+Misfire counts for last/current driving cycles : 0.0 count [PASSED] 
+2024-02-06 20:42:23 - STATUS: <obd.OBDResponse.Status object at 0xf5a723a0> 
+2024-02-06 20:42:23 - EVAPORATIVE_PURGE: 0.0 %
+CLEAR_DTC: Not Supported or No Data
+2024-02-06 20:42:24 - MONITOR_MISFIRE_CYLINDER_1: Average misfire counts for last ten driving cycles : 0.0 count [PASSED]
+Misfire counts for last/current driving cycles : 0.0 count [PASSED] 
+2024-02-06 20:42:24 - COOLANT_TEMP: 158.0 °F
+DTC_THROTTLE_POS_B: Not Supported or No Data
+2024-02-06 20:42:24 - MONITOR_CATALYST_B1: Unknown : 0.0 percent [PASSED] 
+2024-02-06 20:42:24 - WARMUPS_SINCE_DTC_CLEAR: 3.0 count
+2024-02-06 20:42:25 - RELATIVE_THROTTLE_POS: 9.803921568627452 %
+DTC_THROTTLE_POS: Not Supported or No Data
+2024-02-06 20:42:25 - MIDS_A: 11000000000000000000000000000001 
+2024-02-06 20:42:25 - MONITOR_MISFIRE_CYLINDER_4: Average misfire counts for last ten driving cycles : 0.0 count [PASSED]
+Misfire counts for last/current driving cycles : 0.0 count [PASSED] 
+DTC_PIDS_C: Not Supported or No Data
+2024-02-06 20:42:26 - SPEED: 26.097582 mph
+2024-02-06 20:42:26 - AMBIANT_AIR_TEMP: 39.2 °F
+2024-02-06 20:42:26 - THROTTLE_ACTUATOR: 7.450980392156863 %
+2024-02-06 20:42:26 - MONITOR_VVT_B1: Unknown : 0.2 degree [PASSED]
+Unknown : 0.7000000000000001 degree [PASSED]
+Unknown : 0.0 degree [PASSED]
+Unknown : 0.0 degree [PASSED] 
+2024-02-06 20:42:26 - INTAKE_PRESSURE: 55 kilopascal
+2024-02-06 20:42:26 - O2_B1S2: 0.235 volt
+DTC_WARMUPS_SINCE_DTC_CLEAR: Not Supported or No Data
+2024-02-06 20:42:27 - DISTANCE_SINCE_DTC_CLEAR: 7.0 kilometer
+2024-02-06 20:42:27 - MONITOR_EVAP_150: Unknown : 0.0 minute [PASSED] 
+2024-02-06 20:42:27 - DISTANCE_W_MIL: 0.0 kilometer
+2024-02-06 20:42:27 - FUEL_LEVEL: 54.90196078431372 %
+DTC_PIDS_B: Not Supported or No Data
+DTC_OBD_COMPLIANCE: Not Supported or No Data
+2024-02-06 20:42:28 - BAROMETRIC_PRESSURE: 99 kilopascal
+DTC_BAROMETRIC_PRESSURE: Not Supported or No Data
+2024-02-06 20:42:29 - MONITOR_O2_HEATER_B1S1: Unknown : 50.0 degree_Celsius [PASSED]
+Unknown : 0.0 millisecond [PASSED] 
+DTC_ACCELERATOR_POS_E: Not Supported or No Data
+DTC_O2_B1S2: Not Supported or No Data
+2024-02-06 20:42:30 - COMMANDED_EQUIV_RATIO: 0.999424 ratio
+DTC_ENGINE_LOAD: Not Supported or No Data
+2024-02-06 20:42:30 - TIMING_ADVANCE: 26.0 degree
+DTC_COOLANT_TEMP: Not Supported or No Data
+2024-02-06 20:42:31 - INTAKE_TEMP: 62.6 °F
+2024-02-06 20:42:31 - PIDS_C: 11111110110100000000000000000000 
+2024-02-06 20:42:31 - MONITOR_PURGE_FLOW: Unknown : 0.0 millisecond [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED] 
+2024-02-06 20:42:31 - SHORT_FUEL_TRIM_1: 0.0 %
+2024-02-06 20:42:31 - MIDS_B: 10000000000000000000100011011001 
+DTC_SHORT_FUEL_TRIM_1: Not Supported or No Data
+2024-02-06 20:42:32 - EVAP_VAPOR_PRESSURE: -401.0 pascal
+DTC_INTAKE_PRESSURE: Not Supported or No Data
+DTC_O2_B1S1: Not Supported or No Data
+2024-02-06 20:42:32 - CATALYST_TEMP_B1S1: 1310.0 °F
+DTC_DISTANCE_SINCE_DTC_CLEAR: Not Supported or No Data
+2024-02-06 20:42:33 - RPM: 1423.0 revolutions_per_minute
+DTC_CATALYST_TEMP_B1S1: Not Supported or No Data
+DTC_ACCELERATOR_POS_D: Not Supported or No Data
+2024-02-06 20:42:34 - STATUS_DRIVE_CYCLE: <obd.OBDResponse.Status object at 0xf5a72598> 
+2024-02-06 20:42:34 - PIDS_B: 10000000000001111110000000010001 
+2024-02-06 20:42:34 - MONITOR_O2_B1S2: Minimum sensor voltage for test cycle : 0.509 volt [PASSED]
+Maximum sensor voltage for test cycle : 0.666 volt [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 millivolt [PASSED] 
+DTC_EVAPORATIVE_PURGE: Not Supported or No Data
+
+OBD Data Logging:
+2024-02-06 20:42:36 - LONG_FUEL_TRIM_1: -3.125 %
+2024-02-06 20:42:36 - O2_B1S1: 0.76 volt
+2024-02-06 20:42:36 - PIDS_9A: 0101010101000000000000000000000000000000 
+2024-02-06 20:42:36 - GET_DTC:  
+DTC_INTAKE_TEMP: Not Supported or No Data
+2024-02-06 20:42:37 - MONITOR_EVAP_090: Unknown : 9200.0 millisecond [PASSED] 
+DTC_RPM: Not Supported or No Data
+2024-02-06 20:42:37 - MONITOR_O2_HEATER_B1S2: Unknown : 25.0 degree_Celsius [PASSED]
+Unknown : 0.0 millisecond [PASSED] 
+DTC_EVAP_VAPOR_PRESSURE: Not Supported or No Data
+2024-02-06 20:42:38 - MONITOR_O2_B1S1: Unknown : 0.0 percent [PASSED]
+Unknown : 0.0 count [PASSED] 
+2024-02-06 20:42:38 - VIN: bytearray(b'C4NJDCB6CD508767') 
+2024-02-06 20:42:38 - MIDS_F: 01111000000000000000000000000000 
+2024-02-06 20:42:38 - OBD_COMPLIANCE: OBD-II as defined by the CARB 
+2024-02-06 20:42:38 - CALIBRATION_ID: bytearray(b'68070203AG') 
+2024-02-06 20:42:38 - RUN_TIME: 161.0 second
+DTC_RELATIVE_THROTTLE_POS: Not Supported or No Data
+DTC_FUEL_STATUS: Not Supported or No Data
+2024-02-06 20:42:39 - THROTTLE_POS_B: 13.72549019607843 %
+2024-02-06 20:42:39 - CONTROL_MODULE_VOLTAGE: 14.654 volt
+DTC_RUN_TIME: Not Supported or No Data
+2024-02-06 20:42:40 - PIDS_A: 10111110001111101011100000010011 
+2024-02-06 20:42:40 - FUEL_STATUS: ('Closed loop, using oxygen sensor feedback to determine fuel mix', '') 
+DTC_THROTTLE_ACTUATOR: Not Supported or No Data
+2024-02-06 20:42:40 - MONITOR_MISFIRE_CYLINDER_2: Average misfire counts for last ten driving cycles : 0.0 count [PASSED]
+Misfire counts for last/current driving cycles : 0.0 count [PASSED] 
+2024-02-06 20:42:41 - MIDS_C: 11000000000000000000000000000001 
+DTC_AMBIANT_AIR_TEMP: Not Supported or No Data
+2024-02-06 20:42:41 - THROTTLE_POS: 13.72549019607843 %
+2024-02-06 20:42:41 - MONITOR_EVAP_020: Unknown : 0.0 minute [PASSED]
+Unknown : 0.0 minute [PASSED]
+Unknown : 364.0 minute [PASSED] 
+2024-02-06 20:42:41 - ENGINE_LOAD: 23.529411764705884 %
+DTC_O2_SENSORS: Not Supported or No Data
+DTC_LONG_FUEL_TRIM_1: Not Supported or No Data
+2024-02-06 20:42:42 - MIDS_D: 00000000000000000000000000000001 
+DTC_FUEL_LEVEL: Not Supported or No Data
+2024-02-06 20:42:43 - ACCELERATOR_POS_E: 9.019607843137255 %
+2024-02-06 20:42:43 - CVN: 487b931c 
+DTC_COMMANDED_EQUIV_RATIO: Not Supported or No Data
+2024-02-06 20:42:43 - ELM_VOLTAGE: 14.4 volt
+DTC_SPEED: Not Supported or No Data
+DTC_TIMING_ADVANCE: Not Supported or No Data
+2024-02-06 20:42:44 - MIDS_E: 00000000000000000000000000000001 
+2024-02-06 20:42:44 - O2_SENSORS: ((), (False, False, False, False), (False, False, True, True)) 
+2024-02-06 20:42:44 - ELM_VERSION: ELM327 v1.5 
+2024-02-06 20:42:45 - GET_CURRENT_DTC:  
+DTC_DISTANCE_W_MIL: Not Supported or No Data
+DTC_CONTROL_MODULE_VOLTAGE: Not Supported or No Data
+DTC_ABSOLUTE_LOAD: Not Supported or No Data
+2024-02-06 20:42:46 - ACCELERATOR_POS_D: 36.86274509803921 %
+DTC_STATUS_DRIVE_CYCLE: Not Supported or No Data
+2024-02-06 20:42:46 - ABSOLUTE_LOAD: 50.98039215686274 %
+DTC_STATUS: Not Supported or No Data
+2024-02-06 20:42:47 - MONITOR_MISFIRE_CYLINDER_3: Average misfire counts for last ten driving cycles : 0.0 count [PASSED]
+Misfire counts for last/current driving cycles : 0.0 count [PASSED] 
+2024-02-06 20:42:47 - STATUS: <obd.OBDResponse.Status object at 0xf5a72460> 
+2024-02-06 20:42:47 - EVAPORATIVE_PURGE: 0.0 %
+CLEAR_DTC: Not Supported or No Data
+2024-02-06 20:42:47 - MONITOR_MISFIRE_CYLINDER_1: Average misfire counts for last ten driving cycles : 0.0 count [PASSED]
+Misfire counts for last/current driving cycles : 0.0 count [PASSED] 
+2024-02-06 20:42:48 - COOLANT_TEMP: 167.0 °F
+DTC_THROTTLE_POS_B: Not Supported or No Data
+2024-02-06 20:42:48 - MONITOR_CATALYST_B1: Unknown : 0.0 percent [PASSED] 
+2024-02-06 20:42:48 - WARMUPS_SINCE_DTC_CLEAR: 4.0 count
+2024-02-06 20:42:48 - RELATIVE_THROTTLE_POS: 11.764705882352942 %
+DTC_THROTTLE_POS: Not Supported or No Data
+2024-02-06 20:42:49 - MIDS_A: 11000000000000000000000000000001 
+2024-02-06 20:42:49 - MONITOR_MISFIRE_CYLINDER_4: Average misfire counts for last ten driving cycles : 0.0 count [PASSED]
+Misfire counts for last/current driving cycles : 0.0 count [PASSED] 
+DTC_PIDS_C: Not Supported or No Data
+2024-02-06 20:42:50 - SPEED: 20.505243 mph
+2024-02-06 20:42:50 - AMBIANT_AIR_TEMP: 37.4 °F
+2024-02-06 20:42:50 - THROTTLE_ACTUATOR: 8.627450980392156 %
+2024-02-06 20:42:50 - MONITOR_VVT_B1: Unknown : 0.2 degree [PASSED]
+Unknown : 0.7000000000000001 degree [PASSED]
+Unknown : 0.0 degree [PASSED]
+Unknown : 0.0 degree [PASSED] 
+2024-02-06 20:42:50 - INTAKE_PRESSURE: 63 kilopascal
+2024-02-06 20:42:50 - O2_B1S2: 0.49 volt
+DTC_WARMUPS_SINCE_DTC_CLEAR: Not Supported or No Data
+2024-02-06 20:42:51 - DISTANCE_SINCE_DTC_CLEAR: 8.0 kilometer
+2024-02-06 20:42:51 - MONITOR_EVAP_150: Unknown : 0.0 minute [PASSED] 
+2024-02-06 20:42:51 - DISTANCE_W_MIL: 0.0 kilometer
+2024-02-06 20:42:51 - FUEL_LEVEL: 54.90196078431372 %
+DTC_PIDS_B: Not Supported or No Data
+DTC_OBD_COMPLIANCE: Not Supported or No Data
+2024-02-06 20:42:52 - BAROMETRIC_PRESSURE: 99 kilopascal
+DTC_BAROMETRIC_PRESSURE: Not Supported or No Data
+2024-02-06 20:42:53 - MONITOR_O2_HEATER_B1S1: Unknown : 50.0 degree_Celsius [PASSED]
+Unknown : 0.0 millisecond [PASSED] 
+DTC_ACCELERATOR_POS_E: Not Supported or No Data
+DTC_O2_B1S2: Not Supported or No Data
+2024-02-06 20:42:53 - COMMANDED_EQUIV_RATIO: 0.999424 ratio
+DTC_ENGINE_LOAD: Not Supported or No Data
+2024-02-06 20:42:54 - TIMING_ADVANCE: 18.0 degree
+DTC_COOLANT_TEMP: Not Supported or No Data
+2024-02-06 20:42:54 - INTAKE_TEMP: 60.8 °F
+2024-02-06 20:42:54 - PIDS_C: 11111110110100000000000000000000 
+2024-02-06 20:42:55 - MONITOR_PURGE_FLOW: Unknown : 0.0 millisecond [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED] 
+2024-02-06 20:42:55 - SHORT_FUEL_TRIM_1: 0.0 %
+2024-02-06 20:42:55 - MIDS_B: 10000000000000000000100011011001 
+DTC_SHORT_FUEL_TRIM_1: Not Supported or No Data
+2024-02-06 20:42:55 - EVAP_VAPOR_PRESSURE: -392.0 pascal
+DTC_INTAKE_PRESSURE: Not Supported or No Data
+DTC_O2_B1S1: Not Supported or No Data
+2024-02-06 20:42:56 - CATALYST_TEMP_B1S1: 1297.4 °F
+DTC_DISTANCE_SINCE_DTC_CLEAR: Not Supported or No Data
+2024-02-06 20:42:57 - RPM: 1498.0 revolutions_per_minute
+DTC_CATALYST_TEMP_B1S1: Not Supported or No Data
+DTC_ACCELERATOR_POS_D: Not Supported or No Data
+2024-02-06 20:42:57 - STATUS_DRIVE_CYCLE: <obd.OBDResponse.Status object at 0xf5a72748> 
+2024-02-06 20:42:58 - PIDS_B: 10000000000001111110000000010001 
+2024-02-06 20:42:58 - MONITOR_O2_B1S2: Minimum sensor voltage for test cycle : 0.509 volt [PASSED]
+Maximum sensor voltage for test cycle : 0.666 volt [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 millivolt [PASSED] 
+DTC_EVAPORATIVE_PURGE: Not Supported or No Data
+
+OBD Data Logging:
+2024-02-06 20:42:59 - LONG_FUEL_TRIM_1: -3.125 %
+2024-02-06 20:42:59 - O2_B1S1: 0.0 volt
+2024-02-06 20:43:00 - PIDS_9A: 0101010101000000000000000000000000000000 
+2024-02-06 20:43:00 - GET_DTC:  
+DTC_INTAKE_TEMP: Not Supported or No Data
+2024-02-06 20:43:00 - MONITOR_EVAP_090: Unknown : 9200.0 millisecond [PASSED] 
+DTC_RPM: Not Supported or No Data
+2024-02-06 20:43:01 - MONITOR_O2_HEATER_B1S2: Unknown : 25.0 degree_Celsius [PASSED]
+Unknown : 0.0 millisecond [PASSED] 
+DTC_EVAP_VAPOR_PRESSURE: Not Supported or No Data
+2024-02-06 20:43:01 - MONITOR_O2_B1S1: Unknown : 0.0 percent [PASSED]
+Unknown : 0.0 count [PASSED] 
+2024-02-06 20:43:01 - VIN: bytearray(b'C4NJDCB6CD508767') 
+2024-02-06 20:43:02 - MIDS_F: 01111000000000000000000000000000 
+2024-02-06 20:43:02 - OBD_COMPLIANCE: OBD-II as defined by the CARB 
+2024-02-06 20:43:02 - CALIBRATION_ID: bytearray(b'68070203AG') 
+2024-02-06 20:43:02 - RUN_TIME: 185.0 second
+DTC_RELATIVE_THROTTLE_POS: Not Supported or No Data
+DTC_FUEL_STATUS: Not Supported or No Data
+2024-02-06 20:43:03 - THROTTLE_POS_B: 13.333333333333334 %
+2024-02-06 20:43:03 - CONTROL_MODULE_VOLTAGE: 14.607000000000001 volt
+DTC_RUN_TIME: Not Supported or No Data
+2024-02-06 20:43:03 - PIDS_A: 10111110001111101011100000010011 
+2024-02-06 20:43:04 - FUEL_STATUS: ('Open loop due to engine load OR fuel cut due to deceleration', '') 
+DTC_THROTTLE_ACTUATOR: Not Supported or No Data
+2024-02-06 20:43:04 - MONITOR_MISFIRE_CYLINDER_2: Average misfire counts for last ten driving cycles : 0.0 count [PASSED]
+Misfire counts for last/current driving cycles : 0.0 count [PASSED] 
+2024-02-06 20:43:04 - MIDS_C: 11000000000000000000000000000001 
+DTC_AMBIANT_AIR_TEMP: Not Supported or No Data
+2024-02-06 20:43:05 - THROTTLE_POS: 13.333333333333334 %
+2024-02-06 20:43:05 - MONITOR_EVAP_020: Unknown : 0.0 minute [PASSED]
+Unknown : 0.0 minute [PASSED]
+Unknown : 364.0 minute [PASSED] 
+2024-02-06 20:43:05 - ENGINE_LOAD: 20.392156862745097 %
+DTC_O2_SENSORS: Not Supported or No Data
+DTC_LONG_FUEL_TRIM_1: Not Supported or No Data
+2024-02-06 20:43:06 - MIDS_D: 00000000000000000000000000000001 
+DTC_FUEL_LEVEL: Not Supported or No Data
+2024-02-06 20:43:06 - ACCELERATOR_POS_E: 9.019607843137255 %
+2024-02-06 20:43:07 - CVN: 487b931c 
+DTC_COMMANDED_EQUIV_RATIO: Not Supported or No Data
+2024-02-06 20:43:07 - ELM_VOLTAGE: 14.5 volt
+DTC_SPEED: Not Supported or No Data
+DTC_TIMING_ADVANCE: Not Supported or No Data
+2024-02-06 20:43:08 - MIDS_E: 00000000000000000000000000000001 
+2024-02-06 20:43:08 - O2_SENSORS: ((), (False, False, False, False), (False, False, True, True)) 
+2024-02-06 20:43:08 - ELM_VERSION: ELM327 v1.5 
+2024-02-06 20:43:08 - GET_CURRENT_DTC:  
+DTC_DISTANCE_W_MIL: Not Supported or No Data
+DTC_CONTROL_MODULE_VOLTAGE: Not Supported or No Data
+DTC_ABSOLUTE_LOAD: Not Supported or No Data
+2024-02-06 20:43:09 - ACCELERATOR_POS_D: 27.84313725490196 %
+DTC_STATUS_DRIVE_CYCLE: Not Supported or No Data
+2024-02-06 20:43:10 - ABSOLUTE_LOAD: 45.490196078431374 %
+DTC_STATUS: Not Supported or No Data
+2024-02-06 20:43:10 - MONITOR_MISFIRE_CYLINDER_3: Average misfire counts for last ten driving cycles : 0.0 count [PASSED]
+Misfire counts for last/current driving cycles : 0.0 count [PASSED] 
+2024-02-06 20:43:11 - STATUS: <obd.OBDResponse.Status object at 0xf5a722e0> 
+2024-02-06 20:43:11 - EVAPORATIVE_PURGE: 0.0 %
+CLEAR_DTC: Not Supported or No Data
+2024-02-06 20:43:11 - MONITOR_MISFIRE_CYLINDER_1: Average misfire counts for last ten driving cycles : 0.0 count [PASSED]
+Misfire counts for last/current driving cycles : 0.0 count [PASSED] 
+2024-02-06 20:43:11 - COOLANT_TEMP: 172.4 °F
+DTC_THROTTLE_POS_B: Not Supported or No Data
+2024-02-06 20:43:12 - MONITOR_CATALYST_B1: Unknown : 0.0 percent [PASSED] 
+2024-02-06 20:43:12 - WARMUPS_SINCE_DTC_CLEAR: 4.0 count
+2024-02-06 20:43:12 - RELATIVE_THROTTLE_POS: 11.764705882352942 %
+DTC_THROTTLE_POS: Not Supported or No Data
+2024-02-06 20:43:13 - MIDS_A: 11000000000000000000000000000001 
+2024-02-06 20:43:13 - MONITOR_MISFIRE_CYLINDER_4: Average misfire counts for last ten driving cycles : 0.0 count [PASSED]
+Misfire counts for last/current driving cycles : 0.0 count [PASSED] 
+DTC_PIDS_C: Not Supported or No Data
+2024-02-06 20:43:13 - SPEED: 13.670162 mph
+2024-02-06 20:43:13 - AMBIANT_AIR_TEMP: 37.4 °F
+2024-02-06 20:43:13 - THROTTLE_ACTUATOR: 14.901960784313726 %
+2024-02-06 20:43:14 - MONITOR_VVT_B1: Unknown : 0.2 degree [PASSED]
+Unknown : 0.7000000000000001 degree [PASSED]
+Unknown : 0.0 degree [PASSED]
+Unknown : 0.0 degree [PASSED] 
+2024-02-06 20:43:14 - INTAKE_PRESSURE: 73 kilopascal
+2024-02-06 20:43:14 - O2_B1S2: 0.115 volt
+DTC_WARMUPS_SINCE_DTC_CLEAR: Not Supported or No Data
+2024-02-06 20:43:14 - DISTANCE_SINCE_DTC_CLEAR: 8.0 kilometer
+2024-02-06 20:43:15 - MONITOR_EVAP_150: Unknown : 0.0 minute [PASSED] 
+2024-02-06 20:43:15 - DISTANCE_W_MIL: 0.0 kilometer
+2024-02-06 20:43:15 - FUEL_LEVEL: 53.72549019607843 %
+DTC_PIDS_B: Not Supported or No Data
+DTC_OBD_COMPLIANCE: Not Supported or No Data
+2024-02-06 20:43:16 - BAROMETRIC_PRESSURE: 99 kilopascal
+DTC_BAROMETRIC_PRESSURE: Not Supported or No Data
+2024-02-06 20:43:16 - MONITOR_O2_HEATER_B1S1: Unknown : 50.0 degree_Celsius [PASSED]
+Unknown : 0.0 millisecond [PASSED] 
+DTC_ACCELERATOR_POS_E: Not Supported or No Data
+DTC_O2_B1S2: Not Supported or No Data
+2024-02-06 20:43:17 - COMMANDED_EQUIV_RATIO: 0.999424 ratio
+DTC_ENGINE_LOAD: Not Supported or No Data
+2024-02-06 20:43:18 - TIMING_ADVANCE: 25.0 degree
+DTC_COOLANT_TEMP: Not Supported or No Data
+2024-02-06 20:43:18 - INTAKE_TEMP: 59.0 °F
+2024-02-06 20:43:18 - PIDS_C: 11111110110100000000000000000000 
+2024-02-06 20:43:18 - MONITOR_PURGE_FLOW: Unknown : 0.0 millisecond [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED] 
+2024-02-06 20:43:19 - SHORT_FUEL_TRIM_1: 0.0 %
+2024-02-06 20:43:19 - MIDS_B: 10000000000000000000100011011001 
+DTC_SHORT_FUEL_TRIM_1: Not Supported or No Data
+2024-02-06 20:43:19 - EVAP_VAPOR_PRESSURE: -292.0 pascal
+DTC_INTAKE_PRESSURE: Not Supported or No Data
+DTC_O2_B1S1: Not Supported or No Data
+2024-02-06 20:43:20 - CATALYST_TEMP_B1S1: 1320.8 °F
+DTC_DISTANCE_SINCE_DTC_CLEAR: Not Supported or No Data
+2024-02-06 20:43:21 - RPM: 1288.0 revolutions_per_minute
+DTC_CATALYST_TEMP_B1S1: Not Supported or No Data
+DTC_ACCELERATOR_POS_D: Not Supported or No Data
+2024-02-06 20:43:21 - STATUS_DRIVE_CYCLE: <obd.OBDResponse.Status object at 0xf5a725b0> 
+2024-02-06 20:43:21 - PIDS_B: 10000000000001111110000000010001 
+2024-02-06 20:43:22 - MONITOR_O2_B1S2: Minimum sensor voltage for test cycle : 0.509 volt [PASSED]
+Maximum sensor voltage for test cycle : 0.666 volt [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 millivolt [PASSED] 
+DTC_EVAPORATIVE_PURGE: Not Supported or No Data
+
+OBD Data Logging:
+2024-02-06 20:43:23 - LONG_FUEL_TRIM_1: -3.125 %
+2024-02-06 20:43:23 - O2_B1S1: 0.84 volt
+2024-02-06 20:43:23 - PIDS_9A: 0101010101000000000000000000000000000000 
+2024-02-06 20:43:24 - GET_DTC:  
+DTC_INTAKE_TEMP: Not Supported or No Data
+2024-02-06 20:43:24 - MONITOR_EVAP_090: Unknown : 9200.0 millisecond [PASSED] 
+DTC_RPM: Not Supported or No Data
+2024-02-06 20:43:25 - MONITOR_O2_HEATER_B1S2: Unknown : 25.0 degree_Celsius [PASSED]
+Unknown : 0.0 millisecond [PASSED] 
+DTC_EVAP_VAPOR_PRESSURE: Not Supported or No Data
+2024-02-06 20:43:25 - MONITOR_O2_B1S1: Unknown : 0.0 percent [PASSED]
+Unknown : 0.0 count [PASSED] 
+2024-02-06 20:43:25 - VIN: bytearray(b'C4NJDCB6CD508767') 
+2024-02-06 20:43:26 - MIDS_F: 01111000000000000000000000000000 
+2024-02-06 20:43:26 - OBD_COMPLIANCE: OBD-II as defined by the CARB 
+2024-02-06 20:43:26 - CALIBRATION_ID: bytearray(b'68070203AG') 
+2024-02-06 20:43:26 - RUN_TIME: 209.0 second
+DTC_RELATIVE_THROTTLE_POS: Not Supported or No Data
+DTC_FUEL_STATUS: Not Supported or No Data
+2024-02-06 20:43:27 - THROTTLE_POS_B: 13.333333333333334 %
+2024-02-06 20:43:27 - CONTROL_MODULE_VOLTAGE: 14.422 volt
+DTC_RUN_TIME: Not Supported or No Data
+2024-02-06 20:43:27 - PIDS_A: 10111110001111101011100000010011 
+2024-02-06 20:43:28 - FUEL_STATUS: ('Closed loop, using oxygen sensor feedback to determine fuel mix', '') 
+DTC_THROTTLE_ACTUATOR: Not Supported or No Data
+2024-02-06 20:43:28 - MONITOR_MISFIRE_CYLINDER_2: Average misfire counts for last ten driving cycles : 0.0 count [PASSED]
+Misfire counts for last/current driving cycles : 0.0 count [PASSED] 
+2024-02-06 20:43:28 - MIDS_C: 11000000000000000000000000000001 
+DTC_AMBIANT_AIR_TEMP: Not Supported or No Data
+2024-02-06 20:43:29 - THROTTLE_POS: 15.294117647058824 %
+2024-02-06 20:43:29 - MONITOR_EVAP_020: Unknown : 0.0 minute [PASSED]
+Unknown : 0.0 minute [PASSED]
+Unknown : 364.0 minute [PASSED] 
+2024-02-06 20:43:29 - ENGINE_LOAD: 29.019607843137255 %
+DTC_O2_SENSORS: Not Supported or No Data
+DTC_LONG_FUEL_TRIM_1: Not Supported or No Data
+2024-02-06 20:43:30 - MIDS_D: 00000000000000000000000000000001 
+DTC_FUEL_LEVEL: Not Supported or No Data
+2024-02-06 20:43:30 - ACCELERATOR_POS_E: 9.019607843137255 %
+2024-02-06 20:43:31 - CVN: 487b931c 
+DTC_COMMANDED_EQUIV_RATIO: Not Supported or No Data
+2024-02-06 20:43:31 - ELM_VOLTAGE: 14.3 volt
+DTC_SPEED: Not Supported or No Data
+DTC_TIMING_ADVANCE: Not Supported or No Data
+2024-02-06 20:43:32 - MIDS_E: 00000000000000000000000000000001 
+2024-02-06 20:43:32 - O2_SENSORS: ((), (False, False, False, False), (False, False, True, True)) 
+2024-02-06 20:43:32 - ELM_VERSION: ELM327 v1.5 
+2024-02-06 20:43:32 - GET_CURRENT_DTC:  
+DTC_DISTANCE_W_MIL: Not Supported or No Data
+DTC_CONTROL_MODULE_VOLTAGE: Not Supported or No Data
+DTC_ABSOLUTE_LOAD: Not Supported or No Data
+2024-02-06 20:43:33 - ACCELERATOR_POS_D: 20.0 %
+DTC_STATUS_DRIVE_CYCLE: Not Supported or No Data
+2024-02-06 20:43:34 - ABSOLUTE_LOAD: 25.49019607843137 %
+DTC_STATUS: Not Supported or No Data
+2024-02-06 20:43:34 - MONITOR_MISFIRE_CYLINDER_3: Average misfire counts for last ten driving cycles : 0.0 count [PASSED]
+Misfire counts for last/current driving cycles : 0.0 count [PASSED] 
+2024-02-06 20:43:35 - STATUS: <obd.OBDResponse.Status object at 0xf5a72148> 
+2024-02-06 20:43:35 - EVAPORATIVE_PURGE: 0.0 %
+CLEAR_DTC: Not Supported or No Data
+2024-02-06 20:43:35 - MONITOR_MISFIRE_CYLINDER_1: Average misfire counts for last ten driving cycles : 0.0 count [PASSED]
+Misfire counts for last/current driving cycles : 0.0 count [PASSED] 
+2024-02-06 20:43:35 - COOLANT_TEMP: 174.2 °F
+DTC_THROTTLE_POS_B: Not Supported or No Data
+2024-02-06 20:43:36 - MONITOR_CATALYST_B1: Unknown : 0.0 percent [PASSED] 
+2024-02-06 20:43:36 - WARMUPS_SINCE_DTC_CLEAR: 4.0 count
+2024-02-06 20:43:36 - RELATIVE_THROTTLE_POS: 3.9215686274509802 %
+DTC_THROTTLE_POS: Not Supported or No Data
+2024-02-06 20:43:36 - MIDS_A: 11000000000000000000000000000001 
+2024-02-06 20:43:37 - MONITOR_MISFIRE_CYLINDER_4: Average misfire counts for last ten driving cycles : 0.0 count [PASSED]
+Misfire counts for last/current driving cycles : 0.0 count [PASSED] 
+DTC_PIDS_C: Not Supported or No Data
+2024-02-06 20:43:37 - SPEED: 2.485484 mph
+2024-02-06 20:43:37 - AMBIANT_AIR_TEMP: 37.4 °F
+2024-02-06 20:43:37 - THROTTLE_ACTUATOR: 3.9215686274509802 %
+2024-02-06 20:43:38 - MONITOR_VVT_B1: Unknown : 0.2 degree [PASSED]
+Unknown : 0.7000000000000001 degree [PASSED]
+Unknown : 0.0 degree [PASSED]
+Unknown : 0.0 degree [PASSED] 
+2024-02-06 20:43:38 - INTAKE_PRESSURE: 43 kilopascal
+2024-02-06 20:43:38 - O2_B1S2: 0.47 volt
+DTC_WARMUPS_SINCE_DTC_CLEAR: Not Supported or No Data
+2024-02-06 20:43:38 - DISTANCE_SINCE_DTC_CLEAR: 8.0 kilometer
+2024-02-06 20:43:38 - MONITOR_EVAP_150: Unknown : 0.0 minute [PASSED] 
+2024-02-06 20:43:39 - DISTANCE_W_MIL: 0.0 kilometer
+2024-02-06 20:43:39 - FUEL_LEVEL: 53.72549019607843 %
+DTC_PIDS_B: Not Supported or No Data
+DTC_OBD_COMPLIANCE: Not Supported or No Data
+2024-02-06 20:43:40 - BAROMETRIC_PRESSURE: 99 kilopascal
+DTC_BAROMETRIC_PRESSURE: Not Supported or No Data
+2024-02-06 20:43:40 - MONITOR_O2_HEATER_B1S1: Unknown : 50.0 degree_Celsius [PASSED]
+Unknown : 0.0 millisecond [PASSED] 
+DTC_ACCELERATOR_POS_E: Not Supported or No Data
+DTC_O2_B1S2: Not Supported or No Data
+2024-02-06 20:43:41 - COMMANDED_EQUIV_RATIO: 0.999424 ratio
+DTC_ENGINE_LOAD: Not Supported or No Data
+2024-02-06 20:43:41 - TIMING_ADVANCE: -0.5 degree
+DTC_COOLANT_TEMP: Not Supported or No Data
+2024-02-06 20:43:42 - INTAKE_TEMP: 60.8 °F
+2024-02-06 20:43:42 - PIDS_C: 11111110110100000000000000000000 
+2024-02-06 20:43:42 - MONITOR_PURGE_FLOW: Unknown : 0.0 millisecond [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED] 
+2024-02-06 20:43:42 - SHORT_FUEL_TRIM_1: 0.0 %
+2024-02-06 20:43:42 - MIDS_B: 10000000000000000000100011011001 
+DTC_SHORT_FUEL_TRIM_1: Not Supported or No Data
+2024-02-06 20:43:43 - EVAP_VAPOR_PRESSURE: -575.0 pascal
+DTC_INTAKE_PRESSURE: Not Supported or No Data
+DTC_O2_B1S1: Not Supported or No Data
+2024-02-06 20:43:44 - CATALYST_TEMP_B1S1: 1169.6 °F
+DTC_DISTANCE_SINCE_DTC_CLEAR: Not Supported or No Data
+2024-02-06 20:43:44 - RPM: 745.0 revolutions_per_minute
+DTC_CATALYST_TEMP_B1S1: Not Supported or No Data
+DTC_ACCELERATOR_POS_D: Not Supported or No Data
+2024-02-06 20:43:45 - STATUS_DRIVE_CYCLE: <obd.OBDResponse.Status object at 0xf5a72310> 
+2024-02-06 20:43:45 - PIDS_B: 10000000000001111110000000010001 
+2024-02-06 20:43:45 - MONITOR_O2_B1S2: Minimum sensor voltage for test cycle : 0.509 volt [PASSED]
+Maximum sensor voltage for test cycle : 0.666 volt [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 count [PASSED]
+Unknown : 0.0 millivolt [PASSED] 
+DTC_EVAPORATIVE_PURGE: Not Supported or No Data
+
+OBD Data Logging:
+2024-02-06 20:43:47 - LONG_FUEL_TRIM_1: 0.0 %
+2024-02-06 20:43:47 - O2_B1S1: 0.585 volt
+2024-02-06 20:43:47 - PIDS_9A: 0101010101000000000000000000000000000000 
+2024-02-06 20:43:47 - GET_DTC:  
+DTC_INTAKE_TEMP: Not Supported or No Data
+2024-02-06 20:43:48 - MONITOR_EVAP_090: Unknown : 9200.0 millisecond [PASSED] 
+DTC_RPM: Not Supported or No Data
+2024-02-06 20:43:48 - MONITOR_O2_HEATER_B1S2: Unknown : 25.0 degree_Celsius [PASSED]
+Unknown : 0.0 millisecond [PASSED] 
+DTC_EVAP_VAPOR_PRESSURE: Not Supported or No Data
+2024-02-06 20:43:49 - MONITOR_O2_B1S1: Unknown : 0.0 percent [PASSED]
+Unknown : 0.0 count [PASSED] 
+2024-02-06 20:43:49 - VIN: bytearray(b'C4NJDCB6CD508767') 
+2024-02-06 20:43:49 - MIDS_F: 01111000000000000000000000000000 
+2024-02-06 20:43:49 - OBD_COMPLIANCE: OBD-II as defined by the CARB 
+2024-02-06 20:43:49 - CALIBRATION_ID: bytearray(b'68070203AG') 
+2024-02-06 20:43:50 - RUN_TIME: 233.0 second
+DTC_RELATIVE_THROTTLE_POS: Not Supported or No Data
+DTC_FUEL_STATUS: Not Supported or No Data
+2024-02-06 20:43:50 - THROTTLE_POS_B: 12.549019607843137 %
+2024-02-06 20:43:51 - CONTROL_MODULE_VOLTAGE: 14.437000000000001 volt
+DTC_RUN_TIME: Not Supported or No Data
+2024-02-06 20:43:51 - PIDS_A: 10111110001111101011100000010011 
+2024-02-06 20:43:51 - FUEL_STATUS: ('Closed loop, using oxygen sensor feedback to determine fuel mix', '') 
+DTC_THROTTLE_ACTUATOR: Not Supported or No Data
+2024-02-06 20:43:52 - MONITOR_MISFIRE_CYLINDER_2: Average misfire counts for last ten driving cycles : 0.0 count [PASSED]
+Misfire counts for last/current driving cycles : 0.0 count [PASSED] 
+2024-02-06 20:43:52 - MIDS_C: 11000000000000000000000000000001 
+DTC_AMBIANT_AIR_TEMP: Not Supported or No Data
+2024-02-06 20:43:52 - THROTTLE_POS: 12.549019607843137 %
+2024-02-06 20:43:52 - MONITOR_EVAP_020: Unknown : 0.0 minute [PASSED]
+Unknown : 0.0 minute [PASSED]
+Unknown : 364.0 minute [PASSED] 
+2024-02-06 20:43:53 - ENGINE_LOAD: 27.058823529411764 %
+DTC_O2_SENSORS: Not Supported or No Data
+DTC_LONG_FUEL_TRIM_1: Not Supported or No Data
+2024-02-06 20:43:53 - MIDS_D: 00000000000000000000000000000001 
+DTC_FUEL_LEVEL: Not Supported or No Data
+2024-02-06 20:43:54 - ACCELERATOR_POS_E: 9.019607843137255 %
+2024-02-06 20:43:54 - CVN: 487b931c 
+DTC_COMMANDED_EQUIV_RATIO: Not Supported or No Data
+2024-02-06 20:43:55 - ELM_VOLTAGE: 14.6 volt
+DTC_SPEED: Not Supported or No Data
+DTC_TIMING_ADVANCE: Not Supported or No Data
+2024-02-06 20:43:55 - MIDS_E: 00000000000000000000000000000001 
+2024-02-06 20:43:55 - O2_SENSORS: ((), (False, False, False, False), (False, False, True, True)) 
+2024-02-06 20:43:56 - ELM_VERSION: ELM327 v1.5 
+2024-02-06 20:43:56 - GET_CURRENT_DTC:  
+DTC_DISTANCE_W_MIL: Not Supported or No Data
+DTC_CONTROL_MODULE_VOLTAGE: Not Supported or No Data
+DTC_ABSOLUTE_LOAD: Not Supported or No Data
+2024-02-06 20:43:57 - ACCELERATOR_POS_D: 18.03921568627451 %
+DTC_STATUS_DRIVE_CYCLE: Not Supported or No Data
+ABSOLUTE_LOAD: Not Supported or No Data
+DTC_STATUS: Not Supported or No Data
+2024-02-06 20:43:58 - MONITOR_MISFIRE_CYLINDER_3: No tests to report 
+STATUS: Not Supported or No Data
+EVAPORATIVE_PURGE: Not Supported or No Data
+CLEAR_DTC: Not Supported or No Data
+2024-02-06 20:44:00 - MONITOR_MISFIRE_CYLINDER_1: No tests to report 
+COOLANT_TEMP: Not Supported or No Data
+DTC_THROTTLE_POS_B: Not Supported or No Data
+2024-02-06 20:44:01 - MONITOR_CATALYST_B1: No tests to report 
+WARMUPS_SINCE_DTC_CLEAR: Not Supported or No Data
+RELATIVE_THROTTLE_POS: Not Supported or No Data
+DTC_THROTTLE_POS: Not Supported or No Data
+2024-02-06 20:44:02 - MIDS_A:  
+2024-02-06 20:44:02 - MONITOR_MISFIRE_CYLINDER_4: No tests to report 
+DTC_PIDS_C: Not Supported or No Data
+SPEED: Not Supported or No Data
+AMBIANT_AIR_TEMP: Not Supported or No Data
+THROTTLE_ACTUATOR: Not Supported or No Data
+2024-02-06 20:44:04 - MONITOR_VVT_B1: No tests to report 
+INTAKE_PRESSURE: Not Supported or No Data
+O2_B1S2: Not Supported or No Data
+DTC_WARMUPS_SINCE_DTC_CLEAR: Not Supported or No Data
+DISTANCE_SINCE_DTC_CLEAR: Not Supported or No Data
+2024-02-06 20:44:06 - MONITOR_EVAP_150: No tests to report 
+DISTANCE_W_MIL: Not Supported or No Data
+FUEL_LEVEL: Not Supported or No Data
+DTC_PIDS_B: Not Supported or No Data
+DTC_OBD_COMPLIANCE: Not Supported or No Data
+BAROMETRIC_PRESSURE: Not Supported or No Data
+DTC_BAROMETRIC_PRESSURE: Not Supported or No Data
+2024-02-06 20:44:08 - MONITOR_O2_HEATER_B1S1: No tests to report 
+DTC_ACCELERATOR_POS_E: Not Supported or No Data
+DTC_O2_B1S2: Not Supported or No Data
+COMMANDED_EQUIV_RATIO: Not Supported or No Data
+DTC_ENGINE_LOAD: Not Supported or No Data
+TIMING_ADVANCE: Not Supported or No Data
+DTC_COOLANT_TEMP: Not Supported or No Data
+INTAKE_TEMP: Not Supported or No Data
+PIDS_C: Not Supported or No Data
+2024-02-06 20:44:11 - MONITOR_PURGE_FLOW: No tests to report 
+SHORT_FUEL_TRIM_1: Not Supported or No Data
+2024-02-06 20:44:12 - MIDS_B:  
+DTC_SHORT_FUEL_TRIM_1: Not Supported or No Data
+EVAP_VAPOR_PRESSURE: Not Supported or No Data
+DTC_INTAKE_PRESSURE: Not Supported or No Data
+DTC_O2_B1S1: Not Supported or No Data
+CATALYST_TEMP_B1S1: Not Supported or No Data
+DTC_DISTANCE_SINCE_DTC_CLEAR: Not Supported or No Data
+RPM: Not Supported or No Data
+DTC_CATALYST_TEMP_B1S1: Not Supported or No Data
+DTC_ACCELERATOR_POS_D: Not Supported or No Data
+STATUS_DRIVE_CYCLE: Not Supported or No Data
+PIDS_B: Not Supported or No Data
+2024-02-06 20:44:16 - MONITOR_O2_B1S2: No tests to report 
+DTC_EVAPORATIVE_PURGE: Not Supported or No Data
+
