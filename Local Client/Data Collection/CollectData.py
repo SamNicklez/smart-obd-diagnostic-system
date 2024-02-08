@@ -51,6 +51,7 @@ def wait_for_obd_connection(port='/dev/rfcomm0'):
             time.sleep(5)  # Wait for 5 seconds before retrying
     return connection
 
+# Function for checking if the engine is on
 def check_engine_on():
     rpm_response = connection.query(obd.commands.RPM)
     if rpm_response.is_null() or rpm_response.value.magnitude == 0:
@@ -83,6 +84,7 @@ def log_command(command):
             value = response.value.magnitude if hasattr(response.value, 'magnitude') else response.value
             unit = str(response.value.units) if hasattr(response.value, 'units') else ""
 
+        # Editing the units to be better
         if command.name == 'SPEED':
             if hasattr(response.value, 'magnitude'):  # Ensure value has magnitude for conversion
                 value = convert_speed_to_mph(response.value.magnitude)
@@ -103,7 +105,7 @@ def log_command(command):
     else:
         return f"{command.name}: Not Supported or No Data"
 
-
+# Loop for logging the data
 if connection and connection.is_connected():
     print(f"Connected to OBDII sensor. Logging data to {log_file_path}")
 
