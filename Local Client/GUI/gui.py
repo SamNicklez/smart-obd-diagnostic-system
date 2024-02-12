@@ -5,6 +5,7 @@ from kivy.clock import Clock
 from kivy.properties import NumericProperty
 from math import cos, sin, pi
 
+# Testing
 class SpeedGauge(Widget):
     # Speed value, can range from 0 to whatever max speed you want to display, e.g., 200km/h
     speed = NumericProperty(0)
