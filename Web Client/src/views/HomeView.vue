@@ -1,5 +1,5 @@
 <script setup>
-import TestGraph from '@/components/TestGraph.vue'
+import TestGraph from '@/components/HeatMapComponent.vue'
 </script>
 
 <template>
