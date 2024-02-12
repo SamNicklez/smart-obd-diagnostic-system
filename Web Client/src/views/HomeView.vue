@@ -1,4 +1,5 @@
 <script setup>
+import TestGraph from '@/components/TestGraph.vue'
 </script>
 
 <template>
@@ -6,6 +7,7 @@
     <h1>Dashboard</h1>
     <br>
     <p>This will eventually have pretty graphs and settings.</p>
+    <TestGraph />
   </div>
 </template>
 
