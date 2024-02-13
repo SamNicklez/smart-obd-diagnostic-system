@@ -7,7 +7,7 @@ from kivymd.uix.label import MDLabel
 class FullScreenApp(MDApp):
     def build(self):
         # Main layout with flexible sizing
-        layout = GridLayout(cols=2, size_hint=(1, 1), padding="10dp", spacing="10dp")
+        layout = GridLayout(cols=3, size_hint=(1, 1), padding="10dp", spacing="10dp")
 
         # Define the sections
         sections = ['Speed', 'Temperature', 'Section 3', 'Section 4', 'Section 5', 'Section 6']
