@@ -10,6 +10,15 @@ from datetime import datetime
 
 data_dict = {}
 
+# Global variable to hold the callback function
+update_gui_callback = None
+
+# Function to set the callback
+def set_update_gui_callback(callback):
+    global update_gui_callback
+    update_gui_callback = callback
+
+
 available_commands = {"PIDS_A",
     "STATUS",
     "FREEZE_DTC",
@@ -308,6 +317,10 @@ if connection and connection.is_connected():
                     time.sleep(.001)  # Short delay between commands
                 # elif command.name not in available_commands and not command.name.startswith("DTC_"):
                 #     print("Whoops! Command not supported: " + command.name)    
+            
+            if update_gui_callback:
+                # Assuming `data_dict` is what you want to send to the GUI
+                update_gui_callback(data_dict)
 
             insert_data_into_database(data_dict)
 
@@ -327,3 +340,8 @@ if connection and connection.is_connected():
 
 else:
     print("Failed to connect to OBDII sensor.")
+
+
+
+if __name__ == '__main__':
+    main()

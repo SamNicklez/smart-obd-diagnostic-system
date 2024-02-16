@@ -1,9 +1,6 @@
 import mysql.connector
 import requests
-import json
 from datetime import datetime
-import subprocess
-import sys
 import socket
 
 # Database connection configuration
