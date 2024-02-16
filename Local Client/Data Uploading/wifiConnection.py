@@ -27,6 +27,12 @@ def on_internet_connected():
     """
     print("Internet is connected! Ready to upload data.")
 
+    # Upload data to the server
+
+    # Get a confirmation back that the server got the data
+
+    # Delete all the data from the database since we uploaded it
+
 def main():
     if check_internet_connection():
         on_internet_connected()

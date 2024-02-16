@@ -246,21 +246,16 @@ def log_command(command):
                 unit = "%" 
 
 
-
          # Here's the key change: Ensure value is converted to a basic data type
         if hasattr(response.value, 'magnitude') and hasattr(response.value, 'units'):
             # Convert to float if it has magnitude; it's likely a numeric value
-            processed_value = float(response.value.magnitude)
-        elif isinstance(response.value, list):
-            # If the value is a list, process as a comma-separated string or similar
-            processed_value = ', '.join(str(v) for v in response.value)
+            processed_value = float(value)
         else:
             # Fallback: Convert directly to string
             processed_value = str(response.value)
 
         # Store the processed value instead of the raw response
-        data_dict[command.name] = processed_value
-        #print(processed_value)  
+        data_dict[command.name] = processed_value 
 
         return f"{timestamp} - {command.name}: {value} {unit}"
     else:
@@ -307,7 +302,6 @@ if connection and connection.is_connected():
 
             # Query and log supported commands
             for command in supported_commands:
-                #if not command.name.startswith("DTC_"):
                 if command.name in available_commands:   
                     command_output = log_command(command)
                     output.append(command_output)
