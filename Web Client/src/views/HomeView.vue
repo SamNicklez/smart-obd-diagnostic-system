@@ -1,31 +1,45 @@
-<script setup>
-import TestGraph from '@/components/HeatMapComponent.vue'
-</script>
-
 <template>
-  <div class="card">
-    <h1>Dashboard</h1>
-    <br>
-    <p>This will eventually have pretty graphs and settings.</p>
-    <TestGraph />
-  </div>
+  <v-container fluid>
+    <!-- First Row with equal-height columns -->
+    <v-row class="d-flex align-stretch">
+      <!-- First card occupying a larger portion of the screen width -->
+      <v-col cols="9">
+        <v-card class="pa-4 d-flex flex-column" style="background-color: #FFCDD2;">
+          <!-- Assuming HeatMapComponent should fill the card -->
+          <HeatMapComponent />
+        </v-card>
+      </v-col>
+      <!-- Second card occupying the remaining portion of the screen width -->
+      <v-col cols="3">
+        <v-card class="pa-4 d-flex flex-column" style="background-color: #C8E6C9;">
+          <!-- Assuming MonthlyStatsComponent should fill the card -->
+          <MonthlyStatsComponent />
+        </v-card>
+      </v-col>
+    </v-row>
+    <!-- Second Row -->
+    <v-row>
+      <!-- Card occupying the full width of the screen -->
+      <v-col cols="12">
+        <v-card class="pa-4" style="background-color: #BBDEFB;">
+          <MonthlyStatsComponent />
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
+<script>
+import HeatMapComponent from '@/components/HeatMapComponent.vue';
+import MonthlyStatsComponent from '@/components/MonthlyStatsComponent.vue';
+
+export default {
+  components: {
+    HeatMapComponent,
+    MonthlyStatsComponent,
+  },
+};
+</script>
+
 <style scoped>
-.card {
-  background-color: #F06543;
-  width: auto;
-  height: auto;
-  text-align: center;
-  font-size: 2em;
-  border-radius: 10px;
-  padding-left: 10vw;
-  padding-right: 10vw;
-  padding-bottom: 10vh;
-  padding-top: 2.5vh;
-  margin-left: 1vw;
-  margin-right: 1vw;
-  margin-bottom: 5vh;
-  color: white;
-}
 </style>

@@ -7,125 +7,160 @@ export default {
                     name: "",
                     data: [{
                         x: 'Sunday',
-                        y: -1
+                        y: -1,
+                        z: "",
                     }, {
                         x: 'Monday',
-                        y: 0
+                        y: 0,
+                        z: ""
                     }, {
                         x: 'Tuesday',
-                        y: 50
+                        y: 50,
+                        z: ""
                     }, {
                         x: 'Wednesday',
-                        y: 75
+                        y: 75,
+                        z: ""
                     }, {
                         x: 'Thursday',
-                        y: 100
+                        y: 100,
+                        z: ""
                     }, {
                         x: 'Friday',
-                        y: 29
+                        y: 29,
+                        z: ""
                     }, {
                         x: 'Saturday',
-                        y: 13
+                        y: 13,
+                        z: ""
                     },]
                 },
                 {
                     name: "",
                     data: [{
                         x: 'Sunday',
-                        y: 22
+                        y: 22,
+                        z: ""
                     }, {
                         x: 'Monday',
-                        y: 29
+                        y: 29,
+                        z: ""
                     }, {
                         x: 'Tuesday',
-                        y: 13
+                        y: 13,
+                        z: ""
                     }, {
                         x: 'Wednesday',
-                        y: 32
+                        y: 32,
+                        z: ""
                     }, {
                         x: 'Thursday',
-                        y: 22
+                        y: 22,
+                        z: ""
                     }, {
                         x: 'Friday',
-                        y: 29
+                        y: 29,
+                        z: ""
                     }, {
                         x: 'Saturday',
-                        y: 13
+                        y: 13,
+                        z: ""
                     },]
                 },
                 {
                     name: "",
                     data: [{
                         x: 'Sunday',
-                        y: 22
+                        y: 22,
+                        z: ""
                     }, {
                         x: 'Monday',
-                        y: 29
+                        y: 29,
+                        z: ""
                     }, {
                         x: 'Tuesday',
-                        y: 13
+                        y: 13,
+                        z: ""
                     }, {
                         x: 'Wednesday',
-                        y: 32
+                        y: 32,
+                        z: ""
                     }, {
                         x: 'Thursday',
-                        y: 22
+                        y: 22,
+                        z: ""
                     }, {
                         x: 'Friday',
-                        y: 29
+                        y: 29,
+                        z: ""
                     }, {
                         x: 'Saturday',
-                        y: 13
+                        y: 13,
+                        z: ""
                     },]
                 },
                 {
                     name: "",
                     data: [{
                         x: 'Sunday',
-                        y: 22
+                        y: 22,
+                        z: ""
                     }, {
                         x: 'Monday',
-                        y: 29
+                        y: 29,
+                        z: ""
                     }, {
                         x: 'Tuesday',
-                        y: 13
+                        y: 13,
+                        z: ""
                     }, {
                         x: 'Wednesday',
-                        y: 32
+                        y: 32,
+                        z: ""
                     }, {
                         x: 'Thursday',
-                        y: 22
+                        y: 22,
+                        z: ""
                     }, {
                         x: 'Friday',
-                        y: 29
+                        y: 29,
+                        z: ""
                     }, {
                         x: 'Saturday',
-                        y: 13
+                        y: 13,
+                        z: ""
                     },]
                 },
                 {
                     name: "",
                     data: [{
                         x: 'Sunday',
-                        y: 22
+                        y: 22,
+                        z: ""
                     }, {
                         x: 'Monday',
-                        y: 29
+                        y: 29,
+                        z: ""
                     }, {
                         x: 'Tuesday',
-                        y: 13
+                        y: 13,
+                        z: ""
                     }, {
                         x: 'Wednesday',
-                        y: 32
+                        y: 32,
+                        z: ""
                     }, {
                         x: 'Thursday',
-                        y: 22
+                        y: 22,
+                        z: ""
                     }, {
                         x: 'Friday',
-                        y: 29
+                        y: 29,
+                        z: ""
                     }, {
                         x: 'Saturday',
-                        y: 13
+                        y: 13,
+                        z: ""
                     },]
                 },
 
@@ -141,38 +176,41 @@ export default {
                         colorScale: {
                             ranges: [
                                 {
-                                    from: -2,
+                                    from: -1,
                                     to: -1,
-                                    name: 'No Data',
-                                    color: '#FFFFFF'
+                                    color: '#808080', // Making squares with -1 appear as spacers
+                                    name: 'No Data'
                                 },
                                 {
                                     from: 0,
-                                    to: 50,
-                                    name: 'low',
-                                    color: '#00A100'
+                                    to: 40,
+                                    name: 'Poor Gas Mileage',
+                                    color: '#B81B0E'
                                 },
                                 {
-                                    from: 51,
-                                    to: 75,
-                                    name: 'medium',
-                                    color: '#128FD9'
+                                    from: 41,
+                                    to: 70,
+                                    name: 'Average Gas Mileage',
+                                    color: '#F7B500'
                                 },
                                 {
-                                    from: 76,
+                                    from: 71,
                                     to: 100,
-                                    name: 'high',
-                                    color: '#FFB200'
+                                    name: 'Good Gas Mileage',
+                                    color: '#57E964'
                                 }]
                         }
                     }
                 },
                 dataLabels: {
-                    enabled: false
+                    enabled: true,
+                    formatter: function (val, opts) {
+                        return opts.w.config.series[opts.seriesIndex].data[opts.dataPointIndex].z
+                    },
                 },
                 colors: ["#008FFB"],
                 title: {
-                    text: 'HeatMap Chart (Current Month)'
+                    text: 'Driving Efficiency for the Month',
                 },
                 xaxis: {
                     type: 'category',
@@ -190,7 +228,7 @@ export default {
             const month = now.getMonth();
 
             // Find the first and last day of the month
-            const firstDayDate = new Date(year, month, 1);
+            const firstDayDate = new Date(year, month, 2);
             const lastDayDate = new Date(year, month + 1, 0); // 0th day of next month is the last day of the current month
 
             const daysInMonth = lastDayDate.getDate();
@@ -201,22 +239,28 @@ export default {
 
             // Initialize the array with -1 for non-existing days
             const monthArray = new Array(totalSlots).fill(-1);
-
             // Fill the actual days with random numbers
             for (let i = firstDayOfWeek; i < totalSlots; i++) {
                 monthArray[i] = Math.floor(Math.random() * 100) + 1;
             }
-            console.log(monthArray.length)
             var row = 0
-            for(var i = 4; i > -1; i--){
-                if(i == 4){
+            var day = 1
+            for (var i = 4; i > -1; i--) {
+                if (i == 4) {
                     row = 1
                 }
-                else{
+                else {
                     row += 7
                 }
-                for(var j = 0; j < 7; j++){
-                    this.series[i]['data'][j].y = monthArray[row + j]
+                for (var j = 0; j < 7; j++) {
+                    if (monthArray[row + j] == -1) {
+                        this.series[i].data[j].y = -1
+                    }
+                    else {
+                        this.series[i].data[j].y = monthArray[row + j]
+                        this.series[i].data[j].z = day
+                        day++
+                    }
                 }
             }
         },
@@ -231,3 +275,6 @@ export default {
         </v-card>
     </div>
 </template>
+
+<style>
+</style>
