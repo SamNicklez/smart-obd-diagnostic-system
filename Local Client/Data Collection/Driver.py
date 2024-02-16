@@ -1,5 +1,5 @@
 # Driver.py
-from CollectDataTemp import DataCollector
+from CollectData import DataCollector
 from Gui import GuiApplication
 import threading
 
