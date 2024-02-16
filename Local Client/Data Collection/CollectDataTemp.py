@@ -5,12 +5,14 @@ import mysql.connector
 import obd
 import time
 import os
-import signal
+
 from datetime import datetime
 
 class DataCollector:
-    def __init__(self):
+    def __init__(self, update_gui_callback=None):
         self.data_dict = {}
+
+        self.update_gui_callback = update_gui_callback
 
         # Global variable to hold the callback function
         self.update_gui_callback = None
@@ -180,6 +182,8 @@ class DataCollector:
                         # elif command.name not in available_commands and not command.name.startswith("DTC_"):
                         #     print("Whoops! Command not supported: " + command.name)    
                     
+                    if self.update_gui_callback:
+                        self.update_gui_callback(self.data_dict)
 
                     self.insert_data_into_database()
 
@@ -208,7 +212,7 @@ class DataCollector:
             self.db_cursor.close()
             self.db_conn.close()
             print("Database connection closed.")
-        print("\nExiting...")    
+        print("Exiting...")    
             
     # Function to wait for OBD connection
     def wait_for_obd_connection(self):
