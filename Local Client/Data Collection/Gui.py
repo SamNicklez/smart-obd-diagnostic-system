@@ -5,6 +5,39 @@ from kivy.uix.spinner import Spinner  # Added import for Spinner
 from kivy.clock import Clock
 from kivy.uix.button import Button
 from kivy.uix.screenmanager import ScreenManager, Screen
+from wifiConnection import check_internet_connection
+from kivy.uix.popup import Popup
+from kivy.uix.textinput import TextInput
+
+
+
+class AddWiFiPopup(Popup):
+    def __init__(self, **kwargs):
+        super(AddWiFiPopup, self).__init__(**kwargs)
+        self.size_hint = (0.8, 0.5)
+        self.title = 'Add New WiFi Network'
+
+        content = BoxLayout(orientation='vertical')
+        
+        self.ssid_input = TextInput(hint_text='SSID', size_hint_y=None, height=30)
+        self.password_input = TextInput(hint_text='Password', password=True, size_hint_y=None, height=30)
+        
+        add_button = Button(text='Add Network', size_hint_y=None, height=50)
+        add_button.bind(on_press=self.add_network)
+        
+        content.add_widget(self.ssid_input)
+        content.add_widget(self.password_input)
+        content.add_widget(add_button)
+        
+        self.content = content
+
+    def add_network(self, instance):
+        ssid = self.ssid_input.text
+        password = self.password_input.text
+        print(f"Adding network: SSID={ssid}, Password={password}")
+        # Here you would add the logic to actually add the WiFi network
+        self.dismiss()
+
 
 # Screen containing the live data and settings button
 class MainScreen(Screen):
@@ -18,14 +51,51 @@ class SettingsScreen(Screen):
     def __init__(self, **kwargs):
         super(SettingsScreen, self).__init__(**kwargs)
         layout = BoxLayout(orientation='vertical')
-        layout.add_widget(Label(text="Settings Page - Placeholder"))
+        
+        # Label to display internet connection status
+        self.connection_status_label = Label(text="Checking internet connection...")
+        layout.add_widget(self.connection_status_label)
+        
+        # Update the internet connection status immediately and then periodically
+        self.update_connection_status()
+        Clock.schedule_interval(self.update_connection_status, 30)  # Check every 30 seconds
+
+        # Upload Data to Server Button
+        upload_data_button = Button(text="Upload Data to Server")
+        upload_data_button.bind(on_press=self.upload_data)
+        layout.add_widget(upload_data_button)
+
+        # Back Button to return to the main screen
         back_button = Button(text="Back to Main Screen")
         back_button.bind(on_press=self.go_back)
         layout.add_widget(back_button)
+
+        # Add New WiFi Network Button
+        add_wifi_button = Button(text="Add New WiFi Network", size_hint=(None, None), size=(200, 50))
+        add_wifi_button.bind(on_press=self.show_add_wifi_popup)
+        layout.add_widget(add_wifi_button)
+        
         self.add_widget(layout)
+
+    def show_add_wifi_popup(self, instance):
+        print("show_add_wifi_popup called")  # Debug print
+        popup = AddWiFiPopup()
+        popup.open()
 
     def go_back(self, instance):
         self.manager.current = 'main'
+
+    def upload_data(self, instance):
+        # Placeholder for the upload logic
+        print("Uploading data to server...")
+        # Here, you can add the code to handle the data upload process.
+
+    def update_connection_status(self, *args):
+        # Check the internet connection and update the label
+        if check_internet_connection():
+            self.connection_status_label.text = "Internet Connection: Connected"
+        else:
+            self.connection_status_label.text = "Internet Connection: Disconnected"    
 
 class LiveDataLayout(BoxLayout):
     def __init__(self, **kwargs):

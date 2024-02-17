@@ -120,7 +120,7 @@ class DataCollector:
 
         # Database connection configuration
         db_config = {
-            'user': 'test',
+            'user': 'sloecke',
             'password': 'password',
             'host': 'localhost',
             'database': 'obd'
@@ -149,7 +149,8 @@ class DataCollector:
         self.log_file_path = os.path.join(logs_dir, log_file_name)
 
         #self.portSelection = '/dev/rfcomm0'
-        self.portSelection = '/dev/pts/0'
+        #self.portSelection = '/dev/pts/0'
+        self.portSelection = 'COM8'
 
     def start_collection(self):
         # Establishing connection
