@@ -120,7 +120,7 @@ class DataCollector:
 
         # Database connection configuration
         db_config = {
-            'user': 'sloecke',
+            'user': 'test',
             'password': 'password',
             'host': 'localhost',
             'database': 'obd'
@@ -149,7 +149,7 @@ class DataCollector:
         self.log_file_path = os.path.join(logs_dir, log_file_name)
 
         #self.portSelection = '/dev/rfcomm0'
-        self.portSelection = 'COM8'
+        self.portSelection = '/dev/pts/0'
 
     def start_collection(self):
         # Establishing connection
@@ -321,3 +321,6 @@ class DataCollector:
     def convert_celsius_to_fahrenheit(self, temp_celsius):
         return (temp_celsius * 9/5) + 32
             
+    @property
+    def available_commands_list(self):
+        return list(self.available_commands)        
