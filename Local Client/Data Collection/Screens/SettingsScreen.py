@@ -1,0 +1,58 @@
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.label import Label
+from kivy.clock import Clock
+from kivy.uix.button import Button
+from kivy.uix.screenmanager import  Screen
+from wifiConnection import check_internet_connection
+from Screens.WifiPopUp import AddWiFiPopup
+
+# Screen for settings
+class SettingsScreen(Screen):
+    def __init__(self, **kwargs):
+        super(SettingsScreen, self).__init__(**kwargs)
+        layout = BoxLayout(orientation='vertical')
+        
+        # Label to display internet connection status
+        self.connection_status_label = Label(text="Checking internet connection...")
+        layout.add_widget(self.connection_status_label)
+        
+        # Update the internet connection status immediately and then periodically
+        self.update_connection_status()
+        Clock.schedule_interval(self.update_connection_status, 30)  # Check every 30 seconds
+
+        # Upload Data to Server Button
+        upload_data_button = Button(text="Upload Data to Server")
+        upload_data_button.bind(on_press=self.upload_data)
+        layout.add_widget(upload_data_button)
+
+        # Back Button to return to the main screen
+        back_button = Button(text="Back to Main Screen")
+        back_button.bind(on_press=self.go_back)
+        layout.add_widget(back_button)
+
+        # Add New WiFi Network Button
+        add_wifi_button = Button(text="Add New WiFi Network", size_hint=(None, None), size=(200, 50))
+        add_wifi_button.bind(on_press=self.show_add_wifi_popup)
+        layout.add_widget(add_wifi_button)
+        
+        self.add_widget(layout)
+
+    def show_add_wifi_popup(self, instance):
+        print("show_add_wifi_popup called")  # Debug print
+        popup = AddWiFiPopup()
+        popup.open()
+
+    def go_back(self, instance):
+        self.manager.current = 'main'
+
+    def upload_data(self, instance):
+        # Placeholder for the upload logic
+        print("Uploading data to server...")
+        # Here, you can add the code to handle the data upload process.
+
+    def update_connection_status(self, *args):
+        # Check the internet connection and update the label
+        if check_internet_connection():
+            self.connection_status_label.text = "Internet Connection: Connected"
+        else:
+            self.connection_status_label.text = "Internet Connection: Disconnected" 
