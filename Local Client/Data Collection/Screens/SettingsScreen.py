@@ -46,9 +46,9 @@ class SettingsScreen(Screen):
         self.manager.current = 'main'
 
     def upload_data(self, instance):
-        # Placeholder for the upload logic
         print("Uploading data to server...")
-        # Here, you can add the code to handle the data upload process.
+
+        # TODO Add the logic in here to upload data to the server
 
     def update_connection_status(self, *args):
         # Check the internet connection and update the label

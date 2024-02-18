@@ -1,54 +1,56 @@
 from kivy.app import App
-from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.label import Label
-from kivy.uix.spinner import Spinner  # Added import for Spinner
 from kivy.clock import Clock
-from kivy.uix.button import Button
 from kivy.uix.screenmanager import ScreenManager
 from Screens.MainScreen import MainScreen
 from Screens.SettingsScreen import SettingsScreen 
-from LiveDataLayout import LiveDataLayout
 
-
+# Main GUI class that starts and runs the GUI application
 class GuiApplication(App):
 
     data_collector = None  # This should be set or initialized before `build`
 
     def build(self):
-        # Assuming data_collector is already set up with available_commands
-        available_commands = self.data_collector.available_commands if self.data_collector else []
 
-        sm = ScreenManager()
-        # Directly pass available_commands fetched from data_collector
-        main_screen = MainScreen(name='main', available_commands=available_commands)
+        # set the available commands to the 
+        available_commands = self.data_collector.filtered_commands if self.data_collector else set()
+
+        # Schedule the update_supported_commands to run every second to wait for the DataCollector to grab the available commands for the current car
+        Clock.schedule_interval(self.update_supported_commands, 1)
+
+        # Initialize a ScreenManager to control the different screens
+        self.sm = ScreenManager() 
+
+        # Set the two different screens
+        self.main_screen = MainScreen(name='main', available_commands=available_commands)
         settings_screen = SettingsScreen(name='settings')
         
-        sm.add_widget(main_screen)
-        sm.add_widget(settings_screen)
-        
-        # Store ScreenManager for easy access later
-        self.sm = sm
-        
-        return sm
+        # Add the widgets
+        self.sm.add_widget(self.main_screen)
+        self.sm.add_widget(settings_screen)
 
-    def on_start(self):
-        # Use ScreenManager to access the main_screen and its layout
-        main_screen = self.sm.get_screen('main')
-        if hasattr(self, 'data_collector') and self.data_collector:
-            self.data_collector.update_gui_callback = main_screen.layout.update_data
+        # Add a callback for the DataCollector to update data on the main screen
+        if hasattr(self, 'data_collector'):
+            self.data_collector.update_gui_callback = self.main_screen.layout.update_data
 
+        return self.sm
 
-    def set_data_collector(self, data_collector):
-        # Set the update_data method of LiveDataLayout as the callback in DataCollector
-        data_collector.update_gui_callback = self.live_data_layout.update_data
-
+    # Method that runs when the Gui is closed
     def on_stop(self):
         if hasattr(self, 'data_collector') and self.data_collector:
-            self.data_collector.stop_collection()
+            self.data_collector.stop_collection() # Stop the collection when the gui is closed
 
-    def set_data_collector(self, data_collector):
-        # Assuming you have a method in data_collector to set the callback
-        data_collector.update_gui_callback = self.live_data_layout.update_data
+    # Method for updating the supported commands
+    def update_supported_commands(self, dt):
+        if self.data_collector.filtered_commands: # if it sees the filtered_commands variable in the DataCollector class
+            # Retrieve the current list of filtered commands
+            filtered_commands = self.data_collector.filter_supported_commands()
 
-        # Store the data_collector reference if needed for other uses
-        self.data_collector = data_collector
+            # Ensure filtered_commands is a list, even if empty
+            filtered_commands = filtered_commands if filtered_commands is not None else []
+
+            # Now that filtered_commands is guaranteed to be a list, update the commands in MainScreen
+            self.main_screen.update_commands(filtered_commands)
+
+            # Stop calling this method since it has the filtered_commands variable intialized meaning the 
+            # data_collector has set the available commands
+            Clock.unschedule(self.update_supported_commands)       

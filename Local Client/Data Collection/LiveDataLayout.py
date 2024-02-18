@@ -4,39 +4,22 @@ from kivy.uix.label import Label
 from kivy.uix.spinner import Spinner  # Added import for Spinner
 from kivy.clock import Clock
 from kivy.uix.button import Button
+from kivy.properties import ListProperty
 
 class LiveDataLayout(BoxLayout):
+
+    available_commands = ListProperty([])  # Define it as a Kivy property
+
     def __init__(self, **kwargs):
-        # Extract available_commands from kwargs and remove it to prevent the TypeError
-        available_commands = kwargs.pop('available_commands', [])
-        super().__init__(**kwargs)
-        
+        self.available_commands = kwargs.pop('available_commands', [])
+        super(LiveDataLayout, self).__init__(**kwargs)
         self.orientation = 'vertical'
-        # Dictionary to hold the current selections for each spinner
         self.current_selections = {'data_point_1': None, 'data_point_2': None, 'data_point_3': None}
+        self.create_spinners_and_labels()  # Call this to initially create spinners and labels
 
-        # Create and add spinners to the layout
-        self.spinner1 = self.create_spinner('data_point_1', available_commands)
-        self.spinner2 = self.create_spinner('data_point_2', available_commands)
-        self.spinner3 = self.create_spinner('data_point_3', available_commands)
-
-        # Create and add labels for displaying data
-        self.label1 = Label(text='Data Point 1: Waiting for data...')
-        self.label2 = Label(text='Data Point 2: Waiting for data...')
-        self.label3 = Label(text='Data Point 3: Waiting for data...')
-
-        # Add widgets to the layout
-        self.add_widget(self.spinner1)
-        self.add_widget(self.label1)
-        self.add_widget(self.spinner2)
-        self.add_widget(self.label2)
-        self.add_widget(self.spinner3)
-        self.add_widget(self.label3)
-
-        # Modify the settings button initialization
-        settings_button = Button(text='Settings', size_hint=(None, None), size=(100, 50))
-        settings_button.bind(on_press=self.switch_to_settings)
-        self.add_widget(settings_button)
+        self.settings_button = Button(text='Settings', size_hint=(None, None), size=(100, 50))
+        self.settings_button.bind(on_press=self.switch_to_settings)
+        self.add_widget(self.settings_button)
 
     def update_data(self, data):
         # This method will be called from the DataCollector via a callback
@@ -51,14 +34,11 @@ class LiveDataLayout(BoxLayout):
         label_to_update.text = f"{text}: Waiting for data..."
 
     def _update_labels(self, data):
+        # Update the labels on the screen with the selected data
         for i, key in enumerate(self.current_selections, start=1):
             data_point = self.current_selections[key]
             value = data.get(data_point, 'Not available')
             getattr(self, f'label{i}').text = f"{data_point}: {value}"
-
-    def update_display(self, data):
-        # Code to update widgets with new data
-        pass
 
     def create_spinner(self, spinner_id, available_commands):
         spinner = Spinner (
@@ -76,11 +56,43 @@ class LiveDataLayout(BoxLayout):
         if self.current_data_point in data:
             # Update the label with the value of the selected data point
             value = data[self.current_data_point]
-            # Assuming you want to display it on the speed_label or a dedicated label
+            
             self.speed_label.text = f"{self.current_data_point}: {value}"
         else:
             # Handle the case where the data point is not available in the data dictionary
             self.speed_label.text = f"{self.current_data_point}: Not available"
 
+    # Method for switching to the settings screen
     def switch_to_settings(self, instance):
         App.get_running_app().root.current = 'settings'  
+
+
+    def update_available_commands(self, new_commands):
+        print("Updating commands", [cmd for cmd in new_commands])
+        self.available_commands = new_commands
+        self.create_spinners_and_labels()
+
+
+    def create_spinners_and_labels(self):
+        print("Creating spinners and labels")
+        # Manually remove widgets except the settings button
+        for widget in self.children[:]:
+            if widget is not self.settings_button:  # Assuming you have a reference to the settings button
+                self.remove_widget(widget)
+
+        # Recreate the spinner widgets and labels with the updated commands
+        self.spinner1 = self.create_spinner('data_point_1', self.available_commands)
+        self.spinner2 = self.create_spinner('data_point_2', self.available_commands)
+        self.spinner3 = self.create_spinner('data_point_3', self.available_commands)
+
+        self.label1 = Label(text='Data Point 1: Waiting for data...')
+        self.label2 = Label(text='Data Point 2: Waiting for data...')
+        self.label3 = Label(text='Data Point 3: Waiting for data...')
+
+        # Add the newly created widgets to the layout
+        self.add_widget(self.spinner1)
+        self.add_widget(self.label1)
+        self.add_widget(self.spinner2)
+        self.add_widget(self.label2)
+        self.add_widget(self.spinner3)
+        self.add_widget(self.label3)

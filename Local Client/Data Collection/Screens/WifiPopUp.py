@@ -27,5 +27,6 @@ class AddWiFiPopup(Popup):
         ssid = self.ssid_input.text
         password = self.password_input.text
         print(f"Adding network: SSID={ssid}, Password={password}")
-        # Here you would add the logic to actually add the WiFi network
+
+        # TODO logic to add the entered wifi network to the pi's known networks
         self.dismiss()
