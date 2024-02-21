@@ -342,6 +342,6 @@ class DataCollector:
         self.filtered_commands = [cmd for cmd in self.available_commands if cmd in command_names]
 
         # If you want to print the names of the filtered commands, you can do:
-        print("Filtered command names: ", [cmd for cmd in self.filtered_commands])
+        #print("Filtered command names: ", [cmd for cmd in self.filtered_commands])
 
         return self.filtered_commands

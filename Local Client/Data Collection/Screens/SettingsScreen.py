@@ -16,7 +16,7 @@ class SettingsScreen(Screen):
         self.connection_status_label = Label(text="Checking internet connection...")
         layout.add_widget(self.connection_status_label)
         
-        # Update the internet connection status immediately and then periodically
+        # Update the internet connection status at the start and then periodically
         self.update_connection_status()
         Clock.schedule_interval(self.update_connection_status, 30)  # Check every 30 seconds
 
@@ -42,14 +42,17 @@ class SettingsScreen(Screen):
         popup = AddWiFiPopup()
         popup.open()
 
+    # Method for going back to the main screen
     def go_back(self, instance):
         self.manager.current = 'main'
 
+    # Method for uploading the data to the online server
     def upload_data(self, instance):
         print("Uploading data to server...")
 
         # TODO Add the logic in here to upload data to the server
 
+    # Method for updating the internet connection status using the wifiConnection files' check_internet_connection method
     def update_connection_status(self, *args):
         # Check the internet connection and update the label
         if check_internet_connection():
