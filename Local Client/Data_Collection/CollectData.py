@@ -260,11 +260,15 @@ class DataCollector:
         :param data_dict: A dictionary with command names as keys and their values.
         """
         if self.db_conn is not None and self.db_conn.is_connected():
+
+            # Extract only the value part from each entry for insertion
+            values = [val_dict['value'] for val_dict in self.data_dict.values()]
+
             # Make the SQL Queries
             columns = ', '.join([f"`{key}`" for key in self.data_dict.keys()])
             placeholders = ', '.join(['%s'] * len(self.data_dict))
             query = f"INSERT INTO VehicleData ({columns}) VALUES ({placeholders})"
-            values = list(self.data_dict.values())
+            #values = list(self.data_dict.values())
 
             try:
                 self.db_cursor.execute(query, values) # Execute the queries
@@ -325,7 +329,7 @@ class DataCollector:
                 processed_value = str(response.value)
 
             # Store the processed value instead of the raw response
-            self.data_dict[command.name] = processed_value 
+            self.data_dict[command.name] = {'value': processed_value, 'unit': unit}
 
             return f"{timestamp} - {command.name}: {value} {unit}"
         else:

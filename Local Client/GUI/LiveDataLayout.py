@@ -5,6 +5,7 @@ from kivy.uix.spinner import Spinner  # Added import for Spinner
 from kivy.clock import Clock
 from kivy.uix.button import Button
 from kivy.properties import ListProperty
+from GUI.Screens.AlertPopUp import AlertPopup
 
 class LiveDataLayout(BoxLayout):
 
@@ -29,9 +30,28 @@ class LiveDataLayout(BoxLayout):
 
     # Method for updating the live data on the screen
     def update_data(self, data):
+         
+
         # This will be called from the DataCollector by a callback
-        # Using the schedule_once to update the labels on the main thread when possible
-         Clock.schedule_once(lambda dt: self.update_labels(data))
+        # Using the schedule_once to update all the necessary information
+         Clock.schedule_once(lambda dt: self.update_information(data))
+
+    def update_information(self, data):
+
+        # Call to update the labels
+        self.update_labels(data)
+
+        # TODO add any constraints here that should alert the driver
+        # Could make some customizable constraints so the user can set when they want to be alerted
+
+        # Check if any data points out of bounds and alert
+        # engine_load = data.get('ENGINE_LOAD', None)
+
+        # if engine_load['value'] is not None and engine_load['value'] > 60:  # Assuming 75 is the threshold
+        #     self.show_alert_popup(f"High Engine Load Detected: {engine_load['value']}%")  
+
+        if 'GET_DTC' in data and len(data['GET_DTC']) > 2:
+            self.show_alert_popup("DTC Detected " + str(len(data['GET_DTC'])) + " Codes: " + data['GET_DTC'])
 
     # Method that runs when a spinner is clicked on
     def on_spinner_select(self, spinner_id, text):
@@ -47,8 +67,8 @@ class LiveDataLayout(BoxLayout):
         # Update the labels on the screen with the selected data
         for i, key in enumerate(self.current_selections, start=1):
             data_point = self.current_selections[key]
-            value = data.get(data_point, 'Not available')
-            getattr(self, f'label{i}').text = f"{data_point}: {value}"
+            value = data.get(data_point, {'value': 'Not available', 'unit': ''})
+            getattr(self, f'label{i}').text = f"{data_point}: {value['value']} {value['unit']}"
 
     # Method for creating the spinners
     def create_spinner(self, spinner_id, available_commands):
@@ -109,3 +129,7 @@ class LiveDataLayout(BoxLayout):
         self.add_widget(self.label2)
         self.add_widget(self.spinner3)
         self.add_widget(self.label3)
+
+    def show_alert_popup(self, message):
+        popup = AlertPopup(message)
+        popup.open()
