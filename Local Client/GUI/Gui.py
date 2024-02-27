@@ -1,8 +1,13 @@
 from kivy.app import App
 from kivy.clock import Clock
 from kivy.uix.screenmanager import ScreenManager
+from kivy.config import Config
+Config.set('graphics', 'width', '800')
+Config.set('graphics', 'height', '480')
 from GUI.Screens.MainScreen import MainScreen
 from GUI.Screens.SettingsScreen import SettingsScreen 
+
+
 
 # Main GUI class that starts and runs the GUI application
 class GuiApplication(App):
