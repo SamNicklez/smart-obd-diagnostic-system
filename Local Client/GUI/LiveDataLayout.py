@@ -30,13 +30,14 @@ class LiveDataLayout(BoxLayout):
 
         self.dtc_count = 0
 
+        self.data = []
+
     # Method for updating the live data on the screen
     def update_data(self, data):
-         
-
+        self.data = data
         # This will be called from the DataCollector by a callback
         # Using the schedule_once to update all the necessary information
-         Clock.schedule_once(lambda dt: self.update_information(data))
+        Clock.schedule_once(lambda dt: self.update_information(data))
 
     def update_information(self, data):
 
@@ -56,11 +57,14 @@ class LiveDataLayout(BoxLayout):
         get_dtc = data.get('GET_DTC', None) 
         get_dtc = get_dtc['value']
 
-        if get_dtc is not None and len(get_dtc) > 2 and self.dtc_count != len(get_dtc):
+        if get_dtc is not None and len(get_dtc) == 2 and self.dtc_count != len(get_dtc):
             self.show_alert_popup("DTC Detected " + " Codes: " + get_dtc)
             self.dtc_count = len(get_dtc)
+            #self.add_icon()
+            self.add_icon()
+
             # TODO could add an icon to the screen to show the user that there is a dtc present
-        elif get_dtc is not None and len(get_dtc) <= 2 and self.dtc_count != 0:
+        elif get_dtc is not None and len(get_dtc) != 2 and self.dtc_count != 0:
             self.dtc_count = 0
             # TODO clear the dtc present icon
 
@@ -121,7 +125,7 @@ class LiveDataLayout(BoxLayout):
 
         # Remove the current spinners so we can replace them
         for widget in self.children[:]:
-            if widget is not self.settings_button:  # Assuming you have a reference to the settings button
+            if widget is not self.settings_button and widget is not self.icon_button:  # Assuming you have a reference to the settings button
                 self.remove_widget(widget)
 
         # Recreate the spinner widgets and labels with the updated commands
@@ -144,3 +148,29 @@ class LiveDataLayout(BoxLayout):
     def show_alert_popup(self, message):
         popup = AlertPopup(message)
         popup.open()
+
+    def add_icon(self, icon_source='images/DTC_image.png'):
+        print("Adding the icon")
+        # Create an icon button with the image as its background
+        self.icon_button = Button(background_normal=icon_source,
+                                size_hint=(None, None),
+                                size=('50', '50'))  # Adjust the position as needed
+
+        # Optionally, bind the button to a callback function
+        self.icon_button.bind(on_press=self.on_icon_press)
+
+        # Add the icon button to the layout
+        self.add_widget(self.icon_button)    
+
+    def on_icon_press(self, instance):
+        # Handle the icon press event
+        print("Icon pressed!")
+
+        get_dtc = self.data.get('GET_DTC', None) 
+        get_dtc = get_dtc['value']
+    
+        self.show_alert_popup("Engine Codes Present: " + get_dtc)
+
+    def remove_icon(self):
+        # Remove the icon here
+        self.remove_widget(self.icon_button)
