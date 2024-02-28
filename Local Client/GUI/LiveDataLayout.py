@@ -28,6 +28,8 @@ class LiveDataLayout(BoxLayout):
         self.settings_button.bind(on_press=self.switch_to_settings)
         self.add_widget(self.settings_button)
 
+        self.dtc_count = 0
+
     # Method for updating the live data on the screen
     def update_data(self, data):
          
@@ -48,10 +50,19 @@ class LiveDataLayout(BoxLayout):
         # engine_load = data.get('ENGINE_LOAD', None)
 
         # if engine_load['value'] is not None and engine_load['value'] > 60:  # Assuming 75 is the threshold
-        #     self.show_alert_popup(f"High Engine Load Detected: {engine_load['value']}%")  
+        #     self.show_alert_popup(f"High Engine Load Detected: {engine_load['value']}%") 
 
-        if 'GET_DTC' in data and len(data['GET_DTC']) > 2:
-            self.show_alert_popup("DTC Detected " + str(len(data['GET_DTC'])) + " Codes: " + data['GET_DTC'])
+        # Checking for dtc codes and alerting if there is a new one
+        get_dtc = data.get('GET_DTC', None) 
+        get_dtc = get_dtc['value']
+
+        if get_dtc is not None and len(get_dtc) > 2 and self.dtc_count != len(get_dtc):
+            self.show_alert_popup("DTC Detected " + " Codes: " + get_dtc)
+            self.dtc_count = len(get_dtc)
+            # TODO could add an icon to the screen to show the user that there is a dtc present
+        elif get_dtc is not None and len(get_dtc) <= 2 and self.dtc_count != 0:
+            self.dtc_count = 0
+            # TODO clear the dtc present icon
 
     # Method that runs when a spinner is clicked on
     def on_spinner_select(self, spinner_id, text):
