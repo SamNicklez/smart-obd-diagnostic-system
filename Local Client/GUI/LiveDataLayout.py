@@ -32,6 +32,8 @@ class LiveDataLayout(BoxLayout):
 
         self.data = []
 
+        self.icon_button = None
+
     # Method for updating the live data on the screen
     def update_data(self, data):
         self.data = data
@@ -57,14 +59,14 @@ class LiveDataLayout(BoxLayout):
         get_dtc = data.get('GET_DTC', None) 
         get_dtc = get_dtc['value']
 
-        if get_dtc is not None and len(get_dtc) == 2 and self.dtc_count != len(get_dtc):
+        if get_dtc is not None and len(get_dtc) > 2 and self.dtc_count != len(get_dtc):
             self.show_alert_popup("DTC Detected " + " Codes: " + get_dtc)
             self.dtc_count = len(get_dtc)
             #self.add_icon()
             self.add_icon()
 
             # TODO could add an icon to the screen to show the user that there is a dtc present
-        elif get_dtc is not None and len(get_dtc) != 2 and self.dtc_count != 0:
+        elif get_dtc is not None and len(get_dtc) <= 2 and self.dtc_count != 0:
             self.dtc_count = 0
             # TODO clear the dtc present icon
 
