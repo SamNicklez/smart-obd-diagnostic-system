@@ -1,3 +1,4 @@
+import threading
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
 from kivy.clock import Clock
@@ -55,10 +56,12 @@ class SettingsScreen(Screen):
             # TODO Call the method to upload data to online database
             pass
 
+    def check_connection_status_threaded(self):
+        if check_internet_connection():
+             self.connection_status_label.text = "Internet Connection: Connected"
+        else:
+            self.connection_status_label.text = "Internet Connection: Disconnected"
+    
     # Method for updating the internet connection status using the wifiConnection files' check_internet_connection method
     def update_connection_status(self, *args):
-        # Check the internet connection and update the label
-        if check_internet_connection():
-            self.connection_status_label.text = "Internet Connection: Connected"
-        else:
-            self.connection_status_label.text = "Internet Connection: Disconnected" 
+        threading.Thread(target=self.check_connection_status_threaded).start() 
