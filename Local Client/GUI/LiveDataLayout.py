@@ -20,6 +20,8 @@ class LiveDataLayout(BoxLayout):
         # Initialize the data points selections
         self.current_selections = {'data_point_1': None, 'data_point_2': None, 'data_point_3': None}
 
+        self.available_command_names = []
+
         # Create the labels and the spinners
         self.create_spinners_and_labels()  # Call this to initially create spinners and labels
 
@@ -33,6 +35,8 @@ class LiveDataLayout(BoxLayout):
         self.data = []
 
         self.icon_button = None
+
+        self.available_dict = {}
 
     # Method for updating the live data on the screen
     def update_data(self, data):
@@ -73,19 +77,32 @@ class LiveDataLayout(BoxLayout):
     # Method that runs when a spinner is clicked on
     def on_spinner_select(self, spinner_id, text):
         # Update the selected Data point
-        self.current_selections[spinner_id] = text
+        self.current_selections[spinner_id] = self.find_command_by_name(text)
 
         # Decide which label to update based on the spinner_id
         label_to_update = getattr(self, f'label{spinner_id[-1]}')
         label_to_update.text = f"{text}: Waiting for data..."
 
+    def find_command_by_name(self, name_to_find):
+        for cmd_key, cmd_details in self.available_dict.items():
+            if cmd_details["name"] == name_to_find:
+                return cmd_details["command"]
+        return None  # Return None if no matching name is found
+    
+    def find_name_by_command(self, command_to_find):
+        for cmd_key, cmd_info in self.available_dict.items():
+            if cmd_info["command"] == command_to_find:
+                return cmd_info["name"]
+        return None  # Return None if no matching command is found
+    
     # Method for updating the labels 
     def update_labels(self, data):
         # Update the labels on the screen with the selected data
         for i, key in enumerate(self.current_selections, start=1):
             data_point = self.current_selections[key]
+            name = self.find_name_by_command(data_point)
             value = data.get(data_point, {'value': 'Not available', 'unit': ''})
-            getattr(self, f'label{i}').text = f"{data_point}: {value['value']} {value['unit']}"
+            getattr(self, f'label{i}').text = f"{name}: {value['value']} {value['unit']}"
 
     # Method for creating the spinners
     def create_spinner(self, spinner_id, available_commands):
@@ -119,7 +136,13 @@ class LiveDataLayout(BoxLayout):
     # Method for updating the available commands shown in the spinners
     def update_available_commands(self, new_commands):
         print("Updating commands", [cmd for cmd in new_commands])
-        self.available_commands = new_commands
+        
+        # Set the class attribute to the entire dictionary
+        self.available_dict = new_commands
+
+        # Extracting the list of command names from the dictionary
+        self.available_command_names = [cmd_info['name'] for cmd_key, cmd_info in new_commands.items()]
+        
         self.create_spinners_and_labels()
 
     # Method for creating all the spinners and labels
@@ -131,9 +154,9 @@ class LiveDataLayout(BoxLayout):
                 self.remove_widget(widget)
 
         # Recreate the spinner widgets and labels with the updated commands
-        self.spinner1 = self.create_spinner('data_point_1', self.available_commands)
-        self.spinner2 = self.create_spinner('data_point_2', self.available_commands)
-        self.spinner3 = self.create_spinner('data_point_3', self.available_commands)
+        self.spinner1 = self.create_spinner('data_point_1', self.available_command_names)
+        self.spinner2 = self.create_spinner('data_point_2', self.available_command_names)
+        self.spinner3 = self.create_spinner('data_point_3', self.available_command_names)
 
         self.label1 = Label(text='Data Point 1: Waiting for data...')
         self.label2 = Label(text='Data Point 2: Waiting for data...')

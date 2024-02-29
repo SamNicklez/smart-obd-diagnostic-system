@@ -51,7 +51,7 @@ class GuiApplication(App):
             filtered_commands = self.data_collector.filter_supported_commands()
 
             # Ensure filtered_commands is a list, even if empty
-            filtered_commands = filtered_commands if filtered_commands is not None else []
+            #filtered_commands = filtered_commands if filtered_commands is not None else []
 
             # Now that filtered_commands is guaranteed to be a list, update the commands in MainScreen
             self.main_screen.update_commands(filtered_commands)

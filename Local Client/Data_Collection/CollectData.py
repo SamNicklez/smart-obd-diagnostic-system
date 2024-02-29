@@ -21,106 +21,105 @@ class DataCollector:
 
         # List of available commands from the Python-OBD Library
         self.available_commands = {
-            "PIDS_A",
-            "STATUS",
-            "FREEZE_DTC",
-            "FUEL_STATUS",
-            "ENGINE_LOAD",
-            "COOLANT_TEMP",
-            "SHORT_FUEL_TRIM_1",
-            "LONG_FUEL_TRIM_1",
-            "SHORT_FUEL_TRIM_2",
-            "LONG_FUEL_TRIM_2",
-            "FUEL_PRESSURE",
-            "INTAKE_PRESSURE",
-            "RPM",
-            "SPEED",
-            "TIMING_ADVANCE",
-            "INTAKE_TEMP",
-            "MAF",
-            "THROTTLE_POS",
-            "AIR_STATUS",
-            "O2_SENSORS",                
-            "O2_B1S1",
-            "O2_B1S2",
-            "O2_B1S3",
-            "O2_B1S4",
-            "O2_B2S1",
-            "O2_B2S2",
-            "O2_B2S3",
-            "O2_B2S4",
-            "OBD_COMPLIANCE",
-            "O2_SENSORS_ALT",
-            "AUX_INPUT_STATUS",
-            "RUN_TIME",
-            "PIDS_B",
-            "DISTANCE_W_MIL",
-            "FUEL_RAIL_PRESSURE_VAC",
-            "FUEL_RAIL_PRESSURE_DIRECT",
-            "O2_S1_WR_VOLTAGE",
-            "O2_S2_WR_VOLTAGE",
-            "O2_S3_WR_VOLTAGE",
-            "O2_S4_WR_VOLTAGE",
-            "O2_S5_WR_VOLTAGE",
-            "O2_S6_WR_VOLTAGE",
-            "O2_S7_WR_VOLTAGE",
-            "O2_S8_WR_VOLTAGE",
-            "COMMANDED_EGR",
-            "EGR_ERROR",
-            "EVAPORATIVE_PURGE",
-            "FUEL_LEVEL",
-            "WARMUPS_SINCE_DTC_CLEAR",
-            "DISTANCE_SINCE_DTC_CLEAR",
-            "EVAP_VAPOR_PRESSURE",
-            "BAROMETRIC_PRESSURE",
-            "O2_S1_WR_CURRENT",
-            "O2_S2_WR_CURRENT",
-            "O2_S3_WR_CURRENT",
-            "O2_S4_WR_CURRENT",
-            "O2_S5_WR_CURRENT",
-            "O2_S6_WR_CURRENT",
-            "O2_S7_WR_CURRENT",
-            "O2_S8_WR_CURRENT",
-            "CATALYST_TEMP_B1S1",
-            "CATALYST_TEMP_B2S1",
-            "CATALYST_TEMP_B1S2",
-            "CATALYST_TEMP_B2S2",
-            "PIDS_C",
-            "STATUS_DRIVE_CYCLE",
-            "CONTROL_MODULE_VOLTAGE",
-            "ABSOLUTE_LOAD",
-            "COMMANDED_EQUIV_RATIO",
-            "RELATIVE_THROTTLE_POS",
-            "AMBIANT_AIR_TEMP",
-            "THROTTLE_POS_B",
-            "THROTTLE_POS_C",
-            "ACCELERATOR_POS_D",
-            "ACCELERATOR_POS_E",
-            "ACCELERATOR_POS_F",
-            "THROTTLE_ACTUATOR",
-            "RUN_TIME_MIL",
-            "TIME_SINCE_DTC_CLEARED",
-            "MAX_MAF",
-            "FUEL_TYPE",
-            "ETHANOL_PERCENT",
-            "EVAP_VAPOR_PRESSURE_ABS",
-            "EVAP_VAPOR_PRESSURE_ALT",
-            "SHORT_O2_TRIM_B1",
-            "LONG_O2_TRIM_B1",
-            "SHORT_O2_TRIM_B2",
-            "LONG_O2_TRIM_B2",
-            "FUEL_RAIL_PRESSURE_ABS",
-            "RELATIVE_ACCEL_POS",
-            "HYBRID_BATTERY_REMAINING",
-            "OIL_TEMP",
-            "FUEL_INJECT_TIMING",
-            "FUEL_RATE",
-            "VIN",
-            "GET_DTC",
-            "GET_CURRENT_DTC",
-            "ELM_VOLTAGE"
+            "PIDS_A": {"command": "PIDS_A", "name": "PIDs A", "unit": ""},
+            "STATUS": {"command": "STATUS", "name": "Status", "unit": ""},
+            "FREEZE_DTC": {"command": "FREEZE_DTC", "name": "Freeze DTC", "unit": "TEST"},
+            "FUEL_STATUS": {"command": "FUEL_STATUS", "name": "Fuel Status", "unit": ""},
+            "ENGINE_LOAD": {"command": "ENGINE_LOAD", "name": "Engine Load", "unit": "%"},
+            "COOLANT_TEMP": {"command": "COOLANT_TEMP", "name": "Coolant Temp", "unit": "°F"},
+            "SHORT_FUEL_TRIM_1": {"command": "SHORT_FUEL_TRIM_1", "name": "Short Fuel Trim #1", "unit": "TEST"},
+            "LONG_FUEL_TRIM_1": {"command": "LONG_FUEL_TRIM_1", "name": "Long Fuel Trim #1", "unit": "TEST"},
+            "SHORT_FUEL_TRIM_2": {"command": "SHORT_FUEL_TRIM_2", "name": "Short Fuel Trim #2", "unit": "TEST"},
+            "LONG_FUEL_TRIM_2": {"command": "LONG_FUEL_TRIM_2", "name": "Long Fuel Trim #2", "unit": "TEST"},
+            "FUEL_PRESSURE": {"command": "FUEL_PRESSURE", "name": "Fuel Pressure", "unit": "TEST"},
+            "INTAKE_PRESSURE": {"command": "INTAKE_PRESSURE", "name": "Intake Pressure", "unit": "TEST"},
+            "RPM": {"command": "RPM", "name": "RPM", "unit": "RPM"},
+            "SPEED": {"command": "SPEED", "name": "Speed", "unit": "MPH"},
+            "TIMING_ADVANCE": {"command": "TIMING_ADVANCE", "name": "Timing Advance", "unit": "TEST"},
+            "INTAKE_TEMP": {"command": "INTAKE_TEMP", "name": "Intake Temp", "unit": "°F"},
+            "MAF": {"command": "MAF", "name": "MAF", "unit": "TEST"},
+            "THROTTLE_POS": {"command": "THROTTLE_POS", "name": "Throttle Position", "unit": "%"},
+            "AIR_STATUS": {"command": "AIR_STATUS", "name": "Air Status", "unit": "TEST"},
+            "O2_SENSORS": {"command": "O2_SENSORS", "name": "O2 Sensors", "unit": "TEST"},                
+            "O2_B1S1": {"command": "O2_B1S1", "name": "O2 Bank #1 Sensor #1", "unit": "Volts"},
+            "O2_B1S2": {"command": "O2_B1S2", "name": "O2 Bank #1 Sensor #2", "unit": "Volts"},
+            "O2_B1S3": {"command": "O2_B1S3", "name": "O2 Bank #1 Sensor #3", "unit": "Volts"},
+            "O2_B1S4": {"command": "O2_B1S4", "name": "O2 Bank #1 Sensor #4", "unit": "Volts"},
+            "O2_B2S1": {"command": "O2_B2S1", "name": "O2 Bank #2 Sensor #1", "unit": "Volts"},
+            "O2_B2S2": {"command": "O2_B2S2", "name": "O2 Bank #2 Sensor #2", "unit": "Volts"},
+            "O2_B2S3": {"command": "O2_B2S3", "name": "O2 Bank #2 Sensor #3", "unit": "Volts"},
+            "O2_B2S4": {"command": "O2_B2S4", "name": "O2 Bank #2 Sensor #4", "unit": "Volts"},
+            "OBD_COMPLIANCE": {"command": "OBD_COMPLIANCE", "name": "OBD Compliance", "unit": ""},
+            "O2_SENSORS_ALT": {"command": "O2_SENSORS_ALT", "name": "O2 Sensors Alternate", "unit": ""},
+            "AUX_INPUT_STATUS": {"command": "AUX_INPUT_STATUS", "name": "Aux Input Status", "unit": ""},
+            "RUN_TIME": {"command": "RUN_TIME", "name": "Run Time", "unit": "Seconds"},
+            "PIDS_B": {"command": "PIDS_B", "name": "PIDs B", "unit": ""},
+            "DISTANCE_W_MIL": {"command": "DISTANCE_W_MIL", "name": "Distance with MIL", "unit": "km"},
+            "FUEL_RAIL_PRESSURE_VAC": {"command": "FUEL_RAIL_PRESSURE_VAC", "name": "Fuel Rail Pressure VAC", "unit": "TEST"},
+            "FUEL_RAIL_PRESSURE_DIRECT": {"command": "FUEL_RAIL_PRESSURE_DIRECT", "name": "Fuel Rail Pressure Direct", "unit": "TEST"},
+            "O2_S1_WR_VOLTAGE": {"command": "O2_S1_WR_VOLTAGE", "name": "", "unit": "TEST"},
+            "O2_S2_WR_VOLTAGE": {"command": "O2_S2_WR_VOLTAGE", "name": "", "unit": "TEST"},
+            "O2_S3_WR_VOLTAGE": {"command": "O2_S3_WR_VOLTAGE", "name": "", "unit": "TEST"},
+            "O2_S4_WR_VOLTAGE": {"command": "O2_S4_WR_VOLTAGE", "name": "", "unit": "TEST"},
+            "O2_S5_WR_VOLTAGE": {"command": "O2_S5_WR_VOLTAGE", "name": "", "unit": "TEST"},
+            "O2_S6_WR_VOLTAGE": {"command": "O2_S6_WR_VOLTAGE", "name": "", "unit": "TEST"},
+            "O2_S7_WR_VOLTAGE": {"command": "O2_S7_WR_VOLTAGE", "name": "", "unit": "TEST"},
+            "O2_S8_WR_VOLTAGE": {"command": "O2_S8_WR_VOLTAGE", "name": "", "unit": "TEST"},
+            "COMMANDED_EGR": {"command": "COMMANDED_EGR", "name": "Commanded EGR", "unit": "TEST"},
+            "EGR_ERROR": {"command": "EGR_ERROR", "name": "EGR Error", "unit": "TEST"},
+            "EVAPORATIVE_PURGE": {"command": "EVAPORATIVE_PURGE", "name": "Evaporative Purge", "unit": "TEST"},
+            "FUEL_LEVEL": {"command": "FUEL_LEVEL", "name": "Fuel Level", "unit": "TEST"},
+            "WARMUPS_SINCE_DTC_CLEAR": {"command": "WARMUPS_SINCE_DTC_CLEAR", "name": "Warmup since DTC Clear", "unit": "TEST"},
+            "DISTANCE_SINCE_DTC_CLEAR": {"command": "DISTANCE_SINCE_DTC_CLEAR", "name": "Distance Since DTC Clear", "unit": "TEST"},
+            "EVAP_VAPOR_PRESSURE": {"command": "EVAP_VAPOR_PRESSURE", "name": "Evap Vapor Pressure", "unit": "TEST"},
+            "BAROMETRIC_PRESSURE": {"command": "BAROMETRIC_PRESSURE", "name": "Barometric Pressure", "unit": "TEST"},
+            "O2_S1_WR_CURRENT": {"command": "O2_S1_WR_CURRENT", "name": "", "unit": "TEST"},
+            "O2_S2_WR_CURRENT": {"command": "O2_S2_WR_CURRENT", "name": "", "unit": "TEST"},
+            "O2_S3_WR_CURRENT": {"command": "O2_S3_WR_CURRENT", "name": "", "unit": "TEST"},
+            "O2_S4_WR_CURRENT": {"command": "O2_S4_WR_CURRENT", "name": "", "unit": "TEST"},
+            "O2_S5_WR_CURRENT": {"command": "O2_S5_WR_CURRENT", "name": "", "unit": "TEST"},
+            "O2_S6_WR_CURRENT": {"command": "O2_S6_WR_CURRENT", "name": "", "unit": "TEST"},
+            "O2_S7_WR_CURRENT": {"command": "O2_S7_WR_CURRENT", "name": "", "unit": "TEST"},
+            "O2_S8_WR_CURRENT": {"command": "O2_S8_WR_CURRENT", "name": "", "unit": "TEST"},
+            "CATALYST_TEMP_B1S1": {"command": "CATALYST_TEMP_B1S1", "name": "", "unit": "TEST"},
+            "CATALYST_TEMP_B2S1": {"command": "CATALYST_TEMP_B2S1", "name": "", "unit": "TEST"},
+            "CATALYST_TEMP_B1S2": {"command": "CATALYST_TEMP_B1S2", "name": "", "unit": "TEST"},
+            "CATALYST_TEMP_B2S2": {"command": "CATALYST_TEMP_B2S2", "name": "", "unit": "TEST"},
+            "PIDS_C": {"command": "PIDS_C", "name": "PIDs C", "unit": "TEST"},
+            "STATUS_DRIVE_CYCLE": {"command": "STATUS_DRIVE_CYCLE", "name": "Status Drive Cycle", "unit": "TEST"},
+            "CONTROL_MODULE_VOLTAGE": {"command": "CONTROL_MODULE_VOLTAGE", "name": "Control Module Voltage", "unit": "TEST"},
+            "ABSOLUTE_LOAD": {"command": "ABSOLUTE_LOAD", "name": "Absolute Load", "unit": "TEST"},
+            "COMMANDED_EQUIV_RATIO": {"command": "COMMANDED_EQUIV_RATIO", "name": "Commanded Equiv Ratio", "unit": "TEST"},
+            "RELATIVE_THROTTLE_POS": {"command": "RELATIVE_THROTTLE_POS", "name": "Relative Throttle Position", "unit": "TEST"},
+            "AMBIANT_AIR_TEMP": {"command": "AMBIANT_AIR_TEMP", "name": "Ambiant Air Temp", "unit": "TEST"},
+            "THROTTLE_POS_B": {"command": "THROTTLE_POS_B", "name": "Throttle Position B", "unit": "TEST"},
+            "THROTTLE_POS_C": {"command": "THROTTLE_POS_C", "name": "Throttle Position C", "unit": "TEST"},
+            "ACCELERATOR_POS_D": {"command": "ACCELERATOR_POS_D", "name": "Accelerator Position D", "unit": "TEST"},
+            "ACCELERATOR_POS_E": {"command": "ACCELERATOR_POS_E", "name": "Accelerator Position E", "unit": "TEST"},
+            "ACCELERATOR_POS_F": {"command": "ACCELERATOR_POS_F", "name": "Accelerator Position F", "unit": "TEST"},
+            "THROTTLE_ACTUATOR": {"command": "THROTTLE_ACTUATOR", "name": "Throttle Actuator", "unit": "TEST"},
+            "RUN_TIME_MIL": {"command": "RUN_TIME_MIL", "name": "Run Time MIL", "unit": "TEST"},
+            "TIME_SINCE_DTC_CLEARED": {"command": "TIME_SINCE_DTC_CLEARED", "name": "Time Since DTC Cleared", "unit": "TEST"},
+            "MAX_MAF": {"command": "MAX_MAF", "name": "Max MAF", "unit": "TEST"},
+            "FUEL_TYPE": {"command": "FUEL_TYPE", "name": "Fuel Type", "unit": "TEST"},
+            "ETHANOL_PERCENT": {"command": "ETHANOL_PERCENT", "name": "Ethanol Percent", "unit": "TEST"},
+            "EVAP_VAPOR_PRESSURE_ABS": {"command": "EVAP_VAPOR_PRESSURE_ABS", "name": "Evap Vapor Pressure", "unit": "TEST"},
+            "EVAP_VAPOR_PRESSURE_ALT": {"command": "EVAP_VAPOR_PRESSURE_ALT", "name": "Evap Vapor Pressure Alt", "unit": "TEST"},
+            "SHORT_O2_TRIM_B1": {"command": "SHORT_O2_TRIM_B1", "name": "", "unit": "TEST"},
+            "LONG_O2_TRIM_B1": {"command": "LONG_O2_TRIM_B1", "name": "", "unit": "TEST"},
+            "SHORT_O2_TRIM_B2": {"command": "SHORT_O2_TRIM_B2", "name": "", "unit": "TEST"},
+            "LONG_O2_TRIM_B2": {"command": "LONG_O2_TRIM_B2", "name": "", "unit": "TEST"},
+            "FUEL_RAIL_PRESSURE_ABS": {"command": "FUEL_RAIL_PRESSURE_ABS", "name": "Fuel Rail Pressure ABS", "unit": "TEST"},
+            "RELATIVE_ACCEL_POS": {"command": "RELATIVE_ACCEL_POS", "name": "Relative Acceleration Position", "unit": "TEST"},
+            "HYBRID_BATTERY_REMAINING": {"command": "HYBRID_BATTERY_REMAINING", "name": "Hybrid Battery Remaining", "unit": "TEST"},
+            "OIL_TEMP": {"command": "OIL_TEMP", "name": "Oil Temp", "unit": "TEST"},
+            "FUEL_INJECT_TIMING": {"command": "FUEL_INJECT_TIMING", "name": "Fuel Inject Timing", "unit": "TEST"},
+            "FUEL_RATE": {"command": "FUEL_RATE", "name": "Fuel Rate", "unit": "TEST"},
+            "VIN": {"command": "VIN", "name": "VIN", "unit": ""},
+            "GET_DTC": {"command": "GET_DTC", "name": "Get DTC", "unit": "TEST"},
+            "GET_CURRENT_DTC": {"command": "GET_CURRENT_DTC", "name": "Get Current DTC", "unit": "TEST"},
+            "ELM_VOLTAGE": {"command": "ELM_VOLTAGE", "name": "ELM Voltage", "unit": "Volts"}
         }
-
 
         # Database connection configuration
         db_config = {
@@ -294,31 +293,15 @@ class DataCollector:
                 value = response.value.magnitude if hasattr(response.value, 'magnitude') else response.value
                 unit = str(response.value.units) if hasattr(response.value, 'units') else ""
 
-            if command.name == 'GET_DTC' and hasattr(response.value, 'magnitude'):
-                # Set some alert for alerting the driver to a new code
-                print("Code detected")    
+            unit = self.available_commands[command.name]['unit']
 
             # Editing the units to be better
             if command.name == 'SPEED':
                 if hasattr(response.value, 'magnitude'):  # Ensure value has magnitude for conversion
                     value = self.convert_speed_to_mph(response.value.magnitude)
-                    unit = "MPH"
-            elif unit == "degree_Celsius":
+            elif unit == "°F":
                 if hasattr(response.value, 'magnitude'):  # Ensure value has magnitude for conversion
                     value = self.convert_celsius_to_fahrenheit(response.value.magnitude)
-                    unit = "Degrees F"        
-            elif unit == "degree_Celsius [PASSED]":
-                if hasattr(response.value, 'magnitude'):  # Ensure value has magnitude for conversion
-                    value = self.convert_celsius_to_fahrenheit(response.value.magnitude)
-                    unit = "Degrees F [PASSED]"
-            elif unit == "degree_Celsius [FAILED]":
-                if hasattr(response.value, 'magnitude'):  # Ensure value has magnitude for conversion
-                    value = self.convert_celsius_to_fahrenheit(response.value.magnitude)
-                    unit = "Degrees F [FAILED]"
-            elif unit == "percent":
-                if hasattr(response.value, 'magnitude'):  # Ensure value has magnitude for conversion
-                    unit = "%" 
-
 
             # Here's the key change: Ensure value is converted to a basic data type
             if hasattr(response.value, 'magnitude') and hasattr(response.value, 'units'):
@@ -345,12 +328,19 @@ class DataCollector:
 
     # Method for filtering the commands to find the available ones that are available in this current car
     def filter_supported_commands(self):
-        # Ensure that supported_commands contains command objects from the OBD connection
-        command_names = {cmd.name for cmd in self.supported_commands}  # Extract command names
-        # Filter available_commands based on these names
-        self.filtered_commands = [cmd for cmd in self.available_commands if cmd in command_names]
+        # Assuming command_names is a set containing the names of supported commands
+        command_names = {cmd.name for cmd in self.supported_commands}
+
+        # New structure for filtered_commands to also include command and descriptive name
+        self.filtered_commands = {cmd_key: self.available_commands[cmd_key] for cmd_key in self.available_commands if self.available_commands[cmd_key]["command"] in command_names}
 
         # If you want to print the names of the filtered commands, you can do:
         #print("Filtered command names: ", [cmd for cmd in self.filtered_commands])
 
         return self.filtered_commands
+
+    def find_unit_by_command(available_commands, name_to_find):
+        for cmd_key, cmd_details in available_commands.items():
+            if cmd_details["name"] == name_to_find:
+                return cmd_details["command"]
+        return None  # Return None if no matching name is found
