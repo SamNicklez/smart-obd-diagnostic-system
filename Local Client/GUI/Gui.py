@@ -6,6 +6,8 @@ Config.set('graphics', 'width', '800')
 Config.set('graphics', 'height', '480')
 from GUI.Screens.MainScreen import MainScreen
 from GUI.Screens.SettingsScreen import SettingsScreen 
+from GUI.Screens.gauges import Gauges
+from GUI.Screens.EditScreen import EditScreen
 
 
 
@@ -28,10 +30,15 @@ class GuiApplication(App):
         # Set the two different screens
         self.main_screen = MainScreen(name='main', available_commands=available_commands)
         settings_screen = SettingsScreen(name='settings')
+
+        gauges_screen = Gauges(name='gauges')
+        edit_screen = EditScreen(name='edit')
         
         # Add the widgets
         self.sm.add_widget(self.main_screen)
         self.sm.add_widget(settings_screen)
+        self.sm.add_widget(gauges_screen)
+        self.sm.add_widget(edit_screen)
 
         # Add a callback for the DataCollector to update data on the main screen
         if hasattr(self, 'data_collector'):

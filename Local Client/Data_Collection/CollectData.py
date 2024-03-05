@@ -70,7 +70,7 @@ class DataCollector:
             "EVAPORATIVE_PURGE": {"command": "EVAPORATIVE_PURGE", "name": "Commanded Evaporative Purge", "unit": "%"},
             "FUEL_LEVEL": {"command": "FUEL_LEVEL", "name": "Fuel Level", "unit": "%"},
             "WARMUPS_SINCE_DTC_CLEAR": {"command": "WARMUPS_SINCE_DTC_CLEAR", "name": "Warmups since DTC Clear", "unit": "times"},
-            "DISTANCE_SINCE_DTC_CLEAR": {"command": "DISTANCE_SINCE_DTC_CLEAR", "name": "Distance Since DTC Clear", "unit": "km"},
+            "DISTANCE_SINCE_DTC_CLEAR": {"command": "DISTANCE_SINCE_DTC_CLEAR", "name": "Distance Since DTC Clear", "unit": "miles"},
             "EVAP_VAPOR_PRESSURE": {"command": "EVAP_VAPOR_PRESSURE", "name": "Evap Vapor Pressure", "unit": "Pa"},
             "BAROMETRIC_PRESSURE": {"command": "BAROMETRIC_PRESSURE", "name": "Barometric Pressure", "unit": "kPa"},
             "O2_S1_WR_CURRENT": {"command": "O2_S1_WR_CURRENT", "name": "02 Sensor 1 WR Lambda Current", "unit": "mA"},
@@ -298,11 +298,13 @@ class DataCollector:
             # Editing the units to be better
             if command.name == 'SPEED':
                 if hasattr(response.value, 'magnitude'):  # Ensure value has magnitude for conversion
-                    value = self.convert_speed_to_mph(response.value.magnitude)
+                    value = convert_speed_to_mph(response.value.magnitude)
             elif unit == "°F":
                 if hasattr(response.value, 'magnitude'):  # Ensure value has magnitude for conversion
-                    value = self.convert_celsius_to_fahrenheit(response.value.magnitude)
-
+                    value = convert_celsius_to_fahrenheit(response.value.magnitude)
+            elif unit == "miles":
+                if hasattr(response.value, 'magnitude'):  # Ensure value has magnitude for conversion
+                    value = convert_km_to_m(response.value.magnitude)
             # Here's the key change: Ensure value is converted to a basic data type
             if hasattr(response.value, 'magnitude') and hasattr(response.value, 'units'):
                 # Convert to float if it has magnitude; it's likely a numeric value
@@ -317,14 +319,6 @@ class DataCollector:
             return f"{timestamp} - {command.name}: {value} {unit}"
         else:
             return f"{timestamp} - {command.name}: Not Supported or No Data"
-        
-    # Functions for unit conversion
-    def convert_speed_to_mph(self, speed_km_per_hr):
-        return speed_km_per_hr * 0.621371
-
-    # Convert Celsius to Fahrenheit
-    def convert_celsius_to_fahrenheit(self, temp_celsius):
-        return (temp_celsius * 9/5) + 32    
 
     # Method for filtering the commands to find the available ones that are available in this current car
     def filter_supported_commands(self):
@@ -334,9 +328,6 @@ class DataCollector:
         # New structure for filtered_commands to also include command and descriptive name
         self.filtered_commands = {cmd_key: self.available_commands[cmd_key] for cmd_key in self.available_commands if self.available_commands[cmd_key]["command"] in command_names}
 
-        # If you want to print the names of the filtered commands, you can do:
-        #print("Filtered command names: ", [cmd for cmd in self.filtered_commands])
-
         return self.filtered_commands
 
     def find_unit_by_command(available_commands, name_to_find):
@@ -344,3 +335,17 @@ class DataCollector:
             if cmd_details["name"] == name_to_find:
                 return cmd_details["command"]
         return None  # Return None if no matching name is found
+    
+# Other functions that do not need to be in the class
+    
+# Functions for unit conversion
+def convert_speed_to_mph(speed_km_per_hr):
+    return speed_km_per_hr * 0.621371
+
+# Convert Celsius to Fahrenheit
+def convert_celsius_to_fahrenheit(temp_celsius):
+    return (temp_celsius * 9/5) + 32
+    
+# Convert Kilometers to Miles
+def convert_km_to_m(km_value):
+    return km_value * 0.621371   

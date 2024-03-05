@@ -6,6 +6,7 @@ from kivy.clock import Clock
 from kivy.uix.button import Button
 from kivy.properties import ListProperty
 from GUI.Screens.AlertPopUp import AlertPopup
+from GUI.gauge import Gauge
 
 class LiveDataLayout(BoxLayout):
 
@@ -29,6 +30,10 @@ class LiveDataLayout(BoxLayout):
         self.settings_button = Button(text='Settings', size_hint=(None, None), size=(100, 50))
         self.settings_button.bind(on_press=self.switch_to_settings)
         self.add_widget(self.settings_button)
+
+        self.gauges_screen = Button(text='Gauges', size_hint=(None, None), size=(100,50))
+        self.gauges_screen.bind(on_press=self.switch_to_gauges)
+        self.add_widget(self.gauges_screen)
 
         self.dtc_count = 0
 
@@ -94,7 +99,7 @@ class LiveDataLayout(BoxLayout):
             if cmd_info["command"] == command_to_find:
                 return cmd_info["name"]
         return None  # Return None if no matching command is found
-    
+
     # Method for updating the labels 
     def update_labels(self, data):
         # Update the labels on the screen with the selected data
@@ -133,6 +138,9 @@ class LiveDataLayout(BoxLayout):
     def switch_to_settings(self, instance):
         App.get_running_app().root.current = 'settings'  
 
+    def switch_to_gauges(self, instance):
+        App.get_running_app().root.current = 'gauges'    
+
     # Method for updating the available commands shown in the spinners
     def update_available_commands(self, new_commands):
         print("Updating commands", [cmd for cmd in new_commands])
@@ -150,7 +158,7 @@ class LiveDataLayout(BoxLayout):
 
         # Remove the current spinners so we can replace them
         for widget in self.children[:]:
-            if widget is not self.settings_button and widget is not self.icon_button:  # Assuming you have a reference to the settings button
+            if widget is not self.settings_button and widget is not self.icon_button and widget is not self.gauges_screen:  # Assuming you have a reference to the settings button
                 self.remove_widget(widget)
 
         # Recreate the spinner widgets and labels with the updated commands
