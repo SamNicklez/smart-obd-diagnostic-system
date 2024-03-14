@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 from supabase import create_client, Client
 from dotenv import load_dotenv
+from Test_data import generate_car_info_json
 import os
 
 def calculate_mpg(MAF, Speed):
@@ -62,6 +63,8 @@ def stage():
     try:
         # data = request.get_json()
         # response = supabase.table('stage').insert(data).execute()
+        json_data = generate_car_info_json()
+        print(json_data)
         return jsonify({"Test": "GOOD"}), 200
     except Exception as e:
         return jsonify({"Error": "Interal Server Error"}), 500
