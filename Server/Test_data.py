@@ -18,7 +18,6 @@ def generate_car_info_json(n=4):
     data = []
     for _ in range(n):
         car_info = {
-            "stage_id": random.randint(1, 255),
             "timestamp": random_timestamp(),
             "airflow_rate": round(random.uniform(0.1, 100.0), 4),
             "speed": round(random.uniform(0.1, 200.0), 4),

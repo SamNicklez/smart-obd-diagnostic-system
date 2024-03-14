@@ -3,36 +3,11 @@ from flask_cors import CORS
 from supabase import create_client, Client
 from dotenv import load_dotenv
 from Test_data import generate_car_info_json
+from datetime import datetime
+from collections import defaultdict
+import Helpers
 import os
-
-def calculate_mpg(MAF, Speed):
-    """
-    Calculates the miles per gallon (MPG) based on the Mass Air Flow (MAF) and Speed inputs.
-
-    Args:
-        MAF (float): Mass Air Flow in grams per second.
-        Speed (float): Speed in kilometers per hour.
-
-    Returns:
-        float: Miles per gallon (MPG) value.
-    """
-    # Constants
-    AFR = 14.7  # Air-Fuel Ratio for gasoline
-    GAS_DENSITY = 0.74  # Density of gasoline in kg/L
-    GRAMS_PER_POUND = 453.592  # Grams per pound
-    LITERS_PER_GALLON = 3.78541  # Liters per gallon
-    KM_PER_MILE = 1.60934  # Kilometers per mile
-    
-    # Convert MAF from grams per second to pounds per hour
-    maf_lb_per_hr = MAF * 3600 / GRAMS_PER_POUND
-    
-    # Calculate fuel consumption in gallons per hour
-    fuel_consumption_gph = (maf_lb_per_hr / AFR) / (GAS_DENSITY * LITERS_PER_GALLON)
-    speed_mph = Speed / KM_PER_MILE
-    
-    mpg = round(speed_mph / fuel_consumption_gph, 2)
-
-    return mpg
+import json
 
 load_dotenv()
 url = os.getenv("SUPABASE_URL")
@@ -58,13 +33,27 @@ def login():
     except Exception as e:
         return jsonify({"Error": "Interal Server Error"}), 500
     
-@app.route("/stage", methods=["POST"])
+@app.route("/stage", methods=["GET"])
 def stage():
     try:
         # data = request.get_json()
         # response = supabase.table('stage').insert(data).execute()
-        json_data = generate_car_info_json()
-        print(json_data)
+        car_info = json.loads(generate_car_info_json())
+        grouped_data = Helpers.group_by_day(car_info)
+
+        for day, records in grouped_data.items():
+            response = supabase.table('DrivingData').select('*').eq('date', day).execute()
+            average_speed = Helpers.kph_to_mph(sum(record['speed'] for record in records) / len(records))
+            total_runtime = sum(record['runtime'] for record in records)
+            average_coolant_temp = Helpers.celsius_to_fahrenheit(sum(record['coolant_temp'] for record in records) / len(records))
+            average_oil_temp = Helpers.celsius_to_fahrenheit(sum(record['oil_temp'] for record in records) / len(records))
+            avg_mpg = round(sum(Helpers.calculate_mpg(record['airflow_rate'], record['speed']) for record in records) / len(records), 2)
+            if(response.count == 0):
+                supabase.table('DrivingData').insert({"num_entries": len(records), "timestamp": day, "avg_speed": average_speed, "runtime": total_runtime, "avg_coolant_temp": average_coolant_temp, "avg_oil_temp": average_oil_temp, "avg_mpg": avg_mpg}).execute()
+            else:
+                break
+            
+
         return jsonify({"Test": "GOOD"}), 200
     except Exception as e:
         return jsonify({"Error": "Interal Server Error"}), 500
