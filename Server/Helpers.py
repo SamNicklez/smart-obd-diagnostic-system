@@ -68,33 +68,36 @@ def divide_into_trips(data, time_threshold_minutes=30):
     Returns:
     - list of lists: A list where each element is a list of data points representing a trip.
     """
-    trips = []
-    current_trip = []
-    
-    for i, point in enumerate(data):
-        if i == 0:
+    try:
+        trips = []
+        current_trip = []
+        
+        for i, point in enumerate(data):
+            if i == 0:
+                current_trip.append(point)
+                continue
+            
+            previous_point = data[i-1]
+            previous_timestamp = datetime.strptime(previous_point['timestamp'], '%Y-%m-%d %H:%M:%S')
+            current_timestamp = datetime.strptime(point['timestamp'], '%Y-%m-%d %H:%M:%S')
+            
+            if (current_timestamp - previous_timestamp) > timedelta(minutes=time_threshold_minutes):
+                trips.append(current_trip)
+                current_trip = []
+            
             current_trip.append(point)
-            continue
         
-        previous_point = data[i-1]
-        previous_timestamp = datetime.strptime(previous_point['timestamp'], '%Y-%m-%d %H:%M:%S')
-        current_timestamp = datetime.strptime(point['timestamp'], '%Y-%m-%d %H:%M:%S')
-        
-        if (current_timestamp - previous_timestamp) > timedelta(minutes=time_threshold_minutes):
+        if current_trip:
             trips.append(current_trip)
-            current_trip = []
         
-        current_trip.append(point)
-    
-    if current_trip:
-        trips.append(current_trip)
-    
-    return trips
+        return trips
+    except Exception as e:
+        print(e)
+        return
 
 def group_by_day(data):
     grouped_data = defaultdict(list)
     for item in data:
-        # Change here: Format the 'day' as a string in 'MM-DD-YYYY' format
         day = datetime.strptime(item['timestamp'], '%Y-%m-%d %H:%M:%S').strftime('%m-%d-%Y')
         grouped_data[day].append(item)
     return grouped_data

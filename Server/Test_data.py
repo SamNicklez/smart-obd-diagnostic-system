@@ -14,13 +14,28 @@ def random_timestamp():
 def random_varchar(length=5):
     return ''.join(random.choices('ABCDEFGHIJKLMNOPQRSTUVWXYZ', k=length))
 
-def generate_car_info_json(n=4):
+def generate_sequential_timestamps(start, n, max_minutes_apart=10):
+    timestamps = [start]
+    for _ in range(1, n):
+        timestamps.append(timestamps[-1] + timedelta(minutes=random.uniform(1, max_minutes_apart)))
+    return [ts.strftime('%Y-%m-%d %H:%M:%S') for ts in timestamps]
+
+def generate_car_info_json(n=10):
     data = []
-    for _ in range(n):
+    start_time = datetime.now() - timedelta(days=1)
+    timestamps = generate_sequential_timestamps(start_time, n)
+    
+    lat, lon = 40.0, -74.0
+    
+    for timestamp in timestamps:
+        speed = round(random.uniform(0, 100), 4)
+        lat += random.uniform(-0.01, 0.01)
+        lon += random.uniform(-0.01, 0.01)
+        
         car_info = {
-            "timestamp": random_timestamp(),
+            "timestamp": timestamp,
             "airflow_rate": round(random.uniform(0.1, 100.0), 4),
-            "speed": round(random.uniform(0.1, 200.0), 4),
+            "speed": speed,
             "relative_throttle_pos": round(random.uniform(0.1, 100.0), 4),
             "distance_w_mil": round(random.uniform(0.1, 1000.0), 4),
             "runtime": round(random.uniform(0.1, 500.0), 4),
@@ -40,8 +55,9 @@ def generate_car_info_json(n=4):
             "status": random_varchar(),
             "dtc": random_varchar(3),
             "current_dtc": random_varchar(3),
-            "lattitude": round(random.uniform(-90.0, 90.0), 8),
-            "longitude": round(random.uniform(-180.0, 180.0), 8),
+            "lattitude": round(lat, 8),
+            "longitude": round(lon, 8),
         }
         data.append(car_info)
+    
     return json.dumps(data, indent=4)
