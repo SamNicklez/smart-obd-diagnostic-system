@@ -124,27 +124,40 @@ def test():
         for day, records in grouped_data.items():
             response = supabase.table('DrivingData').select('*').eq('timestamp', day).execute()
             # If new entry
-            if(response.count == 0):
+            if(response.count == 0 or response.count == None):
                 average_speed = Helpers.kph_to_mph(sum(record['speed'] for record in records) / len(records))
-                total_runtime = sum(record['runtime'] for record in records)
+                total_runtime = max(record['runtime'] for record in records)
                 average_coolant_temp = Helpers.celsius_to_fahrenheit(sum(record['coolant_temp'] for record in records) / len(records))
                 average_oil_temp = Helpers.celsius_to_fahrenheit(sum(record['oil_temp'] for record in records) / len(records))
                 avg_mpg = round(sum(Helpers.calculate_mpg(record['airflow_rate'], record['speed']) for record in records) / len(records), 2)
-                supabase.table('DrivingData').insert({"num_entries": len(records), "timestamp": day, "avg_speed": average_speed, "runtime": total_runtime, "avg_coolant_temp": average_coolant_temp, "avg_oil_temp": average_oil_temp, "avg_mpg": avg_mpg}).execute()
+                #supabase.table('DrivingData').insert({"num_entries": len(records), "timestamp": day, "avg_speed": average_speed, "runtime": total_runtime, "avg_coolant_temp": average_coolant_temp, "avg_oil_temp": average_oil_temp, "avg_mpg": avg_mpg}).execute()
             # If entry already exists
             else:
                 data, _ = supabase.table('DrivingData').select("*").eq('timestamp', day).execute()
                 average_speed = Helpers.kph_to_mph((sum(record['speed'] for record in records) + data['avg_speed'])/ (len(records) + data['num_entries']))
-                total_runtime = sum(record['runtime'] for record in records) + data['rumtime']
+                total_runtime = max(record['runtime'] for record in records) + data['rumtime']
                 average_coolant_temp = Helpers.celsius_to_fahrenheit((sum(record['coolant_temp'] for record in records) + data['avg_coolant_temp']) / (len(records) + data['num_entries']))
                 average_oil_temp = Helpers.celsius_to_fahrenheit((sum(record['oil_temp'] for record in records) + data['avg_oil_temp']) / (len(records) + data['num_entries']))
                 avg_mpg = round((sum(Helpers.calculate_mpg(record['airflow_rate'], record['speed']) for record in records) + data['avg_mpg']) / (len(records) + data['num_entries']), 2)
-                supabase.table('DrivingData').update({"num_entries": (len(records) + data['num_entries']), "avg_speed": average_speed, "runtime": total_runtime, "avg_coolant_temp": average_coolant_temp, "avg_oil_temp": average_oil_temp, "avg_mpg": avg_mpg}).eq('driving_id', data['driving_id']).execute()
+                #supabase.table('DrivingData').update({"num_entries": (len(records) + data['num_entries']), "avg_speed": average_speed, "runtime": total_runtime, "avg_coolant_temp": average_coolant_temp, "avg_oil_temp": average_oil_temp, "avg_mpg": avg_mpg}).eq('driving_id', data['driving_id']).execute()
             car_info = Helpers.divide_into_trips(car_info)
+            for trip in car_info:
+                runtime = trip[-1]['runtime'] - trip[0]['runtime']
+                start_time = trip[0]['timestamp']
+                end_time = trip[-1]['timestamp']
+                start_lat = trip[0]['lattitude']
+                start_lon = trip[0]['longitude']
+                end_lat = trip[-1]['lattitude']
+                end_lon = trip[-1]['longitude']
+                avg_mpg = round(sum(Helpers.calculate_mpg(record['airflow_rate'], record['speed']) for record in trip) / len(trip), 2)
+                avg_engine_load = round(sum(record['engine_load'] for record in trip) / len(trip), 2)
+                driving_id = supabase.table('DrivingData').select('driving_id').eq('timestamp', day).execute()
+                supabase.table('Trips').insert({"driving_id": driving_id, "runtime": runtime, "start_time": start_time, "end_time": end_time, "start_lat": start_lat, "start_lon": start_lon, "end_lat": end_lat, "end_lon": end_lon, "avg_mpg": avg_mpg, "avg_engine_load": avg_engine_load}).execute()
 
         return jsonify(car_info), 200
     except Exception as e:
-        return jsonify({"Error": "Interal Server Error"}), 500
+        print(e)
+        return jsonify({"Error": "Internal Server Error"}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
