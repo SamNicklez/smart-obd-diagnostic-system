@@ -152,7 +152,7 @@ def test():
                 avg_mpg = round(sum(Helpers.calculate_mpg(record['airflow_rate'], record['speed']) for record in trip) / len(trip), 2)
                 avg_engine_load = round(sum(record['engine_load'] for record in trip) / len(trip), 2)
                 driving_id = supabase.table('DrivingData').select('driving_id').eq('timestamp', day).execute()
-                supabase.table('Trips').insert({"driving_id": driving_id, "runtime": runtime, "start_time": start_time, "end_time": end_time, "start_lat": start_lat, "start_lon": start_lon, "end_lat": end_lat, "end_lon": end_lon, "avg_mpg": avg_mpg, "avg_engine_load": avg_engine_load}).execute()
+                #supabase.table('Trips').insert({"driving_id": driving_id, "runtime": runtime, "start_time": start_time, "end_time": end_time, "start_lat": start_lat, "start_lon": start_lon, "end_lat": end_lat, "end_lon": end_lon, "avg_mpg": avg_mpg, "avg_engine_load": avg_engine_load}).execute()
 
         return jsonify(car_info), 200
     except Exception as e:
