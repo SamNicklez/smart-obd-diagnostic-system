@@ -48,6 +48,40 @@ def post_car_details():
     except Exception as e:
         return jsonify({"Error": "Interal Server Error"}), 500
 
+@app.route("/grabOBDData", methods=["GET"])
+def grab_obd_data():
+    try:
+        response = supabase.table('OBDData').select("*").execute()
+        return jsonify(response), 200
+    except Exception as e:
+        return jsonify({"Error": "Interal Server Error"}), 500
+    
+@app.route("/postOBDData", methods=["POST"])
+def post_obd_data():
+    try:
+        data = request.get_json()
+        response = supabase.table('OBD').insert(data).execute()
+        return jsonify(response), 200
+    except Exception as e:
+        return jsonify({"Error": "Interal Server Error"}), 500
+    
+@app.route("/grabNotifications", methods=["GET"])
+def grab_notifications():
+    try:
+        response = supabase.table('OBD').select("*").eq('dismissed', False).execute()
+        return jsonify(response), 200
+    except Exception as e:
+        return jsonify({"Error": "Interal Server Error"}), 500
+
+@app.route('/dismissNotification', methods=["POST"])
+def dismiss_notification():
+    try:
+        data = request.get_json()
+        response = supabase.table('OBD').update({"dismissed": True}).eq('obd_id', data['obd_id']).execute()
+        return jsonify(response), 200
+    except Exception as e:
+        return jsonify({"Error": "Interal Server Error"}), 500
+    
 # CHANGE TO POST ROUTE EVENTUALLY
 @app.route("/stage", methods=["POST"])
 def stage():
