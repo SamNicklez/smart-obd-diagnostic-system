@@ -23,7 +23,7 @@ def home():
 def login():
     try:
         data = request.get_json()
-        response = supabase.table('users').select("*").eq('username', data['username']).eq('password', data['password']).execute()
+        response = supabase.table('Users').select("*").eq('username', data['username']).eq('password', data['password']).execute()
         if(response.count == 0):
             return jsonify({"Error": "Invalid username or password"}), 401
         else:
@@ -31,9 +31,25 @@ def login():
     except Exception as e:
         return jsonify({"Error": "Interal Server Error"}), 500
     
+@app.route("/grabcardetails", methods=["GET"])
+def grab_car_details():
+    try:
+        response = supabase.table('Cars').select("*").execute()
+        return jsonify(response), 200
+    except Exception as e:
+        return jsonify({"Error": "Interal Server Error"}), 500
+    
+@app.route("/postcardetails", methods=["POST"])
+def post_car_details():
+    try:
+        data = request.get_json()
+        response = supabase.table('Cars').insert(data).execute()
+        return jsonify(response), 200
+    except Exception as e:
+        return jsonify({"Error": "Interal Server Error"}), 500
 
 # CHANGE TO POST ROUTE EVENTUALLY
-@app.route("/stage", methods=["GET"])
+@app.route("/stage", methods=["POST"])
 def stage():
     try:
         car_info = request.get_json()
@@ -68,7 +84,6 @@ def stage():
 @app.route("/test", methods=["GET"])
 def test():
     try:
-
         car_info = json.loads(generate_car_info_json())
         grouped_data = Helpers.group_by_day(car_info)
         # process data into generalized day data
