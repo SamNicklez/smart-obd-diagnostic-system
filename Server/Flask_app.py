@@ -21,6 +21,14 @@ CORS(app)
 def home():
     return "Test Flask API!"
 
+@app.route("/verify", methods=["GET"])
+@token_auth.login_required
+def verify():
+    try:
+        return jsonify({"Good": "User verified successfully"}), 200
+    except Exception as e:
+        return jsonify({"Error": "Interal Server Error"}), 500
+
 @app.route("/login", methods=["POST"])
 def login():
     try:
