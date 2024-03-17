@@ -14,6 +14,8 @@ class Gauges(Screen):
 
         self.gauges = []
 
+        self.data = []
+
         # Back Button to return to the main screen
         back_button = Button(text="Back to Main Screen", size_hint=(0.2, 0.1), pos_hint={'x': 0, 'top': 1})
         back_button.bind(on_press=self.go_back)
@@ -69,3 +71,6 @@ class Gauges(Screen):
     def on_edit_press(self, instance):
         print("Edit button pressed")  
         self.manager.current = 'edit'  
+
+    def update_data(self, data):
+        self.data = data   
