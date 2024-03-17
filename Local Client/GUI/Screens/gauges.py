@@ -3,12 +3,17 @@ from kivy.uix.label import Label
 from kivy.clock import Clock
 from kivy.uix.button import Button
 from kivy.uix.screenmanager import Screen
-from GUI.gauge import Gauge  # Ensure this is correctly imported
+from kivy.properties import ListProperty
+from kivy.app import App
+from GUI.gauge import Gauge
 
 class Gauges(Screen):
+    available_commands = ListProperty([])
     def __init__(self, **kwargs):
         super(Gauges, self).__init__(**kwargs)
 
+        self.available_commands = kwargs.pop('available_commands', [])
+        print("Available commands: " + str(self.available_commands))
         # Main layout
         main_layout = FloatLayout()
 
@@ -53,11 +58,13 @@ class Gauges(Screen):
 
         self.data_labels = []  # List to hold references to the data labels
 
-        self.data_title_labels = []
+        self.data_title_labels = [] # List to hold references to the titles of the data points
 
-        self.data_titles = ["Data Point #1", "Data Point #2", "Data Point #3"]
+        self.current_selections = {'data_point_1': "COOLANT_TEMP", 'data_point_2': "RPM", 'data_point_3': "SPEED"}
 
-        self.data_label_points = []
+        self.data_label_points = [] # List of the actual data from the selected data points
+
+        self.available_dict = {}
 
         # Make some labels for text print outs of the data
         data_title_positions = [
@@ -66,7 +73,7 @@ class Gauges(Screen):
             {'center_x': 0.82, 'top': 0.72}
         ]
 
-        for title, pos_hint in zip(self.data_titles, data_title_positions):
+        for title, pos_hint in zip(self.current_selections, data_title_positions):
             # Create a label for displaying data above each gauge
             data_label = Label(text=title, size_hint=(None, None), size=('100dp', '20dp'), font_size='24')
             data_label.pos_hint = pos_hint
@@ -96,9 +103,11 @@ class Gauges(Screen):
         Clock.schedule_interval(self.update_gauge, 1)
 
     def settings(self, instance):
-        self.manager.current = 'settings'
+        App.get_running_app().root.current = 'settings' 
 
     def update_gauge(self, dt):
+        # Need to update the gauges with the actual data here
+
         for gauge in self.gauges:
             if gauge:
                 gauge.value += 1
@@ -108,16 +117,42 @@ class Gauges(Screen):
         print("Updating gauges with example data")
 
     def update_data_labels(self, data):
-        """
-        Updates the text of each data label with new data.
-        :param data: A list of strings or numbers, each corresponding to the new text for a data label.
-        """
-        for label, new_text in zip(self.data_labels, data):
-            label.text = f"Data: {new_text}"    
+        # Update the labels on the screen with the selected data
+        for i, key in enumerate(self.current_selections, start=1):
+            data_point = self.current_selections[key]
+            name = self.find_name_by_command(data_point)
+            value = data.get(data_point, {'value': 'Not available', 'unit': ''})
+            self.data_labels[int(key[-1]) - 1].text = f"{value['value']} {value['unit']}"
+            self.data_title_labels[int(key[-1]) - 1].text = str(name)  
 
     def on_edit_press(self, instance):
         print("Edit button pressed")  
-        self.manager.current = 'edit'  
+        App.get_running_app().root.current = 'edit'  
 
     def update_data(self, data):
-        self.data = data   
+        self.data = data
+        # This will be called from the DataCollector by a callback
+        # Using the schedule_once to update all the necessary information
+        Clock.schedule_once(lambda dt: self.update_data_labels(data))  
+
+    # Method for updating the available commands shown in the spinners
+    def update_available_commands(self, new_commands):
+        print("Updating commands", [cmd for cmd in new_commands])
+        
+        # Set the class attribute to the entire dictionary
+        self.available_dict = new_commands
+
+        # Extracting the list of command names from the dictionary
+        self.available_command_names = [cmd_info['name'] for cmd_key, cmd_info in new_commands.items()] 
+
+    def find_command_by_name(self, name_to_find):
+        for cmd_key, cmd_details in self.available_dict.items():
+            if cmd_details["name"] == name_to_find:
+                return cmd_details["command"]
+        return None  # Return None if no matching name is found
+    
+    def find_name_by_command(self, command_to_find):
+        for cmd_key, cmd_info in self.available_dict.items():
+            if cmd_info["command"] == command_to_find:
+                return cmd_info["name"]
+        return None  # Return None if no matching command is found   
