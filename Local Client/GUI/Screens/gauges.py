@@ -33,13 +33,12 @@ class Gauges(Screen):
 
         # Define gauge labels and positions
         gauge_info = [
-            # {"label": "RPM", "pos_hint": {'x': 0.05, 'y': 0.42}},
-            # {"label": "Speed", "pos_hint": {'x': 0.375, 'y': 0.42}},
-            # {"label": "Engine Load", "pos_hint": {'x': 0.7, 'y': 0.42}},
-            {"label": "Fuel Level", "pos_hint": {'x': 0.05, 'y': 0.02}},
-            {"label": "Temperature", "pos_hint": {'x': 0.375, 'y': 0.02}},
-            {"label": "Pressure", "pos_hint": {'x': 0.7, 'y': 0.02}}
+            {"label": "Gauge 1", "pos_hint": {'x': 0.05, 'y': 0.02}},
+            {"label": "Gauge 2", "pos_hint": {'x': 0.375, 'y': 0.02}},
+            {"label": "Gauge 3", "pos_hint": {'x': 0.7, 'y': 0.02}}
         ]
+
+        self.gauge_labels = []
 
         for info in gauge_info:
             # Creating and adding gauges to the layout
@@ -54,7 +53,10 @@ class Gauges(Screen):
             label_pos_y = info['pos_hint']['y'] + 0.15  # Adjust this value as needed to move the label
             label = Label(text=info['label'], size_hint=(None, None), size=('100dp', '20dp'), font_size='24')
             label.pos_hint = {'center_x': info['pos_hint']['x'] + 0.12, 'y': label_pos_y}
+            self.gauge_labels.append(label)
             main_layout.add_widget(label)
+
+        self.gauge_selections = {'data_point_1': "ENGINE_LOAD", 'data_point_2': "RELATIVE_THROTTLE_POS", 'data_point_3': "SPEED"}    
 
         self.data_labels = []  # List to hold references to the data labels
 
@@ -100,23 +102,41 @@ class Gauges(Screen):
         self.add_widget(main_layout)
 
         # Schedule the update method to be called every second
-        Clock.schedule_interval(self.update_gauge, 1)
+        #Clock.schedule_interval(self.update_gauge, 1)
 
     def settings(self, instance):
         App.get_running_app().root.current = 'settings' 
 
-    def update_gauge(self, dt):
+    def update_gauge(self, data):
+        print(str(data))
+        i = 1
+        for gauge in self.gauges:
+            data_point = self.gauge_selections["data_point_" + str(i)]
+            print("DATA POINT: " + str(data_point))
+            name = self.find_name_by_command(data_point) 
+            value = data.get(data_point, {'value': 'Not available', 'unit': ''})
+            unit = value['unit']
+            value = value['value']
+            print(str(value))
+            if value == 'Not available':
+                value = -100
+            gauge.value = int(value)
+
+            self.gauge_labels[i - 1].text = f"{str(name)} {unit}"
+            i = i + 1
+
         # Need to update the gauges with the actual data here
 
-        for gauge in self.gauges:
-            if gauge:
-                gauge.value += 1
-                if gauge.value > 100:
-                    gauge.value = 0
+        # for gauge in self.gauges:
+        #     if gauge:
+        #         gauge.value += 1
+        #         if gauge.value > 100:
+        #             gauge.value = 0
 
         print("Updating gauges with example data")
 
     def update_data_labels(self, data):
+        self.update_gauge(data) 
         # Update the labels on the screen with the selected data
         for i, key in enumerate(self.current_selections, start=1):
             data_point = self.current_selections[key]
