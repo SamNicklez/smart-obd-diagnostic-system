@@ -3,9 +3,11 @@ from flask_cors import CORS
 from supabase import create_client, Client
 from dotenv import load_dotenv
 from Test_data import generate_car_info_json
+from __init__ import token_auth
 import Helpers
 import os
 import json
+import jwt
 
 load_dotenv()
 url = os.getenv("SUPABASE_URL")
@@ -27,19 +29,22 @@ def login():
         if(response.count == 0):
             return jsonify({"Error": "Invalid username or password"}), 401
         else:
-            return jsonify("Login"), 200
+            encoded_token = jwt.encode({"id": 1}, "secret", algorithm="HS256")
+            return jsonify({"token": encoded_token}), 200
     except Exception as e:
         return jsonify({"Error": "Interal Server Error"}), 500
     
 @app.route("/grabcardetails", methods=["GET"])
+@token_auth.login_required
 def grab_car_details():
     try:
         response = supabase.table('Cars').select("*").execute()
-        return jsonify(response), 200
+        return jsonify(response.data), 200
     except Exception as e:
         return jsonify({"Error": "Interal Server Error"}), 500
     
 @app.route("/postcardetails", methods=["POST"])
+@token_auth.login_required
 def post_car_details():
     try:
         data = request.get_json()
@@ -49,6 +54,7 @@ def post_car_details():
         return jsonify({"Error": "Interal Server Error"}), 500
 
 @app.route("/grabOBDData", methods=["GET"])
+@token_auth.login_required
 def grab_obd_data():
     try:
         response = supabase.table('OBDData').select("*").execute()
@@ -57,6 +63,7 @@ def grab_obd_data():
         return jsonify({"Error": "Interal Server Error"}), 500
     
 @app.route("/postOBDData", methods=["POST"])
+@token_auth.login_required
 def post_obd_data():
     try:
         data = request.get_json()
@@ -66,6 +73,7 @@ def post_obd_data():
         return jsonify({"Error": "Interal Server Error"}), 500
     
 @app.route("/grabNotifications", methods=["GET"])
+@token_auth.login_required
 def grab_notifications():
     try:
         response = supabase.table('OBD').select("*").eq('dismissed', False).execute()
@@ -74,6 +82,7 @@ def grab_notifications():
         return jsonify({"Error": "Interal Server Error"}), 500
 
 @app.route('/dismissNotification', methods=["POST"])
+@token_auth.login_required
 def dismiss_notification():
     try:
         data = request.get_json()
@@ -83,6 +92,7 @@ def dismiss_notification():
         return jsonify({"Error": "Interal Server Error"}), 500
     
 @app.route("/stage", methods=["POST"])
+@token_auth.login_required
 def stage():
     try:
         car_info = request.get_json()
