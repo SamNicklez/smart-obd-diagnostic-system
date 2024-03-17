@@ -20,10 +20,22 @@ def generate_sequential_timestamps(start, n, max_minutes_apart=10):
         timestamps.append(timestamps[-1] + timedelta(minutes=random.uniform(1, max_minutes_apart)))
     return [ts.strftime('%Y-%m-%d %H:%M:%S') for ts in timestamps]
 
+def generate_sequential_timestamps_with_breaks(start, n, max_minutes_apart=10, break_threshold=30):
+    """Generate n sequential timestamps starting from 'start', each a random number of minutes apart,
+    with occasional breaks longer than break_threshold indicating a new trip."""
+    timestamps = [start]
+    for _ in range(1, n):
+        gap = random.uniform(1, max_minutes_apart)
+        # Introduce a break indicating the end of a trip and the start of a new one
+        if random.random() < 0.1:  # Adjust this value to control frequency of new trips
+            gap += break_threshold + random.uniform(1, 60)  # Add a random gap between 30 to 90 minutes
+        timestamps.append(timestamps[-1] + timedelta(minutes=gap))
+    return [ts.strftime('%Y-%m-%d %H:%M:%S') for ts in timestamps]
+
 def generate_car_info_json(n=10):
     data = []
     start_time = datetime.now() - timedelta(days=1)
-    timestamps = generate_sequential_timestamps(start_time, n)
+    timestamps = generate_sequential_timestamps_with_breaks(start_time, n)
     
     lat, lon = 40.0, -74.0
     

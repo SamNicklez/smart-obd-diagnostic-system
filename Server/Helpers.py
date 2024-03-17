@@ -101,3 +101,7 @@ def group_by_day(data):
         day = datetime.strptime(item['timestamp'], '%Y-%m-%d %H:%M:%S').strftime('%m-%d-%Y')
         grouped_data[day].append(item)
     return grouped_data
+
+def convert_date(date):
+    date_obj = datetime.strptime(date, '%m-%d-%Y')
+    return date_obj.strftime('%Y-%m-%d')
