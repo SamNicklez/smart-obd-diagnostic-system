@@ -5,26 +5,7 @@
       <v-toolbar-title>
         <v-btn text to="/" variant="plain" class="button">OBD Viewer</v-btn>
       </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-text-field
-        v-model="searchQuery"
-        dense
-        flat
-        hide-details
-        prepend-icon="mdi-magnify"
-        @click:append="performSearch"
-        @keyup.enter="performSearch"
-        variant="outlined"
-        label="Search for an Event"
-        class="mx-auto"
-        density="compact"
-      ></v-text-field>
-      <v-spacer></v-spacer>
-      <v-spacer></v-spacer>
       <v-btn @click="openLogin">Login</v-btn>
-      <v-btn icon @click="openProfile">
-        <v-icon size="large">mdi-account-circle</v-icon>
-      </v-btn>
       <v-menu transition="scale-transition" :close-on-content-click="false">
         <template v-slot:activator="{ props }">
           <v-btn icon @click="populateNotifications" v-bind="props">
@@ -55,7 +36,12 @@
 <script>
 import '@mdi/font/css/materialdesignicons.css'
 import axios from 'axios'
+import { useCookies } from 'vue3-cookies'
 export default {
+  setup() {
+    const { cookies } = useCookies()
+    return { cookies }
+  },
   data() {
     return {
       searchQuery: '',
@@ -78,12 +64,6 @@ export default {
       this.$router.push(`/search/${this.searchQuery}`)
     },
     /**
-     * Open the profile page
-     */
-    openProfile() {
-      this.$router.push('/profile')
-    },
-    /**
      * Open the login page
      */
     openLogin() {
@@ -101,14 +81,18 @@ export default {
         url: 'http://127.0.0.1:5000/grabNotifications',
         headers: {
           Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MX0.tjVEMiS5O2yNzclwLdaZ-FuzrhyqOT7UwM9Hfc0ZQ8Q'
+            'Bearer ' + this.cookies.get('token'),
         },
         data: data
       }
       axios
         .request(config)
         .then((response) => {
-          console.log(JSON.stringify(response.data))
+          if(response.data[1] == []){
+            this.notifications = []
+          } else {
+            this.notifications = response.data[1]
+          }
         })
         .catch((error) => {
           console.log(error)

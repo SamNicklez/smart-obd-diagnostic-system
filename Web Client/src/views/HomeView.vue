@@ -3,25 +3,25 @@
     <!-- First Row with equal-height columns -->
     <v-row class="d-flex align-stretch">
       <!-- First card occupying a larger portion of the screen width -->
-      <v-col cols="9">
-        <v-card class="pa-4 d-flex flex-column" style="background-color: #FFCDD2;">
+      <v-col cols="7">
+        <div class="pa-4 d-flex flex-column">
           <!-- Assuming HeatMapComponent should fill the card -->
           <HeatMapComponent />
-        </v-card>
+        </div>
       </v-col>
       <!-- Second card occupying the remaining portion of the screen width -->
-      <v-col cols="3">
-        <v-card class="pa-4 d-flex flex-column" style="background-color: #C8E6C9;">
+      <v-col cols="5">
+        <div class="pa-4 d-flex flex-column">
           <!-- Assuming MonthlyStatsComponent should fill the card -->
           <MonthlyStatsComponent />
-        </v-card>
+        </div>
       </v-col>
     </v-row>
     <!-- Second Row -->
     <v-row>
       <!-- Card occupying the full width of the screen -->
       <v-col cols="12">
-        <v-card class="pa-4" style="background-color: #BBDEFB;">
+        <v-card class="pa-4">
           Trips will eventaully go here
         </v-card>
       </v-col>

@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     logout() {
-      this.cookies.set('token', '')
+      this.cookies.set('token', null)
       this.$router.push({ name: 'login' })
     },
     goToHome() {

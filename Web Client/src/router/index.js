@@ -13,9 +13,10 @@ const router = createRouter({
       component: LoginView,
       beforeEnter: (to, from, next) => {
         const token = getCookie('token')
-        if (token != null) {
-          next('/logout')         
-        } else {
+        if (token != null && token != 'null') {
+          next('logout')
+        }
+        else{
           next()
         }
       }
@@ -33,9 +34,22 @@ const router = createRouter({
   ]
 })
 
+function getCookie(name) {
+  let cookieArray = document.cookie.split(';')
+  for (let i = 0; i < cookieArray.length; i++) {
+    let cookiePair = cookieArray[i].split('=')
+    let cookieName = cookiePair[0].trim()
+    if (cookieName === name) {
+      return decodeURIComponent(cookiePair[1])
+    }
+  }
+  return null
+}
+
 router.beforeEach((to, from, next) => {
   const token = getCookie('token')
-  if (token != null) {
+  if (token != null && token != 'null') {
+    console.log('token exists')
     let config = {
       method: 'get',
       maxBodyLength: Infinity,
@@ -52,21 +66,10 @@ router.beforeEach((to, from, next) => {
       .catch(() => {
         next('/login')
       })
-  } else {
-    next('/login')
+  }
+  if(to.name === 'login') {
+    next()
   }
 })
-
-function getCookie(name) {
-  let cookieArray = document.cookie.split(';')
-  for (let i = 0; i < cookieArray.length; i++) {
-    let cookiePair = cookieArray[i].split('=')
-    let cookieName = cookiePair[0].trim()
-    if (cookieName === name) {
-      return decodeURIComponent(cookiePair[1])
-    }
-  }
-  return null
-}
 
 export default router

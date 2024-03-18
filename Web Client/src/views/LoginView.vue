@@ -76,12 +76,11 @@ export default {
         },
         data: data
       }
-
       axios
         .request(config)
         .then((response) => {
           this.cookies.set('token', response.data.token)
-          console.log(JSON.stringify(response.data))
+          this.$router.push({ name: 'home' })
         })
         .catch((error) => {
           console.log(error)
