@@ -2,48 +2,65 @@ from kivy.uix.screenmanager import Screen
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.spinner import Spinner
 from kivy.uix.button import Button
+from kivy.uix.label import Label
 
 class EditScreen(Screen):
-    def __init__(self,  **kwargs):
+    def __init__(self, **kwargs):
         super(EditScreen, self).__init__(**kwargs)
         
-        self.available_commands = []  # List of data point options
-        self.update_callback = self.update_callback  # Callback function to update gauges
-
+        self.available_commands = []
         layout = BoxLayout(orientation='vertical')
 
         back_button = Button(text="Back to Main Screen", size_hint=(0.2, 0.1), pos_hint={'x': 0, 'top': 1})
         back_button.bind(on_press=self.go_back)
         layout.add_widget(back_button)
 
-        self.spinners = []  # Keep track of all spinners
-        for i in range(6):
-            spinner = Spinner(
+        # Dynamically create spinners for each component
+        self.spinners = {}
+        for i in range(1, 7):  # Assuming 3 labels and 3 gauges
+            if i <= 3:
+                component_label = Label(text=f'Label {i}', size_hint_y=None, height=30)
+            else:
+                component_label = Label(text=f'Gauge {i-3}', size_hint_y=None, height=30)
+            component_spinner = Spinner(
                 text='Select Data Point',
                 values=self.available_commands,
-                size_hint=(.5, 0.15),
+                size_hint=(1, None),
+                height=44
             )
-            self.spinners.append(spinner)
-            layout.add_widget(spinner)
+            component_spinner.bind(text=self.on_spinner_select)
+            
+            self.spinners[f'component_{i}'] = component_spinner
 
-        confirm_button = Button(text="Confirm Selections", size_hint=(.5, 0.15))
-        confirm_button.bind(on_press=self.on_confirm)
-        layout.add_widget(confirm_button)
+            layout.add_widget(component_label)
+            layout.add_widget(component_spinner)
+
+        confirm_button = Button(text="Confirm Selections", size_hint=(1, 0.1), pos_hint={'center_x': 0.5})
+        confirm_button.bind(on_press=self.confirm_selections)
+        layout.add_widget(confirm_button)    
 
         self.add_widget(layout)
 
-    def on_confirm(self, instance):
-        selections = [spinner.text for spinner in self.spinners]
-        self.update_callback(selections)  # Call the callback function with the selections
-        self.manager.current = 'main'  # Switch back to the gauges screen
+        # Create the labels and the spinners
 
     def go_back(self, instance):
         print("Edit button pressed")  
         self.manager.current = 'main' 
 
-    def update_callback(selections, test):
-        print("Confirm")  
+    def on_spinner_select(self, spinner, text):
+        # Here you would handle the logic for when a selection is made, e.g., updating a model or setting
+        print(f'Selected {text} for {spinner}')
 
     def update_available_commands(self, data):
         self.available_commands = data 
         print("UPDATED AVAILABLE COMMANDS IN THE EDIT SCREEN CLASS")
+        for spinner in self.spinners.values():
+            spinner.values = data
+
+        # Call a method to update the display with the new selected data
+            
+    def confirm_selections(self, instance):
+        selections = {name: spinner.text for name, spinner in self.spinners.items()}
+        print("Confirmed SELECTIONS:", selections)
+        # Here you would handle the next steps after confirmation,
+        # such as updating the main dashboard or storing the selections.        

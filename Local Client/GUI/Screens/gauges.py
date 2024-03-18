@@ -10,11 +10,13 @@ from GUI.Screens import EditScreen
 
 class Gauges(Screen):
     available_commands = ListProperty([])
-    def __init__(self, **kwargs):
+    def __init__(self, edit_screen, **kwargs):
         super(Gauges, self).__init__(**kwargs)
 
         self.available_commands = kwargs.pop('available_commands', [])
         print("Available commands: " + str(self.available_commands))
+
+        self.edit_screen = edit_screen
         # Main layout
         main_layout = FloatLayout()
 
@@ -157,6 +159,8 @@ class Gauges(Screen):
 
         # Extracting the list of command names from the dictionary
         self.available_command_names = [cmd_info['name'] for cmd_key, cmd_info in new_commands.items()] 
+
+        self.edit_screen.update_available_commands(self.available_command_names)
 
     def find_command_by_name(self, name_to_find):
         for cmd_key, cmd_details in self.available_dict.items():
