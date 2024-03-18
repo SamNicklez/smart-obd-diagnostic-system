@@ -1,3 +1,5 @@
 Flask
 flask-cors
 supabase
+jwt
+dotenv

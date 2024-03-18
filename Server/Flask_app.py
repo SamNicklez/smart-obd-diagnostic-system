@@ -208,6 +208,34 @@ def test():
     except Exception as e:
         print(e)
         return jsonify({"Error": "Internal Server Error"}), 500
+    
+@app.route("/grabData", methods=["GET"])
+@token_auth.login_required
+def grab_data():
+    try:
+        response, _ = supabase.table('DrivingData').select("*").execute()
+        return jsonify(response), 200
+    except Exception as e:
+        return jsonify({"Error": "Interal Server Error"}), 500
+    
+@app.route("/grabTrips", methods=["GET"])
+@token_auth.login_required
+def grab_trips():
+    try:
+        response, _ = supabase.table('Trips').select("*").execute()
+        return jsonify(response), 200
+    except Exception as e:
+        return jsonify({"Error": "Interal Server Error"}), 500
+
+@app.route("/grabCurrentData", methods=["GET"])
+@token_auth.login_required
+def grab_current_data():
+    try:
+        response, _ = supabase.table('DrivingData').select("*").order('timestamp', desc=True).limit(1).execute()
+        return jsonify(response), 200
+    except Exception as e:
+        print(e)
+        return jsonify({"Error": "Interal Server Error"}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
