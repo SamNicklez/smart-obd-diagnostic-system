@@ -2,4 +2,5 @@ Flask
 flask-cors
 supabase
 jwt
-dotenv
+python-dotenv
+flask_httpauth
