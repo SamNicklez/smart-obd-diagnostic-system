@@ -1,64 +1,24 @@
-<script>
-import '@mdi/font/css/materialdesignicons.css'
-export default {
-  data() {
-    return {
-      searchQuery: '',
-      notifications: [
-        { title: 'Notification 1', description: 'This is a notification' },
-        { title: 'Notification 2', description: 'This is a notification' },
-        { title: 'Notification 3', description: 'This is a notification' },
-        { title: 'Notification 4', description: 'This is a notification' },
-      ],
-    };
-  },
-  methods: {
-    /**
-     * Perform a search
-     */
-    performSearch() {
-      this.$router.push(`/search/${this.searchQuery}`);
-    },
-    /**
-     * Open the profile page
-     */
-    openProfile() {
-      this.$router.push('/profile');
-    },
-    /**
-     * Open the login page
-     */
-    openLogin() {
-      this.$router.push('/login');
-    },
-    /**
-     * Populates the notifications
-     */
-    populateNotifications() {
-      //Somewhere in here, ping server to get unread notifications for the user
-    },
-    /**
-     * Closes a notification
-     * @param {int} index 
-     */
-    closeNoti(index) {
-      this.notifications.splice(index, 1);
-      //Somewhere in here, ping server to mark notification as read
-    },
-  },
-};
-</script>
 
 <template>
   <v-container>
     <v-app-bar scroll-behavior="hide">
       <v-toolbar-title>
-        <v-btn text to="/" variant="plain" class="button">Disaster Donation</v-btn>
+        <v-btn text to="/" variant="plain" class="button">OBD Viewer</v-btn>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-text-field v-model="searchQuery" dense flat hide-details prepend-icon="mdi-magnify" @click:append="performSearch"
-        @keyup.enter="performSearch" variant="outlined" label="Search for an Event" class="mx-auto"
-        density="compact"></v-text-field>
+      <v-text-field
+        v-model="searchQuery"
+        dense
+        flat
+        hide-details
+        prepend-icon="mdi-magnify"
+        @click:append="performSearch"
+        @keyup.enter="performSearch"
+        variant="outlined"
+        label="Search for an Event"
+        class="mx-auto"
+        density="compact"
+      ></v-text-field>
       <v-spacer></v-spacer>
       <v-spacer></v-spacer>
       <v-btn @click="openLogin">Login</v-btn>
@@ -72,7 +32,12 @@ export default {
           </v-btn>
         </template>
         <v-list lines="three" style="min-width: 25vw" v-if="this.notifications.length != 0">
-          <v-list-item v-for="(item, i) in notifications" :key="i" append-icon="mdi-close" @click="closeNoti(i)">
+          <v-list-item
+            v-for="(item, i) in notifications"
+            :key="i"
+            append-icon="mdi-close"
+            @click="closeNoti(i)"
+          >
             <v-list-item-title>{{ item.title }}</v-list-item-title>
             <v-list-item-subtitle>{{ item.description }}</v-list-item-subtitle>
           </v-list-item>
@@ -86,6 +51,81 @@ export default {
     </v-app-bar>
   </v-container>
 </template>
+
+<script>
+import '@mdi/font/css/materialdesignicons.css'
+import axios from 'axios'
+export default {
+  data() {
+    return {
+      searchQuery: '',
+      notifications: [
+        { title: 'Notification 1', description: 'This is a notification' },
+        { title: 'Notification 2', description: 'This is a notification' },
+        { title: 'Notification 3', description: 'This is a notification' },
+        { title: 'Notification 4', description: 'This is a notification' }
+      ]
+    }
+  },
+  created() {
+    this.populateNotifications()
+  },
+  methods: {
+    /**
+     * Perform a search
+     */
+    performSearch() {
+      this.$router.push(`/search/${this.searchQuery}`)
+    },
+    /**
+     * Open the profile page
+     */
+    openProfile() {
+      this.$router.push('/profile')
+    },
+    /**
+     * Open the login page
+     */
+    openLogin() {
+      this.$router.push('/login')
+    },
+    /**
+     * Populates the notifications
+     */
+    populateNotifications() {
+      let data = ''
+
+      let config = {
+        method: 'get',
+        maxBodyLength: Infinity,
+        url: 'http://127.0.0.1:5000/grabNotifications',
+        headers: {
+          Authorization:
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MX0.tjVEMiS5O2yNzclwLdaZ-FuzrhyqOT7UwM9Hfc0ZQ8Q'
+        },
+        data: data
+      }
+      axios
+        .request(config)
+        .then((response) => {
+          console.log(JSON.stringify(response.data))
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+    /**
+     * Closes a notification
+     * @param {int} index
+     */
+    closeNoti(index) {
+      this.notifications.splice(index, 1)
+      //Somewhere in here, ping server to mark notification as read
+    }
+  }
+}
+</script>
+
 
 <style scoped>
 .nav-textfield {

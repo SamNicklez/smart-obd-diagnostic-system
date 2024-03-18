@@ -22,7 +22,7 @@
       <!-- Card occupying the full width of the screen -->
       <v-col cols="12">
         <v-card class="pa-4" style="background-color: #BBDEFB;">
-          <MonthlyStatsComponent />
+          Trips will eventaully go here
         </v-card>
       </v-col>
     </v-row>

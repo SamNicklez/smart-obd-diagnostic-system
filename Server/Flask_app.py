@@ -34,7 +34,7 @@ def login():
     try:
         data = request.get_json()
         response = supabase.table('Users').select("*").eq('username', data['username']).eq('password', data['password']).execute()
-        if(response.count == 0):
+        if(response.data == []):
             return jsonify({"Error": "Invalid username or password"}), 401
         else:
             encoded_token = jwt.encode({"id": 1}, "secret", algorithm="HS256")
@@ -84,9 +84,10 @@ def post_obd_data():
 @token_auth.login_required
 def grab_notifications():
     try:
-        response = supabase.table('OBD').select("*").eq('dismissed', False).execute()
+        response, _ = supabase.table('OBD').select("*").eq('dismissed', False).execute()
         return jsonify(response), 200
     except Exception as e:
+        print(e)
         return jsonify({"Error": "Interal Server Error"}), 500
 
 @app.route('/dismissNotification', methods=["POST"])
