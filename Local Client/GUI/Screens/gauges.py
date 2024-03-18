@@ -6,6 +6,7 @@ from kivy.uix.screenmanager import Screen
 from kivy.properties import ListProperty
 from kivy.app import App
 from GUI.gauge import Gauge
+from GUI.Screens import EditScreen
 
 class Gauges(Screen):
     available_commands = ListProperty([])
@@ -124,14 +125,6 @@ class Gauges(Screen):
 
             self.gauge_labels[i - 1].text = f"{str(name)} {unit}"
             i = i + 1
-
-        # Need to update the gauges with the actual data here
-
-        # for gauge in self.gauges:
-        #     if gauge:
-        #         gauge.value += 1
-        #         if gauge.value > 100:
-        #             gauge.value = 0
 
         print("Updating gauges with example data")
 

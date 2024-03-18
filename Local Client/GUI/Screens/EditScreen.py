@@ -7,7 +7,7 @@ class EditScreen(Screen):
     def __init__(self,  **kwargs):
         super(EditScreen, self).__init__(**kwargs)
         
-        self.data_points = []  # List of data point options
+        self.available_commands = []  # List of data point options
         self.update_callback = self.update_callback  # Callback function to update gauges
 
         layout = BoxLayout(orientation='vertical')
@@ -20,7 +20,7 @@ class EditScreen(Screen):
         for i in range(6):
             spinner = Spinner(
                 text='Select Data Point',
-                values=self.data_points,
+                values=self.available_commands,
                 size_hint=(.5, 0.15),
             )
             self.spinners.append(spinner)
@@ -35,11 +35,15 @@ class EditScreen(Screen):
     def on_confirm(self, instance):
         selections = [spinner.text for spinner in self.spinners]
         self.update_callback(selections)  # Call the callback function with the selections
-        self.manager.current = 'gauges'  # Switch back to the gauges screen
+        self.manager.current = 'main'  # Switch back to the gauges screen
 
     def go_back(self, instance):
         print("Edit button pressed")  
-        self.manager.current = 'gauges' 
+        self.manager.current = 'main' 
 
     def update_callback(selections, test):
-        print("Confirm")   
+        print("Confirm")  
+
+    def update_available_commands(self, data):
+        self.available_commands = data 
+        print("UPDATED AVAILABLE COMMANDS IN THE EDIT SCREEN CLASS")
