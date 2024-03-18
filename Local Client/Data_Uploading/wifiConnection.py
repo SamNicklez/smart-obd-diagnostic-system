@@ -21,17 +21,8 @@ def check_internet_connection(host="8.8.8.8", port=53, timeout=3):
         print(f"No internet connection: {ex}")
         return False
 
-def on_internet_connected():
-    """
-    Function to run when an internet connection is detected.
-    """
-    print("Internet is connected! Ready to upload data.")
-
 def main():
-    if check_internet_connection():
-        on_internet_connected()
-    else:
-        print("Waiting for internet connection...")
+    print("Waiting for internet connection...")
 
 if __name__ == "__main__":
     main()
