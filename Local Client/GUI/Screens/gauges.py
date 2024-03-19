@@ -178,6 +178,8 @@ class Gauges(Screen):
     def handle_new_selections(self, selections):
         print("IN THE GAUGES CLASS, New selections received:", selections)
 
+        # Should do some checking to see if some boxes aren't filled out. Could just not change that data point if it's not filled in
+
         # Update the display with the selected data points
 
         self.current_selections = dict(islice(selections.items(), 3))
@@ -193,8 +195,6 @@ class Gauges(Screen):
 
         # Use islice to get the last three items as a dictionary
         new_gauge_selections = dict(islice(selections.items(), start, None))
-
-        print("HERE HERE GAUGES: " + str(new_gauge_selections))
 
         for key in self.gauge_selections.keys():
             key_two = key[:-1] + str(int(key [-1]) + 3 )
