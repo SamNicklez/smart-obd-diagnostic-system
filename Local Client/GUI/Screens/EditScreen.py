@@ -9,7 +9,10 @@ class EditScreen(Screen):
         super(EditScreen, self).__init__(**kwargs)
         
         self.available_commands = []
+        self.selection = []
         layout = BoxLayout(orientation='vertical')
+
+        self.confirmation_callback = None
 
         back_button = Button(text="Back to Main Screen", size_hint=(0.2, 0.1), pos_hint={'x': 0, 'top': 1})
         back_button.bind(on_press=self.go_back)
@@ -30,7 +33,7 @@ class EditScreen(Screen):
             )
             component_spinner.bind(text=self.on_spinner_select)
             
-            self.spinners[f'component_{i}'] = component_spinner
+            self.spinners[f'data_point_{i}'] = component_spinner
 
             layout.add_widget(component_label)
             layout.add_widget(component_spinner)
@@ -52,15 +55,24 @@ class EditScreen(Screen):
         print(f'Selected {text} for {spinner}')
 
     def update_available_commands(self, data):
-        self.available_commands = data 
-        print("UPDATED AVAILABLE COMMANDS IN THE EDIT SCREEN CLASS")
+        self.available_commands = data
         for spinner in self.spinners.values():
             spinner.values = data
 
         # Call a method to update the display with the new selected data
             
     def confirm_selections(self, instance):
-        selections = {name: spinner.text for name, spinner in self.spinners.items()}
-        print("Confirmed SELECTIONS:", selections)
-        # Here you would handle the next steps after confirmation,
-        # such as updating the main dashboard or storing the selections.        
+
+        # Add a check to see if all the components have a data point in them
+        
+
+        self.selections = {name: spinner.text for name, spinner in self.spinners.items()}
+        print("Confirmed SELECTIONS:", self.selections)
+
+        if self.confirmation_callback:
+            self.confirmation_callback(self.selections)
+
+        # Need to store the selections and some how give them back to the gauges class
+
+
+               
