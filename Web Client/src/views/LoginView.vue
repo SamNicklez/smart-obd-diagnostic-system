@@ -8,12 +8,12 @@
       style="margin-bottom: 10vh"
     >
       <div class="text-h5 text-center mb-8">Login</div>
-      <div class="text-subtitle-1 text-medium-emphasis">Email</div>
+      <div class="text-subtitle-1 text-medium-emphasis">Username</div>
       <v-text-field
         density="compact"
         v-model="username"
         maxLength="100"
-        placeholder="Email"
+        placeholder="Username"
         prepend-inner-icon="mdi-account-circle"
         variant="outlined"
       ></v-text-field>

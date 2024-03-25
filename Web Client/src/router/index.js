@@ -67,6 +67,7 @@ router.beforeEach((to, from, next) => {
     }
     axios
       .request(config)
+      
       .then(() => {
         next()
       })

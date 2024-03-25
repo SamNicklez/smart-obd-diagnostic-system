@@ -236,6 +236,20 @@ def grab_current_data():
     except Exception as e:
         print(e)
         return jsonify({"Error": "Interal Server Error"}), 500
-
+    
+@app.route("/grabCurrentTrip", methods=["GET"])
+@token_auth.login_required
+def grab_current_trip():
+    try:
+        trip_id = request.args.get('trip_id', None)
+        print(trip_id)
+        response, _ = supabase.table('Trips').select("*").eq('trip_id', trip_id).execute()
+        
+        print(response)
+        return jsonify(response), 200
+    except Exception as e:
+        print(e)
+        return jsonify({"Error": "Interal Server Error"}), 500
+    
 if __name__ == '__main__':
     app.run(debug=True)
