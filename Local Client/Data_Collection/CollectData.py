@@ -10,11 +10,14 @@ from datetime import datetime
 class DataCollector:
     def __init__(self, update_gui_callback=None):
 
+        ############################################################################################################
+        ## SET THESE TWO VARIABLES BEFORE RUNNING
+        ## IF RUNNING IN CAR, USE THIS COMMAND FIRST: sudo rfcomm bind rfcomm0 00:1D:A5:05:A4:E3
+        ############################################################################################################
         # Set this to true if running on the pi
         isPi = False
-
         # Set this to true if running in the actual car
-        isCar = True
+        isCar = False
 
         # List for all the collected data that gets updated every read from the sensor
         self.data_dict = {}
@@ -127,6 +130,7 @@ class DataCollector:
             "ELM_VOLTAGE": {"command": "ELM_VOLTAGE", "name": "ELM Voltage", "unit": "Volts"}
         }
 
+        # Setting the database settings based on which computer we are running on
         if isPi or isCar:
             db_config = {
                 'user': 'test',
@@ -143,7 +147,6 @@ class DataCollector:
                 'database': 'obd'
             }
         
-
         # Connect to the database
         try:
             self.db_conn = mysql.connector.connect(**db_config)
@@ -171,10 +174,7 @@ class DataCollector:
         log_file_name = f"obd_data_{current_time}.txt"
         self.log_file_path = os.path.join(logs_dir, log_file_name)
 
-        # Port variable for which port to get data from
-        #self.portSelection = '/dev/rfcomm0' # For actual bluetooth sensor
-        #self.portSelection = '/dev/pts/0' # For running emulator on the Raspberry Pi
-
+        # Setting the port to select the emulator on pi, computer or the actual car
         if isPi:
             self.portSelection =  '/dev/pts/0'  # For running on windows
         elif isCar:
@@ -182,7 +182,6 @@ class DataCollector:
         else:
             self.portSelection = 'COM8'
         
-
 
     # Method for running the collection from the sensor or emulator
     def start_collection(self):

@@ -9,7 +9,7 @@ class EditScreen(Screen):
         super(EditScreen, self).__init__(**kwargs)
         
         self.available_commands = []
-        self.selection = []
+        self.selections = {}
         layout = BoxLayout(orientation='vertical')
 
         self.confirmation_callback = None
@@ -44,6 +44,10 @@ class EditScreen(Screen):
 
         self.add_widget(layout)
 
+        self.previous_label_selections = []
+        self.previous_gauge_selections = []
+        self.previous_selections = {}
+
         # Create the labels and the spinners
 
     def go_back(self, instance):
@@ -59,14 +63,24 @@ class EditScreen(Screen):
         for spinner in self.spinners.values():
             spinner.values = data
 
-        # Call a method to update the display with the new selected data
+    # Call a method to update the display with the new selected data
             
     def confirm_selections(self, instance):
 
         # Add a check to see if all the components have a data point in them
         
+        # Need to check if the selections are blank before setting them
 
-        self.selections = {name: spinner.text for name, spinner in self.spinners.items()}
+        # Print out the spinner values
+
+        #self.selections = {name: spinner.text for name, spinner in self.spinners.items() if spinner.text != 'Select Data Point'}
+
+        for name, spinner in self.spinners.items():
+            if spinner.text != 'Select Data Point':
+                self.selections[name] = spinner.text
+            else:
+                self.selections[name] = self.previous_selections[name]
+
         print("Confirmed SELECTIONS:", self.selections)
 
         if self.confirmation_callback:
@@ -74,5 +88,9 @@ class EditScreen(Screen):
 
         # Need to store the selections and some how give them back to the gauges class
 
+    def set_current_selections(self, current_selections):
+        print("IN THE SET CURRENT SELECTIONS: ")
 
-               
+        self.previous_selections = current_selections
+
+        print(self.previous_selections)
