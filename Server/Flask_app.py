@@ -131,7 +131,7 @@ def stage():
             print("Records: ", records)
             temp = supabase.table('DrivingData').select('*').eq('timestamp', day).execute()
             print("Temp: ", temp)
-            response = temp.data[0]['driving_id'] if temp.data[0]['driving_id'] else 0
+            response = temp['data'][0]['driving_id'] if temp['data'] != [] else 0
             print("Response: ", response)
             # If new entry
             if response == 0:
