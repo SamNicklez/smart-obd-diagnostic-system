@@ -120,14 +120,11 @@ def stage():
     try:
         car_info = request.get_json()
         grouped_data = Helpers.group_by_day(car_info)
-        print("Grouped Data: " + grouped_data)
+        print("Grouped Data: " + str(grouped_data))
         # process data into generalized day data
         for day, records in grouped_data.items():
             temp = supabase.table('DrivingData').select('*').eq('timestamp', day).execute()
-            try:
-                response = temp.data[0]['driving_id']
-            except:
-                response = 0
+            response = temp.data[0]['driving_id'] if temp.data[0]['driving_id'] else 0
             # If new entry
             if (response == 0):
                 average_speed = Helpers.kph_to_mph(sum(record['speed'] for record in records) / len(records))
@@ -178,10 +175,7 @@ def stage():
                 avg_engine_load = round(sum(record['engine_load'] for record in trip) / len(trip), 2)
                 response = supabase.table('DrivingData').select('driving_id').eq('timestamp',
                                                                                  Helpers.convert_date(day)).execute()
-                try:
-                    driving_id = response.data[0]['driving_id']
-                except:
-                    driving_id = 0
+                driving_id = response.data[0]['driving_id'] if response.data[0]['driving_id'] else 0
                 if driving_id == 0 or driving_id == None:
                     return jsonify({"Error": "Driving ID not found within the Trips"}), 500
                 supabase.table('Trips').insert(
