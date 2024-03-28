@@ -21,12 +21,20 @@ CORS(app)
 def home():
     return "Test Flask API!"
 
+@app.route("/verify", methods=["GET"])
+@token_auth.login_required
+def verify():
+    try:
+        return jsonify({"Good": "User verified successfully"}), 200
+    except Exception as e:
+        return jsonify({"Error": "Interal Server Error"}), 500
+
 @app.route("/login", methods=["POST"])
 def login():
     try:
         data = request.get_json()
         response = supabase.table('Users').select("*").eq('username', data['username']).eq('password', data['password']).execute()
-        if(response.count == 0):
+        if(response.data == []):
             return jsonify({"Error": "Invalid username or password"}), 401
         else:
             encoded_token = jwt.encode({"id": 1}, "secret", algorithm="HS256")
@@ -76,9 +84,10 @@ def post_obd_data():
 @token_auth.login_required
 def grab_notifications():
     try:
-        response = supabase.table('OBD').select("*").eq('dismissed', False).execute()
+        response, _ = supabase.table('OBD').select("*").eq('dismissed', False).execute()
         return jsonify(response), 200
     except Exception as e:
+        print(e)
         return jsonify({"Error": "Interal Server Error"}), 500
 
 @app.route('/dismissNotification', methods=["POST"])
@@ -199,6 +208,48 @@ def test():
     except Exception as e:
         print(e)
         return jsonify({"Error": "Internal Server Error"}), 500
+    
+@app.route("/grabData", methods=["GET"])
+@token_auth.login_required
+def grab_data():
+    try:
+        response, _ = supabase.table('DrivingData').select("*").execute()
+        return jsonify(response), 200
+    except Exception as e:
+        return jsonify({"Error": "Interal Server Error"}), 500
+    
+@app.route("/grabTrips", methods=["GET"])
+@token_auth.login_required
+def grab_trips():
+    try:
+        response, _ = supabase.table('Trips').select("*").execute()
+        return jsonify(response), 200
+    except Exception as e:
+        return jsonify({"Error": "Interal Server Error"}), 500
 
+@app.route("/grabCurrentData", methods=["GET"])
+@token_auth.login_required
+def grab_current_data():
+    try:
+        response, _ = supabase.table('DrivingData').select("*").order('timestamp', desc=True).limit(1).execute()
+        return jsonify(response), 200
+    except Exception as e:
+        print(e)
+        return jsonify({"Error": "Interal Server Error"}), 500
+    
+@app.route("/grabCurrentTrip", methods=["GET"])
+@token_auth.login_required
+def grab_current_trip():
+    try:
+        trip_id = request.args.get('trip_id', None)
+        print(trip_id)
+        response, _ = supabase.table('Trips').select("*").eq('trip_id', trip_id).execute()
+        
+        print(response)
+        return jsonify(response), 200
+    except Exception as e:
+        print(e)
+        return jsonify({"Error": "Interal Server Error"}), 500
+    
 if __name__ == '__main__':
     app.run(debug=True)

@@ -271,7 +271,7 @@ export default {
 <template>
     <div>
         <v-card>
-            <apexchart type="heatmap" height="350" :options="chartOptions" :series="series"></apexchart>
+            <apexchart type="heatmap" height="400" :options="chartOptions" :series="series"></apexchart>
         </v-card>
     </div>
 </template>

@@ -7,14 +7,21 @@ from kivy.properties import ListProperty
 from kivy.app import App
 from GUI.gauge import Gauge
 from GUI.Screens import EditScreen
+from itertools import islice
 
 class Gauges(Screen):
     available_commands = ListProperty([])
-    def __init__(self, **kwargs):
+    def __init__(self, edit_screen, **kwargs):
         super(Gauges, self).__init__(**kwargs)
 
         self.available_commands = kwargs.pop('available_commands', [])
         print("Available commands: " + str(self.available_commands))
+
+        self.edit_screen = edit_screen
+
+        # set a callback function for the edit screen class to use to update the dashboard
+        self.edit_screen.confirmation_callback = self.handle_new_selections
+
         # Main layout
         main_layout = FloatLayout()
 
@@ -102,14 +109,10 @@ class Gauges(Screen):
 
         self.add_widget(main_layout)
 
-        # Schedule the update method to be called every second
-        #Clock.schedule_interval(self.update_gauge, 1)
-
     def settings(self, instance):
         App.get_running_app().root.current = 'settings' 
 
     def update_gauge(self, data):
-        print(str(data))
         i = 1
         for gauge in self.gauges:
             data_point = self.gauge_selections["data_point_" + str(i)]
@@ -158,6 +161,8 @@ class Gauges(Screen):
         # Extracting the list of command names from the dictionary
         self.available_command_names = [cmd_info['name'] for cmd_key, cmd_info in new_commands.items()] 
 
+        self.edit_screen.update_available_commands(self.available_command_names)
+
     def find_command_by_name(self, name_to_find):
         for cmd_key, cmd_details in self.available_dict.items():
             if cmd_details["name"] == name_to_find:
@@ -169,3 +174,31 @@ class Gauges(Screen):
             if cmd_info["command"] == command_to_find:
                 return cmd_info["name"]
         return None  # Return None if no matching command is found   
+    
+    def handle_new_selections(self, selections):
+        print("IN THE GAUGES CLASS, New selections received:", selections)
+
+        # Should do some checking to see if some boxes aren't filled out. Could just not change that data point if it's not filled in
+
+        # Update the display with the selected data points
+
+        self.current_selections = dict(islice(selections.items(), 3))
+
+        # Need to change current selections to use the actual data point name
+        for key in self.current_selections.keys():
+            self.current_selections[key] = self.find_command_by_name(self.current_selections[key])
+
+
+        # now set the current gauge items
+        # Calculate the starting point for the last three items
+        start = len(selections) - 3
+
+        # Use islice to get the last three items as a dictionary
+        new_gauge_selections = dict(islice(selections.items(), start, None))
+
+        for key in self.gauge_selections.keys():
+            key_two = key[:-1] + str(int(key [-1]) + 3 )
+            print("HERE GAUGES STUFF: " + str(self.find_command_by_name(new_gauge_selections[key_two])))
+            self.gauge_selections[key] = self.find_command_by_name(new_gauge_selections[key_two])
+
+        

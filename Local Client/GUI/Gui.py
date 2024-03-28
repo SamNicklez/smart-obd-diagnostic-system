@@ -25,17 +25,18 @@ class GuiApplication(App):
         # Initialize a ScreenManager to control the different screens
         self.sm = ScreenManager() 
 
-        # Set the two different screens
-        self.main_screen = MainScreen(name='main', available_commands=available_commands)
-        settings_screen = SettingsScreen(name='settings')
-
         edit_screen = EditScreen(name='edit')
-        gauges_screen = Gauges(name='gauges')
+        gauges_screen = Gauges(name='gauges', edit_screen=edit_screen)
+
+        # Set the two different screens
+        self.main_screen = MainScreen(name='main', available_commands=available_commands, gauges_screen=gauges_screen)
+        settings_screen = SettingsScreen(name='settings')
+        
 
         # Add the widgets
         self.sm.add_widget(self.main_screen)
         self.sm.add_widget(settings_screen)
-        self.sm.add_widget(gauges_screen)
+        #self.sm.add_widget(gauges_screen)
         self.sm.add_widget(edit_screen)
 
         # Add a callback for the DataCollector to update data on the main screen
