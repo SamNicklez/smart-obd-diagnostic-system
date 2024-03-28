@@ -22,12 +22,14 @@ CORS(app)
 
 @app.route("/")
 def home():
+    print("/")
     return "Test Flask API!"
 
 
 @app.route("/verify", methods=["GET"])
 @token_auth.login_required
 def verify():
+    print("/verify")
     try:
         return jsonify({"Good": "User verified successfully"}), 200
     except Exception as e:
@@ -36,6 +38,7 @@ def verify():
 
 @app.route("/login", methods=["POST"])
 def login():
+    print("/login")
     try:
         data = request.get_json()
         response = supabase.table('Users').select("*").eq('username', data['username']).eq('password',
