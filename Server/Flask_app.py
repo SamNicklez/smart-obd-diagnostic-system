@@ -119,6 +119,7 @@ def dismiss_notification():
 @app.route("/stage", methods=["POST"])
 @token_auth.login_required
 def stage():
+    print("Request: ", request.get_json())
     try:
         car_info = request.get_json()
         grouped_data = Helpers.group_by_day(car_info)
@@ -148,14 +149,14 @@ def stage():
             else:
                 data, _ = supabase.table('DrivingData').select("*").eq('timestamp', day).execute()
                 average_speed = Helpers.kph_to_mph((sum(record['speed'] for record in records) + data['avg_speed']) / (
-                            len(records) + data['num_entries']))
+                        len(records) + data['num_entries']))
                 total_runtime = max(record['runtime'] for record in records) + data['rumtime']
                 average_coolant_temp = Helpers.celsius_to_fahrenheit(
                     (sum(record['coolant_temp'] for record in records) + data['avg_coolant_temp']) / (
-                                len(records) + data['num_entries']))
+                            len(records) + data['num_entries']))
                 average_oil_temp = Helpers.celsius_to_fahrenheit(
                     (sum(record['oil_temp'] for record in records) + data['avg_oil_temp']) / (
-                                len(records) + data['num_entries']))
+                            len(records) + data['num_entries']))
                 avg_mpg = round((sum(
                     Helpers.calculate_mpg(record['airflow_rate'], record['speed']) for record in records) + data[
                                      'avg_mpg']) / (len(records) + data['num_entries']), 2)
@@ -193,7 +194,7 @@ def stage():
         return jsonify({"Test": "GOOD"}), 200
     except Exception as e:
         print(e)
-        return jsonify({"Error": "Interal Server Error"}), 500
+        return jsonify({"Error": "Interal Server Error: " + str(e)}), 500
 
 
 @app.route("/test", methods=["GET"])
@@ -227,14 +228,14 @@ def test():
             else:
                 data, _ = supabase.table('DrivingData').select("*").eq('timestamp', day).execute()
                 average_speed = Helpers.kph_to_mph((sum(record['speed'] for record in records) + data['avg_speed']) / (
-                            len(records) + data['num_entries']))
+                        len(records) + data['num_entries']))
                 total_runtime = max(record['runtime'] for record in records) + data['rumtime']
                 average_coolant_temp = Helpers.celsius_to_fahrenheit(
                     (sum(record['coolant_temp'] for record in records) + data['avg_coolant_temp']) / (
-                                len(records) + data['num_entries']))
+                            len(records) + data['num_entries']))
                 average_oil_temp = Helpers.celsius_to_fahrenheit(
                     (sum(record['oil_temp'] for record in records) + data['avg_oil_temp']) / (
-                                len(records) + data['num_entries']))
+                            len(records) + data['num_entries']))
                 avg_mpg = round((sum(
                     Helpers.calculate_mpg(record['airflow_rate'], record['speed']) for record in records) + data[
                                      'avg_mpg']) / (len(records) + data['num_entries']), 2)

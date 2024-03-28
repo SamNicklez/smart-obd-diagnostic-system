@@ -1,4 +1,3 @@
-import socket
 from datetime import datetime
 
 import mysql.connector
@@ -54,6 +53,8 @@ def fetch_data_from_database():
 
 
 def send_data_to_server(data, token):
+    print(data)
+    print(token)
     try:
         response = requests.post(
             url="https://senior-design-final-project.onrender.com/stage",
@@ -100,12 +101,14 @@ def format_data(data):
             "longitude": "52.65"
         }
         return_data.append(formatted_row)
+    return return_data
+
 
 def upload_data():
     token = get_token()
     print(f"Token: {token}")
     data = fetch_data_from_database()
-    data = format_data(data);
+    data = format_data(data)
     print(f"Data: {data}")
     if data:
         send_data_to_server(data, token)
