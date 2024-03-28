@@ -119,7 +119,6 @@ def stage():
     print("Request: ", request.get_json())
     try:
         car_info = request.get_json()
-        print("Car Info: " + car_info)
         grouped_data = Helpers.group_by_day(car_info)
         print("Grouped Data: " + grouped_data)
         # process data into generalized day data
