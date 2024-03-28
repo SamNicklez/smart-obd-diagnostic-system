@@ -123,9 +123,10 @@ class DataCollector:
 
         # Database connection configuration
         db_config = {
-            'user': 'sloecke',
+            'user': 'test',
             'password': 'password',
             'host': 'localhost',
+            'port': '3308',
             'database': 'obd'
         }
 
