@@ -7,12 +7,16 @@ from kivy.uix.screenmanager import  Screen
 from Data_Uploading.wifiConnection import check_internet_connection
 from GUI.Screens.WifiPopUp import AddWiFiPopup
 #from Data_Uploading.uploadData import 
+from kivymd.uix.label import MDLabel
+from kivymd.uix.button import MDRaisedButton
+from kivy.metrics import dp
+
 
 # Screen for settings
 class SettingsScreen(Screen):
     def __init__(self, **kwargs):
         super(SettingsScreen, self).__init__(**kwargs)
-        layout = BoxLayout(orientation='vertical')
+        layout = BoxLayout(orientation='vertical', padding=dp(10), spacing=dp(10))
         
         # Label to display internet connection status
         self.connection_status_label = Label(text="Checking internet connection...")
@@ -23,17 +27,30 @@ class SettingsScreen(Screen):
         Clock.schedule_interval(self.update_connection_status, 30)  # Check every 30 seconds
 
         # Upload Data to Server Button
-        upload_data_button = Button(text="Upload Data to Server")
+        upload_data_button = MDRaisedButton(
+            text="Upload Data to Server",
+            pos_hint={'center_x': 0.5},
+            size_hint=(1, .3),
+        )
         upload_data_button.bind(on_press=self.upload_data)
         layout.add_widget(upload_data_button)
 
         # Back Button to return to the main screen
-        back_button = Button(text="Back to Main Screen")
+        back_button = MDRaisedButton(
+            text="Back to Main Screen",
+            pos_hint={'center_x': 0.5},
+            size_hint=(1, .3),  # Width will fill the screen, height is None
+            #height=dp(48),  # Define a fixed height for the button
+        )
         back_button.bind(on_press=self.go_back)
         layout.add_widget(back_button)
 
         # Add New WiFi Network Button
-        add_wifi_button = Button(text="Add New WiFi Network", size_hint=(None, None), size=(200, 50))
+        add_wifi_button = MDRaisedButton(
+            text="Add New WiFi Network",
+            size_hint=(None, None),
+            pos_hint={'center_x': 0.5},
+        )
         add_wifi_button.bind(on_press=self.show_add_wifi_popup)
         layout.add_widget(add_wifi_button)
         
