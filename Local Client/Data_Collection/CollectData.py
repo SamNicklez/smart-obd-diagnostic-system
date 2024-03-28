@@ -10,6 +10,12 @@ from datetime import datetime
 class DataCollector:
     def __init__(self, update_gui_callback=None):
 
+        # Set this to true if running on the pi
+        isPi = False
+
+        # Set this to true if running in the actual car
+        isCar = True
+
         # List for all the collected data that gets updated every read from the sensor
         self.data_dict = {}
 
@@ -121,13 +127,22 @@ class DataCollector:
             "ELM_VOLTAGE": {"command": "ELM_VOLTAGE", "name": "ELM Voltage", "unit": "Volts"}
         }
 
-        # Database connection configuration
-        db_config = {
-            'user': 'sloecke',
-            'password': 'password',
-            'host': 'localhost',
-            'database': 'obd'
-        }
+        if isPi or isCar:
+            db_config = {
+                'user': 'test',
+                'password': 'password',
+                'host': 'localhost',
+                'database': 'obd'
+            }
+        else:
+            # Database connection configuration
+            db_config = {
+                'user': 'sloecke',
+                'password': 'password',
+                'host': 'localhost',
+                'database': 'obd'
+            }
+        
 
         # Connect to the database
         try:
@@ -159,7 +174,14 @@ class DataCollector:
         # Port variable for which port to get data from
         #self.portSelection = '/dev/rfcomm0' # For actual bluetooth sensor
         #self.portSelection = '/dev/pts/0' # For running emulator on the Raspberry Pi
-        self.portSelection = 'COM8' # For running on windows
+
+        if isPi:
+            self.portSelection =  '/dev/pts/0'  # For running on windows
+        elif isCar:
+            self.portSelection = '/dev/rfcomm0'
+        else:
+            self.portSelection = 'COM8'
+        
 
 
     # Method for running the collection from the sensor or emulator
