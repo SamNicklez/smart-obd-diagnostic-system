@@ -102,6 +102,7 @@ def group_by_day(data):
         day = datetime.fromisoformat(item['timestamp']).strftime('%m-%d-%Y')
         print("day", day)
         grouped_data[day] = item
+        print("grouped_data[day]", grouped_data[day])
     print("grouped_data", grouped_data)
     return grouped_data
 
