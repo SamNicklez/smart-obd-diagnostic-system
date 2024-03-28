@@ -49,7 +49,7 @@ def login():
             encoded_token = jwt.encode({"id": 1}, "secret", algorithm="HS256")
             return jsonify({"token": encoded_token}), 200
     except Exception as e:
-        return jsonify({"Error": "Interal Server Error"}), 500
+        return jsonify({"Error": "Interal Server Error: " + str(e)}), 500
 
 
 @app.route("/grabcardetails", methods=["GET"])
