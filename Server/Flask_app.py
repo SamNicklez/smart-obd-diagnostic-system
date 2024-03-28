@@ -118,9 +118,11 @@ def dismiss_notification():
 def stage():
     print("Request: ", request.get_json())
     try:
+        print("HERE 1")
         car_info = request.get_json()
+        print("HERE 2")
         grouped_data = Helpers.group_by_day(car_info)
-        print("Grouped Data: " + str(grouped_data))
+        print("HERE 3")
         # process data into generalized day data
         for day, records in grouped_data.items():
             temp = supabase.table('DrivingData').select('*').eq('timestamp', day).execute()
