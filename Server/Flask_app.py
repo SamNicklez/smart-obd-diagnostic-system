@@ -208,10 +208,7 @@ def stage():
 
             car_info = Helpers.divide_into_trips(car_info)
 
-            print("HERE 2")
-            print(car_info)
             for trip in car_info:
-                print("HERE 3")
                 runtime = trip[-1]['runtime']
                 start_time = trip[0]['timestamp']
                 end_time = trip[-1]['timestamp']
@@ -219,28 +216,21 @@ def stage():
                 start_lon = trip[0]['longitude']
                 end_lat = trip[-1]['latitude']
                 end_lon = trip[-1]['longitude']
-                print("HERE 4")
                 avg_mpg = round(
                     sum(Helpers.calculate_mpg(record['airflow_rate'], record['speed']) for record in trip) / len(trip),
                     2)
-                print("HERE 5")
                 avg_engine_load = round(sum(record['engine_load'] for record in trip) / len(trip), 2)
-                print("HERE 6")
                 response = supabase.table('DrivingData').select('driving_id').eq('timestamp',
                                                                                  Helpers.convert_date(day)).execute()
-                print("HERE 7")
                 driving_id = response.data[0]['driving_id'] if response.data[0]['driving_id'] else 0
-                print("HERE 8")
                 if driving_id == 0 or driving_id == None:
                     print("Driving ID not found within the Trips")
                     return jsonify({"Error": "Driving ID not found within the Trips"}), 500
-                print("HERE 9")
                 supabase.table('Trips').insert(
                     {"driving_id": driving_id, "runtime": runtime, "start_time": start_time, "end_time": end_time,
                      "start_lat": start_lat, "start_lon": start_lon, "end_lat": end_lat, "end_lon": end_lon,
                      "avg_mpg": avg_mpg, "avg_engine_load": avg_engine_load}).execute()
 
-        print("GOOD")
         return jsonify({"Test": "GOOD"}), 200
     except Exception as e:
         print("ERROR: " + str(e))
