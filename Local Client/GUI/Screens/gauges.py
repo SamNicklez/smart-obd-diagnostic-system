@@ -68,7 +68,7 @@ class Gauges(Screen):
 
         self.data_title_labels = [] # List to hold references to the titles of the data points
 
-        self.current_selections = {'data_point_1': "COOLANT_TEMP", 'data_point_2': "RPM", 'data_point_3': "SPEED", 'data_point_4': "ENGINE_LOAD", 'data_point_5': "RELATIVE_THROTTLE_POS", 'data_point_6': "SPEED"}
+        self.current_selections = {'data_point_1': "Coolant Temp", 'data_point_2': "RPM", 'data_point_3': "Speed", 'data_point_4': "Engine Load", 'data_point_5': "Relative Throttle Position", 'data_point_6': "Speed"}
 
         self.data_label_points = [] # List of the actual data from the selected data points
 
@@ -107,9 +107,7 @@ class Gauges(Screen):
 
         self.add_widget(main_layout)
 
-        current_selections_names = {'data_point_1': "Coolant Temp", 'data_point_2': "RPM", 'data_point_3': "Speed", 'data_point_4': "Engine Load", 'data_point_5': "Relative Throttle Position", 'data_point_6': "Speed"}
-
-        self.edit_screen.set_current_selections(current_selections_names)
+        self.edit_screen.set_current_selections(self.current_selections)
 
     def settings(self, instance):
         App.get_running_app().root.current = 'settings' 
@@ -117,9 +115,9 @@ class Gauges(Screen):
     def update_gauge(self, data):
         i = 1
         for gauge in self.gauges:
-            data_point = self.current_selections["data_point_" + str(i+3)]
-            print("DATA POINT: " + str(data_point))
-            name = self.find_name_by_command(data_point) 
+            name = self.current_selections["data_point_" + str(i+3)]
+            print("Name: " + str(name))
+            data_point = self.find_command_by_name(name) 
             value = data.get(data_point, {'value': 'Not available', 'unit': ''})
             unit = value['unit']
             value = value['value']
@@ -138,17 +136,9 @@ class Gauges(Screen):
 
         print("HERE DUMBY: " + str(self.current_selections))
 
-        # Update the labels on the screen with the selected data
-        # for i, key in enumerate(self.current_selections, start=1):
-        #     data_point = self.current_selections[key]
-        #     name = self.find_name_by_command(data_point)
-        #     value = data.get(data_point, {'value': 'Not available', 'unit': ''})
-        #     self.data_labels[int(key[-1]) - 1].text = f"{value['value']} {value['unit']}"
-        #     self.data_title_labels[int(key[-1]) - 1].text = str(name)  
-
         for key in list(self.current_selections.keys())[:3]:
-            data_point = self.current_selections[key]
-            name = self.find_name_by_command(data_point)
+            name = self.current_selections[key]
+            data_point = self.find_command_by_name(name)
             value = data.get(data_point, {'value': 'Not available', 'unit': ''})
             index = int(key.split('_')[-1]) - 1
             self.data_labels[index].text = f"{value['value']} {value['unit']}"
@@ -195,29 +185,6 @@ class Gauges(Screen):
 
         # Update the display with the selected data points
 
-        #self.current_selections = dict(islice(selections.items(), 3))
         self.current_selections = dict(selections.items())
 
         print("HERE: " + str(self.current_selections))
-
-        # Need to change current selections to use the actual data point name
-        for key in self.current_selections.keys():
-            self.current_selections[key] = self.find_command_by_name(self.current_selections[key])
-
-
-        print("END OF HANDLE NEW SELECTIONS: " + str(self.current_selections))
-        
-        
-        # now set the current gauge items
-        # Calculate the starting point for the last three items
-        # start = len(selections) - 3
-
-        # Use islice to get the last three items as a dictionary
-        # new_gauge_selections = dict(islice(selections.items(), start, None))
-
-        # for key in self.gauge_selections.keys():
-        #     key_two = key[:-1] + str(int(key [-1]) + 3 )
-        #     print("HERE GAUGES STUFF: " + str(self.find_command_by_name(new_gauge_selections[key_two])))
-        #     self.gauge_selections[key] = self.find_command_by_name(new_gauge_selections[key_two])
-
-        
