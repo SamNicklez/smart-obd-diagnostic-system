@@ -118,17 +118,16 @@ def dismiss_notification():
 def stage():
     print("Request: ", request.get_json())
     try:
-        print("HERE 1")
         car_info = request.get_json()
-        print("HERE 2")
         grouped_data = Helpers.group_by_day(car_info)
         print("HERE 3")
+        print(grouped_data)
         # process data into generalized day data
         for day, records in grouped_data.items():
             temp = supabase.table('DrivingData').select('*').eq('timestamp', day).execute()
             response = temp.data[0]['driving_id'] if temp.data[0]['driving_id'] else 0
             # If new entry
-            if (response == 0):
+            if response == 0:
                 average_speed = Helpers.kph_to_mph(sum(record['speed'] for record in records) / len(records))
                 total_runtime = max(record['runtime'] for record in records)
                 average_coolant_temp = Helpers.celsius_to_fahrenheit(
