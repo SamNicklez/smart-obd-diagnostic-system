@@ -193,8 +193,7 @@ def stage():
         print("GOOD")
         return jsonify({"Test": "GOOD"}), 200
     except Exception as e:
-        print(e)
-        print("ERROR")
+        print("ERROR: " + str(e))
         return jsonify({"Error": "Interal Server Error: " + str(e)}), 500
 
 
