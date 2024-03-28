@@ -134,7 +134,6 @@ class Gauges(Screen):
             value = data.get(data_point, {'value': 'Not available', 'unit': ''})
             unit = value['unit']
             value = value['value']
-            print(str(value))
             if value == 'Not available':
                 value = -100
             gauge.value = int(value)
@@ -145,7 +144,6 @@ class Gauges(Screen):
     # Method for updating the data labels on the dashboard
     def update_data_labels(self, data):
         print("UPDATING DATA READOUTS")
-        
         print("CURRENT SELECTIONS: " + str(self.current_selections))
 
         # Iterate through the data readouts and update their labels and readouts
