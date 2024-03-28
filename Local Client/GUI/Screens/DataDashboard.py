@@ -219,10 +219,12 @@ class Dashboard(Screen):
             match = re.search(r"bytearray\(b'(.*)'\)", vin)
             vin = match.group(1)
             print("VIN: " + vin)
+            vin = "1C4NJDCB6CD508767" # Take this out if using an actual car
             Vin_info = get_vehicle_info_by_vin(vin)
             formatted_string = " ".join(value for value in [Vin_info['Year'], Vin_info['Make'], Vin_info['Model']] if value)
             print(formatted_string)
-            self.title_label.text = formatted_string
+            if len(formatted_string) != 0:
+                self.title_label.text = formatted_string
         
 
     # Method that returns the command of a data point from an inputted name
