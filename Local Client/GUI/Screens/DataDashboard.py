@@ -13,10 +13,10 @@ from kivy.utils import get_color_from_hex
 from kivymd.uix.button import MDRaisedButton
 
 
-class Gauges(Screen):
+class Dashboard(Screen):
     available_commands = ListProperty([])
     def __init__(self, edit_screen, **kwargs):
-        super(Gauges, self).__init__(**kwargs)
+        super(Dashboard, self).__init__(**kwargs)
 
         # Setting the available commands for the GUI selection
         self.available_commands = kwargs.pop('available_commands', [])
