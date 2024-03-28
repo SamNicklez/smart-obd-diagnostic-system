@@ -177,15 +177,18 @@ def stage():
                                                                                  Helpers.convert_date(day)).execute()
                 driving_id = response.data[0]['driving_id'] if response.data[0]['driving_id'] else 0
                 if driving_id == 0 or driving_id == None:
+                    print("Driving ID not found within the Trips")
                     return jsonify({"Error": "Driving ID not found within the Trips"}), 500
                 supabase.table('Trips').insert(
                     {"driving_id": driving_id, "runtime": runtime, "start_time": start_time, "end_time": end_time,
                      "start_lat": start_lat, "start_lon": start_lon, "end_lat": end_lat, "end_lon": end_lon,
                      "avg_mpg": avg_mpg, "avg_engine_load": avg_engine_load}).execute()
 
+        print("GOOD")
         return jsonify({"Test": "GOOD"}), 200
     except Exception as e:
         print(e)
+        print("ERROR")
         return jsonify({"Error": "Interal Server Error: " + str(e)}), 500
 
 
