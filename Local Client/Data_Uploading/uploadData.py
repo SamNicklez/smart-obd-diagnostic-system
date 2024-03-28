@@ -14,25 +14,12 @@ db_config = {
 }
 
 
-def test():
-    try:
-        response = requests.post(
-            url="https://senior-design-final-project.onrender.com/"
-        )
-        if response.status_code == 200:
-            return response.json()
-        else:
-            print(f"Failed to get token: {response.status_code}")
-    except Exception as e:
-        print(f"Error getting token: {e}")
-    return None
-
-
 def get_token():
     try:
         response = requests.post(
             url="https://senior-design-final-project.onrender.com/login",
-            data={"username": "username", "password": "password"}
+            json={"username": "username", "password": "password"},
+            headers={"Content-Type": "application/json"}
         )
         if response.status_code == 200:
             return response.json().get("token")
@@ -85,8 +72,6 @@ def send_data_to_server(data, token):
 
 
 def upload_data():
-    t = test()
-    print(f"Test: {t}")
     token = get_token()
     print(f"Token: {token}")
     data = fetch_data_from_database()

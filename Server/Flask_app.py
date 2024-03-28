@@ -33,7 +33,7 @@ def verify():
     try:
         return jsonify({"Good": "User verified successfully"}), 200
     except Exception as e:
-        return jsonify({"Error": "Interal Server Error"}), 500
+        return jsonify({"Error": "Interal Server Error: " + str(e)}), 500
 
 
 @app.route("/login", methods=["POST"])
@@ -59,7 +59,7 @@ def grab_car_details():
         response = supabase.table('Cars').select("*").execute()
         return jsonify(response.data), 200
     except Exception as e:
-        return jsonify({"Error": "Interal Server Error"}), 500
+        return jsonify({"Error": "Interal Server Error: " + str(e)}), 500
 
 
 @app.route("/postcardetails", methods=["POST"])
@@ -70,7 +70,7 @@ def post_car_details():
         response = supabase.table('Cars').insert(data).execute()
         return jsonify(response), 200
     except Exception as e:
-        return jsonify({"Error": "Interal Server Error"}), 500
+        return jsonify({"Error": "Interal Server Error: " + str(e)}), 500
 
 
 @app.route("/grabOBDData", methods=["GET"])
@@ -80,7 +80,7 @@ def grab_obd_data():
         response = supabase.table('OBDData').select("*").execute()
         return jsonify(response), 200
     except Exception as e:
-        return jsonify({"Error": "Interal Server Error"}), 500
+        return jsonify({"Error": "Internal Server Error: " + str(e)}), 500
 
 
 @app.route("/postOBDData", methods=["POST"])
@@ -91,7 +91,7 @@ def post_obd_data():
         response = supabase.table('OBD').insert(data).execute()
         return jsonify(response), 200
     except Exception as e:
-        return jsonify({"Error": "Interal Server Error"}), 500
+        return jsonify({"Error": "Interal Server Error: " + str(e)}), 500
 
 
 @app.route("/grabNotifications", methods=["GET"])
@@ -102,7 +102,7 @@ def grab_notifications():
         return jsonify(response), 200
     except Exception as e:
         print(e)
-        return jsonify({"Error": "Interal Server Error"}), 500
+        return jsonify({"Error": "Interal Server Error: " + str(e)}), 500
 
 
 @app.route('/dismissNotification', methods=["POST"])
@@ -113,7 +113,7 @@ def dismiss_notification():
         response = supabase.table('OBD').update({"dismissed": True}).eq('obd_id', data['obd_id']).execute()
         return jsonify(response), 200
     except Exception as e:
-        return jsonify({"Error": "Interal Server Error"}), 500
+        return jsonify({"Error": "Interal Server Error: " + str(e)}), 500
 
 
 @app.route("/stage", methods=["POST"])
@@ -282,7 +282,7 @@ def grab_data():
         response, _ = supabase.table('DrivingData').select("*").execute()
         return jsonify(response), 200
     except Exception as e:
-        return jsonify({"Error": "Interal Server Error"}), 500
+        return jsonify({"Error": "Interal Server Error: " + str(e)}), 500
 
 
 @app.route("/grabTrips", methods=["GET"])
@@ -292,7 +292,7 @@ def grab_trips():
         response, _ = supabase.table('Trips').select("*").execute()
         return jsonify(response), 200
     except Exception as e:
-        return jsonify({"Error": "Interal Server Error"}), 500
+        return jsonify({"Error": "Interal Server Error: " + str(e)}), 500
 
 
 @app.route("/grabCurrentData", methods=["GET"])
@@ -303,7 +303,7 @@ def grab_current_data():
         return jsonify(response), 200
     except Exception as e:
         print(e)
-        return jsonify({"Error": "Interal Server Error"}), 500
+        return jsonify({"Error": "Interal Server Error: " + str(e)}), 500
 
 
 @app.route("/grabCurrentTrip", methods=["GET"])
@@ -318,7 +318,7 @@ def grab_current_trip():
         return jsonify(response), 200
     except Exception as e:
         print(e)
-        return jsonify({"Error": "Interal Server Error"}), 500
+        return jsonify({"Error": "Interal Server Error: " + str(e)}), 500
 
 
 if __name__ == '__main__':
