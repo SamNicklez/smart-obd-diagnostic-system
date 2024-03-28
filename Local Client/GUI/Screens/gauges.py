@@ -8,6 +8,10 @@ from kivy.app import App
 from GUI.gauge import Gauge
 from GUI.Screens import EditScreen
 from itertools import islice
+from kivy.core.text import LabelBase
+from kivy.utils import get_color_from_hex
+from kivymd.uix.button import MDRaisedButton
+
 
 class Gauges(Screen):
     available_commands = ListProperty([])
@@ -30,12 +34,26 @@ class Gauges(Screen):
         self.data = []
 
         # Back Button to return to the main screen
-        back_button = Button(text="Settings", size_hint=(0.2, 0.1), pos_hint={'x': 0, 'top': 1})
+        back_button = MDRaisedButton(
+            text="Settings",
+            size_hint=(0.2, 0.1),
+            pos_hint={'x': 0, 'top': 1},
+            # Optional: specify a specific color with get_color_from_hex
+            # md_bg_color=get_color_from_hex("#your_hex_color_here"),
+            elevation=8  # Adjust the shadow size
+        )
         back_button.bind(on_press=self.settings)
         main_layout.add_widget(back_button)
 
         # Create the "Edit" button
-        edit_button = Button(text="Edit", size_hint=(.1, .1), pos_hint={'x': .9, 'top': 1})
+        edit_button = MDRaisedButton(
+            text="Edit",
+            size_hint=(.1, .1),
+            pos_hint={'x': .9, 'top': 1},
+            # Optional: specify a specific color with get_color_from_hex
+            # md_bg_color=get_color_from_hex("#your_hex_color_here"),
+            elevation=8  # Adjust the shadow size
+        )
         edit_button.bind(on_press=self.on_edit_press)  # Bind the on_edit_press method to handle button press
         main_layout.add_widget(edit_button)  # Add the button to your layout
 
@@ -59,10 +77,18 @@ class Gauges(Screen):
             # Creating and adding labels directly below gauges
             # Adjusting label position to be slightly above the gauge
             label_pos_y = info['pos_hint']['y'] + 0.15  # Adjust this value as needed to move the label
-            label = Label(text=info['label'], size_hint=(None, None), size=('100dp', '20dp'), font_size='24')
+            # Improving the label readability by adjusting color and size
+            label = Label(
+                text=info['label'],
+                size_hint=(None, None),
+                size=('100dp', '20dp'),
+                font_size='24sp',  # Use 'sp' to respect user's font size preference
+                color=(1, 1, 1, 1),  # Use a white color for the font for contrast
+            )
             label.pos_hint = {'center_x': info['pos_hint']['x'] + 0.12, 'y': label_pos_y}
             self.gauge_labels.append(label)
             main_layout.add_widget(label)
+        
 
         self.gauge_selections = {'data_point_1': "ENGINE_LOAD", 'data_point_2': "RELATIVE_THROTTLE_POS", 'data_point_3': "SPEED"}    
 
@@ -137,9 +163,22 @@ class Gauges(Screen):
         for i, key in enumerate(self.current_selections, start=1):
             data_point = self.current_selections[key]
             name = self.find_name_by_command(data_point)
-            value = data.get(data_point, {'value': 'Not available', 'unit': ''})
-            self.data_labels[int(key[-1]) - 1].text = f"{value['value']} {value['unit']}"
-            self.data_title_labels[int(key[-1]) - 1].text = str(name)  
+            if name is None:
+                name = 'Unknown'  # Default text if name is None
+
+            value_dict = data.get(data_point, {'value': 'Not available', 'unit': ''})
+            value = value_dict['value']
+            unit = value_dict['unit']
+
+            # Ensure the value is a string, if it's None, set it to 'Not available'
+            display_value = f"{value if value is not None else 'Not available'} {unit}"
+
+            # Ensure that we don't try to access an index that doesn't exist
+            index = int(key[-1]) - 1
+            if index < len(self.data_labels):
+                self.data_labels[index].text = display_value
+            if index < len(self.data_title_labels):
+                self.data_title_labels[index].text = name
 
     def on_edit_press(self, instance):
         print("Edit button pressed")  
