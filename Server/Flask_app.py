@@ -22,14 +22,12 @@ CORS(app)
 
 @app.route("/")
 def home():
-    print("/")
     return "Test Flask API!"
 
 
 @app.route("/verify", methods=["GET"])
 @token_auth.login_required
 def verify():
-    print("/verify")
     try:
         return jsonify({"Good": "User verified successfully"}), 200
     except Exception as e:
@@ -38,7 +36,6 @@ def verify():
 
 @app.route("/login", methods=["POST"])
 def login():
-    print("/login")
     try:
         data = request.get_json()
         response = supabase.table('Users').select("*").eq('username', data['username']).eq('password',
@@ -122,7 +119,9 @@ def stage():
     print("Request: ", request.get_json())
     try:
         car_info = request.get_json()
+        print("Car Info: " + car_info)
         grouped_data = Helpers.group_by_day(car_info)
+        print("Grouped Data: " + grouped_data)
         # process data into generalized day data
         for day, records in grouped_data.items():
             temp = supabase.table('DrivingData').select('*').eq('timestamp', day).execute()

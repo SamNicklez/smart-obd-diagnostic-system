@@ -98,7 +98,7 @@ def divide_into_trips(data, time_threshold_minutes=30):
 def group_by_day(data):
     grouped_data = defaultdict(list)
     for item in data:
-        day = datetime.strptime(item['timestamp'], '%Y-%m-%d %H:%M:%S').strftime('%m-%d-%Y')
+        day = datetime.strptime(item['timestamp'], '%Y-%m-%dT%H:%M:%S').strftime('%m-%d-%Y')
         grouped_data[day].append(item)
     return grouped_data
 
