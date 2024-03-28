@@ -16,8 +16,8 @@ db_config = {
 def get_token():
     try:
         response = requests.post(
-            url="https://senior-design-final-project.onrender.com/login",
-            # url="https://127.0.0.1:5000/login",
+            # url="https://senior-design-final-project.onrender.com/login",
+            url="http://127.0.0.1:5000/login",
             json={"username": "username", "password": "password"},
             headers={"Content-Type": "application/json"}
         )
@@ -58,8 +58,8 @@ def send_data_to_server(data, token):
     print(token)
     try:
         response = requests.post(
-            url="https://senior-design-final-project.onrender.com/stage",
-            # url="https://127.0.0.1:5000/stage",
+            # url="https://senior-design-final-project.onrender.com/stage",
+            url="http://localhost/stage",
             json=data,
             headers={
                 "Content-Type": "application/json",
