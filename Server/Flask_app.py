@@ -169,9 +169,9 @@ def stage():
                 runtime = trip[-1]['runtime']
                 start_time = trip[0]['timestamp']
                 end_time = trip[-1]['timestamp']
-                start_lat = trip[0]['lattitude']
+                start_lat = trip[0]['latitude']
                 start_lon = trip[0]['longitude']
-                end_lat = trip[-1]['lattitude']
+                end_lat = trip[-1]['latitude']
                 end_lon = trip[-1]['longitude']
                 avg_mpg = round(
                     sum(Helpers.calculate_mpg(record['airflow_rate'], record['speed']) for record in trip) / len(trip),
@@ -248,9 +248,9 @@ def test():
                 runtime = trip[-1]['runtime']
                 start_time = trip[0]['timestamp']
                 end_time = trip[-1]['timestamp']
-                start_lat = trip[0]['lattitude']
+                start_lat = trip[0]['latitude']
                 start_lon = trip[0]['longitude']
-                end_lat = trip[-1]['lattitude']
+                end_lat = trip[-1]['latitude']
                 end_lon = trip[-1]['longitude']
                 avg_mpg = round(
                     sum(Helpers.calculate_mpg(record['airflow_rate'], record['speed']) for record in trip) / len(trip),

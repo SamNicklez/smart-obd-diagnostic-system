@@ -56,7 +56,7 @@ def fetch_data_from_database():
 def send_data_to_server(data, token):
     try:
         response = requests.post(
-            url="https://senior-design-final-project.onrender.com/postOBDData",
+            url="https://senior-design-final-project.onrender.com/stage",
             json=data,
             headers={
                 "Content-Type": "application/json",
@@ -71,10 +71,41 @@ def send_data_to_server(data, token):
         print(f"Error sending data to server: {e}")
 
 
+def format_data(data):
+    return_data = []
+    for row in data:
+        formatted_row = {
+            "timestamp": row['timestamp'],
+            "airflow_rate": row['MAF'],
+            "speed": row['SPEED'],
+            "relative_throttle_pos": row['RELATIVE_THROTTLE_POS'],
+            "distance_w_mil": row['DISTANCE_W_MIL'],
+            "runtime": row['RUN_TIME'],
+            "commanded_egr": row['COMMANDED_EGR'],
+            "time_since_dtc_cleared": row['TIME_SINCE_DTC_CLEARED'],
+            "runtime_mil": row['RUN_TIME_MIL'],
+            "intake_pressure": row['INTAKE_PRESSURE'],
+            "coolant_temp": row['COOLANT_TEMP'],
+            "oil_temp": row['OIL_TEMP'],
+            "barometric_pressure": row['BAROMETRIC_PRESSURE'],
+            "rpm": row['RPM'],
+            "pids_b": row['PIDS_B'],
+            "intake_temp": row['INTAKE_TEMP'],
+            "voltage": row['CONTROL_MODULE_VOLTAGE'],
+            "absolute_load": row['ABSOLUTE_LOAD'],
+            "engine_load": row['ENGINE_LOAD'],
+            "dtc": row['GET_DTC'],
+            "current_dtc": row['GET_CURRENT_DTC'],
+            "latitude": "76.34",
+            "longitude": "52.65"
+        }
+        return_data.append(formatted_row)
+
 def upload_data():
     token = get_token()
     print(f"Token: {token}")
     data = fetch_data_from_database()
+    data = format_data(data);
     print(f"Data: {data}")
     if data:
         send_data_to_server(data, token)
