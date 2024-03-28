@@ -123,9 +123,14 @@ def stage():
         print("HERE 3")
         print(grouped_data)
         # process data into generalized day data
-        for day, records in grouped_data.items():
+        for day in grouped_data.keys():
+            print("Day: ", day)
+            records = grouped_data[day]
+            print("Records: ", records)
             temp = supabase.table('DrivingData').select('*').eq('timestamp', day).execute()
+            print("Temp: ", temp)
             response = temp.data[0]['driving_id'] if temp.data[0]['driving_id'] else 0
+            print("Response: ", response)
             # If new entry
             if response == 0:
                 average_speed = Helpers.kph_to_mph(sum(record['speed'] for record in records) / len(records))
