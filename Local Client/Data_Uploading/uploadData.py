@@ -97,8 +97,8 @@ def format_data(data):
             "voltage": row['CONTROL_MODULE_VOLTAGE'],
             "absolute_load": row['ABSOLUTE_LOAD'],
             "engine_load": row['ENGINE_LOAD'],
-            "dtc": row['GET_DTC'],
-            "current_dtc": row['GET_CURRENT_DTC'],
+            "dtc": row['GET_DTC'] if row['GET_DTC'] else "None",
+            "current_dtc": row['GET_CURRENT_DTC'] if row['GET_CURRENT_DTC'] else "None",
             "latitude": "76.34",
             "longitude": "52.65"
         }
