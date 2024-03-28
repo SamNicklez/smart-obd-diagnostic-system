@@ -1,9 +1,9 @@
-from flask_httpauth import HTTPBasicAuth, HTTPTokenAuth
-from werkzeug.security import generate_password_hash, check_password_hash
 import jwt
+from flask_httpauth import HTTPTokenAuth
 
 token_auth = HTTPTokenAuth()
-    
+
+
 @token_auth.verify_token
 def verify_token(token):
     """
