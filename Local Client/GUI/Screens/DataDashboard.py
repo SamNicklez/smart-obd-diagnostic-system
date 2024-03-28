@@ -11,6 +11,9 @@ from itertools import islice
 from kivy.core.text import LabelBase
 from kivy.utils import get_color_from_hex
 from kivymd.uix.button import MDRaisedButton
+from Data_Collection.vinLookup import get_vehicle_info_by_vin
+import re
+from Data_Uploading.wifiConnection import check_internet_connection
 
 
 class Dashboard(Screen):
@@ -136,9 +139,9 @@ class Dashboard(Screen):
             self.add_widget(data_label)  # Add the label to the main layout
 
         # Add a title label
-        title_label = Label(text="2017 Chevrolet Silverado", size_hint=(None, None), size=('100dp', '20dp'), font_size='32')
-        title_label.pos_hint = {'x': 0.5, 'top': .95}
-        self.add_widget(title_label)
+        self.title_label = Label(text="2017 Chevrolet Silverado", size_hint=(None, None), size=('100dp', '20dp'), font_size='32')
+        self.title_label.pos_hint = {'x': 0.5, 'top': .95}
+        self.add_widget(self.title_label)
 
         self.add_widget(main_layout)
 
@@ -208,6 +211,19 @@ class Dashboard(Screen):
 
         # updating the available commands to choose from in the edit screen
         self.edit_screen.update_available_commands(self.available_command_names)
+
+
+        # Edit the title if we have the VIN
+        if check_internet_connection():
+            vin = self.data['VIN']['value']
+            match = re.search(r"bytearray\(b'(.*)'\)", vin)
+            vin = match.group(1)
+            print("VIN: " + vin)
+            Vin_info = get_vehicle_info_by_vin(vin)
+            formatted_string = " ".join(value for value in [Vin_info['Year'], Vin_info['Make'], Vin_info['Model']] if value)
+            print(formatted_string)
+            self.title_label.text = formatted_string
+        
 
     # Method that returns the command of a data point from an inputted name
     def find_command_by_name(self, name_to_find):

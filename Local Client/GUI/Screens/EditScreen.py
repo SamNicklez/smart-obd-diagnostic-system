@@ -67,14 +67,7 @@ class EditScreen(Screen):
             
     def confirm_selections(self, instance):
 
-        # Add a check to see if all the components have a data point in them
-        
-        # Need to check if the selections are blank before setting them
-
-        # Print out the spinner values
-
-        #self.selections = {name: spinner.text for name, spinner in self.spinners.items() if spinner.text != 'Select Data Point'}
-
+        # Assigning the new selections and setting them to the previous if not set by the user
         for name, spinner in self.spinners.items():
             if spinner.text != 'Select Data Point':
                 self.selections[name] = spinner.text
@@ -83,14 +76,12 @@ class EditScreen(Screen):
 
         print("Confirmed SELECTIONS:", self.selections)
 
+        # Pass the selections back to the main screen
         if self.confirmation_callback:
             self.confirmation_callback(self.selections)
 
-        # Need to store the selections and some how give them back to the gauges class
-
+    # Setter for the previous_selections variable
     def set_current_selections(self, current_selections):
         print("IN THE SET CURRENT SELECTIONS: ")
-
         self.previous_selections = current_selections
-
         print(self.previous_selections)
