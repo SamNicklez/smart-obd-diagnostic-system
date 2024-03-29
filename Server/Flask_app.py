@@ -40,7 +40,7 @@ def login():
         data = request.get_json()
         response = supabase.table('Users').select("*").eq('username', data['username']).eq('password',
                                                                                            data['password']).execute()
-        if (response.data == []):
+        if response.data == []:
             return jsonify({"Error": "Invalid username or password"}), 401
         else:
             encoded_token = jwt.encode({"id": 1}, "secret", algorithm="HS256")
@@ -154,14 +154,17 @@ def stage():
                         average_coolant_temp = 0
                     else:
                         average_coolant_temp = Helpers.celsius_to_fahrenheit(sum(filtered_coolant_temp) / len(filtered_coolant_temp))
+
                     filtered_oil_temp = [record['oil_temp'] for record in records if record['oil_temp'] != "None"]
                     if len(filtered_oil_temp) == 0:
                         average_oil_temp = 0
                     else:
                         average_oil_temp = Helpers.celsius_to_fahrenheit(sum(filtered_oil_temp) / len(filtered_oil_temp))
+
                     avg_mpg = round(
                         sum([Helpers.calculate_mpg(record['airflow_rate'], record['speed']) for record in records]) / len(
                             records), 2)
+
                     supabase.table('DrivingData').insert(
                         {"num_entries": len(records), "timestamp": day, "avg_speed": average_speed,
                          "runtime": total_runtime, "avg_coolant_temp": average_coolant_temp,
