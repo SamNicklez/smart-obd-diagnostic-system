@@ -16,8 +16,7 @@ const router = createRouter({
         const token = getCookie('token')
         if (token != null && token != 'null') {
           next('logout')
-        }
-        else{
+        } else {
           next()
         }
       }
@@ -54,30 +53,28 @@ function getCookie(name) {
 }
 
 router.beforeEach((to, from, next) => {
-  const token = getCookie('token')
-  if (token != null && token != 'null') {
-    console.log('token exists')
-    let config = {
-      method: 'get',
-      maxBodyLength: Infinity,
-      url: 'http://127.0.0.1:5000/verify',
-      headers: {
-        Authorization: 'Bearer ' + token
-      }
-    }
-    axios
-      .request(config)
-      
-      .then(() => {
-        next()
-      })
-      .catch(() => {
-        next('/login')
-      })
-  }
-  if(to.name === 'login') {
+  if (to.name === 'login') {
     next()
+    return
   }
+  const token = getCookie('token')
+  let config = {
+    method: 'get',
+    maxBodyLength: Infinity,
+    url: 'http://127.0.0.1:5000/verify',
+    headers: {
+      Authorization: 'Bearer ' + token
+    }
+  }
+  axios
+    .request(config)
+    .then(() => {
+      console.log(token)
+      next()
+    })
+    .catch(() => {
+      next('/login')
+    })
 })
 
 export default router

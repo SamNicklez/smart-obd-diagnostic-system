@@ -50,5 +50,12 @@ html,
 .v-application__wrap {
   background-color: #E8E9EB;
 }
+
+.leaflet-routing-container{
+  display: none !important;
+}
+.leaflet-control-attribution {
+  display: none !important;
+}
 </style>
 

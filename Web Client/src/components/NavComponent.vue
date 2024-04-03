@@ -94,8 +94,8 @@ export default {
             this.notifications = response.data[1]
           }
         })
-        .catch((error) => {
-          console.log(error)
+        .catch(() => {
+          this.notifications = []
         })
     },
     /**
