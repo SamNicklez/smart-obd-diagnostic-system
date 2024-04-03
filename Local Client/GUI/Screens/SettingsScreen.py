@@ -3,7 +3,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
 from kivy.clock import Clock
 from kivy.uix.button import Button
-from kivy.uix.screenmanager import  Screen
+from kivy.uix.screenmanager import Screen
 from Data_Uploading.wifiConnection import check_internet_connection
 from GUI.Screens.WifiPopUp import AddWiFiPopup
 #from Data_Uploading.uploadData import 
