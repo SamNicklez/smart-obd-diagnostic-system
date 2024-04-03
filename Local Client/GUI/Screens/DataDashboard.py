@@ -14,6 +14,7 @@ from kivymd.uix.button import MDRaisedButton
 from Data_Collection.vinLookup import get_vehicle_info_by_vin
 import re
 from Data_Uploading.wifiConnection import check_internet_connection
+from PrintInColor import printc
 
 
 class Dashboard(Screen):
@@ -23,7 +24,7 @@ class Dashboard(Screen):
 
         # Setting the available commands for the GUI selection
         self.available_commands = kwargs.pop('available_commands', [])
-        print("Available commands: " + str(self.available_commands))
+        printc("LIVE DATA: Available commands: " + str(self.available_commands))
 
         # Set a reference to the edit screen to be able to get the user's selections
         self.edit_screen = edit_screen
@@ -150,12 +151,12 @@ class Dashboard(Screen):
 
     # Method to switch to the settings screen
     def settings(self, instance):
-        print("SWITCH TO SETTINGS")
+        printc("GUI: Switched to Settings")
         App.get_running_app().root.current = 'settings' 
 
     # Method for updating the gauges on the screen
     def update_gauge(self, data):
-        print("UPDATING GAUGES")
+        printc("GUI: Updating Gauges")
         i = 1
         # Loop through the gauges and update their values and labels
         for gauge in self.gauges:
@@ -173,8 +174,8 @@ class Dashboard(Screen):
 
     # Method for updating the data labels on the dashboard
     def update_data_labels(self, data):
-        print("UPDATING DATA READOUTS")
-        print("CURRENT SELECTIONS: " + str(self.current_selections))
+        printc("GUI: Updating Data Readouts")
+        #print("LIVE DATA: Current Selections: " + str(self.current_selections))
 
         # Iterate through the data readouts and update their labels and readouts
         for key in list(self.current_selections.keys())[:self.numDataLabels]:
@@ -189,7 +190,7 @@ class Dashboard(Screen):
 
     # Method for the edit button
     def on_edit_press(self, instance):
-        print("EDIT BUTTON PRESSED")  
+        printc("GUI: Switch to Edit Screen")  
         App.get_running_app().root.current = 'edit'  
 
     # Method that is called from the DataCollector to give the GUI new data
@@ -201,7 +202,7 @@ class Dashboard(Screen):
 
     # Method for updating the available commands shown in the spinners
     def update_available_commands(self, new_commands):
-        print("UPDATING COMMANDS", [cmd for cmd in new_commands])
+        printc("LIVE DATA: Updating Available Commands", [cmd for cmd in new_commands])
         
         # Set the class attribute to the entire dictionary
         self.available_dict = new_commands
@@ -243,9 +244,9 @@ class Dashboard(Screen):
     
     # Method for handling new selections made from the edit screen
     def handle_new_selections(self, selections):
-        print("NEW SELECTIONS RECEIVED: ", selections)
+        printc("GUI: New Selections Receieved: ", selections)
         
         # Update the current selections
         self.current_selections = dict(selections.items())
 
-        print("CURRENT SELECTIONS UPDATED: " + str(self.current_selections))
+        printc("GUI: Current Selections Updated: " + str(self.current_selections))

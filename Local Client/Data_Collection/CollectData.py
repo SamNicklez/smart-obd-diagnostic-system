@@ -6,6 +6,7 @@ import obd
 import time
 import os
 from datetime import datetime
+from PrintInColor import printc
 
 class DataCollector:
     def __init__(self, update_gui_callback=None):
@@ -153,9 +154,9 @@ class DataCollector:
         try:
             self.db_conn = mysql.connector.connect(**db_config)
             self.db_cursor = self.db_conn.cursor()
-            print("Database connection established.")
+            printc("DATABASE: Database connection established.")
         except mysql.connector.Error as err:
-            print(f"Failed to connect to database: {err}")
+            printc(f"DATABASE: Failed to connect to database: {err}")
             db_conn = None
             
          # Global flag to control the loop
@@ -192,7 +193,7 @@ class DataCollector:
 
         # Loop for logging the data
         if connection and connection.is_connected():
-            print(f"Connected to OBDII sensor. Logging data to {self.log_file_path}")
+            printc(f"SENSOR: Connected to OBDII sensor. Logging data to {self.log_file_path}")
 
             # Opening the file to write to for logs
             with open(self.log_file_path, 'w') as file:
@@ -204,7 +205,7 @@ class DataCollector:
                 # Loop to collect data
                 while self.keep_running:
                     if not connection.is_connected(): #or not check_engine_on(): Use this with the real car to stop collection when it shuts off
-                        print("Lost connection to OBDII sensor or engine turned off. Exiting...")
+                        printc("SENSOR: Lost connection to OBDII sensor or engine turned off. Exiting...")
                         break  # Exit the loop if connection is lost or engine is off
 
                     output = ["OBD Data Logging:"]
@@ -238,10 +239,10 @@ class DataCollector:
 
             if connection and connection.is_connected():
                 connection.close()
-            print("Connection closed.")
+            printc("SENSOR: Connection closed.")
 
         else:
-            print("Failed to connect to OBDII sensor.")
+            printc("SENSOR: Failed to connect to OBDII sensor.")
 
     # Clean up function for ending collection        
     def stop_collection(self, signum=None, frame=None):
@@ -252,7 +253,7 @@ class DataCollector:
         if self.db_conn is not None and self.db_conn.is_connected():
             self.db_cursor.close()
             self.db_conn.close()
-            print("Database connection closed.")
+            printc("DATABASE: Database connection closed.")
         print("Exiting...")    
             
     # Function to wait for OBD connection
@@ -260,18 +261,18 @@ class DataCollector:
         connection = None
         while self.keep_running and connection is None: # Keep trying to connect
             try:
-                print("Attempting to connect to OBD-II sensor...")
+                printc("SENSOR: Attempting to connect to OBD-II sensor...")
                 connection = obd.OBD(self.portSelection, baudrate=115200)
                 if not connection.is_connected():
-                    print("Unable to connect, retrying...")
+                    printc("SENSOR: Unable to connect, retrying...")
                     connection.close()
                     connection = None
                     time.sleep(5)  # Wait for 5 seconds before retrying
             except InterruptedError:
-                print("Connection attempt interrupted. Exiting...")
+                printc("SENSOR: Connection attempt interrupted. Exiting...")
                 break  # Exit the loop if interrupted
             except Exception as e:
-                print(f"Error establishing connection: {e}")
+                printc(f"SENSOR: Error establishing connection: {e}")
                 time.sleep(5)  # Wait for 5 seconds before retrying
         return connection
 
@@ -295,9 +296,9 @@ class DataCollector:
             try:
                 self.db_cursor.execute(query, values) # Execute the queries
                 self.db_conn.commit()
-                print("Data inserted successfully.")
+                printc("DATABASE: Data inserted successfully.")
             except mysql.connector.Error as err:
-                print(f"Failed to insert data into database: {err}")   
+                printc(f"DATABASE: Failed to insert data into database: {err}")   
 
 
     # Function to log a single command

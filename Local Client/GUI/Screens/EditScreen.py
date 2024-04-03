@@ -3,6 +3,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.spinner import Spinner
 from kivy.uix.button import Button
 from kivy.uix.label import Label
+from PrintInColor import printc
 
 class EditScreen(Screen):
     def __init__(self, **kwargs):
@@ -51,12 +52,12 @@ class EditScreen(Screen):
         # Create the labels and the spinners
 
     def go_back(self, instance):
-        print("Edit button pressed")  
+        printc("GUI: Back to main screen")  
         self.manager.current = 'main' 
 
     def on_spinner_select(self, spinner, text):
         # Here you would handle the logic for when a selection is made, e.g., updating a model or setting
-        print(f'Selected {text} for {spinner}')
+        printc(f'LIVE DATA: Selected {text} for {spinner}')
 
     def update_available_commands(self, data):
         self.available_commands = data
@@ -74,7 +75,7 @@ class EditScreen(Screen):
             else:
                 self.selections[name] = self.previous_selections[name]
 
-        print("Confirmed SELECTIONS:", self.selections)
+        printc("LIVE DATA: Confirmed Selections:", self.selections)
 
         # Pass the selections back to the main screen
         if self.confirmation_callback:
@@ -82,6 +83,5 @@ class EditScreen(Screen):
 
     # Setter for the previous_selections variable
     def set_current_selections(self, current_selections):
-        print("IN THE SET CURRENT SELECTIONS: ")
         self.previous_selections = current_selections
-        print(self.previous_selections)
+        printc("LIVE DATA: Settings current selections", self.previous_selections)
