@@ -121,9 +121,11 @@ class DataCollector:
             "ELM_VOLTAGE": {"command": "ELM_VOLTAGE", "name": "ELM Voltage", "unit": "Volts"}
         }
 
+        pi_user = 'test'
+
         # Database connection configuration
         db_config = {
-            'user': 'sloecke',
+            'user': pi_user,
             'password': 'password',
             'host': 'localhost',
             'database': 'obd'
@@ -158,8 +160,8 @@ class DataCollector:
 
         # Port variable for which port to get data from
         #self.portSelection = '/dev/rfcomm0' # For actual bluetooth sensor
-        #self.portSelection = '/dev/pts/0' # For running emulator on the Raspberry Pi
-        self.portSelection = 'COM8' # For running on windows
+        self.portSelection = '/dev/pts/3' # For running emulator on the Raspberry Pi
+        #self.portSelection = 'COM8' # For running on windows
 
 
     # Method for running the collection from the sensor or emulator
