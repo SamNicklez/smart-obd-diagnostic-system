@@ -130,6 +130,8 @@ class DataCollector:
             "ELM_VOLTAGE": {"command": "ELM_VOLTAGE", "name": "ELM Voltage", "unit": "Volts"}
         }
 
+        pi_user = 'test'
+
         # Setting the database settings based on which computer we are running on
         if isPi or isCar:
             db_config = {
