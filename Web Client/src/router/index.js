@@ -4,6 +4,7 @@ import LoginView from '../views/LoginView.vue'
 import LogoutView from '../views/LogoutView.vue'
 import axios from 'axios'
 import TripDetail from '@/views/TripDetailView.vue'
+import NotFoundView from '@/views/NotFound.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -36,6 +37,11 @@ const router = createRouter({
       name: 'tripDetail',
       component: TripDetail,
       props: true
+    },
+    {
+      path: '/:catchAll(.*)',
+      name: '404',
+      component: NotFoundView
     }
   ]
 })
