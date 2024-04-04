@@ -204,7 +204,7 @@ class DataCollector:
 
                 # Loop to collect data
                 while self.keep_running:
-                    if not connection.is_connected(): #or not check_engine_on(): Use this with the real car to stop collection when it shuts off
+                    if not connection.is_connected() or not self.check_engine_on(): # Use this with the real car to stop collection when it shuts off
                         printc("SENSOR: Lost connection to OBDII sensor or engine turned off. Exiting...")
                         break  # Exit the loop if connection is lost or engine is off
 
@@ -332,7 +332,7 @@ class DataCollector:
             # Here's the key change: Ensure value is converted to a basic data type
             if hasattr(response.value, 'magnitude') and hasattr(response.value, 'units'):
                 # Convert to float if it has magnitude; it's likely a numeric value
-                processed_value = float(value)
+                processed_value = round(float(value), 2)
             else:
                 # Fallback: Convert directly to string
                 processed_value = str(response.value)
@@ -359,6 +359,14 @@ class DataCollector:
             if cmd_details["name"] == name_to_find:
                 return cmd_details["command"]
         return None  # Return None if no matching name is found
+    
+    def check_engine_on(self):
+        return True
+        # rpms = self.data_dict['RPM']['value']
+        # if rpms < 100:
+        #     return False
+        # else:
+        #     return True
     
 # Other functions that do not need to be in the class
     

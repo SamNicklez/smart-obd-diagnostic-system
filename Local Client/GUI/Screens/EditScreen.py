@@ -71,6 +71,11 @@ class EditScreen(Screen):
         # Assigning the new selections and setting them to the previous if not set by the user
         for name, spinner in self.spinners.items():
             if spinner.text != 'Select Data Point':
+                # TODO check if a gauge value is being set to a string value
+                printc("LIVE DATA: ", name)
+                if int(name[-1]) > 3:
+                     # TODO this means its a gauge
+                    pass
                 self.selections[name] = spinner.text
             else:
                 self.selections[name] = self.previous_selections[name]
