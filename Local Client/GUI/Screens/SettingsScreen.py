@@ -19,8 +19,22 @@ class SettingsScreen(Screen):
         layout = BoxLayout(orientation='vertical', padding=dp(10), spacing=dp(10))
         
         # Label to display internet connection status
-        self.connection_status_label = Label(text="Checking internet connection...")
+        self.connection_status_label = MDLabel(
+            text="Checking internet connection...",
+            halign="center",  # Align the text to the center
+            text_color= "white", # Set text color to white
+            font_style="Subtitle1",  # Choose a font style from available options
+            size_hint_y=None,  # Disable vertical size hint to set a specific height
+            height=dp(35),  # Set the height of the label
+            valign="middle"  # Ensure the vertical alignment is set to middle
+        )
         layout.add_widget(self.connection_status_label)
+        
+        # Add padding to ensure the text is vertically centered in its bounding box
+        self.connection_status_label.padding_y = dp(10)
+
+        # Ensure the label text is repositioned properly when its size changes
+        self.connection_status_label.bind(size=self.connection_status_label.setter('text_size'))
         
         # Update the internet connection status at the start and then periodically
         self.update_connection_status()
