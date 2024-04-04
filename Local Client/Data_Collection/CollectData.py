@@ -126,7 +126,7 @@ class DataCollector:
             'user': 'test',
             'password': 'password',
             'host': 'localhost',
-            'port': '3308',
+            'port': '3307',
             'database': 'obd'
         }
 

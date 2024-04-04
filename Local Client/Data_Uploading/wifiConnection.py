@@ -1,5 +1,6 @@
 import socket
 
+
 def check_internet_connection(host="8.8.8.8", port=53, timeout=3):
     """
     Check if the Raspberry Pi is connected to the internet.
@@ -21,8 +22,10 @@ def check_internet_connection(host="8.8.8.8", port=53, timeout=3):
         print(f"No internet connection: {ex}")
         return False
 
+
 def main():
     print("Waiting for internet connection...")
+
 
 if __name__ == "__main__":
     main()
