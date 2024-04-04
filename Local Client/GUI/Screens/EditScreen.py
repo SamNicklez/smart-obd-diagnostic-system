@@ -23,7 +23,7 @@ class EditScreen(Screen):
         layout.add_widget(back_button)
 
         # Create a GridLayout with 2 rows and 3 columns
-        grid_layout = GridLayout(rows=2, cols=3, spacing=10, padding=10, size_hint_y=None)
+        grid_layout = GridLayout(rows=3, cols=2, spacing=100, padding=100, size_hint_y=None)
         grid_layout.bind(minimum_height=grid_layout.setter('height'))  # Make the grid adjust its height
 
         # Dynamically create spinners for each component
@@ -36,13 +36,14 @@ class EditScreen(Screen):
                 size_hint=(None, None),  # Allow us to set specific size
                 size=(420, 44),  # Specify the size of the spinner
                 background_color=MDApp.get_running_app().theme_cls.primary_color,
+                padding=100
             )
             component_spinner.bind(text=self.on_spinner_select)
 
             self.spinners[f'data_point_{i}'] = component_spinner
 
             # Add each spinner and its label to the grid layout
-            spinner_box = BoxLayout(orientation='vertical', size_hint=(None, None), size=(200, 74))
+            spinner_box = BoxLayout(orientation='vertical', size_hint=(None, None), size=(420, 74))
             spinner_box.add_widget(component_label)
             spinner_box.add_widget(component_spinner)
             grid_layout.add_widget(spinner_box)
