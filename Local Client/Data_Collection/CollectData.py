@@ -206,7 +206,7 @@ class DataCollector:
                 while self.keep_running:
                     if not connection.is_connected() or not self.check_engine_on(): # Use this with the real car to stop collection when it shuts off
                         printc("SENSOR: Lost connection to OBDII sensor or engine turned off. Exiting...")
-                        break  # Exit the loop if connection is lost or engine is off
+                        self.stop_collection()  # Exit the loop if connection is lost or engine is off
 
                     output = ["OBD Data Logging:"]
 
@@ -361,12 +361,16 @@ class DataCollector:
         return None  # Return None if no matching name is found
     
     def check_engine_on(self):
-        return True
-        # rpms = self.data_dict['RPM']['value']
-        # if rpms < 100:
-        #     return False
-        # else:
-        #     return True
+        #return True
+        if 'RPM' in self.data_dict:
+            rpms = self.data_dict['RPM']['value']
+            printc("LIVE DATA: " + str(rpms))
+            if rpms < 100:
+                return False
+            else:
+                return True
+        else:
+            return True    
     
 # Other functions that do not need to be in the class
     

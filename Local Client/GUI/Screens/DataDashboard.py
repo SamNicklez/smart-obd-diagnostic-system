@@ -217,6 +217,7 @@ class Dashboard(Screen):
             self.dtc_count = len(get_dtc)
             printc("LIVE DATA: DTC DETECTED!!!!!")
             # TODO do whatever we are going to do to alert the user that there is a dtc present
+            # TODO also show a severity for the engine code
 
         elif get_dtc is not None and len(get_dtc) <= 2 and self.dtc_count != 0:
             self.dtc_count = 0
@@ -242,11 +243,11 @@ class Dashboard(Screen):
             vin = self.data['VIN']['value']
             match = re.search(r"bytearray\(b'(.*)'\)", vin)
             vin = match.group(1)
-            print("VIN: " + vin)
+            printc("LIVE DATA: VIN: " + vin)
             vin = "1C4NJDCB6CD508767" # Take this out if using an actual car
             Vin_info = get_vehicle_info_by_vin(vin)
             formatted_string = " ".join(value for value in [Vin_info['Year'], Vin_info['Make'], Vin_info['Model']] if value)
-            print(formatted_string)
+            printc("LIVE DATA: CAR MAKE/MODEL: " + formatted_string)
             if len(formatted_string) != 0:
                 self.title_label.text = formatted_string
         
