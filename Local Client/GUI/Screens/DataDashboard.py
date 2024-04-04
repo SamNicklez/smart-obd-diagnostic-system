@@ -29,6 +29,8 @@ class Dashboard(Screen):
         # Set a reference to the edit screen to be able to get the user's selections
         self.edit_screen = edit_screen
 
+        self.dtc_count = 0
+
         # set a callback function for the edit screen class to use to update the dashboard
         self.edit_screen.confirmation_callback = self.handle_new_selections
 
@@ -197,8 +199,29 @@ class Dashboard(Screen):
     def update_data(self, data):
         self.data = data # set the updated data
 
+        # check for values outside the range now
+        Clock.schedule_once(lambda dt: self.check_for_dtcs())
+
         # Using the schedule_once to update all the necessary information
         Clock.schedule_once(lambda dt: self.update_data_labels(data))  
+
+    def check_for_dtcs(self):
+        # Checking for dtc codes and alerting if there is a new one
+        get_dtc = self.data.get('GET_DTC', None) 
+        get_dtc = get_dtc['value']
+
+        printc("LIVE DATA: GET_DTC " + str(get_dtc))
+
+        if get_dtc is not None and len(get_dtc) > 2 and self.dtc_count != len(get_dtc):
+            self.show_alert_popup("DTC Detected " + " Codes: " + get_dtc)
+            self.dtc_count = len(get_dtc)
+            printc("LIVE DATA: DTC DETECTED!!!!!")
+            # TODO do whatever we are going to do to alert the user that there is a dtc present
+
+        elif get_dtc is not None and len(get_dtc) <= 2 and self.dtc_count != 0:
+            self.dtc_count = 0
+            # TODO do whatever we are going to do to alert the user that the dtc is cleared
+            printc("LIVE DATA: DTC CLEARED!!!!!")
 
     # Method for updating the available commands shown in the spinners
     def update_available_commands(self, new_commands):
