@@ -1,14 +1,17 @@
+from kivy.uix.gridlayout import GridLayout
 from kivy.uix.screenmanager import Screen
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.spinner import Spinner
 from kivy.uix.button import Button
 from kivy.uix.label import Label
+from kivymd.app import MDApp
 from PrintInColor import printc
+
 
 class EditScreen(Screen):
     def __init__(self, **kwargs):
         super(EditScreen, self).__init__(**kwargs)
-        
+
         self.available_commands = []
         self.selections = {}
         layout = BoxLayout(orientation='vertical')
@@ -19,29 +22,36 @@ class EditScreen(Screen):
         back_button.bind(on_press=self.go_back)
         layout.add_widget(back_button)
 
+        # Create a GridLayout with 2 rows and 3 columns
+        grid_layout = GridLayout(rows=2, cols=3, spacing=10, padding=10, size_hint_y=None)
+        grid_layout.bind(minimum_height=grid_layout.setter('height'))  # Make the grid adjust its height
+
         # Dynamically create spinners for each component
         self.spinners = {}
         for i in range(1, 7):  # Assuming 3 labels and 3 gauges
-            if i <= 3:
-                component_label = Label(text=f'Label {i}', size_hint_y=None, height=30)
-            else:
-                component_label = Label(text=f'Gauge {i-3}', size_hint_y=None, height=30)
+            component_label = Label(text=f'Component {i}', size_hint_y=None, height=30)
             component_spinner = Spinner(
                 text='Select Data Point',
                 values=self.available_commands,
-                size_hint=(1, None),
-                height=44
+                size_hint=(None, None),  # Allow us to set specific size
+                size=(420, 44),  # Specify the size of the spinner
+                background_color=MDApp.get_running_app().theme_cls.primary_color,
             )
             component_spinner.bind(text=self.on_spinner_select)
-            
+
             self.spinners[f'data_point_{i}'] = component_spinner
 
-            layout.add_widget(component_label)
-            layout.add_widget(component_spinner)
+            # Add each spinner and its label to the grid layout
+            spinner_box = BoxLayout(orientation='vertical', size_hint=(None, None), size=(200, 74))
+            spinner_box.add_widget(component_label)
+            spinner_box.add_widget(component_spinner)
+            grid_layout.add_widget(spinner_box)
+
+        layout.add_widget(grid_layout)
 
         confirm_button = Button(text="Confirm Selections", size_hint=(1, 0.1), pos_hint={'center_x': 0.5})
         confirm_button.bind(on_press=self.confirm_selections)
-        layout.add_widget(confirm_button)    
+        layout.add_widget(confirm_button)
 
         self.add_widget(layout)
 

@@ -33,6 +33,8 @@ class GuiApplication(MDApp):
         # Set the two different screens
         self.main_screen = MainScreen(name='main', available_commands=available_commands, dashboard=dashboard)
         settings_screen = SettingsScreen(name='settings')
+
+
         
 
         # Add the widgets
@@ -49,7 +51,7 @@ class GuiApplication(MDApp):
             Color(0.16, 0.16, 0.16, 1)  # Dark gray as an example
             self.rect = Rectangle(size=self.sm.size, pos=self.sm.pos)
 
-        self.sm.bind(size=self._update_background, pos=self._update_background)    
+        self.sm.bind(size=self._update_background, pos=self._update_background)
 
         return self.sm
 
