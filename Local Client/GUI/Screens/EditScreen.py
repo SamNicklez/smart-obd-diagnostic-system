@@ -3,13 +3,14 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.spinner import Spinner
 from kivy.uix.button import Button
 from kivy.uix.label import Label
+from PrintInColor import printc
 
 class EditScreen(Screen):
     def __init__(self, **kwargs):
         super(EditScreen, self).__init__(**kwargs)
         
         self.available_commands = []
-        self.selection = []
+        self.selections = {}
         layout = BoxLayout(orientation='vertical')
 
         self.confirmation_callback = None
@@ -44,35 +45,43 @@ class EditScreen(Screen):
 
         self.add_widget(layout)
 
+        self.previous_label_selections = []
+        self.previous_gauge_selections = []
+        self.previous_selections = {}
+
         # Create the labels and the spinners
 
     def go_back(self, instance):
-        print("Edit button pressed")  
+        printc("GUI: Back to main screen")  
         self.manager.current = 'main' 
 
     def on_spinner_select(self, spinner, text):
         # Here you would handle the logic for when a selection is made, e.g., updating a model or setting
-        print(f'Selected {text} for {spinner}')
+        printc(f'LIVE DATA: Selected {text} for {spinner}')
 
     def update_available_commands(self, data):
         self.available_commands = data
         for spinner in self.spinners.values():
             spinner.values = data
 
-        # Call a method to update the display with the new selected data
+    # Call a method to update the display with the new selected data
             
     def confirm_selections(self, instance):
 
-        # Add a check to see if all the components have a data point in them
-        
+        # Assigning the new selections and setting them to the previous if not set by the user
+        for name, spinner in self.spinners.items():
+            if spinner.text != 'Select Data Point':
+                self.selections[name] = spinner.text
+            else:
+                self.selections[name] = self.previous_selections[name]
 
-        self.selections = {name: spinner.text for name, spinner in self.spinners.items()}
-        print("Confirmed SELECTIONS:", self.selections)
+        printc("LIVE DATA: Confirmed Selections:", self.selections)
 
+        # Pass the selections back to the main screen
         if self.confirmation_callback:
             self.confirmation_callback(self.selections)
 
-        # Need to store the selections and some how give them back to the gauges class
-
-
-               
+    # Setter for the previous_selections variable
+    def set_current_selections(self, current_selections):
+        self.previous_selections = current_selections
+        printc("LIVE DATA: Settings current selections", self.previous_selections)
