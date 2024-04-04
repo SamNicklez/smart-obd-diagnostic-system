@@ -6,7 +6,7 @@ Config.set('graphics', 'width', '800')
 Config.set('graphics', 'height', '480')
 from GUI.Screens.MainScreen import MainScreen
 from GUI.Screens.SettingsScreen import SettingsScreen 
-from GUI.Screens.gauges import Gauges
+from GUI.Screens.DataDashboard import Dashboard
 from GUI.Screens.EditScreen import EditScreen
 from kivymd.app import MDApp
 from kivy.graphics import Color, Rectangle
@@ -28,17 +28,16 @@ class GuiApplication(MDApp):
         self.sm = ScreenManager() 
 
         edit_screen = EditScreen(name='edit')
-        gauges_screen = Gauges(name='gauges', edit_screen=edit_screen)
+        dashboard = Dashboard(name='dashboard', edit_screen=edit_screen)
 
         # Set the two different screens
-        self.main_screen = MainScreen(name='main', available_commands=available_commands, gauges_screen=gauges_screen)
+        self.main_screen = MainScreen(name='main', available_commands=available_commands, dashboard=dashboard)
         settings_screen = SettingsScreen(name='settings')
         
 
         # Add the widgets
         self.sm.add_widget(self.main_screen)
         self.sm.add_widget(settings_screen)
-        #self.sm.add_widget(gauges_screen)
         self.sm.add_widget(edit_screen)
 
         # Add a callback for the DataCollector to update data on the main screen

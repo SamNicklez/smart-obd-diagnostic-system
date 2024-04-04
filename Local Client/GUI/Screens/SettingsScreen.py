@@ -81,9 +81,9 @@ class SettingsScreen(Screen):
 
     # Method for uploading the data to the online server
     def upload_data(self, instance):
-        print("Upload the Data")
+        print("DATABASE: Upload the Data")
         if check_internet_connection():
-            print("Connected to the internet, ready to upload data")
+            print("INTERNET: Connected to the internet, ready to upload data")
             # TODO Call the method to upload data to online database
             pass
 
