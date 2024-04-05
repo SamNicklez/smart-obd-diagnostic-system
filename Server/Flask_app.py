@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from supabase import create_client, Client
+from datetime import datetime, timedelta
 
 import Helpers
 from Test_data import generate_car_info_json
@@ -363,6 +364,33 @@ def grab_current_trip():
     except Exception as e:
         print(e)
         return jsonify({"Error": "Interal Server Error: " + str(e)}), 500
+
+@app.route('/grabGraphData', methods=["GET"])
+@token_auth.login_required
+def grab_graph_data():
+    try:
+        data = request.get_json()
+        start_date = data['start_date']
+        end_date = data['end_date']
+        start_date_obj = datetime.strptime(start_date, "%m/%d/%Y")
+        end_date_obj = datetime.strptime(end_date, "%m/%d/%Y")
+        db_start_date = start_date_obj.strftime("%Y-%m-%d")
+        db_end_date = end_date_obj.strftime("%Y-%m-%d")
+        response, _ = supabase.table('DrivingData').select("*").gte('timestamp', db_start_date).lte('timestamp', db_end_date).execute()
+        response = response[1]
+        data_by_date = {item['timestamp']: item for item in response}
+        date_list = [start_date_obj + timedelta(days=x) for x in range((end_date_obj - start_date_obj).days + 1)]
+        result = []
+        for date in date_list:
+            date_str = date.strftime("%Y-%m-%d")
+            if date_str in data_by_date:
+                result.append(data_by_date[date_str])
+            else:
+                result.append({"timestamp": date_str})
+
+        return jsonify(result), 200
+    except Exception as e:
+        return jsonify({"Error": "Internal Server Error: " + str(e)}), 500
 
 
 if __name__ == '__main__':
