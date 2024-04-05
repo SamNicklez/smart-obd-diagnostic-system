@@ -6,11 +6,13 @@ Config.set('graphics', 'width', '800')
 Config.set('graphics', 'height', '480')
 from GUI.Screens.MainScreen import MainScreen
 from GUI.Screens.SettingsScreen import SettingsScreen 
-from GUI.Screens.gauges import Gauges
+from GUI.Screens.DataDashboard import Dashboard
 from GUI.Screens.EditScreen import EditScreen
+from kivymd.app import MDApp
+from kivy.graphics import Color, Rectangle
 
 # Main GUI class that starts and runs the GUI application
-class GuiApplication(App):
+class GuiApplication(MDApp):
 
     data_collector = None  # This should be set or initialized before `build`
 
@@ -26,25 +28,36 @@ class GuiApplication(App):
         self.sm = ScreenManager() 
 
         edit_screen = EditScreen(name='edit')
-        gauges_screen = Gauges(name='gauges', edit_screen=edit_screen)
+        dashboard = Dashboard(name='dashboard', edit_screen=edit_screen)
 
         # Set the two different screens
-        self.main_screen = MainScreen(name='main', available_commands=available_commands, gauges_screen=gauges_screen)
+        self.main_screen = MainScreen(name='main', available_commands=available_commands, dashboard=dashboard)
         settings_screen = SettingsScreen(name='settings')
         
 
         # Add the widgets
         self.sm.add_widget(self.main_screen)
         self.sm.add_widget(settings_screen)
-        #self.sm.add_widget(gauges_screen)
         self.sm.add_widget(edit_screen)
 
         # Add a callback for the DataCollector to update data on the main screen
         if hasattr(self, 'data_collector'):
             self.data_collector.update_gui_callback = self.main_screen.layout.update_data
+            
+        # Set the background color
+        with self.sm.canvas.before:
+            Color(0.16, 0.16, 0.16, 1)  # Dark gray as an example
+            self.rect = Rectangle(size=self.sm.size, pos=self.sm.pos)
+
+        self.sm.bind(size=self._update_background, pos=self._update_background)    
 
         return self.sm
 
+    
+    def _update_background(self, instance, value):
+        self.rect.size = instance.size
+        self.rect.pos = instance.pos
+        
     # Method that runs when the Gui is closed
     def on_stop(self):
         if hasattr(self, 'data_collector') and self.data_collector:
