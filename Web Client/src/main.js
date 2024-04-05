@@ -9,6 +9,8 @@ import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import VueApexCharts from "vue3-apexcharts";
+import VCalendar from 'v-calendar';
+import 'v-calendar/style.css';
 
 const vuetify = createVuetify({
     components,
@@ -18,6 +20,7 @@ const vuetify = createVuetify({
 const app = createApp(App)
 app.use(VueApexCharts);
 app.use(createPinia())
+app.use(VCalendar, {})
 app.use(router)
 app.use(vuetify)
 app.mount('#app')

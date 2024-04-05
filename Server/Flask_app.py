@@ -365,15 +365,15 @@ def grab_current_trip():
         print(e)
         return jsonify({"Error": "Interal Server Error: " + str(e)}), 500
 
-@app.route('/grabGraphData', methods=["GET"])
+@app.route('/grabGraphData', methods=["POST"])
 @token_auth.login_required
 def grab_graph_data():
     try:
         data = request.get_json()
         start_date = data['start_date']
         end_date = data['end_date']
-        start_date_obj = datetime.strptime(start_date, "%m/%d/%Y")
-        end_date_obj = datetime.strptime(end_date, "%m/%d/%Y")
+        start_date_obj = datetime.strptime(start_date, "%m/%d/%Y") + timedelta(days=1)
+        end_date_obj = datetime.today()
         db_start_date = start_date_obj.strftime("%Y-%m-%d")
         db_end_date = end_date_obj.strftime("%Y-%m-%d")
         response, _ = supabase.table('DrivingData').select("*").gte('timestamp', db_start_date).lte('timestamp', db_end_date).execute()
@@ -390,6 +390,7 @@ def grab_graph_data():
 
         return jsonify(result), 200
     except Exception as e:
+        print(e)
         return jsonify({"Error": "Internal Server Error: " + str(e)}), 500
 
 
