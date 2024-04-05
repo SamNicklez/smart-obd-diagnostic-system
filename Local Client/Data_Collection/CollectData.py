@@ -177,6 +177,7 @@ class DataCollector:
 
                 # Setting the supported commands by grabbing it from the current car
                 self.supported_commands = set(connection.supported_commands)  # Assuming connection is an OBD object
+                print(f"Supported commands: {self.supported_commands}")
                 self.filter_supported_commands()  # Calling the filtering method to set the filtered_commands variable
 
                 # Loop to collect data
@@ -240,6 +241,7 @@ class DataCollector:
             try:
                 print("Attempting to connect to OBD-II sensor...")
                 connection = obd.OBD(self.portSelection, baudrate=115200)
+                print("Connections commands: ", connection.supported_commands)
                 if not connection.is_connected():
                     print("Unable to connect, retrying...")
                     connection.close()
@@ -341,7 +343,7 @@ class DataCollector:
     
 # Functions for unit conversion
 def convert_speed_to_mph(speed_km_per_hr):
-    return speed_km_per_hr * 0.621371
+    return round(speed_km_per_hr * 0.621371)
 
 # Convert Celsius to Fahrenheit
 def convert_celsius_to_fahrenheit(temp_celsius):
