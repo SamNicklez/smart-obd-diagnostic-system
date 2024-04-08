@@ -6,6 +6,7 @@ from kivy.uix.button import Button
 from kivy.uix.label import Label
 from kivymd.app import MDApp
 from PrintInColor import printc
+from kivymd.uix.button import MDRaisedButton
 
 
 class EditScreen(Screen):
@@ -18,12 +19,12 @@ class EditScreen(Screen):
 
         self.confirmation_callback = None
 
-        back_button = Button(text="Back to Main Screen", size_hint=(0.2, 0.1), pos_hint={'x': 0, 'top': 1})
+        back_button = MDRaisedButton(text="Back to Main Screen", size_hint=(0.2, 0.1), pos_hint={'x': 0, 'top': 1})
         back_button.bind(on_press=self.go_back)
         layout.add_widget(back_button)
 
         # Create a GridLayout with 2 rows and 3 columns
-        grid_layout = GridLayout(rows=3, cols=2, spacing=100, padding=100, size_hint_y=None)
+        grid_layout = GridLayout(rows=3, cols=2, spacing=100, padding=10, size_hint_y=None)
         grid_layout.bind(minimum_height=grid_layout.setter('height'))  # Make the grid adjust its height
 
         # Dynamically create spinners for each component
@@ -50,7 +51,13 @@ class EditScreen(Screen):
 
         layout.add_widget(grid_layout)
 
-        confirm_button = Button(text="Confirm Selections", size_hint=(1, 0.1), pos_hint={'center_x': 0.5})
+        # MDRaisedButton(
+        #             text="Upload Data to Server",
+        #             pos_hint={'center_x': 0.5},
+        #             size_hint=(1, .3),
+        #         )
+
+        confirm_button = MDRaisedButton(text="Confirm Selections", size_hint=(1, 0.1), pos_hint={'center_x': 0.5})
         confirm_button.bind(on_press=self.confirm_selections)
         layout.add_widget(confirm_button)
 
