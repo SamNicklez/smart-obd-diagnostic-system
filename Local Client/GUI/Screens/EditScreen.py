@@ -25,13 +25,14 @@ class EditScreen(Screen):
         back_button.bind(on_press=self.go_back)
 
         # GridLayout adjustment for dynamic sizing
-        grid_layout = GridLayout(rows=3, cols=2, spacing=10, size_hint=(1, 1))
+        grid_layout = GridLayout(rows=3, cols=2, spacing=(10, 100), size_hint=(1, 1))
         grid_layout.bind(minimum_height=grid_layout.setter('height'), minimum_width=grid_layout.setter('width'))
 
         # Dynamically create spinners for each component
         self.spinners = {}
         for i in range(1, 7):  # Assuming 3 labels and 3 gauges
             component_label = Label(text=f'Component {i}', size_hint=(1, None), height=30)
+            #component_label = Label(text=f'Component {i}', size_hint_y=None, height=30)
             component_spinner = Spinner(
                 text='Select Data Point',
                 values=self.available_commands,
@@ -40,7 +41,6 @@ class EditScreen(Screen):
                 height=44,
                 width=420,
                 background_color=MDApp.get_running_app().theme_cls.primary_color,
-                padding=100
             )
             component_spinner.bind(text=self.on_spinner_select)
 
