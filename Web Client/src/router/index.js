@@ -4,6 +4,8 @@ import LoginView from '../views/LoginView.vue'
 import LogoutView from '../views/LogoutView.vue'
 import axios from 'axios'
 import TripDetail from '@/views/TripDetailView.vue'
+import NotFoundView from '@/views/NotFound.vue'
+import GraphView from '@/views/GraphView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,8 +18,7 @@ const router = createRouter({
         const token = getCookie('token')
         if (token != null && token != 'null') {
           next('logout')
-        }
-        else{
+        } else {
           next()
         }
       }
@@ -33,10 +34,20 @@ const router = createRouter({
       component: LogoutView
     },
     {
+      path: '/graphs',
+      name: 'graphs',
+      component: GraphView
+    },
+    {
       path: '/trip/:id',
       name: 'tripDetail',
       component: TripDetail,
       props: true
+    },
+    {
+      path: '/:catchAll(.*)',
+      name: '404',
+      component: NotFoundView
     }
   ]
 })
@@ -54,30 +65,28 @@ function getCookie(name) {
 }
 
 router.beforeEach((to, from, next) => {
-  const token = getCookie('token')
-  if (token != null && token != 'null') {
-    console.log('token exists')
-    let config = {
-      method: 'get',
-      maxBodyLength: Infinity,
-      url: 'http://127.0.0.1:5000/verify',
-      headers: {
-        Authorization: 'Bearer ' + token
-      }
-    }
-    axios
-      .request(config)
-      
-      .then(() => {
-        next()
-      })
-      .catch(() => {
-        next('/login')
-      })
-  }
-  if(to.name === 'login') {
+  if (to.name === 'login') {
     next()
+    return
   }
+  const token = getCookie('token')
+  let config = {
+    method: 'get',
+    maxBodyLength: Infinity,
+    url: 'http://127.0.0.1:5000/verify',
+    headers: {
+      Authorization: 'Bearer ' + token
+    }
+  }
+  axios
+    .request(config)
+    .then(() => {
+      console.log(token)
+      next()
+    })
+    .catch(() => {
+      next('/login')
+    })
 })
 
 export default router

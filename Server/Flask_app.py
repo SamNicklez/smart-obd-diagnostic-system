@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from supabase import create_client, Client
+from datetime import datetime, timedelta
 
 import Helpers
 from Test_data import generate_car_info_json
@@ -364,6 +365,41 @@ def grab_current_trip():
         print(e)
         return jsonify({"Error": "Interal Server Error: " + str(e)}), 500
 
+@app.route('/grabGraphData', methods=["POST"])
+@token_auth.login_required
+def grab_graph_data():
+    try:
+        data = request.get_json()
+        start_date = data['start_date']
+        start_date_obj = datetime.strptime(start_date, "%m/%d/%Y") + timedelta(days=1)
+        end_date_obj = datetime.today()
+        db_start_date = start_date_obj.strftime("%Y-%m-%d")
+        db_end_date = end_date_obj.strftime("%Y-%m-%d")
+        response, _ = supabase.table('DrivingData').select("*").gte('timestamp', db_start_date).lte('timestamp', db_end_date).execute()
+        response = response[1]
+        return jsonify(response), 200
+    except Exception as e:
+        print(e)
+        return jsonify({"Error": "Internal Server Error: " + str(e)}), 500
+
+@app.route('/grabSpecificGraphData', methods=["POST"])
+@token_auth.login_required
+def grab_specific_graph_data():
+    try:
+        data = request.get_json()
+        start_date = data['start_date']
+        end_date = data['end_date']
+        start_date_obj = datetime.strptime(start_date, "%m/%d/%Y")
+        end_date_obj = datetime.strptime(end_date, "%m/%d/%Y")
+        db_start_date = start_date_obj.strftime("%Y-%m-%d")
+        db_end_date = end_date_obj.strftime("%Y-%m-%d")
+        response, _ = supabase.table('DrivingData').select("*").gte('timestamp', db_start_date).lte('timestamp', db_end_date).execute()
+        response = response[1]
+        response = Helpers.transform_graph_data(response, db_start_date, db_end_date)
+        return jsonify(response), 200
+    except Exception as e:
+        print(e)
+        return jsonify({"Error": "Internal Server Error: " + str(e)}), 500
 
 if __name__ == '__main__':
     # app.run(debug=True, port=5000, host='0.0.0.0')
