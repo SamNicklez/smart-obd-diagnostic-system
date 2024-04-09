@@ -1,15 +1,16 @@
 from GUI.LiveDataLayout import LiveDataLayout
 from kivy.uix.screenmanager import Screen
-from GUI.Screens.gauges import Gauges
+from GUI.Screens.DataDashboard import Dashboard
 
 # Screen containing the live data and settings button
 class MainScreen(Screen):
-    def __init__(self, gauges_screen, available_commands=[], **kwargs):
+    def __init__(self, dashboard, available_commands=[], **kwargs):
         super(MainScreen, self).__init__(**kwargs)
+        
         # Initialize the layout
         #self.layout = LiveDataLayout(available_commands=available_commands)
 
-        self.layout = gauges_screen
+        self.layout = dashboard
         # Add the layout as a widget
         self.add_widget(self.layout)
 
