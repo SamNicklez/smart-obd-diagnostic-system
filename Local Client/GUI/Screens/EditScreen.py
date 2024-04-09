@@ -7,6 +7,7 @@ from kivy.uix.label import Label
 from kivymd.app import MDApp
 from PrintInColor import printc
 from kivymd.uix.button import MDRaisedButton
+from kivy.core.window import Window
 
 
 class EditScreen(Screen):
@@ -15,27 +16,29 @@ class EditScreen(Screen):
 
         self.available_commands = []
         self.selections = {}
-        layout = BoxLayout(orientation='vertical')
+        layout = BoxLayout(orientation='vertical', size_hint=(1, 1))
 
         self.confirmation_callback = None
 
-        back_button = MDRaisedButton(text="Back to Main Screen", size_hint=(0.2, 0.1), pos_hint={'x': 0, 'top': 1})
-        back_button.bind(on_press=self.go_back)
+        back_button = MDRaisedButton(text="Back to Main Screen", size_hint=(1, None), height=50)
         layout.add_widget(back_button)
+        back_button.bind(on_press=self.go_back)
 
-        # Create a GridLayout with 2 rows and 3 columns
-        grid_layout = GridLayout(rows=3, cols=2, spacing=100, padding=10, size_hint_y=None)
-        grid_layout.bind(minimum_height=grid_layout.setter('height'))  # Make the grid adjust its height
+        # GridLayout adjustment for dynamic sizing
+        grid_layout = GridLayout(rows=3, cols=2, spacing=10, size_hint=(1, 1))
+        grid_layout.bind(minimum_height=grid_layout.setter('height'), minimum_width=grid_layout.setter('width'))
 
         # Dynamically create spinners for each component
         self.spinners = {}
         for i in range(1, 7):  # Assuming 3 labels and 3 gauges
-            component_label = Label(text=f'Component {i}', size_hint_y=None, height=30)
+            component_label = Label(text=f'Component {i}', size_hint=(1, None), height=30)
             component_spinner = Spinner(
                 text='Select Data Point',
                 values=self.available_commands,
-                size_hint=(1, None),  # Allow us to set specific size
+                size_hint=(1, 1),  # Allow us to set specific size
                 size=(420, 44),  # Specify the size of the spinner
+                height=44,
+                width=420,
                 background_color=MDApp.get_running_app().theme_cls.primary_color,
                 padding=100
             )
@@ -44,7 +47,7 @@ class EditScreen(Screen):
             self.spinners[f'data_point_{i}'] = component_spinner
 
             # Add each spinner and its label to the grid layout
-            spinner_box = BoxLayout(orientation='vertical', size_hint=(None, None), size=(420, 74))
+            spinner_box = BoxLayout(orientation='vertical', size_hint=(1, None), height=74)  # This box has a fixed height
             spinner_box.add_widget(component_label)
             spinner_box.add_widget(component_spinner)
             grid_layout.add_widget(spinner_box)
@@ -57,7 +60,7 @@ class EditScreen(Screen):
         #             size_hint=(1, .3),
         #         )
 
-        confirm_button = MDRaisedButton(text="Confirm Selections", size_hint=(1, 0.1), pos_hint={'center_x': 0.5})
+        confirm_button = MDRaisedButton(text="Confirm Selections", size_hint=(1, None), height=50)
         confirm_button.bind(on_press=self.confirm_selections)
         layout.add_widget(confirm_button)
 
@@ -66,6 +69,7 @@ class EditScreen(Screen):
         self.previous_label_selections = []
         self.previous_gauge_selections = []
         self.previous_selections = {}
+
 
         # Create the labels and the spinners
 
@@ -103,3 +107,4 @@ class EditScreen(Screen):
     def set_current_selections(self, current_selections):
         self.previous_selections = current_selections
         printc("LIVE DATA: Settings current selections", self.previous_selections)
+
