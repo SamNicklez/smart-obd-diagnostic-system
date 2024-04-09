@@ -34,7 +34,7 @@ class EditScreen(Screen):
             component_spinner = Spinner(
                 text='Select Data Point',
                 values=self.available_commands,
-                size_hint=(None, None),  # Allow us to set specific size
+                size_hint=(1, None),  # Allow us to set specific size
                 size=(420, 44),  # Specify the size of the spinner
                 background_color=MDApp.get_running_app().theme_cls.primary_color,
                 padding=100
