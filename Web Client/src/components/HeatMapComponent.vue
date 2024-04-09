@@ -6,6 +6,7 @@
     title-position="left"
     :attributes="attrs"
     style="min-height: 40vh"
+    :initial-page="{ month: new Date().getMonth() + 1, year: new Date().getFullYear() }"
   />
 </template>
 
@@ -34,8 +35,6 @@ export default {
       new Date().getMonth() + 1,
       0
     ).toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' })
-    console.log(startOfLastMonth)
-    console.log(endOfCurrentMonth)
     let data = JSON.stringify({
       start_date: startOfLastMonth,
       end_date: endOfCurrentMonth
@@ -56,15 +55,70 @@ export default {
       .request(config)
       .then((response) => {
         let attrs_new = []
-        for (let i = 0; i < response.data.length; i++) {
-          let date = new Date(response.data[i].timestamp)
-          console.log(date)
+        let sortedData = response.data.slice().sort((a, b) => a.avg_mpg - b.avg_mpg)
+
+        let top20PercentIndex = Math.floor(sortedData.length * 0.8)
+        let bottom20PercentIndex = Math.floor(sortedData.length * 0.2)
+
+        let good = sortedData.slice(top20PercentIndex)
+        let average = sortedData.slice(bottom20PercentIndex, top20PercentIndex)
+        let bad = sortedData.slice(0, bottom20PercentIndex)
+
+
+        for(let i = 0; i < good.length; i++) {
+          let date = new Date(good[i].timestamp)
           attrs_new.push({
-            content: 'red', 
-            highlight: true,
+            highlight: 'green',
             dates: date,
+            popover: {
+              label: 'Avg MPG: ' + good[i].avg_mpg,
+              visibility: 'focus'
+            }
           })
         }
+        for(let i = 0; i < average.length; i++) {
+          let date = new Date(average[i].timestamp)
+          attrs_new.push({
+            highlight: 'yellow',
+            dates: date,
+            popover: {
+              label: 'Avg MPG: ' + average[i].avg_mpg,
+              visibility: 'focus'
+            }
+          })
+        }
+        for(let i = 0; i < bad.length; i++) {
+          let date = new Date(bad[i].timestamp)
+          attrs_new.push({
+            highlight: 'red',
+            dates: date,
+            popover: {
+              label: 'Avg MPG: ' + bad[i].avg_mpg,
+              visibility: 'focus'
+            }
+          })
+        }
+
+        // for (let i = 0; i < response.data.length; i++) {
+        //   let date = new Date(response.data[i].timestamp)
+        //   console.log(response.data[i])
+        //   attrs_new.push({
+        //     highlight: 'red',
+        //     dates: date,
+        //     popover: {
+        //       label: 'HDJKFHSDKJ]\r\nFhdskjfhdkjs',
+        //       visibility: 'focus'
+        //     }
+        //   })
+        //   attrs_new.push({
+        //     highlight: 'red',
+        //     dates: date,
+        //     popover: {
+        //       label: 'HDJKFHSDKJ]\r\nFhdskjfhdkjs',
+        //       visibility: 'focus'
+        //     }
+        //   })
+        // }
         this.attrs = attrs_new
         this.finished = true
       })

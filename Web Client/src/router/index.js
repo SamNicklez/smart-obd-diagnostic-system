@@ -5,6 +5,7 @@ import LogoutView from '../views/LogoutView.vue'
 import axios from 'axios'
 import TripDetail from '@/views/TripDetailView.vue'
 import NotFoundView from '@/views/NotFound.vue'
+import GraphView from '@/views/GraphView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -31,6 +32,11 @@ const router = createRouter({
       path: '/logout',
       name: 'logout',
       component: LogoutView
+    },
+    {
+      path: '/graphs',
+      name: 'graphs',
+      component: GraphView
     },
     {
       path: '/trip/:id',

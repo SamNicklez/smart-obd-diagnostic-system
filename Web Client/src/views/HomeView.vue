@@ -14,7 +14,7 @@
     </v-row>
     <v-row>
       <v-col cols="12">
-        <v-card class="pa-4">
+        <v-card class="pa-4" style="max-width: 90vw; margin-left: 5vw;">
           <v-card-title class="headline mb-2">Your Recent Trips</v-card-title>  
           <TripsComponent />
         </v-card>
