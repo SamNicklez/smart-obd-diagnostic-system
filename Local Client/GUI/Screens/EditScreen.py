@@ -25,7 +25,7 @@ class EditScreen(Screen):
         back_button.bind(on_press=self.go_back)
 
         # GridLayout adjustment for dynamic sizing
-        grid_layout = GridLayout(rows=3, cols=2, spacing=(10, 100), size_hint=(1, 1))
+        grid_layout = GridLayout(rows=3, cols=2, spacing=(10, 50), size_hint=(1, 1))
         grid_layout.bind(minimum_height=grid_layout.setter('height'), minimum_width=grid_layout.setter('width'))
 
         # Dynamically create spinners for each component
@@ -33,6 +33,10 @@ class EditScreen(Screen):
         for i in range(1, 7):  # Assuming 3 labels and 3 gauges
             component_label = Label(text=f'Component {i}', size_hint=(1, None), height=30)
             #component_label = Label(text=f'Component {i}', size_hint_y=None, height=30)
+            # Adding navigation buttons
+            prev_button = Button(text="<", size_hint=(None, 1), width=30)
+            next_button = Button(text=">", size_hint=(None, 1), width=30)
+
             component_spinner = Spinner(
                 text='Select Data Point',
                 values=self.available_commands,
@@ -46,10 +50,20 @@ class EditScreen(Screen):
 
             self.spinners[f'data_point_{i}'] = component_spinner
 
+            prev_button.bind(on_press=lambda instance, s=component_spinner: self.navigate_spinner(s, -1))
+            next_button.bind(on_press=lambda instance, s=component_spinner: self.navigate_spinner(s, 1))
+
             # Add each spinner and its label to the grid layout
-            spinner_box = BoxLayout(orientation='vertical', size_hint=(1, None), height=74)  # This box has a fixed height
-            spinner_box.add_widget(component_label)
+            #spinner_box = BoxLayout(orientation='vertical', size_hint=(1, None), height=74)  # This box has a fixed height
+
+            #spinner_box.add_widget(component_spinner)
+
+            spinner_box = BoxLayout(orientation='horizontal', size_hint=(1, None), height=74)
+            spinner_box.add_widget(prev_button)
             spinner_box.add_widget(component_spinner)
+            spinner_box.add_widget(component_label)
+            spinner_box.add_widget(next_button)
+
             grid_layout.add_widget(spinner_box)
 
         layout.add_widget(grid_layout)
@@ -107,4 +121,11 @@ class EditScreen(Screen):
     def set_current_selections(self, current_selections):
         self.previous_selections = current_selections
         printc("LIVE DATA: Settings current selections", self.previous_selections)
+
+    # Navigation method for spinner
+    def navigate_spinner(self, spinner, direction):
+        if spinner.values:
+            current_index = spinner.values.index(spinner.text)
+            next_index = (current_index + direction) % len(spinner.values)
+            spinner.text = spinner.values[next_index]
 
