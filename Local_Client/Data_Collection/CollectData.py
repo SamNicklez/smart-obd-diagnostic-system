@@ -8,7 +8,7 @@ from datetime import datetime
 import mysql.connector
 import obd
 
-from Local_Client.PrintInColor import printc
+from PrintInColor import printc
 
 
 class DataCollector:

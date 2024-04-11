@@ -1,6 +1,6 @@
-from Local_Client.GUI.LiveDataLayout import LiveDataLayout
+from GUI.LiveDataLayout import LiveDataLayout
 from kivy.uix.screenmanager import Screen
-from Local_Client.GUI.Screens.DataDashboard import Dashboard
+from GUI.Screens.DataDashboard import Dashboard
 
 # Screen containing the live data and settings button
 class MainScreen(Screen):

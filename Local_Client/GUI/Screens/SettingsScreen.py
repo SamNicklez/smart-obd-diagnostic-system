@@ -4,9 +4,9 @@ from kivy.uix.label import Label
 from kivy.clock import Clock
 from kivy.uix.button import Button
 from kivy.uix.screenmanager import Screen
-from Local_Client.Data_Uploading.wifiConnection import check_internet_connection
-from Local_Client.GUI.Screens.WifiPopUp import AddWiFiPopup
-from Local_Client.Data_Uploading.uploadData import upload_data
+from Data_Uploading.wifiConnection import check_internet_connection
+from GUI.Screens.WifiPopUp import AddWiFiPopup
+from Data_Uploading.uploadData import upload_data
 #from Data_Uploading.uploadData import 
 from kivymd.uix.label import MDLabel
 from kivymd.uix.button import MDRaisedButton

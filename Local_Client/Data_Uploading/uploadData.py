@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 import random
 
 import mysql.connector
-from Local_Client.PrintInColor import printc
+from PrintInColor import printc
 import requests
 
 # Database connection configuration

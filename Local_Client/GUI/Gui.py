@@ -4,10 +4,10 @@ from kivy.uix.screenmanager import ScreenManager
 from kivy.config import Config
 Config.set('graphics', 'width', '800')
 Config.set('graphics', 'height', '480')
-from Local_Client.GUI.Screens.MainScreen import MainScreen
-from Local_Client.GUI.Screens.SettingsScreen import SettingsScreen
-from Local_Client.GUI.Screens.DataDashboard import Dashboard
-from Local_Client.GUI.Screens.EditScreen import EditScreen
+from GUI.Screens.MainScreen import MainScreen
+from GUI.Screens.SettingsScreen import SettingsScreen
+from GUI.Screens.DataDashboard import Dashboard
+from GUI.Screens.EditScreen import EditScreen
 from kivymd.app import MDApp
 from kivy.graphics import Color, Rectangle
 

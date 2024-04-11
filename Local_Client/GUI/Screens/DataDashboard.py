@@ -5,16 +5,16 @@ from kivy.uix.button import Button
 from kivy.uix.screenmanager import Screen
 from kivy.properties import ListProperty
 from kivy.app import App
-from Local_Client.GUI.gauge import Gauge
-from Local_Client.GUI.Screens import EditScreen
+from GUI.gauge import Gauge
+from GUI.Screens import EditScreen
 from itertools import islice
 from kivy.core.text import LabelBase
 from kivy.utils import get_color_from_hex
 from kivymd.uix.button import MDRaisedButton
-from Local_Client.Data_Collection.vinLookup import get_vehicle_info_by_vin
+from Data_Collection.vinLookup import get_vehicle_info_by_vin
 import re
-from Local_Client.Data_Uploading.wifiConnection import check_internet_connection
-from Local_Client.PrintInColor import printc
+from Data_Uploading.wifiConnection import check_internet_connection
+from PrintInColor import printc
 
 
 class Dashboard(Screen):
