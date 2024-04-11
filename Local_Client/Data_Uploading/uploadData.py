@@ -81,8 +81,6 @@ def send_data_to_server(data, token):
 
 
 def format_data(data):
-    # mock_timestamp = datetime.now()
-    mock_timestamp = datetime.now() - timedelta(days=18)
     return_data = []
     list_of_end_points = [("41.683430", "-91.562100"), ("41.703860", "-91.619360"),
                           ("41.646198", "-91.551003"), ("41.665890", "-91.471680"),
@@ -93,7 +91,7 @@ def format_data(data):
     random_end_point = random.choice(list_of_end_points)
     for i, row in enumerate(data):
         formatted_row = {
-            "timestamp": (mock_timestamp + timedelta(seconds=row['RUN_TIME'])).isoformat(),
+            "timestamp": row['timestamp'],
             "airflow_rate": row['MAF'],
             "speed": row['SPEED'],
             "relative_throttle_pos": row['RELATIVE_THROTTLE_POS'],

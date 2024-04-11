@@ -113,10 +113,11 @@ def convert_date(date):
     date_obj = datetime.strptime(date, '%m-%d-%Y')
     return date_obj.strftime('%Y-%m-%d')
 
+
 def transform_graph_data(data, start_date, end_date):
     start_date = datetime.strptime(start_date, '%Y-%m-%d')
     end_date = datetime.strptime(end_date, '%Y-%m-%d')
-    
+
     transformed_data = [
         {"name": "Average MPG", "data": []},
         {"name": "Runtime", "data": []},
@@ -127,7 +128,7 @@ def transform_graph_data(data, start_date, end_date):
     ]
 
     date_data_map = {item["timestamp"]: item for item in data}
-    
+
     current_date = start_date
     while current_date <= end_date:
         date_str = current_date.strftime('%Y-%m-%d')
@@ -144,7 +145,7 @@ def transform_graph_data(data, start_date, end_date):
         else:
             for i in range(5):
                 transformed_data[i]["data"].append(None)
-        
+
         current_date += timedelta(days=1)
 
     return transformed_data
