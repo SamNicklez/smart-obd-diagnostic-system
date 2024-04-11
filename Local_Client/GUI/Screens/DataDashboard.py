@@ -210,6 +210,7 @@ class Dashboard(Screen):
                 value for value in [Vin_info['Year'], Vin_info['Make'], Vin_info['Model']] if value)
             if len(formatted_string) != 0:
                 self.title_label.text = formatted_string
+                self.VIN_flag = True
 
         # Using the schedule_once to update all the necessary information
         Clock.schedule_once(lambda dt: self.update_data_labels(data))
