@@ -232,7 +232,6 @@ class DataCollector:
 
                 # Setting the supported commands by grabbing it from the current car
                 self.supported_commands = set(connection.supported_commands)  # Assuming connection is an OBD object
-                print(f"Supported commands: {self.supported_commands}")
                 self.filter_supported_commands()  # Calling the filtering method to set the filtered_commands variable
 
                 # Loop to collect data
@@ -297,7 +296,6 @@ class DataCollector:
             try:
                 printc("SENSOR: Attempting to connect to OBD-II sensor...")
                 connection = obd.OBD(self.portSelection, baudrate=115200)
-                print("Connections commands: ", connection.supported_commands)
                 if not connection.is_connected():
                     printc("SENSOR: Unable to connect, retrying...")
                     connection.close()
