@@ -10,7 +10,6 @@ db_config = {
     'user': 'test',
     'password': 'password',
     'host': 'localhost',
-    'port': '3307',
     'database': 'obd'
 }
 
