@@ -2,12 +2,14 @@ from datetime import datetime, timedelta
 
 
 def calculate_mpg(MAF, Speed):
+    if MAF == 0 or Speed == 0:
+        return 100
     """
     Calculates the miles per gallon (MPG) based on the Mass Air Flow (MAF) and Speed inputs.
 
     Args:
         MAF (float): Mass Air Flow in grams per second.
-        Speed (float): Speed in kilometers per hour.
+        Speed (float): Speed in miles per hour.
 
     Returns:
         float: Miles per gallon (MPG) value.
@@ -17,16 +19,14 @@ def calculate_mpg(MAF, Speed):
     GAS_DENSITY = 0.74  # Density of gasoline in kg/L
     GRAMS_PER_POUND = 453.592  # Grams per pound
     LITERS_PER_GALLON = 3.78541  # Liters per gallon
-    KM_PER_MILE = 1.60934  # Kilometers per mile
 
     # Convert MAF from grams per second to pounds per hour
     maf_lb_per_hr = float(MAF) * 3600 / GRAMS_PER_POUND
 
     # Calculate fuel consumption in gallons per hour
     fuel_consumption_gph = (maf_lb_per_hr / AFR) / (GAS_DENSITY * LITERS_PER_GALLON)
-    speed_mph = float(Speed) / KM_PER_MILE
 
-    mpg = round(speed_mph / fuel_consumption_gph, 2)
+    mpg = round(Speed / fuel_consumption_gph, 2)
 
     return mpg
 
@@ -102,7 +102,7 @@ def group_by_day(data):
     grouped_data = {}
     for item in data:
         day = datetime.fromisoformat(item['timestamp']).strftime('%m-%d-%Y')
-        if day in grouped_data:
+        if day in grouped_data.keys():
             grouped_data[day].append(item)
         else:
             grouped_data[day] = [item]
