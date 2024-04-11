@@ -18,7 +18,7 @@ class DataCollector:
         ## IF RUNNING IN CAR, USE THIS COMMAND FIRST: sudo rfcomm bind rfcomm0 00:1D:A5:05:A4:E3
         ############################################################################################################
         # Set this to true if running on the pi
-        isPi = False
+        isPi = True
         # Set this to true if running in the actual car
         isCar = False
 
@@ -211,7 +211,7 @@ class DataCollector:
 
         # Setting the port to select the emulator on pi, computer or the actual car
         if isPi:
-            self.portSelection = '/dev/pts/0'  # For running on windows
+            self.portSelection = '/dev/pts/4'  # For running on windows
         elif isCar:
             self.portSelection = '/dev/rfcomm0'
         else:

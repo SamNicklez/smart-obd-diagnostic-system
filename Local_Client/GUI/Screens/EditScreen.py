@@ -61,7 +61,7 @@ class EditScreen(Screen):
             spinner_box = BoxLayout(orientation='horizontal', size_hint=(1, None), height=74)
             spinner_box.add_widget(prev_button)
             spinner_box.add_widget(component_spinner)
-            spinner_box.add_widget(component_label)
+            #spinner_box.add_widget(component_label)
             spinner_box.add_widget(next_button)
 
             grid_layout.add_widget(spinner_box)
