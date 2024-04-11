@@ -195,7 +195,7 @@ def stage():
                     average_speed = data['avg_speed']
                 else:
                     average_speed = (sum(filtered_speed) + (data['avg_speed'] * data['num_entries'])) / (
-                                len(filtered_speed) + data['num_entries'])
+                            len(filtered_speed) + data['num_entries'])
 
                 filtered_runtime = [record['runtime'] for record in records if record['runtime'] != "None"]
                 if len(filtered_runtime) == 0:
@@ -232,19 +232,19 @@ def stage():
                     average_coolant_temp = data['avg_coolant_temp']
                 else:
                     average_coolant_temp = (sum(filtered_coolant_temp) + (
-                                data['avg_coolant_temp'] * data['num_entries'])) / (
-                                                       len(filtered_coolant_temp) + data['num_entries'])
+                            data['avg_coolant_temp'] * data['num_entries'])) / (
+                                                   len(filtered_coolant_temp) + data['num_entries'])
 
                 filtered_oil_temp = [record['oil_temp'] for record in records if record['oil_temp'] != "None"]
                 if len(filtered_oil_temp) == 0:
                     average_oil_temp = data['avg_oil_temp']
                 else:
                     average_oil_temp = (sum(filtered_oil_temp) + (data['avg_oil_temp'] * data['num_entries'])) / (
-                                len(filtered_oil_temp) + data['num_entries'])
+                            len(filtered_oil_temp) + data['num_entries'])
 
                 avg_mpg = round(
                     (sum([Helpers.calculate_mpg(record['airflow_rate'], record['speed']) for record in records]) + (
-                                data['avg_mpg'] * data['num_entries'])) / (len(records) + data['num_entries']), 2)
+                            data['avg_mpg'] * data['num_entries'])) / (len(records) + data['num_entries']), 2)
 
                 supabase.table('DrivingData').update(
                     {"num_entries": len(records) + data['num_entries'], "avg_speed": average_speed,
@@ -311,21 +311,21 @@ def test():
             else:
                 data, _ = supabase.table('DrivingData').select("*").eq('timestamp', day).execute()
                 average_speed = (sum(record['speed'] for record in records) + (
-                            data['avg_speed'] * data['num_entries'])) / (
+                        data['avg_speed'] * data['num_entries'])) / (
                                         len(records) + data['num_entries'])
                 total_runtime = max(record['runtime'] for record in records) + data['rumtime']
                 average_coolant_temp = (sum(record['coolant_temp'] for record in records) + (
-                            data['avg_coolant_temp'] * data['num_entries'])) / (
+                        data['avg_coolant_temp'] * data['num_entries'])) / (
                                                len(records) + data['num_entries'])
                 average_oil_temp = (sum(record['oil_temp'] for record in records) + (
-                            data['avg_oil_temp'] * data['num_entries'])) / (
+                        data['avg_oil_temp'] * data['num_entries'])) / (
                                            len(records) + data['num_entries'])
                 avg_mpg = round((sum(
                     Helpers.calculate_mpg(record['airflow_rate'], record['speed']) for record in records) + (data[
                                                                                                                  'avg_mpg'] *
                                                                                                              data[
                                                                                                                  'num_entries'])) / (
-                                            len(records) + data['num_entries']), 2)
+                                        len(records) + data['num_entries']), 2)
                 supabase.table('DrivingData').update(
                     {"num_entries": (len(records) + data['num_entries']), "avg_speed": average_speed,
                      "runtime": total_runtime, "avg_coolant_temp": average_coolant_temp,
