@@ -6,10 +6,11 @@ from kivy.uix.button import Button
 from kivy.uix.screenmanager import Screen
 from Data_Uploading.wifiConnection import check_internet_connection
 from GUI.Screens.WifiPopUp import AddWiFiPopup
-#from Data_Uploading.uploadData import 
+from Data_Uploading.uploadData import upload_data
 from kivymd.uix.label import MDLabel
 from kivymd.uix.button import MDRaisedButton
 from kivy.metrics import dp
+
 
 
 # Screen for settings
@@ -84,8 +85,7 @@ class SettingsScreen(Screen):
         print("DATABASE: Upload the Data")
         if check_internet_connection():
             print("INTERNET: Connected to the internet, ready to upload data")
-            # TODO Call the method to upload data to online database
-            pass
+            upload_data()
 
     def check_connection_status_threaded(self):
         if check_internet_connection():
