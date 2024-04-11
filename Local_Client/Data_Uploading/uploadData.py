@@ -18,12 +18,13 @@ db_config = {
 def get_token():
     try:
         response = requests.post(
-            # url="https://senior-design-final-project.onrender.com/login",
-            url="http://127.0.0.1:5000/login",
+            url="https://senior-design-final-project.onrender.com/login",
+            # url="http://127.0.0.1:5000/login",
             json={"username": "username", "password": "password"},
             headers={"Content-Type": "application/json"}
         )
         if response.status_code == 200:
+            print("got token")
             return response.json().get("token")
         else:
             print(f"Failed to get token: {response.status_code}")
@@ -64,8 +65,8 @@ def send_data_to_server(data, token):
 
     try:
         response = requests.post(
-            # url="https://senior-design-final-project.onrender.com/stage",
-            url="http://127.0.0.1:5000/stage",
+            url="https://senior-design-final-project.onrender.com/stage",
+            # url="http://127.0.0.1:5000/stage",
             json=data,
             headers={
                 "Content-Type": "application/json",
@@ -121,7 +122,7 @@ def format_data(data):
 
 def upload_data():
     token = get_token()
-    print(f"Token: {token}")
+    printc(f"Token: {token}")
     data = fetch_and_delete_data_from_database()
     data = format_data(data)
     printc(f"Data: {data}")

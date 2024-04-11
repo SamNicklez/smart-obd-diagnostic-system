@@ -17,7 +17,7 @@ class DataCollector:
         ## IF RUNNING IN CAR, USE THIS COMMAND FIRST: sudo rfcomm bind rfcomm0 00:1D:A5:05:A4:E3
         ############################################################################################################
         # Set this to true if running on the pi
-        isPi = False
+        isPi = True
         # Set this to true if running in the actual car
         isCar = False
 

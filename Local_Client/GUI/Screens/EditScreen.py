@@ -129,8 +129,19 @@ class EditScreen(Screen):
 
     # Navigation method for spinner
     def navigate_spinner(self, spinner, direction):
-        if spinner.values:
+        try:
             current_index = spinner.values.index(spinner.text)
+        except ValueError:
+            if direction > 0:
+                spinner.text = spinner.values[0]
+            else:
+                spinner.text = spinner.values[-1]
+
+        else:
             next_index = (current_index + direction) % len(spinner.values)
-            spinner.text = spinner.values[next_index]
+            spinner.text = spinner.values[next_index]                
+        # if spinner.values:
+        #     current_index = spinner.values.index(spinner.text)
+        #     next_index = (current_index + direction) % len(spinner.values)
+        #     spinner.text = spinner.values[next_index]
 
