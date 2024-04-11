@@ -7,7 +7,6 @@ from datetime import datetime
 
 import mysql.connector
 import obd
-
 from PrintInColor import printc
 
 
@@ -251,7 +250,7 @@ class DataCollector:
                             # Call the method to query the sensor 
                             command_output = self.log_command(command, connection)
                             output.append(command_output)  # add it to the output
-                            time.sleep(.001)  # Short delay between commands   
+                            time.sleep(.001)  # Short delay between commands
 
                     # Passing the data dictionary to the GUI if it calls for it
                     if self.update_gui_callback:
@@ -318,6 +317,7 @@ class DataCollector:
         if self.db_conn is not None and self.db_conn.is_connected():
             # Extract only the value part from each entry for insertion
             values = [val_dict['value'] for val_dict in self.data_dict.values()]
+
 
             # Make the SQL Queries
             columns = ', '.join([f"`{key}`" for key in self.data_dict.keys()])
