@@ -1,0 +1,3 @@
+[submodule "ELM327-emulator"]
+	path = ELM327-emulator
+	url = git@github.com:ColeArduser/ELM327-emulator.git

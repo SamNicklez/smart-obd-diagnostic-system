@@ -1,5 +1,3 @@
-
-@staticmethod
 def printc(*args):
     text = " ".join(str(arg) for arg in args)
     # Define ANSI color codes within the method
@@ -14,10 +12,10 @@ def printc(*args):
 
     # Identify the key phrase including the colon
     key_phrase = next((kp for kp in colors if text.startswith(kp)), None)
-        
+
     if key_phrase:
         # If a key phrase is found, print with the corresponding color
         print(f"{colors[key_phrase]}{text}{colors['reset']}")
     else:
         # If no key phrase is matched, print the text with the default color
-        print(text)    
+        print(text)

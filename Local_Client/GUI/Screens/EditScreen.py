@@ -1,14 +1,15 @@
-from kivy.uix.screenmanager import Screen
+from PrintInColor import printc
 from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.spinner import Spinner
 from kivy.uix.button import Button
 from kivy.uix.label import Label
-from PrintInColor import printc
+from kivy.uix.screenmanager import Screen
+from kivy.uix.spinner import Spinner
+
 
 class EditScreen(Screen):
     def __init__(self, **kwargs):
         super(EditScreen, self).__init__(**kwargs)
-        
+
         self.available_commands = []
         self.selections = {}
         layout = BoxLayout(orientation='vertical')
@@ -25,7 +26,7 @@ class EditScreen(Screen):
             if i <= 3:
                 component_label = Label(text=f'Label {i}', size_hint_y=None, height=30)
             else:
-                component_label = Label(text=f'Gauge {i-3}', size_hint_y=None, height=30)
+                component_label = Label(text=f'Gauge {i - 3}', size_hint_y=None, height=30)
             component_spinner = Spinner(
                 text='Select Data Point',
                 values=self.available_commands,
@@ -33,7 +34,7 @@ class EditScreen(Screen):
                 height=44
             )
             component_spinner.bind(text=self.on_spinner_select)
-            
+
             self.spinners[f'data_point_{i}'] = component_spinner
 
             layout.add_widget(component_label)
@@ -41,7 +42,7 @@ class EditScreen(Screen):
 
         confirm_button = Button(text="Confirm Selections", size_hint=(1, 0.1), pos_hint={'center_x': 0.5})
         confirm_button.bind(on_press=self.confirm_selections)
-        layout.add_widget(confirm_button)    
+        layout.add_widget(confirm_button)
 
         self.add_widget(layout)
 
@@ -52,8 +53,8 @@ class EditScreen(Screen):
         # Create the labels and the spinners
 
     def go_back(self, instance):
-        printc("GUI: Back to main screen")  
-        self.manager.current = 'main' 
+        printc("GUI: Back to main screen")
+        self.manager.current = 'main'
 
     def on_spinner_select(self, spinner, text):
         # Here you would handle the logic for when a selection is made, e.g., updating a model or setting
@@ -65,7 +66,7 @@ class EditScreen(Screen):
             spinner.values = data
 
     # Call a method to update the display with the new selected data
-            
+
     def confirm_selections(self, instance):
 
         # Assigning the new selections and setting them to the previous if not set by the user

@@ -1,5 +1,4 @@
 __pycache__/
-logs/
 elm.log*
 */venv/
 */.idea/

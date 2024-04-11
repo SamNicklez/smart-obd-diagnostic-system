@@ -1,16 +1,16 @@
-import kivy
+from os.path import join, dirname, abspath
+
 from kivy.app import App
 from kivy.clock import Clock
+from kivy.properties import BoundedNumericProperty
 from kivy.properties import NumericProperty
 from kivy.properties import StringProperty
-from kivy.properties import BoundedNumericProperty
 from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.widget import Widget
-from kivy.uix.scatter import Scatter
 from kivy.uix.image import Image
 from kivy.uix.label import Label
 from kivy.uix.progressbar import ProgressBar
-from os.path import join, dirname, abspath
+from kivy.uix.scatter import Scatter
+from kivy.uix.widget import Widget
 
 
 class Gauge(Widget):
