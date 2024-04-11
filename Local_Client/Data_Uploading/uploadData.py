@@ -1,9 +1,9 @@
-from datetime import datetime, timedelta
 import random
+from datetime import datetime
 
 import mysql.connector
-from PrintInColor import printc
 import requests
+from PrintInColor import printc
 
 # Database connection configuration
 db_config = {
