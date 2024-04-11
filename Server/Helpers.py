@@ -112,3 +112,39 @@ def group_by_day(data):
 def convert_date(date):
     date_obj = datetime.strptime(date, '%m-%d-%Y')
     return date_obj.strftime('%Y-%m-%d')
+
+def transform_graph_data(data, start_date, end_date):
+    start_date = datetime.strptime(start_date, '%Y-%m-%d')
+    end_date = datetime.strptime(end_date, '%Y-%m-%d')
+    
+    transformed_data = [
+        {"name": "Average MPG", "data": []},
+        {"name": "Runtime", "data": []},
+        {"name": "Average Coolant Temp", "data": []},
+        {"name": "Average Oil Temp", "data": []},
+        {"name": "Average Speed", "data": []},
+        {"name": "Dates", "data": []}
+    ]
+
+    date_data_map = {item["timestamp"]: item for item in data}
+    
+    current_date = start_date
+    while current_date <= end_date:
+        date_str = current_date.strftime('%Y-%m-%d')
+        date_append_str = current_date.strftime('%m-%d-%Y')
+        transformed_data[5]["data"].append(date_append_str)
+
+        item = date_data_map.get(date_str)
+        if item:
+            transformed_data[0]["data"].append(item.get("avg_mpg"))
+            transformed_data[1]["data"].append(item.get("runtime"))
+            transformed_data[2]["data"].append(item.get("avg_coolant_temp"))
+            transformed_data[3]["data"].append(item.get("avg_oil_temp"))
+            transformed_data[4]["data"].append(item.get("avg_speed"))
+        else:
+            for i in range(5):
+                transformed_data[i]["data"].append(None)
+        
+        current_date += timedelta(days=1)
+
+    return transformed_data

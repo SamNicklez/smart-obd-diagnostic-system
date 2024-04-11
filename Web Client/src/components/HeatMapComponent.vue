@@ -1,280 +1,131 @@
-<script>
-export default {
-    data() {
-        return {
-            series: [
-                {
-                    name: "",
-                    data: [{
-                        x: 'Sunday',
-                        y: -1,
-                        z: "",
-                    }, {
-                        x: 'Monday',
-                        y: 0,
-                        z: ""
-                    }, {
-                        x: 'Tuesday',
-                        y: 50,
-                        z: ""
-                    }, {
-                        x: 'Wednesday',
-                        y: 75,
-                        z: ""
-                    }, {
-                        x: 'Thursday',
-                        y: 100,
-                        z: ""
-                    }, {
-                        x: 'Friday',
-                        y: 29,
-                        z: ""
-                    }, {
-                        x: 'Saturday',
-                        y: 13,
-                        z: ""
-                    },]
-                },
-                {
-                    name: "",
-                    data: [{
-                        x: 'Sunday',
-                        y: 22,
-                        z: ""
-                    }, {
-                        x: 'Monday',
-                        y: 29,
-                        z: ""
-                    }, {
-                        x: 'Tuesday',
-                        y: 13,
-                        z: ""
-                    }, {
-                        x: 'Wednesday',
-                        y: 32,
-                        z: ""
-                    }, {
-                        x: 'Thursday',
-                        y: 22,
-                        z: ""
-                    }, {
-                        x: 'Friday',
-                        y: 29,
-                        z: ""
-                    }, {
-                        x: 'Saturday',
-                        y: 13,
-                        z: ""
-                    },]
-                },
-                {
-                    name: "",
-                    data: [{
-                        x: 'Sunday',
-                        y: 22,
-                        z: ""
-                    }, {
-                        x: 'Monday',
-                        y: 29,
-                        z: ""
-                    }, {
-                        x: 'Tuesday',
-                        y: 13,
-                        z: ""
-                    }, {
-                        x: 'Wednesday',
-                        y: 32,
-                        z: ""
-                    }, {
-                        x: 'Thursday',
-                        y: 22,
-                        z: ""
-                    }, {
-                        x: 'Friday',
-                        y: 29,
-                        z: ""
-                    }, {
-                        x: 'Saturday',
-                        y: 13,
-                        z: ""
-                    },]
-                },
-                {
-                    name: "",
-                    data: [{
-                        x: 'Sunday',
-                        y: 22,
-                        z: ""
-                    }, {
-                        x: 'Monday',
-                        y: 29,
-                        z: ""
-                    }, {
-                        x: 'Tuesday',
-                        y: 13,
-                        z: ""
-                    }, {
-                        x: 'Wednesday',
-                        y: 32,
-                        z: ""
-                    }, {
-                        x: 'Thursday',
-                        y: 22,
-                        z: ""
-                    }, {
-                        x: 'Friday',
-                        y: 29,
-                        z: ""
-                    }, {
-                        x: 'Saturday',
-                        y: 13,
-                        z: ""
-                    },]
-                },
-                {
-                    name: "",
-                    data: [{
-                        x: 'Sunday',
-                        y: 22,
-                        z: ""
-                    }, {
-                        x: 'Monday',
-                        y: 29,
-                        z: ""
-                    }, {
-                        x: 'Tuesday',
-                        y: 13,
-                        z: ""
-                    }, {
-                        x: 'Wednesday',
-                        y: 32,
-                        z: ""
-                    }, {
-                        x: 'Thursday',
-                        y: 22,
-                        z: ""
-                    }, {
-                        x: 'Friday',
-                        y: 29,
-                        z: ""
-                    }, {
-                        x: 'Saturday',
-                        y: 13,
-                        z: ""
-                    },]
-                },
-
-            ],
-            chartOptions: {
-                chart: {
-                    type: 'heatmap',
-                },
-                plotOptions: {
-                    heatmap: {
-                        shadeIntensity: 0.5,
-                        radius: 1,
-                        colorScale: {
-                            ranges: [
-                                {
-                                    from: -1,
-                                    to: -1,
-                                    color: '#808080', // Making squares with -1 appear as spacers
-                                    name: 'No Data'
-                                },
-                                {
-                                    from: 0,
-                                    to: 40,
-                                    name: 'Poor Gas Mileage',
-                                    color: '#B81B0E'
-                                },
-                                {
-                                    from: 41,
-                                    to: 70,
-                                    name: 'Average Gas Mileage',
-                                    color: '#F7B500'
-                                },
-                                {
-                                    from: 71,
-                                    to: 100,
-                                    name: 'Good Gas Mileage',
-                                    color: '#57E964'
-                                }]
-                        }
-                    }
-                },
-                dataLabels: {
-                    enabled: true,
-                    formatter: function (val, opts) {
-                        return opts.w.config.series[opts.seriesIndex].data[opts.dataPointIndex].z
-                    },
-                },
-                colors: ["#008FFB"],
-                title: {
-                    text: 'Driving Efficiency for the Month',
-                },
-                xaxis: {
-                    type: 'category',
-                },
-            },
-        }
-    },
-    mounted() {
-        this.generateDataForCurrentMonth()
-    },
-    methods: {
-        generateDataForCurrentMonth() {
-            const now = new Date();
-            const year = now.getFullYear();
-            const month = now.getMonth();
-
-            // Find the first and last day of the month
-            const firstDayDate = new Date(year, month, 2);
-            const lastDayDate = new Date(year, month + 1, 0); // 0th day of next month is the last day of the current month
-
-            const daysInMonth = lastDayDate.getDate();
-            const firstDayOfWeek = firstDayDate.getDay(); // Day of week the month starts on
-
-            // Calculate total slots based on starting day of the week (assuming Sunday is the start of the week)
-            const totalSlots = firstDayOfWeek + daysInMonth;
-
-            // Initialize the array with -1 for non-existing days
-            const monthArray = new Array(totalSlots).fill(-1);
-            // Fill the actual days with random numbers
-            for (let i = firstDayOfWeek; i < totalSlots; i++) {
-                monthArray[i] = Math.floor(Math.random() * 100) + 1;
-            }
-            var row = 0
-            var day = 1
-            for (var i = 4; i > -1; i--) {
-                if (i == 4) {
-                    row = 1
-                }
-                else {
-                    row += 7
-                }
-                for (var j = 0; j < 7; j++) {
-                    if (monthArray[row + j] == -1) {
-                        this.series[i].data[j].y = -1
-                    }
-                    else {
-                        this.series[i].data[j].y = monthArray[row + j]
-                        this.series[i].data[j].z = day
-                        day++
-                    }
-                }
-            }
-        },
-    }
-}
-</script>
-
 <template>
-    <div>
-        <v-card>
-            <apexchart type="heatmap" height="400" :options="chartOptions" :series="series"></apexchart>
-        </v-card>
-    </div>
+  <VCalendar
+    v-if="finished"
+    borderless
+    expanded
+    title-position="left"
+    :attributes="attrs"
+    style="min-height: 40vh"
+    :initial-page="{ month: new Date().getMonth() + 1, year: new Date().getFullYear() }"
+  />
 </template>
 
-<style>
-</style>
+<script>
+import axios from 'axios'
+import { useCookies } from 'vue3-cookies'
+export default {
+  setup() {
+    const { cookies } = useCookies()
+    return { cookies }
+  },
+  data() {
+    return {
+      attrs: [],
+      finished: false
+    }
+  },
+  created() {
+    let startOfLastMonth = new Date(
+      new Date().getFullYear(),
+      new Date().getMonth() - 1,
+      1
+    ).toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' })
+    let endOfCurrentMonth = new Date(
+      new Date().getFullYear(),
+      new Date().getMonth() + 1,
+      0
+    ).toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' })
+    let data = JSON.stringify({
+      start_date: startOfLastMonth,
+      end_date: endOfCurrentMonth
+    })
+
+    let config = {
+      method: 'POST',
+      maxBodyLength: Infinity,
+      url: 'http://127.0.0.1:5000/grabGraphData',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + this.cookies.get('token')
+      },
+      data: data
+    }
+
+    axios
+      .request(config)
+      .then((response) => {
+        let attrs_new = []
+        let sortedData = response.data.slice().sort((a, b) => a.avg_mpg - b.avg_mpg)
+
+        let top20PercentIndex = Math.floor(sortedData.length * 0.8)
+        let bottom20PercentIndex = Math.floor(sortedData.length * 0.2)
+
+        let good = sortedData.slice(top20PercentIndex)
+        let average = sortedData.slice(bottom20PercentIndex, top20PercentIndex)
+        let bad = sortedData.slice(0, bottom20PercentIndex)
+
+
+        for(let i = 0; i < good.length; i++) {
+          let date = new Date(good[i].timestamp)
+          attrs_new.push({
+            highlight: 'green',
+            dates: date,
+            popover: {
+              label: 'Avg MPG: ' + good[i].avg_mpg,
+              visibility: 'focus'
+            }
+          })
+        }
+        for(let i = 0; i < average.length; i++) {
+          let date = new Date(average[i].timestamp)
+          attrs_new.push({
+            highlight: 'yellow',
+            dates: date,
+            popover: {
+              label: 'Avg MPG: ' + average[i].avg_mpg,
+              visibility: 'focus'
+            }
+          })
+        }
+        for(let i = 0; i < bad.length; i++) {
+          let date = new Date(bad[i].timestamp)
+          attrs_new.push({
+            highlight: 'red',
+            dates: date,
+            popover: {
+              label: 'Avg MPG: ' + bad[i].avg_mpg,
+              visibility: 'focus'
+            }
+          })
+        }
+
+        // for (let i = 0; i < response.data.length; i++) {
+        //   let date = new Date(response.data[i].timestamp)
+        //   console.log(response.data[i])
+        //   attrs_new.push({
+        //     highlight: 'red',
+        //     dates: date,
+        //     popover: {
+        //       label: 'HDJKFHSDKJ]\r\nFhdskjfhdkjs',
+        //       visibility: 'focus'
+        //     }
+        //   })
+        //   attrs_new.push({
+        //     highlight: 'red',
+        //     dates: date,
+        //     popover: {
+        //       label: 'HDJKFHSDKJ]\r\nFhdskjfhdkjs',
+        //       visibility: 'focus'
+        //     }
+        //   })
+        // }
+        this.attrs = attrs_new
+        this.finished = true
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  },
+  methods: {}
+}
+</script>

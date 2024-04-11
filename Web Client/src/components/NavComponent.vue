@@ -6,6 +6,7 @@
         <v-btn text to="/" variant="plain" class="button">OBD Viewer</v-btn>
       </v-toolbar-title>
       <v-btn @click="openLogin">Login</v-btn>
+      <v-btn @click="openGraphs">Graphs</v-btn>
       <v-menu transition="scale-transition" :close-on-content-click="false">
         <template v-slot:activator="{ props }">
           <v-btn icon @click="populateNotifications" v-bind="props">
@@ -58,16 +59,13 @@ export default {
   },
   methods: {
     /**
-     * Perform a search
-     */
-    performSearch() {
-      this.$router.push(`/search/${this.searchQuery}`)
-    },
-    /**
      * Open the login page
      */
     openLogin() {
       this.$router.push('/login')
+    },
+    openGraphs() {
+      this.$router.push('/graphs')
     },
     /**
      * Populates the notifications
@@ -94,8 +92,8 @@ export default {
             this.notifications = response.data[1]
           }
         })
-        .catch((error) => {
-          console.log(error)
+        .catch(() => {
+          this.notifications = []
         })
     },
     /**
