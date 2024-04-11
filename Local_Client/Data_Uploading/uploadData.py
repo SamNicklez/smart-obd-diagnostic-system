@@ -1,7 +1,9 @@
+import random
 from datetime import datetime
 
 import mysql.connector
 import requests
+from PrintInColor import printc
 
 # Database connection configuration
 db_config = {
@@ -30,20 +32,25 @@ def get_token():
     return None
 
 
-def fetch_data_from_database():
+def fetch_and_delete_data_from_database():
     data = []
     try:
         db_conn = mysql.connector.connect(**db_config)
         db_cursor = db_conn.cursor(dictionary=True)
-        query = "SELECT * FROM VehicleData"  # Adjust the query as needed
-        db_cursor.execute(query)
+        db_conn.start_transaction()
 
+        select_query = "SELECT * FROM VehicleData"
+        db_cursor.execute(select_query)
         for row in db_cursor:
-            # Convert datetime objects to strings
             for key, value in row.items():
                 if isinstance(value, datetime):
                     row[key] = value.isoformat()
             data.append(row)
+
+        delete_query = "DELETE FROM VehicleData"
+        db_cursor.execute(delete_query)
+
+        db_conn.commit()
 
         db_cursor.close()
         db_conn.close()
@@ -54,12 +61,11 @@ def fetch_data_from_database():
 
 
 def send_data_to_server(data, token):
-    print(data)
-    print(token)
+
     try:
         response = requests.post(
             # url="https://senior-design-final-project.onrender.com/stage",
-            url="http://localhost/stage",
+            url="http://127.0.0.1:5000/stage",
             json=data,
             headers={
                 "Content-Type": "application/json",
@@ -76,7 +82,14 @@ def send_data_to_server(data, token):
 
 def format_data(data):
     return_data = []
-    for row in data:
+    list_of_end_points = [("41.683430", "-91.562100"), ("41.703860", "-91.619360"),
+                          ("41.646198", "-91.551003"), ("41.665890", "-91.471680"),
+                          ("41.725360", "-91.519960"), ("41.698840", "-91.565990"),
+                          ("41.697731", "-91.525510"), ("41.721920", "-91.525510"),
+                          ("41.663880", "-91.530370"), ("41.659290", "-91.505840"),
+                          ("41.651409", "-91.500900"), ("41.646969", "-91.532738")]
+    random_end_point = random.choice(list_of_end_points)
+    for i, row in enumerate(data):
         formatted_row = {
             "timestamp": row['timestamp'],
             "airflow_rate": row['MAF'],
@@ -99,8 +112,8 @@ def format_data(data):
             "engine_load": row['ENGINE_LOAD'],
             "dtc": row['GET_DTC'] if row['GET_DTC'] else "None",
             "current_dtc": row['GET_CURRENT_DTC'] if row['GET_CURRENT_DTC'] else "None",
-            "latitude": "76.34",
-            "longitude": "52.65"
+            "latitude": "41.658200" if i != len(data) - 1 else random_end_point[0],
+            "longitude": "-91.533460" if i != len(data) - 1 else random_end_point[1],
         }
         return_data.append(formatted_row)
     return return_data
@@ -109,9 +122,9 @@ def format_data(data):
 def upload_data():
     token = get_token()
     print(f"Token: {token}")
-    data = fetch_data_from_database()
+    data = fetch_and_delete_data_from_database()
     data = format_data(data)
-    print(f"Data: {data}")
+    printc(f"Data: {data}")
     if data:
         send_data_to_server(data, token)
     else:

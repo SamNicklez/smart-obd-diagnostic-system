@@ -1,24 +1,21 @@
+import re
+
+from Data_Collection.vinLookup import get_vehicle_info_by_vin
+from Data_Uploading.wifiConnection import check_internet_connection
+from GUI.gauge import Gauge
+from PrintInColor import printc
+from kivy.app import App
+from kivy.clock import Clock
+from kivy.properties import ListProperty
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.label import Label
-from kivy.clock import Clock
-from kivy.uix.button import Button
 from kivy.uix.screenmanager import Screen
-from kivy.properties import ListProperty
-from kivy.app import App
-from GUI.gauge import Gauge
-from GUI.Screens import EditScreen
-from itertools import islice
-from kivy.core.text import LabelBase
-from kivy.utils import get_color_from_hex
 from kivymd.uix.button import MDRaisedButton
-from Data_Collection.vinLookup import get_vehicle_info_by_vin
-import re
-from Data_Uploading.wifiConnection import check_internet_connection
-from PrintInColor import printc
 
 
 class Dashboard(Screen):
     available_commands = ListProperty([])
+
     def __init__(self, edit_screen, **kwargs):
         super(Dashboard, self).__init__(**kwargs)
 
@@ -35,9 +32,10 @@ class Dashboard(Screen):
         # Main layout
         main_layout = FloatLayout()
 
-        self.gauges = [] # List of the three gauges
+        self.gauges = []  # List of the three gauges
 
-        self.data = [] # actual data grabbed from the Data Collector
+        self.data = []  # actual data grabbed from the Data Collector
+        self.VIN_flag = False
 
         # Back Button to return to the main screen
         back_button = MDRaisedButton(
@@ -73,7 +71,7 @@ class Dashboard(Screen):
         # Set the number of gauges on the dashboard
         self.numGauges = len(gauge_info)
 
-        self.gauge_labels = [] # Labels for the gauges
+        self.gauge_labels = []  # Labels for the gauges
 
         # Creating and adding gauges to the layout
         for info in gauge_info:
@@ -96,18 +94,20 @@ class Dashboard(Screen):
             )
             label.pos_hint = {'center_x': info['pos_hint']['x'] + 0.12, 'y': label_pos_y}
             self.gauge_labels.append(label)
-            main_layout.add_widget(label) 
+            main_layout.add_widget(label)
 
         self.data_labels = []  # List to hold references to the data labels
 
-        self.data_title_labels = [] # List to hold references to the titles of the data points
+        self.data_title_labels = []  # List to hold references to the titles of the data points
 
         # dictionary of the current selections being shown on the screen
-        self.current_selections = {'data_point_1': "Coolant Temp", 'data_point_2': "RPM", 'data_point_3': "Speed", 'data_point_4': "Engine Load", 'data_point_5': "Relative Throttle Position", 'data_point_6': "Speed"}
+        self.current_selections = {'data_point_1': "Coolant Temp", 'data_point_2': "RPM", 'data_point_3': "Speed",
+                                   'data_point_4': "Engine Load", 'data_point_5': "Relative Throttle Position",
+                                   'data_point_6': "Speed"}
 
-        self.data_label_points = [] # List of the actual data from the selected data points
+        self.data_label_points = []  # List of the actual data from the selected data points
 
-        self.available_dict = {} # dictionary of available commands along with their names and units
+        self.available_dict = {}  # dictionary of available commands along with their names and units
 
         # Make some labels for text print outs of the data
         data_title_positions = [
@@ -130,7 +130,7 @@ class Dashboard(Screen):
             {'center_x': 0.82, 'top': 0.65}
         ]
 
-        self.numDataLabels = len(data_label_positions) # varaible for how many data readouts there are on the dashboard
+        self.numDataLabels = len(data_label_positions)  # varaible for how many data readouts there are on the dashboard
 
         # Positions for the labels with the actual data printed out
         for pos_hint in data_label_positions:
@@ -140,7 +140,8 @@ class Dashboard(Screen):
             self.add_widget(data_label)  # Add the label to the main layout
 
         # Add a title label
-        self.title_label = Label(text="2017 Chevrolet Silverado", size_hint=(None, None), size=('100dp', '20dp'), font_size='32')
+        self.title_label = Label(text="2017 Chevrolet Silverado", size_hint=(None, None), size=('100dp', '20dp'),
+                                 font_size='32')
         self.title_label.pos_hint = {'x': 0.5, 'top': .95}
         self.add_widget(self.title_label)
 
@@ -152,16 +153,17 @@ class Dashboard(Screen):
     # Method to switch to the settings screen
     def settings(self, instance):
         printc("GUI: Switched to Settings")
-        App.get_running_app().root.current = 'settings' 
+        App.get_running_app().root.current = 'settings'
 
-    # Method for updating the gauges on the screen
+        # Method for updating the gauges on the screen
+
     def update_gauge(self, data):
         printc("GUI: Updating Gauges")
         i = 1
         # Loop through the gauges and update their values and labels
         for gauge in self.gauges:
-            name = self.current_selections["data_point_" + str(i+self.numGauges)]
-            data_point = self.find_command_by_name(name) 
+            name = self.current_selections["data_point_" + str(i + self.numGauges)]
+            data_point = self.find_command_by_name(name)
             value = data.get(data_point, {'value': 'Not available', 'unit': ''})
             unit = value['unit']
             value = value['value']
@@ -175,7 +177,7 @@ class Dashboard(Screen):
     # Method for updating the data labels on the dashboard
     def update_data_labels(self, data):
         printc("GUI: Updating Data Readouts")
-        #print("LIVE DATA: Current Selections: " + str(self.current_selections))
+        # print("LIVE DATA: Current Selections: " + str(self.current_selections))
 
         # Iterate through the data readouts and update their labels and readouts
         for key in list(self.current_selections.keys())[:self.numDataLabels]:
@@ -190,43 +192,42 @@ class Dashboard(Screen):
 
     # Method for the edit button
     def on_edit_press(self, instance):
-        printc("GUI: Switch to Edit Screen")  
-        App.get_running_app().root.current = 'edit'  
+        printc("GUI: Switch to Edit Screen")
+        App.get_running_app().root.current = 'edit'
 
-    # Method that is called from the DataCollector to give the GUI new data
+        # Method that is called from the DataCollector to give the GUI new data
+
     def update_data(self, data):
-        self.data = data # set the updated data
+        self.data = data  # set the updated data
+        if 'VIN' in data and check_internet_connection() and not self.VIN_flag:
+            vin = self.data['VIN']['value']
+            match = re.search(r"bytearray\(b'(.*)'\)", vin)
+            vin = match.group(1)
+            vin = "1" + vin
+            print("VIN: " + vin)
+            Vin_info = get_vehicle_info_by_vin(vin)
+            formatted_string = " ".join(
+                value for value in [Vin_info['Year'], Vin_info['Make'], Vin_info['Model']] if value)
+            if len(formatted_string) != 0:
+                self.title_label.text = formatted_string
+                self.VIN_flag = True
 
         # Using the schedule_once to update all the necessary information
-        Clock.schedule_once(lambda dt: self.update_data_labels(data))  
+        Clock.schedule_once(lambda dt: self.update_data_labels(data))
 
-    # Method for updating the available commands shown in the spinners
+        # Method for updating the available commands shown in the spinners
+
     def update_available_commands(self, new_commands):
         printc("LIVE DATA: Updating Available Commands", [cmd for cmd in new_commands])
-        
+
         # Set the class attribute to the entire dictionary
         self.available_dict = new_commands
 
         # Extracting the list of command names from the dictionary
-        self.available_command_names = [cmd_info['name'] for cmd_key, cmd_info in new_commands.items()] 
+        self.available_command_names = [cmd_info['name'] for cmd_key, cmd_info in new_commands.items()]
 
         # updating the available commands to choose from in the edit screen
         self.edit_screen.update_available_commands(self.available_command_names)
-
-
-        # Edit the title if we have the VIN
-        if check_internet_connection():
-            vin = self.data['VIN']['value']
-            match = re.search(r"bytearray\(b'(.*)'\)", vin)
-            vin = match.group(1)
-            print("VIN: " + vin)
-            vin = "1C4NJDCB6CD508767" # Take this out if using an actual car
-            Vin_info = get_vehicle_info_by_vin(vin)
-            formatted_string = " ".join(value for value in [Vin_info['Year'], Vin_info['Make'], Vin_info['Model']] if value)
-            print(formatted_string)
-            if len(formatted_string) != 0:
-                self.title_label.text = formatted_string
-        
 
     # Method that returns the command of a data point from an inputted name
     def find_command_by_name(self, name_to_find):
@@ -234,18 +235,18 @@ class Dashboard(Screen):
             if cmd_details["name"] == name_to_find:
                 return cmd_details["command"]
         return None  # Return None if no matching name is found
-    
+
     # Method that returns the command of a data point from an inputted command
     def find_name_by_command(self, command_to_find):
         for cmd_key, cmd_info in self.available_dict.items():
             if cmd_info["command"] == command_to_find:
                 return cmd_info["name"]
         return None  # Return None if no matching command is found   
-    
+
     # Method for handling new selections made from the edit screen
     def handle_new_selections(self, selections):
         printc("GUI: New Selections Receieved: ", selections)
-        
+
         # Update the current selections
         self.current_selections = dict(selections.items())
 

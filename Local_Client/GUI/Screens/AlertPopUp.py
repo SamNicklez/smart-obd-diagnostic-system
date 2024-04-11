@@ -1,8 +1,9 @@
-from kivy.uix.modalview import ModalView
-from kivy.uix.button import Button
-from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.label import Label
 from kivy.clock import Clock
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.button import Button
+from kivy.uix.label import Label
+from kivy.uix.modalview import ModalView
+
 
 class AlertPopup(ModalView):
     def __init__(self, message, **kwargs):
@@ -20,8 +21,10 @@ class AlertPopup(ModalView):
 
         self.add_widget(layout)
 
+
 def show_popup_main_thread(message):
     def show_popup(dt):
         popup = AlertPopup(message)
         popup.open()
+
     Clock.schedule_once(show_popup)

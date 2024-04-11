@@ -4,14 +4,12 @@
     <v-card-text>
       <v-list dense>
         <v-list-item v-for="item in stats" :key="item.title">
-          <v-row align="center" no-gutters>
+          <v-row no-gutters>
             <v-col cols="auto" class="mr-2">
               <v-icon :color="item.color">{{ item.icon }}</v-icon>
             </v-col>
             <v-col>
-              <v-list-item-content>
                 <v-list-item-title>{{ item.title }}</v-list-item-title>
-              </v-list-item-content>
             </v-col>
           </v-row>
         </v-list-item>
@@ -22,7 +20,12 @@
 
 <script>
 import axios from 'axios'
+import { useCookies } from 'vue3-cookies'
 export default {
+  setup() {
+    const { cookies } = useCookies()
+    return { cookies }
+  },
   name: 'MonthlyStatsCard',
   data() {
     return {
@@ -42,7 +45,7 @@ export default {
       url: 'http://127.0.0.1:5000/grabCurrentData',
       headers: {
         Authorization:
-          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MX0.tjVEMiS5O2yNzclwLdaZ-FuzrhyqOT7UwM9Hfc0ZQ8Q'
+          'Bearer ' + this.cookies.get('token')
       }
     }
 
