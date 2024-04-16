@@ -65,9 +65,9 @@ class Dashboard(Screen):
 
         # Define gauge labels and positions
         gauge_info = [
-            {"label": "Gauge 1", "pos_hint": {'x': 0.05, 'y': 0.02}},
-            {"label": "Gauge 2", "pos_hint": {'x': 0.375, 'y': 0.02}},
-            {"label": "Gauge 3", "pos_hint": {'x': 0.7, 'y': 0.02}}
+            {"label": "Gauge 1", "pos_hint": {'x': 0.10, 'y': 0.02}},  # Adjusted from 0.05 to 0.10
+            {"label": "Gauge 2", "pos_hint": {'x': 0.375, 'y': 0.02}},  # Kept as is
+            {"label": "Gauge 3", "pos_hint": {'x': 0.65, 'y': 0.02}}  # Adjusted from 0.7 to 0.65
         ]
 
         # Set the number of gauges on the dashboard
@@ -113,9 +113,9 @@ class Dashboard(Screen):
 
         # Creating labels for displaying data points
         data_title_positions = [
-            {'center_x': 0.17, 'top': 0.65},  # Adjusted from 0.72 to 0.65 to move title below data
-            {'center_x': 0.495, 'top': 0.65},
-            {'center_x': 0.82, 'top': 0.65}
+            {'center_x': 0.2, 'top': 0.65},  # Adjusted from 0.72 to 0.65 to move title below data
+            {'center_x': 0.48, 'top': 0.65},
+            {'center_x': 0.76, 'top': 0.65}
         ]
 
         # Creating labels for displaying data points
@@ -127,9 +127,9 @@ class Dashboard(Screen):
 
         # Positions for the data name labels
         data_label_positions = [
-            {'center_x': 0.17, 'top': 0.72},  # Adjusted from 0.65 to 0.72 to move data above title
-            {'center_x': 0.495, 'top': 0.72},
-            {'center_x': 0.82, 'top': 0.72}
+            {'center_x': 0.2, 'top': 0.72},  # Adjusted from 0.65 to 0.72 to move data above title
+            {'center_x': 0.48, 'top': 0.72},
+            {'center_x': 0.76, 'top': 0.72}
         ]
 
         self.numDataLabels = len(data_label_positions)  # Variable for how many data readouts there are on the dashboard
