@@ -94,7 +94,7 @@ class Dashboard(Screen):
                 font_size='24sp',  # Use 'sp' to respect user's font size preference
                 color=(1, 1, 1, 1),  # Use a white color for the font for contrast
             )
-            label.pos_hint = {'center_x': info['pos_hint']['x'] + 0.12, 'y': label_pos_y}
+            label.pos_hint = {'center_x': info['pos_hint']['x'] + 0.15, 'y': label_pos_y}
             self.gauge_labels.append(label)
             main_layout.add_widget(label)
 
