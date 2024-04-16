@@ -111,11 +111,11 @@ class Dashboard(Screen):
 
         self.available_dict = {}  # dictionary of available commands along with their names and units
 
-        # Make some labels for text print outs of the data
+        # Creating labels for displaying data points
         data_title_positions = [
-            {'center_x': 0.17, 'top': 0.72},
-            {'center_x': 0.495, 'top': 0.72},
-            {'center_x': 0.82, 'top': 0.72}
+            {'center_x': 0.17, 'top': 0.65},  # Adjusted from 0.72 to 0.65 to move title below data
+            {'center_x': 0.495, 'top': 0.65},
+            {'center_x': 0.82, 'top': 0.65}
         ]
 
         # Creating labels for displaying data points
@@ -127,12 +127,12 @@ class Dashboard(Screen):
 
         # Positions for the data name labels
         data_label_positions = [
-            {'center_x': 0.17, 'top': 0.65},
-            {'center_x': 0.495, 'top': 0.65},
-            {'center_x': 0.82, 'top': 0.65}
+            {'center_x': 0.17, 'top': 0.72},  # Adjusted from 0.65 to 0.72 to move data above title
+            {'center_x': 0.495, 'top': 0.72},
+            {'center_x': 0.82, 'top': 0.72}
         ]
 
-        self.numDataLabels = len(data_label_positions)  # varaible for how many data readouts there are on the dashboard
+        self.numDataLabels = len(data_label_positions)  # Variable for how many data readouts there are on the dashboard
 
         # Positions for the labels with the actual data printed out
         for pos_hint in data_label_positions:
