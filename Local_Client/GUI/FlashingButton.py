@@ -2,6 +2,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.clock import Clock
 from kivymd.uix.button import MDRaisedButton
 from kivymd.uix.dialog import MDDialog
+from kivy.uix.label import Label
 
 # Define the FlashingButton class
 class FlashingButton(MDRaisedButton):
@@ -11,6 +12,8 @@ class FlashingButton(MDRaisedButton):
         self.condition = True  # This will start the button flashing immediately
         self.flash_event = Clock.schedule_interval(self.update_flash, 1)  # Flash every second
         self.dialog = None  # Initialize dialog attribute
+        self.engine_code = None
+        self.engine_explanation = None
 
     def update_flash(self, dt):
         if self.condition:
@@ -23,15 +26,21 @@ class FlashingButton(MDRaisedButton):
             self.md_bg_color = self.theme_cls.primary_color  # Reset to default theme color
 
     def on_press(self):
-        # Display a Popup on button press
+        # If you have the engine code and explanation ready, you can directly set them
+        self.engine_code = "P0301"  # Example engine code
+        self.engine_explanation = "Cylinder 1 Misfire Detected"  # Example explanation
         self.show_alert_dialog()
 
     def show_alert_dialog(self):
+        dialog_title = f"Engine Code: {self.engine_code} - {self.engine_explanation}"
+
         if not self.dialog:
             self.dialog = MDDialog(
-                title="Menu",
+                title=dialog_title,
                 type="custom",
                 content_cls=BoxLayout(orientation='vertical'),
+                size_hint=(0.8, None),
+                height="200dp",  # Adjust the height as needed to fit your content
                 buttons=[
                     MDRaisedButton(
                         text="Close",
@@ -39,7 +48,12 @@ class FlashingButton(MDRaisedButton):
                     ),
                 ],
             )
+        else:
+            # If the dialog already exists, just update the title
+            self.dialog.title = dialog_title
         self.dialog.open()
 
     def close_dialog(self, *args):
-        self.dialog.dismiss()
+        if self.dialog:
+            self.dialog.dismiss()
+
