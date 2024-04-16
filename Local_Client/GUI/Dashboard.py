@@ -1,6 +1,7 @@
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
+from FlashingButton import FlashingButton
 
 class DashboardApp(App):
     def build(self):
@@ -11,6 +12,8 @@ class DashboardApp(App):
         speed_section = BoxLayout(size_hint=(1, None), height=50)  # Customize the height as needed
         speed_label = Label(text='Speed: 0 km/h')
         speed_section.add_widget(speed_label)
+
+
 
         # Temperature section
         temperature_section = BoxLayout(size_hint=(1, None), height=50)  # Customize the height as needed

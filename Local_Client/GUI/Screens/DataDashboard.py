@@ -11,6 +11,8 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.label import Label
 from kivy.uix.screenmanager import Screen
 from kivymd.uix.button import MDRaisedButton
+from GUI.FlashingButton import FlashingButton
+
 
 
 class Dashboard(Screen):
@@ -97,6 +99,9 @@ class Dashboard(Screen):
             label.pos_hint = {'center_x': info['pos_hint']['x'] + 0.15, 'y': label_pos_y}
             self.gauge_labels.append(label)
             main_layout.add_widget(label)
+
+            flash_button = FlashingButton(text='Alert', size_hint=(None, None), size=(200, 50))
+            main_layout.add_widget(flash_button)  # Assuming you want to add it to the main screen
 
         self.data_labels = []  # List to hold references to the data labels
 
