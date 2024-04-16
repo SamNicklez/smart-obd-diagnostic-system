@@ -81,7 +81,7 @@ class Gauge(Widget):
         pivot_x = self._needle.center_x
         pivot_y = self._needle.center_y
 
-        self._glab.center_x = pivot_x + 10
+        self._glab.center_x = pivot_x 
 
         # self._glab.center_x = self._gauge.center_x
         # self._glab.center_y = self._gauge.center_y + 10
