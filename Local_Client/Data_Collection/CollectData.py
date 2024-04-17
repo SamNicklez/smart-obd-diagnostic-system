@@ -9,7 +9,6 @@ import mysql.connector
 import obd
 from PrintInColor import printc
 
-
 class DataCollector:
     def __init__(self, update_gui_callback=None):
 
@@ -175,13 +174,12 @@ class DataCollector:
         else:
             # Database connection configuration
             db_config = {
-                'user': 'root',
+                'user': 'sloecke',
                 'password': 'password',
                 'host': 'localhost',
-                'database': 'obd',
-                'port': '3307'
+                'database': 'obd'
             }
-
+        
         # Connect to the database
         try:
             self.db_conn = mysql.connector.connect(**db_config)
@@ -211,7 +209,7 @@ class DataCollector:
 
         # Setting the port to select the emulator on pi, computer or the actual car
         if isPi:
-            self.portSelection = '/dev/pts/0'  # For running on windows
+            self.portSelection = '/dev/pts/4'  # For running on windows
         elif isCar:
             self.portSelection = '/dev/rfcomm0'
         else:
@@ -235,9 +233,9 @@ class DataCollector:
 
                 # Loop to collect data
                 while self.keep_running:
-                    if not connection.is_connected():  # or not check_engine_on(): Use this with the real car to stop collection when it shuts off
+                    if not connection.is_connected() or not self.check_engine_on(): # Use this with the real car to stop collection when it shuts off
                         printc("SENSOR: Lost connection to OBDII sensor or engine turned off. Exiting...")
-                        break  # Exit the loop if connection is lost or engine is off
+                        self.stop_collection()  # Exit the loop if connection is lost or engine is off
 
                     output = ["OBD Data Logging:"]
 
@@ -364,7 +362,7 @@ class DataCollector:
             # Here's the key change: Ensure value is converted to a basic data type
             if hasattr(response.value, 'magnitude') and hasattr(response.value, 'units'):
                 # Convert to float if it has magnitude; it's likely a numeric value
-                processed_value = float(value)
+                processed_value = round(float(value), 2)
             else:
                 # Fallback: Convert directly to string
                 processed_value = str(response.value)
@@ -393,6 +391,17 @@ class DataCollector:
                 return cmd_details["command"]
         return None  # Return None if no matching name is found
 
+    def check_engine_on(self):
+        #return True
+        if 'RPM' in self.data_dict:
+            rpms = self.data_dict['RPM']['value']
+            printc("LIVE DATA: " + str(rpms))
+            if rpms < 100:
+                return False
+            else:
+                return True
+        else:
+            return True
 
 # Other functions that do not need to be in the class
 

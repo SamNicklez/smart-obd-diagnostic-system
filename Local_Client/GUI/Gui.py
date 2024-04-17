@@ -4,6 +4,7 @@ from kivy.uix.screenmanager import ScreenManager
 
 Config.set('graphics', 'width', '800')
 Config.set('graphics', 'height', '480')
+#Config.set('graphics', 'fullscreen', 1)
 from GUI.Screens.MainScreen import MainScreen
 from GUI.Screens.SettingsScreen import SettingsScreen
 from GUI.Screens.DataDashboard import Dashboard
