@@ -228,7 +228,7 @@ class Dashboard(Screen):
         printc("LIVE DATA: GET_DTC " + str(get_dtc))
 
         if get_dtc is not None and len(get_dtc) > 2 and self.dtc_count != len(get_dtc):
-            self.show_alert_popup("DTC Detected " + " Codes: " + get_dtc)
+            #self.show_alert_popup("DTC Detected " + " Codes: " + get_dtc)
             self.dtc_count = len(get_dtc)
             printc("LIVE DATA: DTC DETECTED!!!!!")
             # TODO do whatever we are going to do to alert the user that there is a dtc present

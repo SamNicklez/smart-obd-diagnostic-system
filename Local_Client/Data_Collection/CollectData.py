@@ -395,8 +395,8 @@ class DataCollector:
         #return True
         if 'RPM' in self.data_dict:
             rpms = self.data_dict['RPM']['value']
-            printc("LIVE DATA: " + str(rpms))
             if rpms < 100:
+                printc("LIVE DATA: " + str(rpms) + ". RPMs too low, shutting off....")
                 return False
             else:
                 return True
