@@ -12,6 +12,7 @@ from kivy.uix.label import Label
 from kivy.uix.screenmanager import Screen
 from kivymd.uix.button import MDRaisedButton
 from GUI.FlashingButton import FlashingButton
+import ast
 
 
 
@@ -100,8 +101,9 @@ class Dashboard(Screen):
             self.gauge_labels.append(label)
             main_layout.add_widget(label)
 
-            flash_button = FlashingButton(text='Alert', size_hint=(None, None), size=(200, 50))
-            main_layout.add_widget(flash_button)  # Assuming you want to add it to the main screen
+
+        self.flash_button = FlashingButton(text='Alert', size_hint=(None, None), size=(200, 50))
+        main_layout.add_widget(self.flash_button)  # Assuming you want to add it to the main screen
 
         self.data_labels = []  # List to hold references to the data labels
 
@@ -233,16 +235,33 @@ class Dashboard(Screen):
         printc("LIVE DATA: GET_DTC " + str(get_dtc))
 
         if get_dtc is not None and len(get_dtc) > 2 and self.dtc_count != len(get_dtc):
-            #self.show_alert_popup("DTC Detected " + " Codes: " + get_dtc)
             self.dtc_count = len(get_dtc)
-            printc("LIVE DATA: DTC DETECTED!!!!!")
-            # TODO do whatever we are going to do to alert the user that there is a dtc present
+            self.flash_button.set_dtc_state(True)
+            printc("LIVE DATA: New DTC Detected!")
+
+            # Parsing the GET_DTC string to get the code and description
+            dtc_list = ast.literal_eval(get_dtc)
+            codes = []
+            descriptions = []
+
+            # set the code and description for the GUI
+            for code_tuple in dtc_list:
+                codes.append(code_tuple[0])
+                descriptions.append(code_tuple[1])
+            
+            # set the code and description for the GUI
+            self.flash_button.set_engine_codes(codes, descriptions)
+
+            printc("LIVE DATA: CODE: " + str(codes) + " Description: " + str(descriptions))
+
             # TODO also show a severity for the engine code
 
-        elif get_dtc is not None and len(get_dtc) <= 2 and self.dtc_count != 0:
+        elif get_dtc is not None and len(get_dtc) <= 2 and self.dtc_count != 0: # All DTCs Cleared
             self.dtc_count = 0
-            # TODO do whatever we are going to do to alert the user that the dtc is cleared
-            printc("LIVE DATA: DTC CLEARED!!!!!")
+
+            # Change the alerts since the DTC is cleared
+            self.flash_button.set_dtc_state(False)
+            printc("LIVE DATA: DTC Cleared!")
 
     # Method for updating the available commands shown in the spinners
     def update_available_commands(self, new_commands):

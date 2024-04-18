@@ -174,10 +174,9 @@ class DataCollector:
         else:
             # Database connection configuration
             db_config = {
-                'user': 'test',
+                'user': 'sloecke',
                 'password': 'password',
                 'host': 'localhost',
-                'port': '3308',
                 'database': 'obd'
             }
         
@@ -349,6 +348,10 @@ class DataCollector:
                 unit = str(response.value.units) if hasattr(response.value, 'units') else ""
 
             unit = self.available_commands[command.name]['unit']
+
+            if command.name == 'GET_DTC':
+                # TODO Process out the get dtc into two seperate values for the data base
+                pass
 
             # Editing the units to be better
             if command.name == 'SPEED':
