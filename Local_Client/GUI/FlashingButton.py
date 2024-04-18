@@ -57,3 +57,22 @@ class FlashingButton(MDRaisedButton):
         if self.dialog:
             self.dialog.dismiss()
 
+    def set_engine_code(self, code, explanation):
+        """Sets the engine code and its explanation."""
+        self.engine_code = code
+        self.engine_explanation = explanation
+        # Update the dialog title if the dialog exists
+        if self.dialog:
+            self.dialog.title = self._generate_dialog_title()
+
+    def set_flashing(self, flashing):
+        """Enables or disables flashing."""
+        self.condition = flashing
+        # If flashing should stop, reset the button color
+        if not flashing:
+            self.md_bg_color = self.theme_cls.primary_color
+
+    def _generate_dialog_title(self):
+        """Generates the dialog title based on the engine code and explanation."""
+        return f"Engine Code: {self.engine_code} - {self.engine_explanation}"
+

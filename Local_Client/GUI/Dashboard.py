@@ -30,6 +30,7 @@ class DashboardApp(App):
         main_layout.add_widget(temperature_section)
         main_layout.add_widget(third_section)
 
+
         return main_layout
 
 if __name__ == '__main__':

@@ -279,3 +279,7 @@ class Dashboard(Screen):
         self.current_selections = dict(selections.items())
 
         printc("GUI: Current Selections Updated: " + str(self.current_selections))
+
+
+
+
