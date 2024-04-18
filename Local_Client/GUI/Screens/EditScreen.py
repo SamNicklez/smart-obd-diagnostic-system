@@ -129,8 +129,20 @@ class EditScreen(Screen):
 
     # Navigation method for spinner
     def navigate_spinner(self, spinner, direction):
-        if spinner.values:
+        # First, ensure there are available values to navigate through
+        if not spinner.values:  # Check if the list is empty
+            printc("No values loaded in spinner yet.")  # Optional: Inform the user, or log
+            return  # Exit the method as there's nothing to navigate
+
+        try:
             current_index = spinner.values.index(spinner.text)
+        except ValueError:
+            # If current text is not in values, we set a default based on available actions
+            if direction > 0 and spinner.values:
+                spinner.text = spinner.values[0]  # Go to the first item if moving next
+            elif spinner.values:
+                spinner.text = spinner.values[-1]  # Go to the last item if moving previous
+        else:
             next_index = (current_index + direction) % len(spinner.values)
             spinner.text = spinner.values[next_index]
 
