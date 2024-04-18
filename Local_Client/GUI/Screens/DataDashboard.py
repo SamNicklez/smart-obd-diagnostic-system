@@ -1,5 +1,4 @@
 import re
-
 from Data_Collection.vinLookup import get_vehicle_info_by_vin
 from Data_Uploading.wifiConnection import check_internet_connection
 from GUI.gauge import Gauge
@@ -14,8 +13,6 @@ from kivymd.uix.button import MDRaisedButton
 from GUI.FlashingButton import FlashingButton
 import ast
 
-
-
 class Dashboard(Screen):
     available_commands = ListProperty([])
 
@@ -29,7 +26,7 @@ class Dashboard(Screen):
         # Set a reference to the edit screen to be able to get the user's selections
         self.edit_screen = edit_screen
 
-        self.dtc_count = 0
+        self.dtc_count = 0 # count for how many dtcs are present
 
         # set a callback function for the edit screen class to use to update the dashboard
         self.edit_screen.confirmation_callback = self.handle_new_selections
@@ -47,8 +44,6 @@ class Dashboard(Screen):
             text="Settings",
             size_hint=(0.2, 0.1),
             pos_hint={'x': 0, 'top': 1},
-            # Optional: specify a specific color with get_color_from_hex
-            # md_bg_color=get_color_from_hex("#your_hex_color_here"),
             elevation=8  # Adjust the shadow size
         )
         back_button.bind(on_press=self.settings)
@@ -59,8 +54,6 @@ class Dashboard(Screen):
             text="Edit",
             size_hint=(.1, .1),
             pos_hint={'x': .9, 'top': 1},
-            # Optional: specify a specific color with get_color_from_hex
-            # md_bg_color=get_color_from_hex("#your_hex_color_here"),
             elevation=8  # Adjust the shadow size
         )
         edit_button.bind(on_press=self.on_edit_press)  # Bind the on_edit_press method to handle button press
@@ -274,7 +267,8 @@ class Dashboard(Screen):
         self.available_command_names = [cmd_info['name'] for cmd_key, cmd_info in new_commands.items()]
 
         # updating the available commands to choose from in the edit screen
-        self.edit_screen.update_available_commands(self.available_command_names)
+        # self.edit_screen.update_available_commands(self.available_command_names)
+        self.edit_screen.update_available_commands(self.available_dict)
 
     # Method that returns the command of a data point from an inputted name
     def find_command_by_name(self, name_to_find):

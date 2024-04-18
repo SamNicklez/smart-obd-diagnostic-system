@@ -15,6 +15,7 @@ class EditScreen(Screen):
         super(EditScreen, self).__init__(**kwargs)
 
         self.available_commands = []
+        self.available_dict = {}
         self.selections = {}
         layout = BoxLayout(orientation='vertical', size_hint=(1, 1))
 
@@ -96,9 +97,14 @@ class EditScreen(Screen):
         printc(f'LIVE DATA: Selected {text} for {spinner}')
 
     def update_available_commands(self, data):
-        self.available_commands = data
+        self.available_dict = data
+
+        self.available_commands = [cmd_info['name'] for cmd_key, cmd_info in data.items()]
+
+        printc("LIVE DATA: " + str(self.available_commands))
+
         for spinner in self.spinners.values():
-            spinner.values = data
+            spinner.values = self.available_commands
 
     # Call a method to update the display with the new selected data
             
@@ -109,10 +115,12 @@ class EditScreen(Screen):
             if spinner.text != 'Select Data Point':
                 # TODO check if a gauge value is being set to a string value
                 printc("LIVE DATA: ", name)
-                if int(name[-1]) > 3:
-                     # TODO this means its a gauge
-                    pass
-                self.selections[name] = spinner.text
+                if int(name[-1]) > 3 and self.find_unit_by_name(spinner.text) == "":
+                    # TODO tell the user that you cant set the gauge to this data point
+                    print("Tried to set a gauge to a string value")
+                    self.selections[name] = self.previous_selections[name]
+                else:
+                    self.selections[name] = spinner.text
             else:
                 self.selections[name] = self.previous_selections[name]
 
@@ -146,3 +154,8 @@ class EditScreen(Screen):
             next_index = (current_index + direction) % len(spinner.values)
             spinner.text = spinner.values[next_index]
 
+    def find_unit_by_name(self, search_name):
+        for key, details in self.available_dict.items():
+            if details['name'] == search_name:
+                return details['unit']
+        return None 
