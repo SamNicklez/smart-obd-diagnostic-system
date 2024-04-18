@@ -11,6 +11,8 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.label import Label
 from kivy.uix.screenmanager import Screen
 from kivymd.uix.button import MDRaisedButton
+from GUI.FlashingButton import FlashingButton
+
 
 
 class Dashboard(Screen):
@@ -65,9 +67,9 @@ class Dashboard(Screen):
 
         # Define gauge labels and positions
         gauge_info = [
-            {"label": "Gauge 1", "pos_hint": {'x': 0.05, 'y': 0.02}},
-            {"label": "Gauge 2", "pos_hint": {'x': 0.375, 'y': 0.02}},
-            {"label": "Gauge 3", "pos_hint": {'x': 0.7, 'y': 0.02}}
+            {"label": "Gauge 1", "pos_hint": {'x': 0.03, 'y': 0.02}},  # Adjusted from 0.05 to 0.10
+            {"label": "Gauge 2", "pos_hint": {'x': 0.35, 'y': 0.02}},  # Kept as is
+            {"label": "Gauge 3", "pos_hint": {'x': 0.68, 'y': 0.02}}  # Adjusted from 0.7 to 0.65
         ]
 
         # Set the number of gauges on the dashboard
@@ -94,9 +96,12 @@ class Dashboard(Screen):
                 font_size='24sp',  # Use 'sp' to respect user's font size preference
                 color=(1, 1, 1, 1),  # Use a white color for the font for contrast
             )
-            label.pos_hint = {'center_x': info['pos_hint']['x'] + 0.12, 'y': label_pos_y}
+            label.pos_hint = {'center_x': info['pos_hint']['x'] + 0.15, 'y': label_pos_y}
             self.gauge_labels.append(label)
             main_layout.add_widget(label)
+
+            flash_button = FlashingButton(text='Alert', size_hint=(None, None), size=(200, 50))
+            main_layout.add_widget(flash_button)  # Assuming you want to add it to the main screen
 
         self.data_labels = []  # List to hold references to the data labels
 
@@ -111,11 +116,11 @@ class Dashboard(Screen):
 
         self.available_dict = {}  # dictionary of available commands along with their names and units
 
-        # Make some labels for text print outs of the data
+        # Creating labels for displaying data points
         data_title_positions = [
-            {'center_x': 0.17, 'top': 0.72},
-            {'center_x': 0.495, 'top': 0.72},
-            {'center_x': 0.82, 'top': 0.72}
+            {'center_x': 0.18, 'top': 0.65},  # Adjusted from 0.72 to 0.65 to move title below data
+            {'center_x': 0.51, 'top': 0.65},
+            {'center_x': 0.83, 'top': 0.65}
         ]
 
         # Creating labels for displaying data points
@@ -127,12 +132,12 @@ class Dashboard(Screen):
 
         # Positions for the data name labels
         data_label_positions = [
-            {'center_x': 0.17, 'top': 0.65},
-            {'center_x': 0.495, 'top': 0.65},
-            {'center_x': 0.82, 'top': 0.65}
+            {'center_x': 0.18, 'top': 0.72},  # Adjusted from 0.65 to 0.72 to move data above title
+            {'center_x': 0.51, 'top': 0.72},
+            {'center_x': 0.83, 'top': 0.72}
         ]
 
-        self.numDataLabels = len(data_label_positions)  # varaible for how many data readouts there are on the dashboard
+        self.numDataLabels = len(data_label_positions)  # Variable for how many data readouts there are on the dashboard
 
         # Positions for the labels with the actual data printed out
         for pos_hint in data_label_positions:
@@ -274,3 +279,7 @@ class Dashboard(Screen):
         self.current_selections = dict(selections.items())
 
         printc("GUI: Current Selections Updated: " + str(self.current_selections))
+
+
+
+

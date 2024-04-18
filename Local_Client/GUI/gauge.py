@@ -54,7 +54,7 @@ class Gauge(Widget):
         )
 
         self._glab = Label(font_size=self.size_text, markup=True)
-        self._progress = ProgressBar(max=100, height=20, value=self.value)
+
 
         self._gauge.add_widget(_img_gauge)
         self._needle.add_widget(_img_needle)
@@ -62,7 +62,7 @@ class Gauge(Widget):
         self.add_widget(self._gauge)
         self.add_widget(self._needle)
         self.add_widget(self._glab)
-        self.add_widget(self._progress)
+
 
         self.bind(pos=self._update)
         self.bind(size=self._update)
@@ -75,11 +75,19 @@ class Gauge(Widget):
         self._gauge.pos = self.pos
         self._needle.pos = (self.x, self.y)
         self._needle.center = self._gauge.center
-        self._glab.center_x = self._gauge.center_x
-        self._glab.center_y = self._gauge.center_y + (self.size_gauge / 4)
-        self._progress.x = self._gauge.x
-        self._progress.y = self._gauge.y + (self.size_gauge / 4)
-        self._progress.width = self.size_gauge
+        # self._glab.center_x = self._gauge.center_x
+        # self._glab.center_y = self._gauge.center_y + (self.size_gauge / 4)
+
+        pivot_x = self._needle.center_x
+        pivot_y = self._needle.center_y
+
+        self._glab.center_x = pivot_x 
+
+        # self._glab.center_x = self._gauge.center_x
+        # self._glab.center_y = self._gauge.center_y + 10
+        # self._progress.x = self._gauge.x
+        # self._progress.y = self._gauge.y + (self.size_gauge / 4)
+        # self._progress.width = self.size_gauge
 
     def _turn(self, *args):
         '''
@@ -89,7 +97,7 @@ class Gauge(Widget):
         self._needle.center_y = self._gauge.center_y
         self._needle.rotation = (50 * self.unit) - (self.value * self.unit)
         self._glab.text = "[b]{0:.0f}[/b]".format(self.value)
-        self._progress.value = self.value
+
 
 
 if __name__ == '__main__':
@@ -104,7 +112,6 @@ if __name__ == '__main__':
         def build(self):
             box = BoxLayout(orientation='horizontal', padding=5)
             self.gauge = Gauge(value=50, size_gauge=256, size_text=25)
-            self.slider = Slider(orientation='vertical')
 
             stepper = Slider(min=1, max=25)
             stepper.bind(
@@ -113,7 +120,7 @@ if __name__ == '__main__':
 
             box.add_widget(self.gauge)
             box.add_widget(stepper)
-            box.add_widget(self.slider)
+
             Clock.schedule_interval(lambda *t: self.gauge_increment(), 0.03)
             return box
 
@@ -121,7 +128,7 @@ if __name__ == '__main__':
             begin = self.begin
             begin += self.step * self.increasing
             if 0 < begin < 100:
-                self.gauge.value = self.slider.value = begin
+                self.gauge.value = begin
             else:
                 self.increasing *= -1
             self.begin = begin
