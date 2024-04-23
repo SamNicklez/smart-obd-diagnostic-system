@@ -73,32 +73,32 @@ def post_car_details():
         return jsonify({"Error": "Interal Server Error: " + str(e)}), 500
 
 
-@app.route("/grabOBDData", methods=["GET"])
-@token_auth.login_required
-def grab_obd_data():
-    try:
-        response = supabase.table('OBDData').select("*").execute()
-        return jsonify(response), 200
-    except Exception as e:
-        return jsonify({"Error": "Internal Server Error: " + str(e)}), 500
+# @app.route("/grabOBDData", methods=["GET"])
+# @token_auth.login_required
+# def grab_obd_data():
+#     try:
+#         response = supabase.table('OBDData').select("*").execute()
+#         return jsonify(response), 200
+#     except Exception as e:
+#         return jsonify({"Error": "Internal Server Error: " + str(e)}), 500
 
 
-@app.route("/postOBDData", methods=["POST"])
-@token_auth.login_required
-def post_obd_data():
-    try:
-        data = request.get_json()
-        response = supabase.table('OBD').insert(data).execute()
-        return jsonify(response), 200
-    except Exception as e:
-        return jsonify({"Error": "Interal Server Error: " + str(e)}), 500
+# @app.route("/postOBDData", methods=["POST"])
+# @token_auth.login_required
+# def post_obd_data():
+#     try:
+#         data = request.get_json()
+#         response = supabase.table('DTC').insert(data).execute()
+#         return jsonify(response), 200
+#     except Exception as e:
+#         return jsonify({"Error": "Interal Server Error: " + str(e)}), 500
 
 
 @app.route("/grabNotifications", methods=["GET"])
 @token_auth.login_required
 def grab_notifications():
     try:
-        response, _ = supabase.table('OBD').select("*").eq('dismissed', False).execute()
+        response, _ = supabase.table('DTC').select("*").eq('dismissed', False).execute()
         return jsonify(response), 200
     except Exception as e:
         print(e)
@@ -110,8 +110,8 @@ def grab_notifications():
 def dismiss_notification():
     try:
         data = request.get_json()
-        response = supabase.table('OBD').update({"dismissed": True}).eq('obd_id', data['obd_id']).execute()
-        return jsonify(response), 200
+        supabase.table('DTC').update({"dismissed": True}).eq('code', data['code']).execute()
+        return jsonify("Success"), 200
     except Exception as e:
         return jsonify({"Error": "Interal Server Error: " + str(e)}), 500
 
@@ -450,7 +450,7 @@ def grab_specific_graph_data():
         return jsonify({"Error": "Internal Server Error: " + str(e)}), 500
     
 @app.route('/getAllDTC', methods=['GET'])
-# @token_auth.login_required
+@token_auth.login_required
 def get_all_dtcs():
     data = supabase.table('DTC').select('*').execute()
     if data.data:
@@ -470,27 +470,6 @@ def get_all_dtcs():
         return jsonify(results), 200
     else:
         return jsonify({"error": "No DTC codes found in the database"}), 404
-
-@app.route('/getNewDTC', methods=['GET'])
-def get_active_dtcs():
-    data = supabase.table('OBD').select('*').eq('dismissed', False).execute()
-    if data.data:
-        results = []
-        for db_entry in data.data:
-            code = db_entry['code']
-            result = dtc_data[dtc_data['code'] == code]
-            if not result.empty:
-                info = {
-                    "Code": code,
-                    "Date": db_entry['date'],
-                    "Description": result['description'].values[0],
-                    "Symptoms": result['symptoms'].values[0],
-                    "Causes": result['causes'].values[0]
-                }
-                results.append(info)
-        return jsonify(results), 200
-    else:
-        return jsonify({"error": "No active DTC codes found in the database"}), 404
 
 if __name__ == '__main__':
     # app.run(debug=True, port=5000, host='0.0.0.0')

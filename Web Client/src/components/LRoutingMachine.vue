@@ -1,96 +1,96 @@
 <script>
-import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
-import L from "leaflet";
-import "leaflet-routing-machine";
+import 'leaflet-routing-machine/dist/leaflet-routing-machine.css'
+import L from 'leaflet'
+import 'leaflet-routing-machine'
 
 const props = {
   mapObject: {
-    type: Object,
+    type: Object
   },
   visible: {
     type: Boolean,
-    default: true,
+    default: true
   },
   waypoints: {
     type: Array,
-    required: true,
+    required: true
   },
   router: {
-    type: L.IRouter,
+    type: L.IRouter
   },
   plan: {
-    type: L.Routing.Plan,
+    type: L.Routing.Plan
   },
   geocoder: {
-    type: L.IGeocoder,
+    type: L.IGeocoder
   },
   fitSelectedRoutes: {
     type: [String, Boolean],
-    default: "smart",
+    default: 'smart'
   },
   lineOptions: {
-    type: L.LineOptions,
+    type: L.LineOptions
   },
   routeLine: {
-    type: Function,
+    type: Function
   },
   autoRoute: {
     type: Boolean,
-    default: true,
+    default: true
   },
   routeWhileDragging: {
     type: Boolean,
-    default: false,
+    default: false
   },
   routeDragInterval: {
     type: Number,
-    default: 500,
+    default: 500
   },
   waypointMode: {
     type: String,
-    default: "connect",
+    default: 'connect'
   },
   useZoomParameter: {
     type: Boolean,
-    default: false,
+    default: false
   },
   showAlternatives: {
     type: Boolean,
-    default: false,
+    default: false
   },
   altLineOptions: {
-    type: L.LineOptions,
-  },
-};
+    type: L.LineOptions
+  }
+}
 
 export default {
   props,
-  name: "LRoutingMachine",
+  name: 'LRoutingMachine',
   data() {
     return {
       ready: false,
       map: null,
-      layer: null,
-    };
+      layer: null
+    }
   },
   watch: {
     mapObject() {
       if (this.mapObject == null) {
-        return;
+        return
       }
-      this.add();
-    },
+      this.add()
+    }
   },
   mounted() {
-    this.add();
+    this.add()
   },
   beforeUnmount() {
-    return this.layer ? this.layer.remove() : null;
+    return this.layer ? this.layer.remove() : null
   },
   methods: {
     add() {
       if (this.mapObject == null) {
-        return;
+        return
       }
 
       const {
@@ -101,8 +101,8 @@ export default {
         routeDragInterval,
         waypointMode,
         useZoomParameter,
-        showAlternatives,
-      } = this;
+        showAlternatives
+      } = this
 
       const options = {
         waypoints,
@@ -112,15 +112,15 @@ export default {
         routeDragInterval,
         waypointMode,
         useZoomParameter,
-        showAlternatives,
-      };
+        showAlternatives
+      }
 
-      const routingLayer = L.Routing.control(options);
-      routingLayer.addTo(this.mapObject);
-      this.layer = routingLayer;
+      const routingLayer = L.Routing.control(options)
+      routingLayer.addTo(this.mapObject)
+      this.layer = routingLayer
 
-      this.ready = true;
-    },
-  },
-};
+      this.ready = true
+    }
+  }
+}
 </script>
