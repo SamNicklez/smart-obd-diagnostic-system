@@ -174,10 +174,9 @@ class DataCollector:
         else:
             # Database connection configuration
             db_config = {
-                'user': 'test',
+                'user': 'sloecke',
                 'password': 'password',
                 'host': 'localhost',
-                'port': '3308',
                 'database': 'obd'
             }
         
@@ -350,6 +349,10 @@ class DataCollector:
 
             unit = self.available_commands[command.name]['unit']
 
+            if command.name == 'GET_DTC':
+                # TODO Process out the get dtc into two seperate values for the data base
+                pass
+
             # Editing the units to be better
             if command.name == 'SPEED':
                 if hasattr(response.value, 'magnitude'):  # Ensure value has magnitude for conversion
@@ -396,8 +399,8 @@ class DataCollector:
         #return True
         if 'RPM' in self.data_dict:
             rpms = self.data_dict['RPM']['value']
-            printc("LIVE DATA: " + str(rpms))
             if rpms < 100:
+                printc("LIVE DATA: " + str(rpms) + ". RPMs too low, shutting off....")
                 return False
             else:
                 return True

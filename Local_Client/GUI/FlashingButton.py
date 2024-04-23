@@ -9,11 +9,12 @@ class FlashingButton(MDRaisedButton):
     def __init__(self, **kwargs):
         super(FlashingButton, self).__init__(**kwargs)
         self.flash_state = False
-        self.condition = True  # This will start the button flashing immediately
-        self.flash_event = Clock.schedule_interval(self.update_flash, 1)  # Flash every second
+        self.condition = False  # This will start the button flashing immediately
+        self.flash_event = Clock.schedule_interval(self.update_flash, .75)  # Flash every second
         self.dialog = None  # Initialize dialog attribute
-        self.engine_code = None
-        self.engine_explanation = None
+        self.engine_codes = []
+        self.engine_explanations = []
+        self.dtc_state = False # Variable for if there is a code present or not, initially start at not
 
     def update_flash(self, dt):
         if self.condition:
@@ -25,14 +26,16 @@ class FlashingButton(MDRaisedButton):
         else:
             self.md_bg_color = self.theme_cls.primary_color  # Reset to default theme color
 
-    def on_press(self):
-        # If you have the engine code and explanation ready, you can directly set them
-        self.engine_code = "P0301"  # Example engine code
-        self.engine_explanation = "Cylinder 1 Misfire Detected"  # Example explanation
+    def on_press(self):    
         self.show_alert_dialog()
 
     def show_alert_dialog(self):
-        dialog_title = f"Engine Code: {self.engine_code} - {self.engine_explanation}"
+        if self.dtc_state:
+            dialog_title = "Engine Codes:\n" + "\n".join(
+                f"{code} - {explanation}" for code, explanation in zip(self.engine_codes, self.engine_explanations)
+            )
+        else:
+            dialog_title = "No Engine Codes Present"   
 
         if not self.dialog:
             self.dialog = MDDialog(
@@ -57,10 +60,13 @@ class FlashingButton(MDRaisedButton):
         if self.dialog:
             self.dialog.dismiss()
 
-    def set_engine_code(self, code, explanation):
+    def set_engine_codes(self, codes, explanations):
         """Sets the engine code and its explanation."""
-        self.engine_code = code
-        self.engine_explanation = explanation
+        self.engine_codes = codes
+        self.engine_explanations = explanations
+
+        self.set_dtc_state(bool(codes))
+
         # Update the dialog title if the dialog exists
         if self.dialog:
             self.dialog.title = self._generate_dialog_title()
@@ -72,7 +78,12 @@ class FlashingButton(MDRaisedButton):
         if not flashing:
             self.md_bg_color = self.theme_cls.primary_color
 
+    def set_dtc_state(self, code_present):
+        self.dtc_state = code_present
+        self.set_flashing(code_present)
+
     def _generate_dialog_title(self):
         """Generates the dialog title based on the engine code and explanation."""
-        return f"Engine Code: {self.engine_code} - {self.engine_explanation}"
-
+        return "Engine Codes:\n" + "\n".join(
+            f"{code} - {explanation}" for code, explanation in zip(self.engine_codes, self.engine_explanations)
+        )
