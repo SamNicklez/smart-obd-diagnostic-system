@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from supabase import create_client, Client
+import pandas as pd
 
 import Helpers
 from Test_data import generate_car_info_json
@@ -16,6 +17,7 @@ load_dotenv()
 url = os.getenv("SUPABASE_URL")
 key = os.getenv("SUPABASE_KEY")
 supabase: Client = create_client(url, key)
+dtc_data = pd.read_csv('../Data Collection/finished_codes.csv')
 
 app = Flask(__name__)
 CORS(app)
@@ -446,7 +448,49 @@ def grab_specific_graph_data():
     except Exception as e:
         print(e)
         return jsonify({"Error": "Internal Server Error: " + str(e)}), 500
+    
+@app.route('/getAllDTC', methods=['GET'])
+# @token_auth.login_required
+def get_all_dtcs():
+    data = supabase.table('DTC').select('*').execute()
+    if data.data:
+        results = []
+        for db_entry in data.data:
+            code = db_entry['code']
+            result = dtc_data[dtc_data['code'] == code]
+            if not result.empty:
+                info = {
+                    "Code": code,
+                    "Date": db_entry['date'],
+                    "Description": result['description'].values[0],
+                    "Symptoms": result['symptoms'].values[0],
+                    "Causes": result['causes'].values[0]
+                }
+                results.append(info)
+        return jsonify(results), 200
+    else:
+        return jsonify({"error": "No DTC codes found in the database"}), 404
 
+@app.route('/getNewDTC', methods=['GET'])
+def get_active_dtcs():
+    data = supabase.table('OBD').select('*').eq('dismissed', False).execute()
+    if data.data:
+        results = []
+        for db_entry in data.data:
+            code = db_entry['code']
+            result = dtc_data[dtc_data['code'] == code]
+            if not result.empty:
+                info = {
+                    "Code": code,
+                    "Date": db_entry['date'],
+                    "Description": result['description'].values[0],
+                    "Symptoms": result['symptoms'].values[0],
+                    "Causes": result['causes'].values[0]
+                }
+                results.append(info)
+        return jsonify(results), 200
+    else:
+        return jsonify({"error": "No active DTC codes found in the database"}), 404
 
 if __name__ == '__main__':
     # app.run(debug=True, port=5000, host='0.0.0.0')
