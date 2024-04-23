@@ -1,5 +1,6 @@
 import bluetooth
 
+
 def discover_obdii_devices():
     print("Scanning for OBDII devices...")
     nearby_devices = bluetooth.discover_devices(lookup_names=True)
@@ -11,6 +12,7 @@ def discover_obdii_devices():
             print(f"  Address: {addr}, Name: {name}")
     else:
         print("No OBDII devices found.")
+
 
 if __name__ == "__main__":
     discover_obdii_devices()

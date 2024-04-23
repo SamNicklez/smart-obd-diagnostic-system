@@ -1,16 +1,16 @@
+from GUI.Screens.AlertPopUp import AlertPopup
 from kivy.app import App
+from kivy.clock import Clock
+from kivy.properties import ListProperty
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.button import Button
 from kivy.uix.label import Label
 from kivy.uix.spinner import Spinner  # Added import for Spinner
-from kivy.clock import Clock
-from kivy.uix.button import Button
-from kivy.properties import ListProperty
-from GUI.Screens.AlertPopUp import AlertPopup
-from GUI.gauge import Gauge
+
 
 class LiveDataLayout(BoxLayout):
-
-    available_commands = ListProperty([])  # Define it as a Kivy property so it automatically updates when the list is changed
+    available_commands = ListProperty(
+        [])  # Define it as a Kivy property so it automatically updates when the list is changed
 
     def __init__(self, **kwargs):
         # Get the available commands from the args in the constructor
@@ -31,7 +31,7 @@ class LiveDataLayout(BoxLayout):
         self.settings_button.bind(on_press=self.switch_to_settings)
         self.add_widget(self.settings_button)
 
-        self.gauges_screen = Button(text='Gauges', size_hint=(None, None), size=(100,50))
+        self.gauges_screen = Button(text='Gauges', size_hint=(None, None), size=(100, 50))
         self.gauges_screen.bind(on_press=self.switch_to_gauges)
         self.add_widget(self.gauges_screen)
 
@@ -65,13 +65,13 @@ class LiveDataLayout(BoxLayout):
         #     self.show_alert_popup(f"High Engine Load Detected: {engine_load['value']}%") 
 
         # Checking for dtc codes and alerting if there is a new one
-        get_dtc = data.get('GET_DTC', None) 
+        get_dtc = data.get('GET_DTC', None)
         get_dtc = get_dtc['value']
 
         if get_dtc is not None and len(get_dtc) > 2 and self.dtc_count != len(get_dtc):
             self.show_alert_popup("DTC Detected " + " Codes: " + get_dtc)
             self.dtc_count = len(get_dtc)
-            #self.add_icon()
+            # self.add_icon()
             self.add_icon()
 
             # TODO could add an icon to the screen to show the user that there is a dtc present
@@ -93,7 +93,7 @@ class LiveDataLayout(BoxLayout):
             if cmd_details["name"] == name_to_find:
                 return cmd_details["command"]
         return None  # Return None if no matching name is found
-    
+
     def find_name_by_command(self, command_to_find):
         for cmd_key, cmd_info in self.available_dict.items():
             if cmd_info["command"] == command_to_find:
@@ -111,7 +111,7 @@ class LiveDataLayout(BoxLayout):
 
     # Method for creating the spinners
     def create_spinner(self, spinner_id, available_commands):
-        spinner = Spinner (
+        spinner = Spinner(
             text='Select Data Point',
             values=available_commands,
             size_hint=(None, None),
@@ -128,7 +128,7 @@ class LiveDataLayout(BoxLayout):
         if self.current_data_point in data:
             # Update the label with the value of the selected data point
             value = data[self.current_data_point]
-            
+
             self.speed_label.text = f"{self.current_data_point}: {value}"
         else:
             # Handle the case where the data point is not available in the data dictionary
@@ -136,21 +136,22 @@ class LiveDataLayout(BoxLayout):
 
     # Method for switching to the settings screen
     def switch_to_settings(self, instance):
-        App.get_running_app().root.current = 'settings'  
+        App.get_running_app().root.current = 'settings'
 
     def switch_to_gauges(self, instance):
-        App.get_running_app().root.current = 'gauges'    
+        App.get_running_app().root.current = 'gauges'
 
-    # Method for updating the available commands shown in the spinners
+        # Method for updating the available commands shown in the spinners
+
     def update_available_commands(self, new_commands):
         print("Updating commands", [cmd for cmd in new_commands])
-        
+
         # Set the class attribute to the entire dictionary
         self.available_dict = new_commands
 
         # Extracting the list of command names from the dictionary
         self.available_command_names = [cmd_info['name'] for cmd_key, cmd_info in new_commands.items()]
-        
+
         self.create_spinners_and_labels()
 
     # Method for creating all the spinners and labels
@@ -186,22 +187,22 @@ class LiveDataLayout(BoxLayout):
         print("Adding the icon")
         # Create an icon button with the image as its background
         self.icon_button = Button(background_normal=icon_source,
-                                size_hint=(None, None),
-                                size=('50', '50'))  # Adjust the position as needed
+                                  size_hint=(None, None),
+                                  size=('50', '50'))  # Adjust the position as needed
 
         # Optionally, bind the button to a callback function
         self.icon_button.bind(on_press=self.on_icon_press)
 
         # Add the icon button to the layout
-        self.add_widget(self.icon_button)    
+        self.add_widget(self.icon_button)
 
     def on_icon_press(self, instance):
         # Handle the icon press event
         print("Icon pressed!")
 
-        get_dtc = self.data.get('GET_DTC', None) 
+        get_dtc = self.data.get('GET_DTC', None)
         get_dtc = get_dtc['value']
-    
+
         self.show_alert_popup("Engine Codes Present: " + get_dtc)
 
     def remove_icon(self):

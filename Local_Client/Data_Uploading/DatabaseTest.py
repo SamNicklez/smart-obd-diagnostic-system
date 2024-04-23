@@ -1,19 +1,18 @@
 import mysql.connector
 
 
-
 def insert_commands_with_units(commands):
     try:
         # Assuming db_conn is your database connection
         cursor = conn.cursor()
-        
+
         # Adjusted to include units in the insert statement
         insert_query = "INSERT INTO Commands (CommandName, Description, Units) VALUES (%s, %s, %s)"
         cursor.executemany(insert_query, commands)
-        
+
         conn.commit()
         print(f"{cursor.rowcount} commands were inserted.")
-        
+
     except mysql.connector.Error as err:
         print(f"Error: {err}")
     finally:
@@ -131,15 +130,15 @@ commandsList = {
 try:
     # Establish a connection to MariaDB
     conn = mysql.connector.connect(**config)
-    
+
     # Create a cursor object
     cursor = conn.cursor()
-    
+
     insert_commands_with_units(commandsList)
-    
+
 except mysql.connector.Error as err:
     print(f"Error: {err}")
-    
+
 finally:
     if conn.is_connected():
         cursor.close()

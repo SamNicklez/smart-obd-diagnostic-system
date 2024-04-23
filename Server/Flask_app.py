@@ -1,12 +1,12 @@
 import json
 import os
+from datetime import datetime, timedelta
 
 import jwt
 from dotenv import load_dotenv
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from supabase import create_client, Client
-from datetime import datetime, timedelta
 
 import Helpers
 from Test_data import generate_car_info_json
@@ -128,42 +128,55 @@ def stage():
             # If new entry
             if response == 0:
                 if len(records) == 1:
-                    average_speed = Helpers.kph_to_mph(records[0]['speed'])
+                    average_speed = records[0]['speed']
                     total_runtime = records[0]['runtime']
-                    average_coolant_temp = Helpers.celsius_to_fahrenheit(records[0]['coolant_temp'])
-                    average_oil_temp = Helpers.celsius_to_fahrenheit(records[0]['oil_temp'])
+                    average_coolant_temp = records[0]['coolant_temp']
+                    average_oil_temp = records[0]['oil_temp']
                     avg_mpg = round(Helpers.calculate_mpg(records[0]['airflow_rate'], records[0]['speed']), 2)
                     supabase.table('DrivingData').insert(
                         {"num_entries": len(records), "timestamp": day, "avg_speed": average_speed,
                          "runtime": total_runtime, "avg_coolant_temp": average_coolant_temp,
                          "avg_oil_temp": average_oil_temp, "avg_mpg": avg_mpg}).execute()
+
+                    # TODO: Add DTC
                 else:
                     filtered_speed = [record['speed'] for record in records if record['speed'] != "None"]
                     if len(filtered_speed) == 0:
                         average_speed = 0
                     else:
-                        average_speed = Helpers.kph_to_mph(sum(filtered_speed) / len(filtered_speed))
+                        average_speed = sum(filtered_speed) / len(filtered_speed)
 
                     filtered_runtime = [record['runtime'] for record in records if record['runtime'] != "None"]
                     if len(filtered_runtime) == 0:
                         total_runtime = 0
                     else:
-                        total_runtime = max(filtered_runtime)
+                        total_runtime = 0
+                        temp_max = -1
+                        for x in filtered_runtime:
+                            if x >= temp_max:
+                                temp_max = x
+                                if x == filtered_runtime[-1]:
+                                    total_runtime += temp_max
+                            elif x < temp_max:
+                                total_runtime += temp_max
+                                temp_max = -1
 
-                    filtered_coolant_temp = [record['coolant_temp'] for record in records if record['coolant_temp'] != "None"]
+                    filtered_coolant_temp = [record['coolant_temp'] for record in records if
+                                             record['coolant_temp'] != "None"]
                     if len(filtered_coolant_temp) == 0:
                         average_coolant_temp = 0
                     else:
-                        average_coolant_temp = Helpers.celsius_to_fahrenheit(sum(filtered_coolant_temp) / len(filtered_coolant_temp))
+                        average_coolant_temp = sum(filtered_coolant_temp) / len(filtered_coolant_temp)
 
                     filtered_oil_temp = [record['oil_temp'] for record in records if record['oil_temp'] != "None"]
                     if len(filtered_oil_temp) == 0:
                         average_oil_temp = 0
                     else:
-                        average_oil_temp = Helpers.celsius_to_fahrenheit(sum(filtered_oil_temp) / len(filtered_oil_temp))
+                        average_oil_temp = sum(filtered_oil_temp) / len(filtered_oil_temp)
 
                     avg_mpg = round(
-                        sum([Helpers.calculate_mpg(record['airflow_rate'], record['speed']) for record in records]) / len(
+                        sum([Helpers.calculate_mpg(record['airflow_rate'], record['speed']) for record in
+                             records]) / len(
                             records), 2)
 
                     supabase.table('DrivingData').insert(
@@ -181,28 +194,57 @@ def stage():
                 if len(filtered_speed) == 0:
                     average_speed = data['avg_speed']
                 else:
-                    average_speed = Helpers.kph_to_mph(sum(filtered_speed) + data['avg_speed'] / len(filtered_speed) + data['num_entries'])
+                    average_speed = (sum(filtered_speed) + (data['avg_speed'] * data['num_entries'])) / (
+                            len(filtered_speed) + data['num_entries'])
 
                 filtered_runtime = [record['runtime'] for record in records if record['runtime'] != "None"]
                 if len(filtered_runtime) == 0:
                     total_runtime = data['runtime']
+                elif filtered_runtime[0] > 1:
+                    total_runtime = data['runtime'] - (filtered_runtime[0] - 1)
+                    temp_total_runtime = 0
+                    temp_max = -1
+                    for x in filtered_runtime:
+                        if x >= temp_max:
+                            temp_max = x
+                            if x == filtered_runtime[-1]:
+                                temp_total_runtime += temp_max
+                        elif x < temp_max:
+                            temp_total_runtime += temp_max
+                            temp_max = -1
+                    total_runtime = temp_total_runtime + total_runtime
                 else:
-                    total_runtime = max(filtered_runtime) + data['runtime']
+                    temp_total_runtime = 0
+                    temp_max = -1
+                    for x in filtered_runtime:
+                        if x >= temp_max:
+                            temp_max = x
+                            if x == filtered_runtime[-1]:
+                                temp_total_runtime += temp_max
+                        elif x < temp_max:
+                            temp_total_runtime += temp_max
+                            temp_max = -1
+                    total_runtime = temp_total_runtime + data['runtime']
 
-                filtered_coolant_temp = [record['coolant_temp'] for record in records if record['coolant_temp'] != "None"]
+                filtered_coolant_temp = [record['coolant_temp'] for record in records if
+                                         record['coolant_temp'] != "None"]
                 if len(filtered_coolant_temp) == 0:
                     average_coolant_temp = data['avg_coolant_temp']
                 else:
-                    average_coolant_temp = Helpers.celsius_to_fahrenheit(sum(filtered_coolant_temp) + data['avg_coolant_temp'] / len(filtered_coolant_temp) + data['num_entries'])
+                    average_coolant_temp = (sum(filtered_coolant_temp) + (
+                            data['avg_coolant_temp'] * data['num_entries'])) / (
+                                                   len(filtered_coolant_temp) + data['num_entries'])
 
                 filtered_oil_temp = [record['oil_temp'] for record in records if record['oil_temp'] != "None"]
                 if len(filtered_oil_temp) == 0:
                     average_oil_temp = data['avg_oil_temp']
                 else:
-                    average_oil_temp = Helpers.celsius_to_fahrenheit(sum(filtered_oil_temp) + data['avg_oil_temp'] / len(filtered_oil_temp) + data['num_entries'])
+                    average_oil_temp = (sum(filtered_oil_temp) + (data['avg_oil_temp'] * data['num_entries'])) / (
+                            len(filtered_oil_temp) + data['num_entries'])
 
                 avg_mpg = round(
-                    sum([Helpers.calculate_mpg(record['airflow_rate'], record['speed']) for record in records]) + data['avg_mpg'] / len(records) + data['num_entries'], 2)
+                    (sum([Helpers.calculate_mpg(record['airflow_rate'], record['speed']) for record in records]) + (
+                            data['avg_mpg'] * data['num_entries'])) / (len(records) + data['num_entries']), 2)
 
                 supabase.table('DrivingData').update(
                     {"num_entries": len(records) + data['num_entries'], "avg_speed": average_speed,
@@ -224,8 +266,7 @@ def stage():
                     sum(Helpers.calculate_mpg(record['airflow_rate'], record['speed']) for record in trip) / len(trip),
                     2)
                 avg_engine_load = round(sum(record['engine_load'] for record in trip) / len(trip), 2)
-                response = supabase.table('DrivingData').select('driving_id').eq('timestamp',
-                                                                                 Helpers.convert_date(day)).execute()
+                response = supabase.table('DrivingData').select('driving_id').eq('timestamp', day).execute()
                 driving_id = response.data[0]['driving_id'] if response.data[0]['driving_id'] else 0
                 if driving_id == 0 or driving_id == None:
                     print("Driving ID not found within the Trips")
@@ -255,12 +296,10 @@ def test():
                 response = 0
             # If new entry
             if (response == 0):
-                average_speed = Helpers.kph_to_mph(sum(record['speed'] for record in records) / len(records))
+                average_speed = sum(record['speed'] for record in records) / len(records)
                 total_runtime = max(record['runtime'] for record in records)
-                average_coolant_temp = Helpers.celsius_to_fahrenheit(
-                    sum(record['coolant_temp'] for record in records) / len(records))
-                average_oil_temp = Helpers.celsius_to_fahrenheit(
-                    sum(record['oil_temp'] for record in records) / len(records))
+                average_coolant_temp = sum(record['coolant_temp'] for record in records) / len(records)
+                average_oil_temp = sum(record['oil_temp'] for record in records) / len(records)
                 avg_mpg = round(
                     sum(Helpers.calculate_mpg(record['airflow_rate'], record['speed']) for record in records) / len(
                         records), 2)
@@ -271,18 +310,22 @@ def test():
             # If entry already exists
             else:
                 data, _ = supabase.table('DrivingData').select("*").eq('timestamp', day).execute()
-                average_speed = Helpers.kph_to_mph((sum(record['speed'] for record in records) + data['avg_speed']) / (
-                        len(records) + data['num_entries']))
+                average_speed = (sum(record['speed'] for record in records) + (
+                        data['avg_speed'] * data['num_entries'])) / (
+                                        len(records) + data['num_entries'])
                 total_runtime = max(record['runtime'] for record in records) + data['rumtime']
-                average_coolant_temp = Helpers.celsius_to_fahrenheit(
-                    (sum(record['coolant_temp'] for record in records) + data['avg_coolant_temp']) / (
-                            len(records) + data['num_entries']))
-                average_oil_temp = Helpers.celsius_to_fahrenheit(
-                    (sum(record['oil_temp'] for record in records) + data['avg_oil_temp']) / (
-                            len(records) + data['num_entries']))
+                average_coolant_temp = (sum(record['coolant_temp'] for record in records) + (
+                        data['avg_coolant_temp'] * data['num_entries'])) / (
+                                               len(records) + data['num_entries'])
+                average_oil_temp = (sum(record['oil_temp'] for record in records) + (
+                        data['avg_oil_temp'] * data['num_entries'])) / (
+                                           len(records) + data['num_entries'])
                 avg_mpg = round((sum(
-                    Helpers.calculate_mpg(record['airflow_rate'], record['speed']) for record in records) + data[
-                                     'avg_mpg']) / (len(records) + data['num_entries']), 2)
+                    Helpers.calculate_mpg(record['airflow_rate'], record['speed']) for record in records) + (data[
+                                                                                                                 'avg_mpg'] *
+                                                                                                             data[
+                                                                                                                 'num_entries'])) / (
+                                        len(records) + data['num_entries']), 2)
                 supabase.table('DrivingData').update(
                     {"num_entries": (len(records) + data['num_entries']), "avg_speed": average_speed,
                      "runtime": total_runtime, "avg_coolant_temp": average_coolant_temp,
@@ -301,8 +344,7 @@ def test():
                     sum(Helpers.calculate_mpg(record['airflow_rate'], record['speed']) for record in trip) / len(trip),
                     2)
                 avg_engine_load = round(sum(record['engine_load'] for record in trip) / len(trip), 2)
-                response = supabase.table('DrivingData').select('driving_id').eq('timestamp',
-                                                                                 Helpers.convert_date(day)).execute()
+                response = supabase.table('DrivingData').select('driving_id').eq('timestamp', day).execute()
                 try:
                     driving_id = response.data[0]['driving_id']
                 except:
@@ -365,6 +407,7 @@ def grab_current_trip():
         print(e)
         return jsonify({"Error": "Interal Server Error: " + str(e)}), 500
 
+
 @app.route('/grabGraphData', methods=["POST"])
 @token_auth.login_required
 def grab_graph_data():
@@ -375,12 +418,14 @@ def grab_graph_data():
         end_date_obj = datetime.today()
         db_start_date = start_date_obj.strftime("%Y-%m-%d")
         db_end_date = end_date_obj.strftime("%Y-%m-%d")
-        response, _ = supabase.table('DrivingData').select("*").gte('timestamp', db_start_date).lte('timestamp', db_end_date).execute()
+        response, _ = supabase.table('DrivingData').select("*").gte('timestamp', db_start_date).lte('timestamp',
+                                                                                                    db_end_date).execute()
         response = response[1]
         return jsonify(response), 200
     except Exception as e:
         print(e)
         return jsonify({"Error": "Internal Server Error: " + str(e)}), 500
+
 
 @app.route('/grabSpecificGraphData', methods=["POST"])
 @token_auth.login_required
@@ -393,13 +438,15 @@ def grab_specific_graph_data():
         end_date_obj = datetime.strptime(end_date, "%m/%d/%Y")
         db_start_date = start_date_obj.strftime("%Y-%m-%d")
         db_end_date = end_date_obj.strftime("%Y-%m-%d")
-        response, _ = supabase.table('DrivingData').select("*").gte('timestamp', db_start_date).lte('timestamp', db_end_date).execute()
+        response, _ = supabase.table('DrivingData').select("*").gte('timestamp', db_start_date).lte('timestamp',
+                                                                                                    db_end_date).execute()
         response = response[1]
         response = Helpers.transform_graph_data(response, db_start_date, db_end_date)
         return jsonify(response), 200
     except Exception as e:
         print(e)
         return jsonify({"Error": "Internal Server Error: " + str(e)}), 500
+
 
 if __name__ == '__main__':
     # app.run(debug=True, port=5000, host='0.0.0.0')
