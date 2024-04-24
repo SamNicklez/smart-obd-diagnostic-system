@@ -6,6 +6,7 @@ import axios from 'axios'
 import TripDetail from '@/views/TripDetailView.vue'
 import NotFoundView from '@/views/NotFound.vue'
 import GraphView from '@/views/GraphView.vue'
+import CodeView from '@/views/CodeView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -43,6 +44,11 @@ const router = createRouter({
       name: 'tripDetail',
       component: TripDetail,
       props: true
+    },
+    {
+      path: '/dtc',
+      name: 'dtc',
+      component: CodeView
     },
     {
       path: '/:catchAll(.*)',

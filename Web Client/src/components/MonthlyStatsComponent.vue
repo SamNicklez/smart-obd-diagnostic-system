@@ -9,7 +9,7 @@
               <v-icon :color="item.color">{{ item.icon }}</v-icon>
             </v-col>
             <v-col>
-                <v-list-item-title>{{ item.title }}</v-list-item-title>
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
             </v-col>
           </v-row>
         </v-list-item>
@@ -44,8 +44,7 @@ export default {
       maxBodyLength: Infinity,
       url: 'http://127.0.0.1:5000/grabCurrentData',
       headers: {
-        Authorization:
-          'Bearer ' + this.cookies.get('token')
+        Authorization: 'Bearer ' + this.cookies.get('token')
       }
     }
 
@@ -53,23 +52,39 @@ export default {
       .request(config)
       .then((response) => {
         console.log(response.data[1][0])
-        var date = response.data[1][0]['timestamp'].replace(/(\d{4})-(\d{1,2})-(\d{1,2})/, function(match,y,m,d) 
-        {
-          return m + '/' + d + '/' + y;
-        });
-        this.title = "Most Recent Day Stats (" + date + ")"
-        let speed_var = "Average Speed: " + response.data[1][0]['avg_speed'] + " mph"
-        let fuel_var = "Fuel Efficiency: " + response.data[1][0]['avg_mpg'] + " mpg"
-        let oil_var = "Average Oil Temp: " + response.data[1][0]['avg_oil_temp'] + " \u00B0F"
-        let runtime = "Total Runtime: " + Math.round(response.data[1][0]['runtime']/60) + " hours"
-        let coolant_var = "Average Coolant Temp: " + response.data[1][0]['avg_coolant_temp'] + " \u00B0F"
+        var date = response.data[1][0]['timestamp'].replace(
+          /(\d{4})-(\d{1,2})-(\d{1,2})/,
+          function (match, y, m, d) {
+            // Create a Date object from the year, month, and day
+            var dateObj = new Date(y, m - 1, d) // month is 0-indexed in JavaScript Date
+
+            // Subtract one day
+            dateObj.setDate(dateObj.getDate() - 1)
+
+            // Format the date back into m/d/y format
+            var newMonth = dateObj.getMonth() + 1 // Adjust month back to 1-12 range
+            var newDay = dateObj.getDate()
+            var newYear = dateObj.getFullYear()
+
+            return newMonth + '/' + newDay + '/' + newYear
+          }
+        )
+
+        this.title = 'Most Recent Day Stats (' + date + ')'
+        let speed_var = 'Average Speed: ' + Math.round(response.data[1][0]['avg_speed']) + ' mph'
+        let fuel_var = 'Fuel Efficiency: ' + response.data[1][0]['avg_mpg'] + ' mpg'
+        let oil_var = 'Average Oil Temp: ' + response.data[1][0]['avg_oil_temp'] + ' \u00B0F'
+        let runtime =
+          'Total Runtime: ' + Math.round(response.data[1][0]['runtime'] / 60) + ' minutes'
+        let coolant_var =
+          'Average Coolant Temp: ' + response.data[1][0]['avg_coolant_temp'] + ' \u00B0F'
         this.stats = [
-        { title: speed_var, icon: 'mdi-speedometer', color: 'blue' },
-        { title: fuel_var, icon: 'mdi-fuel', color: 'green' },
-        { title: runtime, icon: 'mdi-car-brake-alert', color: 'red' },
-        { title: oil_var, icon: 'mdi-oil-level', color: 'amber' },
-        { title: coolant_var, icon: 'mdi-car-coolant-level', color: 'purple' }
-                    ]
+          { title: speed_var, icon: 'mdi-speedometer', color: 'blue' },
+          { title: fuel_var, icon: 'mdi-fuel', color: 'green' },
+          { title: runtime, icon: 'mdi-car-brake-alert', color: 'red' },
+          { title: oil_var, icon: 'mdi-oil-level', color: 'amber' },
+          { title: coolant_var, icon: 'mdi-car-coolant-level', color: 'purple' }
+        ]
       })
       .catch((error) => {
         console.log(error)

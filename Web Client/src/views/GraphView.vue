@@ -9,17 +9,9 @@
       margin-right: auto;
     "
   >
-    <VueDatePicker
-      :format="format"
-      v-model="startDate"
-      style="flex: 1"
-    ></VueDatePicker>
+    <VueDatePicker :format="format" v-model="startDate" style="flex: 1"></VueDatePicker>
     -
-    <VueDatePicker
-      :format="format"
-      v-model="endDate"
-      style="flex: 1"
-    ></VueDatePicker>
+    <VueDatePicker :format="format" v-model="endDate" style="flex: 1"></VueDatePicker>
     <v-btn style="flex: 1; margin-left: 1vw" @click="updateData">Update Graph</v-btn>
   </div>
   <v-card id="chart" style="max-width: 90vw; margin-left: 5vw; margin-top: 5vh">
@@ -84,8 +76,8 @@ export default {
         year: 'numeric'
       }
     )
-    this.startDate = todaysDate
-    this.endDate = oneWeekAgo
+    this.startDate = oneWeekAgo
+    this.endDate = todaysDate
     let data = JSON.stringify({
       start_date: oneWeekAgo,
       end_date: todaysDate
@@ -97,8 +89,7 @@ export default {
       url: 'http://127.0.0.1:5000/grabSpecificGraphData',
       headers: {
         'Content-Type': 'application/json',
-        Authorization:
-          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MX0.tjVEMiS5O2yNzclwLdaZ-FuzrhyqOT7UwM9Hfc0ZQ8Q'
+        Authorization: 'Bearer ' + this.cookies.get('token')
       },
       data: data
     }
@@ -131,37 +122,35 @@ export default {
       return `${month}/${day}/${year}`
     },
     updateData() {
-        this.loaded = false
-        this.series = []
-        this.chartOptions.labels = []
-        let startDate = ''
-        let endDate = ''
-        if (this.startDate == null || this.endDate == null) {
-            return
-        }
-        if(this.startDate > this.endDate){
-            return
-        }
-        if(typeof this.startDate == 'string'){
-            startDate = this.startDate
-        }
-        else{
-            startDate = this.startDate.toLocaleDateString('en-US', {
-                month: '2-digit',
-                day: '2-digit',
-                year: 'numeric'
-              })
-        }
-        if(typeof this.endDate == 'string'){
-            endDate = this.endDate
-        }
-        else{
-            endDate = this.endDate.toLocaleDateString('en-US', {
-                month: '2-digit',
-                day: '2-digit',
-                year: 'numeric'
-              })
-        }
+      this.loaded = false
+      this.series = []
+      this.chartOptions.labels = []
+      let startDate = ''
+      let endDate = ''
+      if (this.startDate == null || this.endDate == null) {
+        return
+      }
+      if (this.startDate > this.endDate) {
+        return
+      }
+      if (typeof this.startDate == 'string') {
+        startDate = this.startDate
+      } else {
+        startDate = this.startDate.toLocaleDateString('en-US', {
+          month: '2-digit',
+          day: '2-digit',
+          year: 'numeric'
+        })
+      }
+      if (typeof this.endDate == 'string') {
+        endDate = this.endDate
+      } else {
+        endDate = this.endDate.toLocaleDateString('en-US', {
+          month: '2-digit',
+          day: '2-digit',
+          year: 'numeric'
+        })
+      }
       let data = JSON.stringify({
         start_date: startDate,
         end_date: endDate
