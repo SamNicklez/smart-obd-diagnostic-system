@@ -64,8 +64,7 @@ export default {
         let average = sortedData.slice(bottom20PercentIndex, top20PercentIndex)
         let bad = sortedData.slice(0, bottom20PercentIndex)
 
-
-        for(let i = 0; i < good.length; i++) {
+        for (let i = 0; i < good.length; i++) {
           let date = new Date(good[i].timestamp)
           attrs_new.push({
             highlight: 'green',
@@ -76,7 +75,7 @@ export default {
             }
           })
         }
-        for(let i = 0; i < average.length; i++) {
+        for (let i = 0; i < average.length; i++) {
           let date = new Date(average[i].timestamp)
           attrs_new.push({
             highlight: 'yellow',
@@ -87,7 +86,7 @@ export default {
             }
           })
         }
-        for(let i = 0; i < bad.length; i++) {
+        for (let i = 0; i < bad.length; i++) {
           let date = new Date(bad[i].timestamp)
           attrs_new.push({
             highlight: 'red',
