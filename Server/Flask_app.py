@@ -3,6 +3,7 @@ import os
 from datetime import datetime, timedelta
 
 import jwt
+import traceback
 from dotenv import load_dotenv
 from flask import Flask, jsonify, request
 from flask_cors import CORS
@@ -67,8 +68,8 @@ def grab_car_details():
 def post_car_details():
     try:
         data = request.get_json()
-        response = supabase.table('Cars').insert(data).execute()
-        return jsonify(response), 200
+        supabase.table('Cars').insert(data).execute()
+        return jsonify("Success"), 200
     except Exception as e:
         return jsonify({"Error": "Interal Server Error: " + str(e)}), 500
 
@@ -88,9 +89,13 @@ def grab_obd_data():
 def post_obd_data():
     try:
         data = request.get_json()
-        response = supabase.table('DTC').insert(data).execute()
-        return jsonify(response), 200
+        for code in data:
+            response, _ = supabase.table('DTC').select("*").eq('code', code['code']).eq('dismissed', 'FALSE').execute()
+            if not response[1]:
+                supabase.table('DTC').insert(code).execute()
+        return jsonify("Success"), 200
     except Exception as e:
+        print(e)
         return jsonify({"Error": "Internal Server Error: " + str(e)}), 500
 
 
@@ -142,6 +147,7 @@ def stage():
 
                     # TODO: Add DTC
                 else:
+                    print(records)
                     filtered_speed = [record['speed'] for record in records if record['speed'] != "None"]
                     if len(filtered_speed) == 0:
                         average_speed = 0
@@ -190,7 +196,6 @@ def stage():
                 data, _ = supabase.table('DrivingData').select("*").eq('timestamp', day).execute()
 
                 data = data[1][0]
-                print(data)
 
                 filtered_speed = [record['speed'] for record in records if record['speed'] != "None"]
                 if len(filtered_speed) == 0:
@@ -280,6 +285,7 @@ def stage():
 
         return jsonify({"Test": "GOOD"}), 200
     except Exception as e:
+        traceback.print_exc()
         print("ERROR: " + str(e))
         return jsonify({"Error": "Interal Server Error: " + str(e)}), 500
 
@@ -400,10 +406,8 @@ def grab_current_data():
 def grab_current_trip():
     try:
         trip_id = request.args.get('trip_id', None)
-        print(trip_id)
         response, _ = supabase.table('Trips').select("*").eq('trip_id', trip_id).execute()
 
-        print(response)
         return jsonify(response), 200
     except Exception as e:
         print(e)

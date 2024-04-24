@@ -1,3 +1,4 @@
+import json
 import random
 from datetime import datetime
 
@@ -135,12 +136,15 @@ def format_data(data):
             "longitude": "-91.533460" if i != len(data) - 1 else random_end_point[1],
         }
         return_data.append(formatted_row)
-        if row['GET_DTC'] and (row['GET_DTC'] not in [dtc_data[i]['code'] for i in range(len(dtc_data))]):
-            formatted_row = {
-                "date": row['timestamp'],
-                "code": row['GET_DTC']
-            }
-            dtc_data.append(formatted_row)
+        if row['GET_DTC'] and row['GET_DTC'] != []:
+            code = eval(row['GET_DTC'])
+            if code[0][0] not in [dtc_data[i]['code'] for i in range(len(dtc_data))]:
+                formatted_row = {
+                    "date": row['timestamp'],
+                    "code": code[0][0]
+                }
+                print(f"Formatted Row: {formatted_row}")
+                dtc_data.append(formatted_row)
     return return_data, dtc_data
 
 
@@ -153,8 +157,8 @@ def upload_data():
     if dtc_data:
         printc(f"DTC Data: {dtc_data}")
         send_dtc_data_to_server(dtc_data, token)
-    if data:
-        send_data_to_server(data, token)
+    if by_sec_data:
+        send_data_to_server(by_sec_data, token)
     else:
         print("No data to send.")
 
