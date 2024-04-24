@@ -78,6 +78,7 @@ def send_data_to_server(data, token):
     except Exception as e:
         print(f"Error sending data to server: {e}")
 
+
 def send_dtc_data_to_server(data, token):
     try:
         response = requests.post(
@@ -151,13 +152,11 @@ def upload_data():
     printc(f"By Sec Data: {by_sec_data}")
     if dtc_data:
         printc(f"DTC Data: {dtc_data}")
+        send_dtc_data_to_server(dtc_data, token)
     if data:
         send_data_to_server(data, token)
     else:
         print("No data to send.")
-
-    if dtc_data:
-        send_dtc_data_to_server(dtc_data, token)
 
 
 def main():
