@@ -61,7 +61,6 @@ def fetch_and_delete_data_from_database():
 
 
 def send_data_to_server(data, token):
-
     try:
         response = requests.post(
             # url="https://senior-design-final-project.onrender.com/stage",
@@ -79,9 +78,28 @@ def send_data_to_server(data, token):
     except Exception as e:
         print(f"Error sending data to server: {e}")
 
+def send_dtc_data_to_server(data, token):
+    try:
+        response = requests.post(
+            # url="https://senior-design-final-project.onrender.com/stage",
+            url="http://127.0.0.1:5000/postDTCData",
+            json=data,
+            headers={
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + token,
+            }
+        )
+        if response.status_code == 200:
+            print("Data sent successfully to the server.")
+        else:
+            print(f"Failed to send data to server: {response.status_code}")
+    except Exception as e:
+        print(f"Error sending data to server: {e}")
+
 
 def format_data(data):
     return_data = []
+    dtc_data = []
     list_of_end_points = [("41.683430", "-91.562100"), ("41.703860", "-91.619360"),
                           ("41.646198", "-91.551003"), ("41.665890", "-91.471680"),
                           ("41.725360", "-91.519960"), ("41.698840", "-91.565990"),
@@ -116,19 +134,30 @@ def format_data(data):
             "longitude": "-91.533460" if i != len(data) - 1 else random_end_point[1],
         }
         return_data.append(formatted_row)
-    return return_data
+        if row['GET_DTC'] and (row['GET_DTC'] not in [dtc_data[i]['code'] for i in range(len(dtc_data))]):
+            formatted_row = {
+                "date": row['timestamp'],
+                "code": row['GET_DTC']
+            }
+            dtc_data.append(formatted_row)
+    return return_data, dtc_data
 
 
 def upload_data():
     token = get_token()
     print(f"Token: {token}")
     data = fetch_and_delete_data_from_database()
-    data = format_data(data)
-    printc(f"Data: {data}")
+    by_sec_data, dtc_data = format_data(data)
+    printc(f"By Sec Data: {by_sec_data}")
+    if dtc_data:
+        printc(f"DTC Data: {dtc_data}")
     if data:
         send_data_to_server(data, token)
     else:
         print("No data to send.")
+
+    if dtc_data:
+        send_dtc_data_to_server(dtc_data, token)
 
 
 def main():

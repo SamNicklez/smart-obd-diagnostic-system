@@ -81,15 +81,15 @@ def grab_obd_data():
         return jsonify({"Error": "Internal Server Error: " + str(e)}), 500
 
 
-@app.route("/postOBDData", methods=["POST"])
+@app.route("/postDTCData", methods=["POST"])
 @token_auth.login_required
 def post_obd_data():
     try:
         data = request.get_json()
-        response = supabase.table('OBD').insert(data).execute()
+        response = supabase.table('DTC').insert(data).execute()
         return jsonify(response), 200
     except Exception as e:
-        return jsonify({"Error": "Interal Server Error: " + str(e)}), 500
+        return jsonify({"Error": "Internal Server Error: " + str(e)}), 500
 
 
 @app.route("/grabNotifications", methods=["GET"])
