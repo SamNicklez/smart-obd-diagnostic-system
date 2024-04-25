@@ -1,5 +1,4 @@
 import re
-
 from Data_Collection.vinLookup import get_vehicle_info_by_vin
 from Data_Uploading.wifiConnection import check_internet_connection
 from GUI.gauge import Gauge
@@ -12,8 +11,7 @@ from kivy.uix.label import Label
 from kivy.uix.screenmanager import Screen
 from kivymd.uix.button import MDRaisedButton
 from GUI.FlashingButton import FlashingButton
-
-
+import ast
 
 class Dashboard(Screen):
     available_commands = ListProperty([])
@@ -28,7 +26,7 @@ class Dashboard(Screen):
         # Set a reference to the edit screen to be able to get the user's selections
         self.edit_screen = edit_screen
 
-        self.dtc_count = 0
+        self.dtc_count = 0 # count for how many dtcs are present
 
         # set a callback function for the edit screen class to use to update the dashboard
         self.edit_screen.confirmation_callback = self.handle_new_selections
@@ -46,8 +44,6 @@ class Dashboard(Screen):
             text="Settings",
             size_hint=(0.2, 0.1),
             pos_hint={'x': 0, 'top': 1},
-            # Optional: specify a specific color with get_color_from_hex
-            # md_bg_color=get_color_from_hex("#your_hex_color_here"),
             elevation=8  # Adjust the shadow size
         )
         back_button.bind(on_press=self.settings)
@@ -58,8 +54,6 @@ class Dashboard(Screen):
             text="Edit",
             size_hint=(.1, .1),
             pos_hint={'x': .9, 'top': 1},
-            # Optional: specify a specific color with get_color_from_hex
-            # md_bg_color=get_color_from_hex("#your_hex_color_here"),
             elevation=8  # Adjust the shadow size
         )
         edit_button.bind(on_press=self.on_edit_press)  # Bind the on_edit_press method to handle button press
@@ -100,8 +94,9 @@ class Dashboard(Screen):
             self.gauge_labels.append(label)
             main_layout.add_widget(label)
 
-            flash_button = FlashingButton(text='Alert', size_hint=(None, None), size=(200, 50))
-            main_layout.add_widget(flash_button)  # Assuming you want to add it to the main screen
+
+        self.flash_button = FlashingButton(text='Alert', size_hint=(None, None), size=(200, 50))
+        main_layout.add_widget(self.flash_button)  # Assuming you want to add it to the main screen
 
         self.data_labels = []  # List to hold references to the data labels
 
@@ -233,16 +228,33 @@ class Dashboard(Screen):
         printc("LIVE DATA: GET_DTC " + str(get_dtc))
 
         if get_dtc is not None and len(get_dtc) > 2 and self.dtc_count != len(get_dtc):
-            self.show_alert_popup("DTC Detected " + " Codes: " + get_dtc)
             self.dtc_count = len(get_dtc)
-            printc("LIVE DATA: DTC DETECTED!!!!!")
-            # TODO do whatever we are going to do to alert the user that there is a dtc present
+            self.flash_button.set_dtc_state(True)
+            printc("LIVE DATA: New DTC Detected!")
+
+            # Parsing the GET_DTC string to get the code and description
+            dtc_list = ast.literal_eval(get_dtc)
+            codes = []
+            descriptions = []
+
+            # set the code and description for the GUI
+            for code_tuple in dtc_list:
+                codes.append(code_tuple[0])
+                descriptions.append(code_tuple[1])
+            
+            # set the code and description for the GUI
+            self.flash_button.set_engine_codes(codes, descriptions)
+
+            printc("LIVE DATA: CODE: " + str(codes) + " Description: " + str(descriptions))
+
             # TODO also show a severity for the engine code
 
-        elif get_dtc is not None and len(get_dtc) <= 2 and self.dtc_count != 0:
+        elif get_dtc is not None and len(get_dtc) <= 2 and self.dtc_count != 0: # All DTCs Cleared
             self.dtc_count = 0
-            # TODO do whatever we are going to do to alert the user that the dtc is cleared
-            printc("LIVE DATA: DTC CLEARED!!!!!")
+
+            # Change the alerts since the DTC is cleared
+            self.flash_button.set_dtc_state(False)
+            printc("LIVE DATA: DTC Cleared!")
 
     # Method for updating the available commands shown in the spinners
     def update_available_commands(self, new_commands):
@@ -255,7 +267,8 @@ class Dashboard(Screen):
         self.available_command_names = [cmd_info['name'] for cmd_key, cmd_info in new_commands.items()]
 
         # updating the available commands to choose from in the edit screen
-        self.edit_screen.update_available_commands(self.available_command_names)
+        # self.edit_screen.update_available_commands(self.available_command_names)
+        self.edit_screen.update_available_commands(self.available_dict)
 
     # Method that returns the command of a data point from an inputted name
     def find_command_by_name(self, name_to_find):

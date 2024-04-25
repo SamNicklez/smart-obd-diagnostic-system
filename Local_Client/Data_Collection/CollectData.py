@@ -177,8 +177,8 @@ class DataCollector:
                 'user': 'test',
                 'password': 'password',
                 'host': 'localhost',
-                'port': '3308',
-                'database': 'obd'
+                'database': 'obd',
+                'port': '3307'
             }
         
         # Connect to the database
@@ -396,8 +396,8 @@ class DataCollector:
         #return True
         if 'RPM' in self.data_dict:
             rpms = self.data_dict['RPM']['value']
-            printc("LIVE DATA: " + str(rpms))
             if rpms < 100:
+                printc("LIVE DATA: " + str(rpms) + ". RPMs too low, shutting off....")
                 return False
             else:
                 return True
