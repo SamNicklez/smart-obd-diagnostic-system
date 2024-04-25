@@ -34,7 +34,7 @@ class EditScreen(Screen):
         for i in range(1, 7):  # Assuming 3 labels and 3 gauges
             # Choose the label text based on the index
             label_text = f'Label {i}' if i <= 3 else f'Gauge {i - 3}'
-            component_label = Label(text=label_text, size_hint=(1, None), height=30)
+            component_label = Label(text=label_text, size_hint=(1, 1), height=30)
 
             # Create navigation buttons
             prev_button = Button(text="<", size_hint=(None, 1), width=30)
@@ -44,7 +44,7 @@ class EditScreen(Screen):
             component_spinner = Spinner(
                 text='Select Data Point',
                 values=self.available_commands,
-                size_hint=(None, None),  # Specify no size hint to use exact size
+                size_hint=(1, 1),  # Specify no size hint to use exact size
                 size=(420, 44),  # Specify the size of the spinner
                 height=44,
                 background_color=MDApp.get_running_app().theme_cls.primary_color,
@@ -59,7 +59,7 @@ class EditScreen(Screen):
             next_button.bind(on_press=lambda instance, s=component_spinner: self.navigate_spinner(s, 1))
 
             # Create a vertical BoxLayout for the label and spinner
-            spinner_box = BoxLayout(orientation='vertical', size_hint=(None, None), size=(420, 74))
+            spinner_box = BoxLayout(orientation='vertical', size_hint=(1, None), size=(420, 74))
             spinner_box.add_widget(component_label)  # Add the label first so it's on top
             spinner_box.add_widget(component_spinner)  # Then the spinner
 
