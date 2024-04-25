@@ -1,4 +1,3 @@
-
 <template>
   <v-container>
     <v-app-bar scroll-behavior="hide">
@@ -7,6 +6,7 @@
       </v-toolbar-title>
       <v-btn @click="openLogin">Login</v-btn>
       <v-btn @click="openGraphs">Graphs</v-btn>
+      <v-btn @click="openCodes">DTC</v-btn>
       <v-menu transition="scale-transition" :close-on-content-click="false">
         <template v-slot:activator="{ props }">
           <v-btn icon @click="populateNotifications" v-bind="props">
@@ -67,6 +67,9 @@ export default {
     openGraphs() {
       this.$router.push('/graphs')
     },
+    openCodes() {
+      this.$router.push('/dtc')
+    },
     /**
      * Populates the notifications
      */
@@ -78,18 +81,24 @@ export default {
         maxBodyLength: Infinity,
         url: 'http://127.0.0.1:5000/grabNotifications',
         headers: {
-          Authorization:
-            'Bearer ' + this.cookies.get('token'),
+          Authorization: 'Bearer ' + this.cookies.get('token')
         },
         data: data
       }
       axios
         .request(config)
         .then((response) => {
-          if(response.data[1] == []){
+          if (response.data[1] == []) {
             this.notifications = []
           } else {
-            this.notifications = response.data[1]
+            console.log(response.data[1])
+            this.notifications = []
+            for (let i = 0; i < response.data[1].length; i++) {
+              this.notifications.push({
+                title: response.data[1][i].code,
+                description: 'Engine Code Detected'
+              })
+            }
           }
         })
         .catch(() => {
@@ -101,13 +110,33 @@ export default {
      * @param {int} index
      */
     closeNoti(index) {
-      this.notifications.splice(index, 1)
-      //Somewhere in here, ping server to mark notification as read
+      let data = JSON.stringify({
+        code: this.notifications[index].title
+      })
+
+      let config = {
+        method: 'post',
+        maxBodyLength: Infinity,
+        url: 'http://127.0.0.1:5000/dismissNotification',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + this.cookies.get('token')
+        },
+        data: data
+      }
+
+      axios
+        .request(config)
+        .then(() => {
+          this.notifications.splice(index, 1)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     }
   }
 }
 </script>
-
 
 <style scoped>
 .nav-textfield {

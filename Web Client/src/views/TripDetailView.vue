@@ -10,23 +10,23 @@
       <!-- Trip details list -->
       <v-list>
         <v-list-item>
-            <v-icon>mdi-speedometer</v-icon>
+          <v-icon>mdi-speedometer</v-icon>
           Average Engine Load: {{ tripDetail.avg_engine_load }}%
         </v-list-item>
         <v-list-item>
-            <v-icon>mdi-fuel</v-icon>
+          <v-icon>mdi-fuel</v-icon>
           Average MPG: {{ tripDetail.avg_mpg }} Miles per Gallon
         </v-list-item>
         <v-list-item>
-            <v-icon>mdi-timer</v-icon>
+          <v-icon>mdi-timer</v-icon>
           Runtime: {{ formatDuration(tripDetail.runtime) }}
         </v-list-item>
         <v-list-item>
-            <v-icon>mdi-clock-start</v-icon>
+          <v-icon>mdi-clock-start</v-icon>
           Start Time: {{ formatDateTime(tripDetail.start_time) }}
         </v-list-item>
         <v-list-item>
-            <v-icon>mdi-clock-end</v-icon>
+          <v-icon>mdi-clock-end</v-icon>
           End Time: {{ formatDateTime(tripDetail.end_time) }}
         </v-list-item>
       </v-list>

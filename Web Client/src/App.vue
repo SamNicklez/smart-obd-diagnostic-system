@@ -19,11 +19,11 @@ html,
   padding: 0;
   width: 100%;
   height: 100%;
-  background-color: #E8E9EB;
+  background-color: #e8e9eb;
 }
 
 #template {
-  background-color: #E8E9EB;
+  background-color: #e8e9eb;
 }
 
 #app {
@@ -31,31 +31,30 @@ html,
   flex-direction: column;
   min-width: 100%;
   min-height: 100%;
-  background-color: #E8E9EB;
+  background-color: #e8e9eb;
 }
 
 .main {
   flex: 1;
   overflow: auto;
-  background-color: #E8E9EB;
+  background-color: #e8e9eb;
 }
 
 @font-face {
   font-style: normal;
   font-display: auto;
-  font-family: "Poppins";
+  font-family: 'Poppins';
   src: url('/public/Poppins-Regular.ttf');
 }
 
 .v-application__wrap {
-  background-color: #E8E9EB;
+  background-color: #e8e9eb;
 }
 
-.leaflet-routing-container{
+.leaflet-routing-container {
   display: none !important;
 }
 .leaflet-control-attribution {
   display: none !important;
 }
 </style>
-

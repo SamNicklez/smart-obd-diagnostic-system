@@ -3,10 +3,12 @@ import os
 from datetime import datetime, timedelta
 
 import jwt
+import traceback
 from dotenv import load_dotenv
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from supabase import create_client, Client
+import pandas as pd
 
 import Helpers
 from Test_data import generate_car_info_json
@@ -16,6 +18,7 @@ load_dotenv()
 url = os.getenv("SUPABASE_URL")
 key = os.getenv("SUPABASE_KEY")
 supabase: Client = create_client(url, key)
+dtc_data = pd.read_csv('../Data Collection/finished_codes.csv')
 
 app = Flask(__name__)
 CORS(app)
@@ -65,8 +68,8 @@ def grab_car_details():
 def post_car_details():
     try:
         data = request.get_json()
-        response = supabase.table('Cars').insert(data).execute()
-        return jsonify(response), 200
+        supabase.table('Cars').insert(data).execute()
+        return jsonify("Success"), 200
     except Exception as e:
         return jsonify({"Error": "Interal Server Error: " + str(e)}), 500
 
@@ -81,22 +84,26 @@ def grab_obd_data():
         return jsonify({"Error": "Internal Server Error: " + str(e)}), 500
 
 
-@app.route("/postOBDData", methods=["POST"])
+@app.route("/postDTCData", methods=["POST"])
 @token_auth.login_required
 def post_obd_data():
     try:
         data = request.get_json()
-        response = supabase.table('OBD').insert(data).execute()
-        return jsonify(response), 200
+        for code in data:
+            response, _ = supabase.table('DTC').select("*").eq('code', code['code']).eq('dismissed', 'FALSE').execute()
+            if not response[1]:
+                supabase.table('DTC').insert(code).execute()
+        return jsonify("Success"), 200
     except Exception as e:
-        return jsonify({"Error": "Interal Server Error: " + str(e)}), 500
+        print(e)
+        return jsonify({"Error": "Internal Server Error: " + str(e)}), 500
 
 
 @app.route("/grabNotifications", methods=["GET"])
 @token_auth.login_required
 def grab_notifications():
     try:
-        response, _ = supabase.table('OBD').select("*").eq('dismissed', False).execute()
+        response, _ = supabase.table('DTC').select("*").eq('dismissed', False).execute()
         return jsonify(response), 200
     except Exception as e:
         print(e)
@@ -108,8 +115,8 @@ def grab_notifications():
 def dismiss_notification():
     try:
         data = request.get_json()
-        response = supabase.table('OBD').update({"dismissed": True}).eq('obd_id', data['obd_id']).execute()
-        return jsonify(response), 200
+        supabase.table('DTC').update({"dismissed": True}).eq('code', data['code']).execute()
+        return jsonify("Success"), 200
     except Exception as e:
         return jsonify({"Error": "Interal Server Error: " + str(e)}), 500
 
@@ -140,6 +147,7 @@ def stage():
 
                     # TODO: Add DTC
                 else:
+                    print(records)
                     filtered_speed = [record['speed'] for record in records if record['speed'] != "None"]
                     if len(filtered_speed) == 0:
                         average_speed = 0
@@ -188,7 +196,6 @@ def stage():
                 data, _ = supabase.table('DrivingData').select("*").eq('timestamp', day).execute()
 
                 data = data[1][0]
-                print(data)
 
                 filtered_speed = [record['speed'] for record in records if record['speed'] != "None"]
                 if len(filtered_speed) == 0:
@@ -278,6 +285,7 @@ def stage():
 
         return jsonify({"Test": "GOOD"}), 200
     except Exception as e:
+        traceback.print_exc()
         print("ERROR: " + str(e))
         return jsonify({"Error": "Interal Server Error: " + str(e)}), 500
 
@@ -398,10 +406,8 @@ def grab_current_data():
 def grab_current_trip():
     try:
         trip_id = request.args.get('trip_id', None)
-        print(trip_id)
         response, _ = supabase.table('Trips').select("*").eq('trip_id', trip_id).execute()
 
-        print(response)
         return jsonify(response), 200
     except Exception as e:
         print(e)
@@ -447,6 +453,27 @@ def grab_specific_graph_data():
         print(e)
         return jsonify({"Error": "Internal Server Error: " + str(e)}), 500
 
+@app.route('/getAllDTC', methods=['GET'])
+@token_auth.login_required
+def get_all_dtcs():
+    data = supabase.table('DTC').select('*').execute()
+    if data.data:
+        results = []
+        for db_entry in data.data:
+            code = db_entry['code']
+            result = dtc_data[dtc_data['code'] == code]
+            if not result.empty:
+                info = {
+                    "Code": code,
+                    "Date": db_entry['date'],
+                    "Description": result['description'].values[0],
+                    "Symptoms": result['symptoms'].values[0],
+                    "Causes": result['causes'].values[0]
+                }
+                results.append(info)
+        return jsonify(results), 200
+    else:
+        return jsonify({"error": "No DTC codes found in the database"}), 404
 
 if __name__ == '__main__':
     # app.run(debug=True, port=5000, host='0.0.0.0')
