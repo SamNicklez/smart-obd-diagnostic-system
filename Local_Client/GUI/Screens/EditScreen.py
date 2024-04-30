@@ -29,43 +29,48 @@ class EditScreen(Screen):
         grid_layout = GridLayout(rows=3, cols=2, spacing=(10, 50), size_hint=(1, 1))
         grid_layout.bind(minimum_height=grid_layout.setter('height'), minimum_width=grid_layout.setter('width'))
 
-        # Dynamically create spinners for each component
+        # Dynamically create spinners and labels for each component
         self.spinners = {}
         for i in range(1, 7):  # Assuming 3 labels and 3 gauges
-            component_label = Label(text=f'Component {i}', size_hint=(1, None), height=30)
-            #component_label = Label(text=f'Component {i}', size_hint_y=None, height=30)
-            # Adding navigation buttons
+            # Choose the label text based on the index
+            label_text = f'Label {i}' if i <= 3 else f'Gauge {i - 3}'
+            component_label = Label(text=label_text, size_hint=(1, 1), height=30)
+
+            # Create navigation buttons
             prev_button = Button(text="<", size_hint=(None, 1), width=30)
             next_button = Button(text=">", size_hint=(None, 1), width=30)
 
+            # Create the spinner
             component_spinner = Spinner(
                 text='Select Data Point',
                 values=self.available_commands,
-                size_hint=(1, 1),  # Allow us to set specific size
+                size_hint=(1, 1),  # Specify no size hint to use exact size
                 size=(420, 44),  # Specify the size of the spinner
                 height=44,
-                width=420,
                 background_color=MDApp.get_running_app().theme_cls.primary_color,
             )
             component_spinner.bind(text=self.on_spinner_select)
 
+            # Save the spinner in a dictionary with a unique key
             self.spinners[f'data_point_{i}'] = component_spinner
 
+            # Bind navigation buttons to spinner navigation method
             prev_button.bind(on_press=lambda instance, s=component_spinner: self.navigate_spinner(s, -1))
             next_button.bind(on_press=lambda instance, s=component_spinner: self.navigate_spinner(s, 1))
 
-            # Add each spinner and its label to the grid layout
-            #spinner_box = BoxLayout(orientation='vertical', size_hint=(1, None), height=74)  # This box has a fixed height
+            # Create a vertical BoxLayout for the label and spinner
+            spinner_box = BoxLayout(orientation='vertical', size_hint=(1, None), size=(420, 74))
+            spinner_box.add_widget(component_label)  # Add the label first so it's on top
+            spinner_box.add_widget(component_spinner)  # Then the spinner
 
-            #spinner_box.add_widget(component_spinner)
+            # Create a horizontal BoxLayout to include the navigation buttons and the vertical spinner_box
+            navigation_and_spinner_box = BoxLayout(orientation='horizontal', size_hint=(1, None), height=74)
+            navigation_and_spinner_box.add_widget(prev_button)
+            navigation_and_spinner_box.add_widget(spinner_box)
+            navigation_and_spinner_box.add_widget(next_button)
 
-            spinner_box = BoxLayout(orientation='horizontal', size_hint=(1, None), height=74)
-            spinner_box.add_widget(prev_button)
-            spinner_box.add_widget(component_spinner)
-            #spinner_box.add_widget(component_label)
-            spinner_box.add_widget(next_button)
-
-            grid_layout.add_widget(spinner_box)
+            # Add the horizontal BoxLayout to the grid layout
+            grid_layout.add_widget(navigation_and_spinner_box)
 
         layout.add_widget(grid_layout)
 
