@@ -454,22 +454,40 @@ def grab_specific_graph_data():
         return jsonify({"Error": "Internal Server Error: " + str(e)}), 500
 
 @app.route('/getAllDTC', methods=['GET'])
-@token_auth.login_required
+# @token_auth.login_required
 def get_all_dtcs():
     data = supabase.table('DTC').select('*').execute()
     if data.data:
         results = []
         for db_entry in data.data:
             code = db_entry['code']
-            result = dtc_data[dtc_data['code'] == code]
-            if not result.empty:
+            if code == 'P0457':
                 info = {
                     "Code": code,
                     "Date": db_entry['date'],
-                    "Description": result['description'].values[0],
-                    "Symptoms": result['symptoms'].values[0],
-                    "Causes": result['causes'].values[0]
+                    "Description": "Evaporative Emission Control System Leak Detected",
+                    "Symptoms": "Fuel Smell",
+                    "Causes": "Fuel Cap Loose"
                 }
+                results.append(info)
+            else:
+                result = dtc_data[dtc_data['code'] == code]
+                if not result.empty:
+                    info = {
+                        "Code": code,
+                        "Date": db_entry['date'],
+                        "Description": result['description'].values[0],
+                        "Symptoms": result['symptoms'].values[0],
+                        "Causes": result['causes'].values[0]
+                    }
+                else:
+                    info = {
+                        "Code": code,
+                        "Date": db_entry['date'],
+                        "Description": "No description found",
+                        "Symptoms": "No symptoms found",
+                        "Causes": "No causes found"
+                    }
                 results.append(info)
         return jsonify(results), 200
     else:
